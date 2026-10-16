@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Système — Offres</title>
+<script src="vendor/preact.min.js"></script>
+<script src="dc.js"></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<script type="text/x-dc-template" id="dc-template">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#F2F1EC}
+sc-for,sc-if{display:contents}
+.pp,.pp *{box-sizing:border-box}
+.pp{font-family:'Schibsted Grotesk',system-ui,sans-serif;color:#111;background-color:#F2F1EC;background-image:linear-gradient(rgba(17,17,17,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.045) 1px,transparent 1px),linear-gradient(rgba(17,17,17,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.06) 1px,transparent 1px);background-size:8px 8px,8px 8px,64px 64px,64px 64px;overflow-x:clip;-webkit-font-smoothing:antialiased}
+.pp a{color:inherit}
+.mono{font-family:'DM Mono',ui-monospace,monospace}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.lbl{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#C2410C}
+.sub{color:#5A5852}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:var(--acc,#FF5B1F);color:#111;border:1.5px solid #111;font:600 15px/1 'Schibsted Grotesk',sans-serif;text-decoration:none;box-shadow:4px 4px 0 #111;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #111}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #111}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:transparent;color:#111;border:1.5px solid #111;font:600 15px/1 'Schibsted Grotesk',sans-serif;text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
+.btn2:hover{background:#111;color:#F2F1EC}
+.tl{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+.tl:hover{color:#C2410C;border-color:#C2410C}
+.hd{position:sticky;top:0;z-index:20;background:rgba(242,241,236,.94);backdrop-filter:blur(6px);border-bottom:1.5px solid #111}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:23px;letter-spacing:-.035em;min-height:44px}
+.logo svg{transition:transform .6s cubic-bezier(.7,0,.2,1)}
+.logo:hover svg{transform:rotate(90deg)}
+.dnav{display:flex;gap:2px}
+.dnav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;font-weight:500;font-size:15px;position:relative}
+.dnav a::after{content:"";position:absolute;left:14px;right:14px;bottom:9px;height:2px;background:var(--acc,#FF5B1F);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.dnav a:hover::after,.dnav a.on::after{transform:scaleX(1)}
+.burger{display:none;width:48px;height:48px;align-items:center;justify-content:center;border:1.5px solid #111;background:transparent;cursor:pointer;color:#111}
+.mnav a{display:flex;align-items:center;justify-content:space-between;min-height:54px;border-bottom:1px solid rgba(17,17,17,.15);text-decoration:none;font-weight:600;font-size:18px}
+.tk{background:linear-gradient(#111,#111) 0 0/14px 2px no-repeat,linear-gradient(#111,#111) 0 0/2px 14px no-repeat,linear-gradient(#111,#111) 100% 0/14px 2px no-repeat,linear-gradient(#111,#111) 100% 0/2px 14px no-repeat,linear-gradient(#111,#111) 0 100%/14px 2px no-repeat,linear-gradient(#111,#111) 0 100%/2px 14px no-repeat,linear-gradient(#111,#111) 100% 100%/14px 2px no-repeat,linear-gradient(#111,#111) 100% 100%/2px 14px no-repeat}
+.sheet{background:#FBFAF6;border:1.5px solid #111}
+.fl{display:flex;align-items:center;min-height:44px;text-decoration:none;color:#3A3934;transition:color .2s,padding .2s}
+.fl:hover{color:#C2410C;padding-left:6px}
+.cart{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:1.5px;background:#111;border:1.5px solid #111;margin-top:48px}
+.cart div{background:#ECEBE4;padding:12px 14px;min-height:64px}
+.cart b{display:block;font:500 10px 'DM Mono',monospace;letter-spacing:.1em;color:#5A5852;margin-bottom:6px}
+:focus-visible{outline:2px solid #0089BF;outline-offset:3px}
+@keyframes rv{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes op{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.rv{animation:rv .9s cubic-bezier(.2,.7,.2,1) both}
+@supports (animation-timeline:view()){.sr{animation:rv linear both;animation-timeline:view();animation-range:entry 5% cover 25%}}
+.seg{min-height:44px;padding:0 16px;border:0;font:600 14px 'Schibsted Grotesk',sans-serif;cursor:pointer;transition:background .3s,color .3s}
+.card{display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.card:hover{transform:translate(-3px,-3px)}
+.pick{width:100%;min-height:48px;border:1.5px solid #111;font:600 15px 'Schibsted Grotesk',sans-serif;cursor:pointer;transition:background .3s,color .3s}
+.prm{display:grid;grid-template-columns:118px 1fr;gap:12px;padding:10px 0;border-top:1px dashed rgba(17,17,17,.28);font-size:14.5px;line-height:1.45}
+.crow{display:grid;grid-template-columns:220px repeat(3,1fr);border-bottom:1px solid rgba(17,17,17,.15)}
+.crow:hover{background:rgba(17,17,17,.03)}
+.rng{width:100%;accent-color:#111;height:44px;cursor:pointer}
+.fq{width:100%;background:transparent;border:0;font:inherit;color:#111;text-align:left;cursor:pointer;min-height:68px;display:grid;grid-template-columns:52px 1fr 28px;align-items:center;gap:10px;padding:0 6px;transition:padding .3s,background .3s}
+.fq:hover{padding-left:14px;background:#FBFAF6}
+.ans{animation:op .4s ease both}
+@media(max-width:960px){.dnav{display:none}.burger{display:inline-flex}.hide-sm{display:none}}
+@media(max-width:700px){.wrap{padding:0 16px}.prm{grid-template-columns:1fr;gap:2px}.fq{grid-template-columns:40px 1fr 24px}}
+@media (prefers-reduced-motion:reduce){.pp *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="pp" style="{{ rootStyle }}">
+
+<div class="mono" style="border-bottom:1px solid rgba(17,17,17,.15);font-size:12px;color:#5A5852">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;min-height:36px;gap:16px;flex-wrap:wrap">
+    <span>DOC BQL-SYS-05 · FEUILLE 05/06 · RÉV. C</span>
+    <a class="tl" href="index.html" style="display:inline-flex;align-items:center;min-height:36px">← Toutes les propositions</a>
+  </div>
+</div>
+
+<header class="hd">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:24px">
+    <a href="Systeme-Accueil.html" class="logo" aria-label="Baquelis, accueil">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" fill="none" stroke="#111" stroke-width="2"></rect><path d="M8 8H22M8 8V22M8 15H18" stroke="#111" stroke-width="1.5" fill="none"></path><circle cx="8" cy="8" r="2.6" fill="#111"></circle><circle cx="22" cy="8" r="2.2" fill="#111"></circle><rect x="17" y="17" width="8" height="8" style="fill:var(--acc,#FF5B1F)"></rect></svg>
+      <span>Baquelis</span>
+    </a>
+    <nav class="dnav" aria-label="Navigation principale">
+      <a href="Systeme-Expertises.html">Expertises</a>
+      <a href="Systeme-IA.html">IA</a>
+      <a href="Systeme-Jeux.html">Jeux &amp; Web3</a>
+      <a class="on" href="Systeme-Offres.html" aria-current="page">Offres</a>
+      <a href="Systeme-Contact.html">Contact</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <a class="btn hide-sm" href="Systeme-Contact.html">Réserver un appel</a>
+      <button class="burger" aria-label="Ouvrir ou fermer le menu" onClick="{{ toggleMenu }}"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M2 6H20M2 11H20M2 16H14" stroke="#111" stroke-width="1.8" fill="none"></path></svg></button>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="wrap mnav" style="padding-bottom:20px">
+      <a href="Systeme-Expertises.html">Expertises <span class="mono sub" style="font-size:12px">02</span></a>
+      <a href="Systeme-IA.html">IA <span class="mono sub" style="font-size:12px">03</span></a>
+      <a href="Systeme-Jeux.html">Jeux &amp; Web3 <span class="mono sub" style="font-size:12px">04</span></a>
+      <a href="Systeme-Offres.html">Offres <span class="mono sub" style="font-size:12px">05</span></a>
+      <a href="Systeme-Contact.html">Contact <span class="mono sub" style="font-size:12px">06</span></a>
+      <a class="btn" href="Systeme-Contact.html" style="margin-top:18px;justify-content:center">Commencer</a>
+    </div>
+  </sc-if>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="wrap" style="padding-top:80px;padding-bottom:56px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:48px;align-items:end">
+    <div class="rv">
+      <div class="lbl" style="margin-bottom:22px">Fiches techniques BQL-CFG-05 · Formules mensuelles</div>
+      <h1 style="margin:0;font-weight:800;font-size:clamp(40px,5.8vw,88px);line-height:.95;letter-spacing:-.045em;overflow-wrap:anywhere">Trois configurations. Des paramètres exacts<span style="color:var(--acc,#FF5B1F)">.</span></h1>
+    </div>
+    <div class="rv" style="animation-delay:.15s">
+      <p class="sub" style="margin:0 0 22px;font-size:18px;line-height:1.6">Tarification transparente : un prix mensuel publié, des heures, un engagement, un délai et un reporting définis. Pas de coûts cachés.</p>
+      <div role="group" aria-label="Affichage des prix" style="display:inline-flex;border:1.5px solid #111;flex-wrap:wrap">
+        <button class="seg" style="{{ view.sM }}" aria-pressed="{{ view.pM }}" onClick="{{ view.setM }}">Prix mensuel</button>
+        <button class="seg" style="{{ view.sE }}" aria-pressed="{{ view.pE }}" onClick="{{ view.setE }}">Total sur l’engagement minimum</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARTES -->
+<section class="wrap" style="padding-bottom:104px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:24px;align-items:stretch">
+    <sc-for list="{{ cards }}" as="c" hint-placeholder-count="3">
+      <article class="sheet card" style="{{ c.style }}">
+        <div class="mono" style="display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:12px 20px;border-bottom:1.5px solid #111;letter-spacing:.06em;min-height:46px">
+          <span>{{ c.code }} · RÉV. {{ c.rev }}</span>
+          <sc-if value="{{ c.pop }}" hint-placeholder-val="{{ false }}"><span style="background:var(--acc,#FF5B1F);border:1px solid #111;padding:4px 8px;color:#111">PLUS POPULAIRE</span></sc-if>
+          <sc-if value="{{ c.notPop }}" hint-placeholder-val="{{ true }}"><span class="sub">{{ c.state }}</span></sc-if>
+        </div>
+        <div style="padding:26px 22px 22px;display:flex;flex-direction:column;flex:1">
+          <h2 style="margin:0 0 6px;font-size:30px;letter-spacing:-.03em">{{ c.name }}</h2>
+          <p class="sub" style="margin:0 0 20px;font-size:14.5px;line-height:1.5;min-height:44px">{{ c.ideal }}</p>
+          <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px"><span style="font-size:48px;font-weight:800;letter-spacing:-.045em;line-height:1">{{ c.price }}</span><span class="mono sub" style="font-size:13px">{{ c.unit }}</span></div>
+          <div class="mono" style="font-size:12px;color:#006E99;margin-bottom:20px">Économisez {{ c.save }} €/mois vs recrutement</div>
+          <sc-for list="{{ c.params }}" as="p" hint-placeholder-count="6">
+            <div class="prm"><span class="mono sub" style="font-size:11.5px;letter-spacing:.04em;padding-top:2px">{{ p.k }}</span><span style="font-weight:500">{{ p.v }}</span></div>
+          </sc-for>
+          <div style="border-top:1px dashed rgba(17,17,17,.28);padding-top:12px;margin-bottom:22px;flex:1">
+            <sc-for list="{{ c.extras }}" as="x" hint-placeholder-count="2">
+              <div style="display:flex;gap:10px;align-items:start;padding:5px 0;font-size:14.5px"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" style="margin-top:3px;flex:none"><path d="M2 7L5.5 10.5L12 3.5" stroke="#111" stroke-width="1.8" fill="none"></path></svg>{{ x }}</div>
+            </sc-for>
+          </div>
+          <button class="pick" style="{{ c.btn }}" aria-pressed="{{ c.on }}" onClick="{{ c.pick }}">{{ c.btnLabel }}</button>
+          <a class="tl" href="Systeme-Contact.html" style="display:flex;justify-content:center;align-items:center;min-height:44px;margin-top:8px;font-weight:600;font-size:14px">Démarrer avec {{ c.name }} →</a>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<!-- COMPARATIF -->
+<section style="border-top:1.5px solid #111;padding-top:96px;padding-bottom:104px;background:#ECEBE4">
+  <div class="wrap">
+    <div class="sr" style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:32px">
+      <div>
+        <div class="lbl" style="margin-bottom:14px">§ 01 — Comparatif détaillé · 13 paramètres</div>
+        <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800">Tableau des paramètres.</h2>
+      </div>
+      <span class="mono sub" style="font-size:12px">COLONNE SURLIGNÉE : {{ selName }}</span>
+    </div>
+    <div class="sheet sr" style="overflow-x:auto">
+      <div style="min-width:820px">
+        <div class="crow" style="border-bottom:1.5px solid #111">
+          <div class="mono sub" style="padding:18px 20px;font-size:11px">PARAMÈTRE</div>
+          <sc-for list="{{ cmpHead }}" as="h" hint-placeholder-count="3">
+            <div style="{{ h.style }}"><span class="mono" style="font-size:11px;display:block;margin-bottom:4px">{{ h.code }}</span>{{ h.name }}</div>
+          </sc-for>
+        </div>
+        <sc-for list="{{ cmpRows }}" as="r" hint-placeholder-count="13">
+          <div class="crow">
+            <div class="mono" style="padding:15px 20px;font-size:12.5px;font-weight:500">{{ r.k }}</div>
+            <div style="{{ r.s0 }}">{{ r.v0 }}</div>
+            <div style="{{ r.s1 }}">{{ r.v1 }}</div>
+            <div style="{{ r.s2 }}">{{ r.v2 }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATEUR -->
+<section style="border-top:1.5px solid #111;padding-top:96px;padding-bottom:104px">
+  <div class="wrap">
+    <div class="sr" style="margin-bottom:32px">
+      <div class="lbl" style="margin-bottom:14px">§ 02 — Simulateur d’économies</div>
+      <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:820px">Calculez l’économie sur la durée.</h2>
+    </div>
+    <div class="sheet tk sr" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:0">
+      <div style="padding:32px 30px;border-right:1.5px solid #111;min-width:0">
+        <div class="mono sub" style="font-size:11px;letter-spacing:.06em;margin-bottom:10px">ENTRÉE 1 · FORMULE</div>
+        <div role="group" aria-label="Formule simulée" style="display:flex;border:1.5px solid #111;margin-bottom:28px;flex-wrap:wrap">
+          <sc-for list="{{ sim.opts }}" as="o" hint-placeholder-count="3">
+            <button class="seg" style="{{ o.style }}" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}">{{ o.name }}</button>
+          </sc-for>
+        </div>
+        <label class="mono sub" for="duree" style="font-size:11px;letter-spacing:.06em;display:flex;justify-content:space-between"><span>ENTRÉE 2 · DURÉE</span><span style="color:#111;font-size:13px">{{ sim.mois }} mois</span></label>
+        <input id="duree" class="rng" type="range" min="{{ sim.min }}" max="36" value="{{ sim.mois }}" onInput="{{ sim.setMois }}">
+        <div class="mono sub" style="display:flex;justify-content:space-between;font-size:11px"><span>{{ sim.min }} mois (engagement min.)</span><span>36 mois</span></div>
+        <div style="margin-top:30px">
+          <div class="mono sub" style="font-size:11px;margin-bottom:8px">COÛT CUMULÉ · BAQUELIS</div>
+          <div style="height:30px;border:1.5px solid #111;background:#F2F1EC"><div style="{{ sim.barA }}"></div></div>
+          <div class="mono" style="font-size:12.5px;margin:6px 0 16px">{{ sim.costA }}</div>
+          <div class="mono sub" style="font-size:11px;margin-bottom:8px">ÉQUIVALENT RECRUTEMENT (DÉDUIT)</div>
+          <div style="height:30px;border:1.5px solid #111;background:#F2F1EC"><div style="height:100%;width:100%;background:repeating-linear-gradient(45deg,#111 0 2px,transparent 2px 7px)"></div></div>
+          <div class="mono" style="font-size:12.5px;margin-top:6px">{{ sim.costB }}</div>
+        </div>
+      </div>
+      <div style="padding:32px 30px;display:flex;flex-direction:column;gap:22px;min-width:0;background:#F2F1EC">
+        <div>
+          <div class="mono sub" style="font-size:11px;letter-spacing:.06em">SORTIE 1 · ÉCONOMIE MENSUELLE</div>
+          <div style="font-size:44px;font-weight:800;letter-spacing:-.04em;line-height:1.1">{{ sim.monthly }}</div>
+        </div>
+        <div style="border-top:1.5px solid #111;padding-top:20px">
+          <div class="mono sub" style="font-size:11px;letter-spacing:.06em">SORTIE 2 · ÉCONOMIE CUMULÉE SUR {{ sim.mois }} MOIS</div>
+          <div style="font-size:clamp(48px,6vw,80px);font-weight:800;letter-spacing:-.05em;line-height:1;color:#111"><span style="box-shadow:inset 0 -14px 0 var(--acc,#FF5B1F)">{{ sim.total }}</span></div>
+        </div>
+        <p class="mono" style="margin:auto 0 0;font-size:11.5px;line-height:1.7;color:#5A5852;border-top:1px dashed rgba(17,17,17,.3);padding-top:14px">Estimation basée sur les chiffres Baquelis (économie annoncée vs recrutement : 1 500 / 2 300 / 12 000 €/mois). Équivalent recrutement déduit = prix + économie. Ne constitue pas un devis.</p>
+        <a class="btn" href="Systeme-Contact.html" style="align-self:flex-start">Démarrer avec {{ sim.name }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="border-top:1.5px solid #111;padding-top:96px;padding-bottom:104px;background:#ECEBE4">
+  <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:48px;align-items:start">
+    <div class="sr">
+      <div class="lbl" style="margin-bottom:14px">§ 03 — Questions fréquentes</div>
+      <h2 style="margin:0 0 18px;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800">Notes d’application.</h2>
+      <p class="sub" style="margin:0;font-size:16px;line-height:1.6">Les réponses reprennent les paramètres publiés des formules. Une question manque ? <a class="tl" href="Systeme-Contact.html" style="color:#111;font-weight:600">Écrivez-nous</a>.</p>
+    </div>
+    <div class="sheet sr" style="grid-column:span 2;min-width:0;padding:6px 18px">
+      <sc-for list="{{ faq }}" as="f" hint-placeholder-count="8">
+        <div style="border-bottom:1px solid rgba(17,17,17,.18)">
+          <button class="fq" aria-expanded="{{ f.open }}" onClick="{{ f.pick }}">
+            <span class="mono" style="font-size:12px;color:#C2410C">{{ f.n }}</span>
+            <span style="font-weight:600;font-size:17px">{{ f.q }}</span>
+            <span style="{{ f.icon }}"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 3V15M3 9H15" stroke="#111" stroke-width="1.8"></path></svg></span>
+          </button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+            <p class="sub ans" style="margin:0;padding:0 40px 22px 68px;line-height:1.65;font-size:15.5px">{{ f.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="border-top:1.5px solid #111;padding-top:104px;padding-bottom:112px">
+  <div class="wrap sr" style="text-align:center">
+    <h2 style="margin:0 auto 18px;font-size:clamp(36px,5.4vw,80px);line-height:.98;letter-spacing:-.045em;font-weight:800;max-width:1000px">Prêt à transformer votre entreprise<span style="color:var(--acc,#FF5B1F)"> ?</span></h2>
+    <p class="sub" style="margin:0 auto 32px;max-width:540px;font-size:17px;line-height:1.6">Choisissez une configuration, nous la validons ensemble lors de l’appel découverte.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><a class="btn" href="Systeme-Contact.html">Commencer aujourd’hui</a><a class="btn2" href="Systeme-Contact.html">Nous contacter</a></div>
+  </div>
+</section>
+</main>
+
+<footer style="border-top:1.5px solid #111;background:#ECEBE4">
+  <div class="wrap" style="padding-top:64px;padding-bottom:32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:40px">
+      <div>
+        <a href="Systeme-Accueil.html" class="logo" aria-label="Baquelis, accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" fill="none" stroke="#111" stroke-width="2"></rect><path d="M8 8H22M8 8V22M8 15H18" stroke="#111" stroke-width="1.5" fill="none"></path><circle cx="8" cy="8" r="2.6" fill="#111"></circle><circle cx="22" cy="8" r="2.2" fill="#111"></circle><rect x="17" y="17" width="8" height="8" style="fill:var(--acc,#FF5B1F)"></rect></svg><span>Baquelis</span></a>
+        <p style="margin:16px 0 6px;font-weight:600">Flexibilité. Continuité. Performance.</p>
+        <p class="sub" style="margin:0;font-size:14px;line-height:1.6">Construit sur la confiance. Guidé par les résultats.</p>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Navigation</div>
+        <a class="fl" href="Systeme-Expertises.html">Expertises</a><a class="fl" href="Systeme-IA.html">Intelligence artificielle</a><a class="fl" href="Systeme-Jeux.html">Jeux &amp; Web3</a><a class="fl" href="Systeme-Contact.html">Contact</a>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Formules</div>
+        <a class="fl" href="Systeme-Offres.html">Intégration — 4 500 €/mois</a><a class="fl" href="Systeme-Offres.html">Flex — 6 200 €/mois</a><a class="fl" href="Systeme-Offres.html">Performance — 18 900 €/mois</a>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Société</div>
+        <p style="margin:12px 0;font-size:15px;line-height:1.6">Siège : 31 B avenue Maréchal Foch, 06000 Nice</p>
+        <p class="sub" style="margin:0 0 8px;font-size:14px">[RAISON SOCIALE] · [N° TVA]</p>
+        <p class="mono" style="margin:0;font-size:13px">[contact@domaine-baquelis]</p>
+      </div>
+    </div>
+    <div class="cart mono">
+      <div><b>PROJET</b>Baquelis</div>
+      <div><b>DOCUMENT</b>Système — Offres</div>
+      <div><b>FEUILLE</b>05 / 06</div>
+      <div><b>RÉVISION</b>C</div>
+      <div><b>ÉCHELLE</b>1:1</div>
+      <div><b>DROITS</b>© 2026 Baquelis</div>
+    </div>
+    <div class="mono sub" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;padding-top:18px">
+      <span>Proposition de refonte — concept · Direction 07 « Système »</span>
+      <a class="tl" href="index.html" style="display:inline-flex;align-items:center;min-height:44px">Toutes les propositions</a>
+    </div>
+  </div>
+</footer>
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5800},"accent":{"editor":"color","default":"#FF5B1F","options":["#FF5B1F","#0089BF","#111111"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu:false, sel:1, view:"mois", mois:12, faq:0 };
+  }
+  renderVals(){
+    const acc = (this.props && this.props.accent) || "#FF5B1F";
+    const eur = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    const F = [
+      { code:"CFG-INT", rev:"2.0", name:"Intégration", price:4500, save:1500, min:12, ideal:"Idéal pour startups et PME avec des besoins techniques spécifiques.",
+        params:[["HEURES","Standard · 40 h/semaine"],["ENGAGEMENT","12 mois minimum"],["DÉLAI","Changement de profil sous 30 jours"],["ÉQUIPE","1 profil technique dédié"],["REPORTING","Rapports mensuels"],["SUPPORT","E-mail et chat"]],
+        extras:["Intégration à vos outils et rituels"] },
+      { code:"CFG-FLX", rev:"2.4", name:"Flex", price:6200, save:2300, min:6, ideal:"Idéal pour entreprises avec projets évolutifs. Flexibilité maximale.",
+        params:[["HEURES","Étendues · 50 h/semaine"],["ENGAGEMENT","6 mois minimum"],["DÉLAI","Changement de profil sous 15 jours"],["ÉQUIPE","1 profil technique senior, changement rapide"],["REPORTING","Rapports détaillés hebdomadaires"],["SUPPORT","E-mail et chat prioritaire"]],
+        extras:["Flexibilité maximale","Documentation et passation renforcées"] },
+      { code:"CFG-PRF", rev:"3.1", name:"Performance", price:18900, save:12000, min:2, ideal:"Idéal pour grandes entreprises et projets stratégiques complexes.",
+        params:[["HEURES","Couverture 24/7"],["ENGAGEMENT","2 mois minimum"],["DÉLAI","[DÉLAI]"],["ÉQUIPE","5 experts seniors dédiés, Lead tech + Product Owner inclus"],["REPORTING","Rapports quotidiens personnalisés et tableaux de bord"],["SUPPORT","Prioritaire 24/7 et hotline"]],
+        extras:["Gestion de projet agile complète","Espace Slack dédié"] }
+    ];
+    const sel = this.state.sel, eng = this.state.view === "eng";
+    const choose = (i) => { const m = Math.max(F[i].min, this.state.mois); this.setState({ sel:i, mois:m }); };
+    const cards = F.map((f,i) => ({
+      code:f.code, rev:f.rev, name:f.name, ideal:f.ideal, save:eur(f.save), extras:f.extras,
+      pop:i === 1, notPop:i !== 1, state:i === sel ? "● SÉLECTIONNÉE" : "○ DISPONIBLE",
+      price:eur(eng ? f.price * f.min : f.price) + " €",
+      unit:eng ? "sur " + f.min + " mois (engagement min.)" : "/ mois",
+      params:f.params.map(p => ({ k:p[0], v:p[1] })),
+      on:i === sel ? "true" : "false",
+      style:"animation-delay:" + (i * 0.1) + "s;" + (i === sel ? "box-shadow:8px 8px 0 " + acc : "box-shadow:0 0 0 transparent"),
+      btn:i === sel ? "background:#111;color:#F2F1EC" : "background:transparent;color:#111",
+      btnLabel:i === sel ? "Configuration sélectionnée" : "Sélectionner cette configuration",
+      pick:() => choose(i)
+    }));
+
+    const cell = (i) => "padding:15px 18px;font-size:14.5px;line-height:1.45;transition:background .35s;background:" + (i === sel ? "rgba(255,91,31,.12)" : "transparent");
+    const cmpHead = F.map((f,i) => ({ code:f.code, name:f.name, style:"padding:16px 18px;font-weight:700;font-size:19px;transition:background .35s;background:" + (i === sel ? acc : "transparent") }));
+    const ROWS = [
+      ["Prix mensuel","4 500 €","6 200 €","18 900 €"],
+      ["Idéal pour","Startups et PME","Projets évolutifs","Grandes entreprises, projets stratégiques"],
+      ["Équipe","1 profil dédié","1 profil senior","5 experts seniors"],
+      ["Lead tech + Product Owner","—","—","Inclus"],
+      ["Heures","40 h/semaine","50 h/semaine","Couverture 24/7"],
+      ["Engagement minimum","12 mois","6 mois","2 mois"],
+      ["Changement de profil","Sous 30 jours","Sous 15 jours, rapide","[DÉLAI]"],
+      ["Reporting","Mensuel","Hebdomadaire détaillé","Quotidien personnalisé + tableaux de bord"],
+      ["Support","E-mail et chat","E-mail et chat prioritaire","Prioritaire 24/7 et hotline"],
+      ["Gestion de projet agile","—","—","Complète"],
+      ["Documentation & passation renforcées","—","Incluses","[À CONFIRMER]"],
+      ["Espace Slack dédié","—","—","Inclus"],
+      ["Économie vs recrutement","1 500 €/mois","2 300 €/mois","12 000 €/mois"]
+    ];
+    const cmpRows = ROWS.map(r => ({ k:r[0], v0:r[1], v1:r[2], v2:r[3], s0:cell(0), s1:cell(1), s2:cell(2) }));
+
+    const f = F[sel], mois = Math.max(f.min, this.state.mois);
+    const recru = (f.price + f.save) * mois, cost = f.price * mois;
+    const sim = {
+      name:f.name, min:f.min, mois,
+      setMois:(e) => this.setState({ mois:Math.max(F[this.state.sel].min, parseInt(e.target.value, 10) || 1) }),
+      opts:F.map((o,i) => ({ name:o.name, on:i === sel ? "true" : "false", style:"flex:1;" + (i === sel ? "background:#111;color:#F2F1EC" : "background:transparent;color:#111"), pick:() => choose(i) })),
+      monthly:eur(f.save) + " €",
+      total:eur(f.save * mois) + " €",
+      costA:eur(cost) + " € sur " + mois + " mois",
+      costB:eur(recru) + " € sur " + mois + " mois",
+      barA:"height:100%;background:" + acc + ";transition:width .5s cubic-bezier(.7,0,.2,1);width:" + (cost / recru * 100).toFixed(1) + "%"
+    };
+
+    const FAQ = [
+      ["Quel est l’engagement minimum ?","12 mois pour Intégration, 6 mois pour Flex et 2 mois pour Performance."],
+      ["Puis-je changer de profil en cours de route ?","Oui. Le changement de profil se fait sous 30 jours avec Intégration et sous 15 jours avec Flex, qui prévoit un changement rapide. Avec Performance, la composition de l’équipe se pilote avec le Lead tech et le Product Owner inclus."],
+      ["Quels horaires sont couverts ?","Heures standard (40 h/semaine) pour Intégration, heures étendues (50 h/semaine) pour Flex, couverture 24/7 pour Performance."],
+      ["Quel support est inclus ?","E-mail et chat pour Intégration ; e-mail et chat prioritaire pour Flex ; support prioritaire 24/7, hotline et espace Slack dédié pour Performance."],
+      ["Quels rapports vais-je recevoir ?","Des rapports mensuels (Intégration), des rapports détaillés hebdomadaires (Flex) ou des rapports quotidiens personnalisés avec tableaux de bord (Performance)."],
+      ["Quelle différence entre un modèle affiné et le RAG ?","Un modèle affiné est entraîné sur vos données : précision supérieure, réponses plus rapides, intelligence spécifique à votre domaine. Le RAG consulte des documents au moment de répondre, utile quand ils changent souvent. Les deux peuvent se combiner."],
+      ["Pourquoi mettre en avant les jeux vidéo ?","Parce que les jeux sont les applications les plus difficiles : performance temps réel, architecture complexe, multijoueur évolutif, anti-triche. Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique."],
+      ["Comment l’économie est-elle calculée ?","À partir des montants annoncés par Baquelis par rapport à un recrutement : 1 500 €/mois (Intégration), 2 300 €/mois (Flex), 12 000 €/mois (Performance), multipliés par la durée choisie."]
+    ];
+    const fo = this.state.faq;
+    const faq = FAQ.map((x,i) => ({ n:"Q." + (i < 9 ? "0" : "") + (i + 1), q:x[0], a:x[1], open:i === fo,
+      icon:"display:inline-flex;transition:transform .35s;transform:rotate(" + (i === fo ? 45 : 0) + "deg)",
+      pick:() => this.setState({ faq:i === fo ? -1 : i }) }));
+
+    const segOn = "background:#111;color:#F2F1EC", segOff = "background:transparent;color:#111";
+    const view = { sM:eng ? segOff : segOn, sE:eng ? segOn : segOff, pM:eng ? "false" : "true", pE:eng ? "true" : "false",
+      setM:() => this.setState({ view:"mois" }), setE:() => this.setState({ view:"eng" }) };
+
+    return {
+      rootStyle:"--acc:" + acc,
+      menuOpen:this.state.menu,
+      toggleMenu:() => this.setState({ menu:!this.state.menu }),
+      cards, cmpHead, cmpRows, selName:F[sel].name.toUpperCase(), sim, faq, view
+    };
+  }
+}
+</script>
+</body>
+</html>

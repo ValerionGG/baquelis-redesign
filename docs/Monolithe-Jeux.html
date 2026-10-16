@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Monolithe — Jeux &amp; Web3</title>
+<script src="vendor/preact.min.js"></script>
+<script src="dc.js"></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<script type="text/x-dc-template" id="dc-template">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#0B0B0A}
+sc-for,sc-if{display:contents}
+.m-root{font-family:'Manrope',system-ui,sans-serif;font-size:16px;line-height:1.6;color:#F3EFE7;background:#0B0B0A;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.m-root *,.m-root *::before,.m-root *::after{box-sizing:border-box}
+.m-root img{display:block;max-width:100%}
+.m-root button{font-family:inherit;cursor:pointer}
+.m-root a:focus-visible,.m-root button:focus-visible,.m-root input:focus-visible,.m-root textarea:focus-visible{outline:1px solid var(--acc);outline-offset:4px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 48px}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+.ink{background:#0B0B0A;color:#F3EFE7}
+.ivory{background:#F3EFE7;color:#0B0B0A}
+.lbl{font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;line-height:1.5;margin:0}
+.ink .lbl,.ink .muted{color:#ADA89E}
+.ivory .lbl,.ivory .muted{color:#5E5A53}
+.ivory p{color:#2A2926}
+.ink p{color:#D6D1C7}
+.sec{padding:140px 0;position:relative}
+.chap{display:flex;align-items:center;gap:16px;margin:0 0 34px}
+.chap-n{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:24px;line-height:1;min-width:30px}
+.chap-l{display:block;width:56px;height:1px;background:var(--acc);flex:none}
+.h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(50px,7.4vw,118px);line-height:.96;letter-spacing:-.015em;margin:0;overflow-wrap:anywhere}
+.h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(40px,5vw,76px);line-height:1.02;letter-spacing:-.01em;margin:0;overflow-wrap:anywhere}
+.h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(26px,2.4vw,36px);line-height:1.12;margin:0}
+.h1 em,.h2 em,.h3 em{font-style:italic}
+.lead{font-size:18px;line-height:1.7;max-width:560px;margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:50px;padding:0 28px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:1px solid transparent;border-radius:0;transition:background .35s,color .35s,border-color .35s}
+.btn .arr{transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.btn:hover .arr{transform:translateX(6px)}
+.btn-light{background:#F3EFE7;color:#0B0B0A}
+.btn-light:hover{background:#FFFFFF}
+.btn-ghost{color:#F3EFE7;border-color:rgba(243,239,231,.32);background:transparent}
+.btn-ghost:hover{border-color:#F3EFE7}
+.btn-dark{background:#0B0B0A;color:#F3EFE7}
+.btn-dark:hover{background:#2A2926}
+.btn-out{color:#0B0B0A;border-color:rgba(11,11,10,.4);background:transparent}
+.btn-out:hover{border-color:#0B0B0A}
+.acc-fill{fill:var(--acc)}
+.acc-stroke{stroke:var(--acc)}
+/* header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(11,11,10,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(243,239,231,.08)}
+.hdr-in{display:flex;align-items:center;gap:36px;height:84px}
+.logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:#F3EFE7;min-height:44px}
+.logo-w{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:21px;letter-spacing:.34em;text-transform:uppercase}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font-size:13px;font-weight:500;letter-spacing:.04em;color:#CFCAC0;text-decoration:none;transition:color .3s}
+.nav a::after{content:"";position:absolute;left:14px;right:14px;bottom:8px;height:1px;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.nav a:hover,.nav a[aria-current="page"]{color:#F3EFE7}
+.nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1)}
+.burger{display:none;margin-left:auto;width:48px;height:48px;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(243,239,231,.25);color:#F3EFE7}
+.mnav{display:flex;flex-direction:column;padding-top:8px;padding-bottom:28px;border-top:1px solid rgba(243,239,231,.08);animation:drop .4s ease both}
+.ml{display:flex;align-items:center;justify-content:space-between;min-height:58px;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;color:#F3EFE7;text-decoration:none;border-bottom:1px solid rgba(243,239,231,.08)}
+.mnav .btn{margin-top:22px}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}}
+@media(max-width:1000px){.nav,.hdr-cta{display:none}.burger{display:inline-flex}}
+@media(min-width:1001px){.mnav{display:none}}
+/* footer */
+.ftr{padding:110px 0 40px;border-top:1px solid rgba(243,239,231,.08)}
+.ftr-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:48px}
+.ftr-col{display:flex;flex-direction:column;align-items:flex-start}
+.ftr-h{margin-bottom:14px}
+.ftr-col a{display:inline-flex;align-items:center;min-height:38px;font-size:14px;color:#D6D1C7;text-decoration:none;transition:color .3s}
+.ftr-col a:hover{color:#F3EFE7}
+.ftr .ftr-tag{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:30px;line-height:1.15;margin:0;color:#F3EFE7}
+.ftr-addr{font-style:normal;font-size:14px;line-height:1.8;color:#D6D1C7;margin-bottom:6px}
+.ftr-giant{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(84px,16vw,236px);line-height:.9;letter-spacing:-.02em;margin:90px 0 36px;color:#F3EFE7;display:flex;align-items:flex-end;gap:24px}
+.ftr-giant i{display:block;flex:1;height:1px;background:var(--acc);margin-bottom:.16em;font-style:normal}
+.ftr-bot{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-between;align-items:center;padding-top:26px;border-top:1px solid rgba(243,239,231,.1);font-size:13px;color:#ADA89E}
+.ftr-bot a{color:#F3EFE7;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.ftr-bot a:hover{text-decoration:underline}
+/* motion */
+@keyframes rise{from{opacity:0;transform:translateY(26px)}}
+@keyframes panel{from{opacity:0;transform:translateY(18px)}}
+.rise{animation:rise 1.1s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.45s}.d4{animation-delay:.65s}
+@supports (animation-timeline: view()){.rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 26%}}
+@media(max-width:700px){.wrap{padding:0 20px}.sec{padding:96px 0}}
+@media (prefers-reduced-motion: reduce){.m-root *{animation:none !important;transition:none !important}}
+.head-split{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:60px;align-items:end}
+@media(max-width:980px){.head-split{grid-template-columns:1fr;gap:32px}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:110px 0 120px}
+.hero-bg{position:absolute;top:0;left:0;right:0;bottom:0;background:url(assets/gamer-dark.webp) center/cover no-repeat;filter:grayscale(1) brightness(.28) contrast(1.2);animation:drift 32s ease-in-out infinite alternate}
+@keyframes drift{from{transform:scale(1.04)}to{transform:scale(1.12) translateX(-2%)}}
+.hero-veil{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,#0B0B0A 0%,rgba(11,11,10,.82) 45%,rgba(11,11,10,.4) 100%),linear-gradient(0deg,#0B0B0A 0%,rgba(11,11,10,0) 30%)}
+.hero .wrap{position:relative}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:48px;align-items:center}
+.stage{position:relative;height:560px;perspective:1600px;display:flex;justify-content:center}
+.mono{position:relative;width:200px;height:400px;margin-top:30px;transform-style:preserve-3d;animation:turn 16s ease-in-out infinite}
+@keyframes turn{0%,100%{transform:rotateY(-14deg) rotateX(3deg)}50%{transform:rotateY(12deg) rotateX(3deg)}}
+.face{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;background:linear-gradient(102deg,#1B1A18 0%,#0D0C0B 34%,#201F1D 50%,#0B0B0A 66%,#151413 100%);border:1px solid rgba(243,239,231,.16);box-shadow:0 70px 120px -30px rgba(0,0,0,.95),inset 0 1px 0 rgba(243,239,231,.24)}
+.side{position:absolute;top:0;width:30px;height:400px;background:linear-gradient(180deg,#252422,#070707);border:1px solid rgba(243,239,231,.08)}
+.side-r{right:0;transform-origin:right center;transform:rotateY(-90deg)}
+.side-l{left:0;transform-origin:left center;transform:rotateY(90deg)}
+.face-l{position:absolute;left:0;right:0;text-align:center;font-size:9.5px;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:#8F8B83}
+.wave{position:absolute;left:18px;right:18px;top:150px;height:100px}
+.wave path{stroke-dasharray:420;stroke-dashoffset:420;animation:trace 3.2s linear infinite}
+@keyframes trace{to{stroke-dashoffset:-420}}
+.face-big{position:absolute;left:0;right:0;top:268px;text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:28px;color:#F3EFE7}
+.refl{position:absolute;top:404px;left:0;width:200px;height:160px;background:linear-gradient(180deg,rgba(38,37,35,.8),rgba(11,11,10,0) 85%);-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0) 70%);mask-image:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0) 70%)}
+.floor{position:absolute;left:0;right:0;top:433px;height:1px;background:linear-gradient(90deg,rgba(243,239,231,0),rgba(243,239,231,.22),rgba(243,239,231,0))}
+.floor::after{content:"";position:absolute;left:50%;top:0;width:86px;margin-left:-43px;height:1px;background:var(--acc)}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr}}
+
+/* I — exigences */
+.xt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(11,11,10,.18);margin-top:80px}
+.xb{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:112px;padding:24px 18px 24px 0;background:transparent;border:0;color:#5E5A53;text-align:left;transition:color .4s}
+.xb:hover{color:#0B0B0A}
+.xb .serif{font-style:italic;font-size:22px}
+.xb-t{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(20px,1.9vw,27px);line-height:1.15}
+.xb-bar{position:absolute;left:0;right:0;top:-1px;height:2px;background:transparent;transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.xp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:72px;margin-top:48px;align-items:stretch;animation:panel .7s cubic-bezier(.2,.7,.2,1) both}
+.xp-txt p{font-size:17px;line-height:1.7;margin:20px 0 0}
+.xp-pts{margin-top:30px}
+.xp-pt{display:flex;gap:14px;align-items:baseline;padding:14px 0;border-top:1px solid rgba(11,11,10,.14);font-size:15px;color:#2A2926}
+.xp-pt::before{content:"";width:12px;height:1px;background:#0B0B0A;flex:none;transform:translateY(-4px)}
+.wid{position:relative;padding:40px;background:#0B0B0A;color:#F3EFE7;min-height:460px;display:flex;flex-direction:column}
+.wid .lbl{color:#ADA89E !important}
+.wid-h{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px}
+.illu{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:6px 10px;border:1px solid rgba(243,239,231,.3)}
+.gauge{display:block;margin:0 auto;width:100%;max-width:360px}
+.needle{transition:transform .5s cubic-bezier(.2,.7,.2,1);transform-origin:180px 170px}
+.g-val{text-align:center;margin-top:-6px}
+.g-num{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:64px;line-height:1}
+.g-st{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-top:6px}
+.range{width:100%;margin-top:auto;padding-top:26px}
+.range label{display:flex;justify-content:space-between;font-size:13px;color:#D6D1C7;margin-bottom:12px}
+.range input{width:100%;accent-color:var(--acc);height:44px;cursor:pointer}
+.sys{display:grid;grid-template-columns:120px 1fr;align-items:center;gap:18px;padding:16px 0;border-top:1px solid rgba(243,239,231,.1);font-size:14px;color:#D6D1C7}
+.sys-bar{height:4px;background:rgba(243,239,231,.08);position:relative;overflow:hidden}
+.sys-bar i{position:absolute;left:0;top:0;bottom:0;width:30%;background:#F3EFE7;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{width:8%}50%{width:100%}}
+.sw{display:inline-flex;align-items:center;gap:14px;min-height:44px;margin-top:auto;padding-top:24px;background:transparent;border:0;color:#F3EFE7;font-size:13px;font-weight:600;letter-spacing:.08em}
+.sw-t{position:relative;width:46px;height:24px;border-radius:12px;border:1px solid rgba(243,239,231,.4);transition:background .4s}
+.sw-k{position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#F3EFE7;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.grid100{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:5px}
+.cell{height:14px;background:rgba(243,239,231,.08);transition:background .5s}
+.mp-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+.mp-stats div{border-top:1px solid rgba(243,239,231,.14);padding-top:12px}
+.mp-stats strong{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:26px;line-height:1.1}
+.mp-stats span{font-size:11.5px;color:#ADA89E;letter-spacing:.06em}
+.ev{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:15px 0;border-top:1px solid rgba(243,239,231,.1);font-size:14px;color:#D6D1C7;animation:panel .5s cubic-bezier(.2,.7,.2,1) both}
+.ev b{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px;border:1px solid currentColor}
+@media(max-width:980px){.xt{grid-template-columns:repeat(2,minmax(0,1fr))}.xp{grid-template-columns:1fr;gap:36px}.wid{padding:28px 20px}.sys{grid-template-columns:90px 1fr}}
+
+/* II — pourquoi */
+.why{margin-top:80px}
+.why-row{display:grid;grid-template-columns:70px minmax(0,1fr) 80px minmax(0,1fr);gap:24px;align-items:center;padding:34px 0;border-top:1px solid rgba(243,239,231,.12);transition:background .5s,padding .5s}
+.why-row:last-child{border-bottom:1px solid rgba(243,239,231,.12)}
+.why-row:hover{background:rgba(243,239,231,.03);padding-left:16px;padding-right:16px}
+.why-row .serif{font-style:italic;font-size:22px;color:#ADA89E}
+.why-a{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(24px,2.4vw,34px);line-height:1.15}
+.why-arrow{display:flex;justify-content:center;color:#ADA89E;transition:transform .5s,color .4s}
+.why-row:hover .why-arrow{transform:translateX(10px);color:var(--acc)}
+.why-b{font-size:16px;color:#D6D1C7;line-height:1.6}
+.why-b strong{display:block;color:#F3EFE7;font-weight:600;margin-bottom:4px}
+.why-q{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(30px,3.4vw,50px);line-height:1.2;margin:90px 0 0;max-width:1000px;color:#F3EFE7 !important}
+@media(max-width:900px){.why-row{grid-template-columns:44px 1fr;gap:12px 16px}.why-arrow{display:none}.why-b{grid-column:2}}
+
+/* III — Web3 */
+.w3{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:90px;align-items:center}
+.layers{position:relative;height:520px;perspective:1400px}
+.layer{position:absolute;left:50%;width:380px;height:190px;margin-left:-190px;display:flex;align-items:flex-start;justify-content:space-between;padding:22px 26px;border:1px solid rgba(11,11,10,.5);background:rgba(243,239,231,.86);color:#0B0B0A;text-align:left;transform:rotateX(58deg) rotateZ(-38deg);transition:transform .8s cubic-bezier(.2,.7,.2,1),background .5s,color .5s,box-shadow .5s;box-shadow:0 30px 50px -30px rgba(11,11,10,.5)}
+.layer:hover{transform:rotateX(58deg) rotateZ(-38deg) translateZ(18px)}
+.layer .serif{font-style:italic;font-size:26px}
+.layer .lbl{font-size:10.5px}
+.wid p{color:#D6D1C7 !important}
+.w3-d{margin-top:34px;padding:30px;border:1px solid rgba(11,11,10,.18);animation:panel .6s cubic-bezier(.2,.7,.2,1) both}
+.w3-d p{margin:10px 0 0;font-size:16px;line-height:1.7}
+.w3-pts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;margin-top:28px}
+.w3-pt{display:flex;gap:12px;align-items:baseline;padding:12px 0;border-top:1px solid rgba(11,11,10,.14);font-size:14.5px;color:#2A2926}
+.w3-pt::before{content:"";width:10px;height:1px;background:#0B0B0A;flex:none;transform:translateY(-4px)}
+@media(max-width:980px){.w3{grid-template-columns:1fr;gap:40px}.layers{height:440px}.layer{width:280px;margin-left:-140px;height:150px}.w3-pts{grid-template-columns:1fr}}
+
+.cta{text-align:center;padding:160px 0}
+.cta .h2{font-size:clamp(44px,6vw,96px)}
+.cta .ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:48px}
+</style>
+</helmet>
+<div class="m-root" style="{{ rootStyle }}">
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="Monolithe-Accueil.html" aria-label="Baquelis — accueil">
+      <svg width="16" height="30" viewBox="0 0 16 30" aria-hidden="true"><rect x="3" y="1" width="10" height="24" fill="#F3EFE7"></rect><rect x="3" y="1" width="3" height="24" fill="#BDB7AC"></rect><rect x="0" y="28" width="16" height="1" class="acc-fill"></rect></svg>
+      <span class="logo-w">Baquelis</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="Monolithe-Expertises.html">Expertises</a>
+      <a href="Monolithe-IA.html">IA</a>
+      <a href="Monolithe-Jeux.html" aria-current="page">Jeux &amp; Web3</a>
+      <a href="Monolithe-Offres.html">Offres</a>
+      <a href="Monolithe-Contact.html">Contact</a>
+    </nav>
+    <a class="btn btn-light hdr-cta" href="Monolithe-Contact.html">Réserver un appel</a>
+    <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="{{ menuExp }}" onClick="{{ toggleMenu }}"><svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 1h20M0 11h20"></path></svg></button>
+  </div>
+  <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+    <nav class="mnav wrap" aria-label="Navigation mobile">
+      <a class="ml" href="Monolithe-Expertises.html">Expertises <span class="lbl">I</span></a>
+      <a class="ml" href="Monolithe-IA.html">Intelligence artificielle <span class="lbl">II</span></a>
+      <a class="ml" href="Monolithe-Jeux.html">Jeux &amp; Web3 <span class="lbl">III</span></a>
+      <a class="ml" href="Monolithe-Offres.html">Offres <span class="lbl">IV</span></a>
+      <a class="ml" href="Monolithe-Contact.html">Contact <span class="lbl">V</span></a>
+      <a class="btn btn-light" href="Monolithe-Contact.html">Commencer</a>
+    </nav>
+  </sc-if>
+</header>
+
+<!-- HERO -->
+<section class="hero ink">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-veil" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="chap rise d1"><span class="chap-l"></span><span class="lbl">Jeux &amp; Web3 — la preuve par l’exigence</span></div>
+      <h1 class="h1 rise d2">Les jeux sont <em>les applications les plus difficiles.</em></h1>
+      <p class="lead rise d3" style="margin-top:36px">Performances temps réel, gestion d’état complexe, expériences fluides. Si nous maîtrisons les applications de jeu, nous pouvons relever n’importe quel défi technique — y compris le vôtre.</p>
+      <div class="rise d4" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:44px">
+        <a class="btn btn-light" href="Monolithe-Contact.html">Parler de votre projet <svg class="arr" width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h16M12 1l4 4-4 4"></path></svg></a>
+        <a class="btn btn-ghost" href="Monolithe-Offres.html">Voir les formules</a>
+      </div>
+    </div>
+    <div class="rise d3" aria-hidden="true">
+      <div class="stage">
+        <div class="floor"></div>
+        <div class="mono">
+          <div class="side side-l"></div>
+          <div class="side side-r"></div>
+          <div class="face">
+            <div class="face-l" style="top:26px">Baquelis</div>
+            <svg class="wave" viewBox="0 0 164 100" preserveAspectRatio="none" fill="none"><path d="M0 50 L20 50 L28 22 L36 78 L44 50 L70 50 L76 34 L82 66 L88 50 L112 50 L120 14 L128 86 L136 50 L164 50" class="acc-stroke" stroke-width="1.2"></path></svg>
+            <div class="face-big">Temps réel</div>
+            <div class="face-l" style="bottom:26px">Jeux &amp; Web3</div>
+          </div>
+          <div class="refl"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- I — EXIGENCES -->
+<section class="sec ivory">
+  <div class="wrap">
+    <div class="head-split rv">
+      <div>
+        <div class="chap"><span class="chap-n">I</span><span class="chap-l"></span><span class="lbl">Pourquoi les jeux définissent l’excellence</span></div>
+        <h2 class="h2">Quatre exigences <em>que rien ne pardonne.</em></h2>
+      </div>
+      <p class="lead">Un joueur perçoit chaque latence, chaque désynchronisation, chaque faille. Manipulez les instruments pour le ressentir.</p>
+    </div>
+    <div class="xt" role="tablist" aria-label="Exigences">
+      <sc-for list="{{ exig }}" as="x" hint-placeholder-count="4">
+        <button class="xb" type="button" role="tab" aria-selected="{{ x.pressed }}" style="{{ x.tabStyle }}" onClick="{{ x.pick }}">
+          <span class="xb-bar" style="{{ x.barStyle }}"></span>
+          <span class="serif">{{ x.n }}</span>
+          <span class="xb-t">{{ x.t }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <sc-for list="{{ exig }}" as="x" hint-placeholder-count="1">
+      <sc-if value="{{ x.active }}" hint-placeholder-val="{{ true }}">
+        <div class="xp" role="tabpanel">
+          <div class="xp-txt">
+            <p class="lbl">Exigence {{ x.n }}</p>
+            <h3 class="h3" style="margin-top:14px;font-size:46px">{{ x.t }}</h3>
+            <p>{{ x.d }}</p>
+            <div class="xp-pts">
+              <sc-for list="{{ x.pts }}" as="pt" hint-placeholder-count="3"><div class="xp-pt">{{ pt.x }}</div></sc-for>
+            </div>
+          </div>
+          <div class="wid">
+            <!-- latence -->
+            <sc-if value="{{ x.isLat }}" hint-placeholder-val="{{ true }}">
+              <div class="wid-h"><span class="lbl">Jauge de latence</span><span class="illu">Valeurs illustratives</span></div>
+              <svg class="gauge" viewBox="0 0 360 200" aria-hidden="true">
+                <path d="M30 170 A150 150 0 0 1 330 170" fill="none" stroke="rgba(243,239,231,.12)" stroke-width="2"></path>
+                <path d="M30 170 A150 150 0 0 1 330 170" fill="none" class="acc-stroke" stroke-width="2" style="{{ gaugeStyle }}"></path>
+                <g fill="#ADA89E" font-size="11" font-family="Manrope"><text x="24" y="192">1 ms</text><text x="300" y="192">200 ms</text></g>
+                <g class="needle" style="{{ needleStyle }}"><line x1="180" y1="170" x2="180" y2="44" stroke="#F3EFE7" stroke-width="1.2"></line></g>
+                <circle cx="180" cy="170" r="5" fill="#F3EFE7"></circle>
+              </svg>
+              <div class="g-val"><div class="g-num">{{ latLabel }}</div><div class="g-st" style="{{ latStStyle }}">{{ latState }}</div></div>
+              <div class="range"><label for="lat-r"><span>Latence simulée</span><span>{{ latLabel }}</span></label><input id="lat-r" type="range" min="1" max="200" step="1" value="{{ lat }}" onInput="{{ setLat }}"></div>
+            </sc-if>
+            <!-- architecture -->
+            <sc-if value="{{ x.isArch }}" hint-placeholder-val="{{ false }}">
+              <div class="wid-h"><span class="lbl">Quatre systèmes, une seule image</span><span class="illu">Illustratif</span></div>
+              <sc-for list="{{ systemes }}" as="sy" hint-placeholder-count="4">
+                <div class="sys"><span>{{ sy.t }}</span><span class="sys-bar"><i style="{{ sy.style }}"></i></span></div>
+              </sc-for>
+              <p style="margin:22px 0 0;font-size:14px">{{ syncText }}</p>
+              <button class="sw" type="button" role="switch" aria-checked="{{ syncAria }}" onClick="{{ toggleSync }}"><span class="sw-t" style="{{ syncTrack }}"><span class="sw-k" style="{{ syncKnob }}"></span></span>Synchronisation des systèmes</button>
+            </sc-if>
+            <!-- multijoueur -->
+            <sc-if value="{{ x.isMp }}" hint-placeholder-val="{{ false }}">
+              <div class="wid-h"><span class="lbl">Simulateur de joueurs simultanés</span><span class="illu">Valeurs illustratives</span></div>
+              <div class="grid100" aria-hidden="true">
+                <sc-for list="{{ cells }}" as="c" hint-placeholder-count="100"><span class="cell" style="{{ c.style }}"></span></sc-for>
+              </div>
+              <div class="mp-stats">
+                <div><strong>{{ joueursLabel }}</strong><span>joueurs simultanés</span></div>
+                <div><strong>Maintenue</strong><span>cohérence d’état</span></div>
+                <div><strong>Minimale</strong><span>latence visée</span></div>
+              </div>
+              <div class="range"><label for="mp-r"><span>Joueurs connectés</span><span>{{ joueursLabel }}</span></label><input id="mp-r" type="range" min="100" max="10000" step="100" value="{{ joueurs }}" onInput="{{ setJoueurs }}"></div>
+            </sc-if>
+            <!-- sécurité -->
+            <sc-if value="{{ x.isSec }}" hint-placeholder-val="{{ false }}">
+              <div class="wid-h"><span class="lbl">Journal anti-triche</span><span class="illu">Scénario illustratif</span></div>
+              <sc-for list="{{ events }}" as="ev" hint-placeholder-count="4">
+                <div class="ev"><span>{{ ev.t }}</span><b style="{{ ev.style }}">{{ ev.st }}</b></div>
+              </sc-for>
+              <p style="margin:22px 0 0;font-size:14px">{{ secText }}</p>
+              <button class="sw" type="button" role="switch" aria-checked="{{ secAria }}" onClick="{{ toggleSec }}"><span class="sw-t" style="{{ secTrack }}"><span class="sw-k" style="{{ secKnob }}"></span></span>Protection anti-triche</button>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+    </sc-for>
+  </div>
+</section>
+
+<!-- II — POURQUOI -->
+<section class="sec ink">
+  <div class="wrap">
+    <div class="head-split rv">
+      <div>
+        <div class="chap"><span class="chap-n">II</span><span class="chap-l"></span><span class="lbl">Ce que cela change pour vous</span></div>
+        <h2 class="h2">L’exigence du jeu, <em>au service de tous vos projets.</em></h2>
+      </div>
+      <p class="lead">Vous ne construisez peut-être pas de jeu. Mais vos utilisateurs méritent la même fluidité, et vos données la même protection.</p>
+    </div>
+    <div class="why">
+      <div class="why-row rv"><span class="serif">I</span><span class="why-a">Performance temps réel</span><span class="why-arrow"><svg width="40" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></span><span class="why-b"><strong>Des applications qui répondent sans attendre</strong>Tableaux de bord, outils métier et interfaces qui réagissent instantanément.</span></div>
+      <div class="why-row rv"><span class="serif">II</span><span class="why-a">Architecture complexe</span><span class="why-arrow"><svg width="40" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></span><span class="why-b"><strong>Des systèmes aux nombreux modules, qui tiennent</strong>Plusieurs briques qui travaillent ensemble sans se gêner.</span></div>
+      <div class="why-row rv"><span class="serif">III</span><span class="why-a">Multijoueur évolutif</span><span class="why-arrow"><svg width="40" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></span><span class="why-b"><strong>Des plateformes qui encaissent les pics</strong>Lancements, campagnes, saisonnalité : l’usage peut monter, l’expérience reste stable.</span></div>
+      <div class="why-row rv"><span class="serif">IV</span><span class="why-a">Sécurité &amp; anti-triche</span><span class="why-arrow"><svg width="40" height="12" viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 6h38M33 1l5 5-5 5"></path></svg></span><span class="why-b"><strong>Des données et des transactions protégées</strong>Une sécurité avancée qui ne dégrade jamais l’expérience de vos utilisateurs.</span></div>
+    </div>
+    <p class="why-q rv">« Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique. »</p>
+  </div>
+</section>
+
+<!-- III — WEB3 -->
+<section class="sec ivory">
+  <div class="wrap w3">
+    <div class="rv">
+      <div class="layers" role="tablist" aria-label="Couches de la plateforme Web3">
+        <sc-for list="{{ couches }}" as="c" hint-placeholder-count="3">
+          <button class="layer" type="button" role="tab" aria-selected="{{ c.pressed }}" style="{{ c.style }}" onClick="{{ c.pick }}"><span class="serif">{{ c.t }}</span><span class="lbl" style="{{ c.lblStyle }}">{{ c.n }}</span></button>
+        </sc-for>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="chap"><span class="chap-n">III</span><span class="chap-l"></span><span class="lbl">Plateforme Web3</span></div>
+      <h2 class="h2">Le jeu, <em>prolongé par le Web3.</em></h2>
+      <p class="lead" style="margin-top:28px">Notre expertise couvre les plateformes de gaming Web3 : des expériences où le joueur possède ses actifs, où les économies de jeu sont transparentes, et où chaque transaction doit être aussi sûre que fluide.</p>
+      <sc-for list="{{ couches }}" as="c" hint-placeholder-count="1">
+        <sc-if value="{{ c.active }}" hint-placeholder-val="{{ true }}">
+          <div class="w3-d"><p class="lbl">Couche {{ c.n }} — {{ c.t }}</p><p>{{ c.d }}</p></div>
+        </sc-if>
+      </sc-for>
+      <div class="w3-pts">
+        <div class="w3-pt">Économies de jeu</div>
+        <div class="w3-pt">Actifs numériques</div>
+        <div class="w3-pt">Sécurité des transactions</div>
+        <div class="w3-pt">Expérience fluide pour le joueur</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta ink">
+  <div class="wrap">
+    <p class="lbl rv" style="margin-bottom:28px">Un défi technique&nbsp;?</p>
+    <h2 class="h2 rv">Confiez-nous <em>le plus difficile.</em></h2>
+    <div class="ctas rv">
+      <a class="btn btn-light" href="Monolithe-Contact.html">Nous contacter <svg class="arr" width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h16M12 1l4 4-4 4"></path></svg></a>
+      <a class="btn btn-ghost" href="Monolithe-Expertises.html">Nos expertises</a>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr ink">
+  <div class="wrap">
+    <div class="ftr-top">
+      <div class="ftr-col">
+        <p class="ftr-tag">La technologie, <em>tenue comme une maison.</em></p>
+        <p class="lbl" style="margin-top:22px">Flexibilité · Continuité · Performance</p>
+      </div>
+      <div class="ftr-col"><p class="lbl ftr-h">La maison</p><a href="Monolithe-Expertises.html">Expertises</a><a href="Monolithe-IA.html">Intelligence artificielle</a><a href="Monolithe-Jeux.html">Jeux &amp; Web3</a><a href="Monolithe-Contact.html">Contact</a></div>
+      <div class="ftr-col"><p class="lbl ftr-h">Formules</p><a href="Monolithe-Offres.html">Intégration — 4&nbsp;500&nbsp;€/mois</a><a href="Monolithe-Offres.html">Flex — 6&nbsp;200&nbsp;€/mois</a><a href="Monolithe-Offres.html">Performance — 18&nbsp;900&nbsp;€/mois</a></div>
+      <div class="ftr-col"><p class="lbl ftr-h">Siège</p><address class="ftr-addr">31 B avenue Maréchal Foch<br>06000 Nice, France</address><a href="Monolithe-Contact.html">[contact@domaine-baquelis]</a></div>
+    </div>
+    <div class="ftr-giant" aria-hidden="true">Baquelis<i></i></div>
+    <div class="ftr-bot"><span>© 2026 Baquelis · [RAISON SOCIALE] · [N° TVA]</span><span>Proposition de refonte — concept</span><a href="index.html">Toutes les propositions →</a></div>
+  </div>
+</footer>
+
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5400},"accent":{"editor":"color","default":"#00AEEF","options":["#00AEEF","#7C5CFF","#F5B700"]}}'>
+class Component extends DCLogic {
+  constructor(props){ super(props); this.state = { menu: false, ex: 0, lat: 24, sync: true, joueurs: 2400, sec: true, couche: 0 }; }
+  renderVals() {
+    var self = this, s = this.state;
+    var acc = (this.props && this.props.accent) || '#00AEEF';
+    var EX = [
+      { t: 'Performance temps réel', d: 'Une réponse sub-milliseconde et une synchronisation parfaite entre systèmes : dans un jeu, le moindre retard se voit et se ressent.', pts: ['Réponse sub-milliseconde', 'Synchronisation parfaite entre systèmes', 'Mesure et optimisation continues'] },
+      { t: 'Architecture complexe', d: 'Graphismes, physique, réseau et saisie doivent fonctionner simultanément, chaque image, sans que l’un ne ralentisse les autres.', pts: ['Systèmes simultanés', 'Gestion d’état complexe', 'Expérience fluide de bout en bout'] },
+      { t: 'Multijoueur évolutif', d: 'Des milliers d’utilisateurs simultanés, une cohérence d’état sans faille et une latence minimale, quel que soit le nombre de connectés.', pts: ['Milliers d’utilisateurs simultanés', 'Cohérence d’état', 'Latence minimale'] },
+      { t: 'Sécurité & anti-triche', d: 'Une protection avancée contre la fraude et la manipulation, conçue pour ne jamais dégrader l’expérience des joueurs honnêtes.', pts: ['Protection avancée', 'Détection des comportements anormaux', 'Expérience préservée'] }
+    ];
+    var NUM = ['I', 'II', 'III', 'IV'];
+    var exig = EX.map(function (x, i) {
+      var on = s.ex === i;
+      return {
+        n: NUM[i], t: x.t, d: x.d, active: on, pressed: on ? 'true' : 'false',
+        pts: x.pts.map(function (p) { return { x: p }; }),
+        isLat: i === 0, isArch: i === 1, isMp: i === 2, isSec: i === 3,
+        tabStyle: on ? 'color:#0B0B0A' : '',
+        barStyle: on ? ('transform:scaleX(1);background:' + acc) : '',
+        pick: function () { self.setState({ ex: i }); }
+      };
+    });
+    var L = 471.24; // demi-circonférence r=150
+    var lat = s.lat;
+    var ratio = (lat - 1) / 199;
+    var latState = lat < 20 ? 'Imperceptible' : (lat < 60 ? 'Fluide' : (lat < 120 ? 'Perceptible' : 'Dégradé'));
+    var SYS = [['Graphismes', 1.1, 0], ['Physique', 1.7, .3], ['Réseau', 2.3, .7], ['Saisie', 1.4, 1.1]];
+    var systemes = SYS.map(function (x) {
+      return { t: x[0], style: s.sync ? 'animation-duration:1.6s;animation-delay:0s' : ('animation-duration:' + x[1] + 's;animation-delay:' + x[2] + 's;background:#77736B') };
+    });
+    var lit = Math.round(s.joueurs / 100);
+    var cells = [];
+    for (var c = 0; c < 100; c++) {
+      cells.push({ style: c < lit ? ('background:' + (c === lit - 1 ? acc : '#F3EFE7') + ';transition-delay:' + (c % 20) * 12 + 'ms') : '' });
+    }
+    var EV = ['Vitesse de déplacement anormale', 'Modification de la mémoire du client', 'Requêtes réseau falsifiées', 'Actions automatisées (bot)'];
+    var events = EV.map(function (t) {
+      return { t: t, st: s.sec ? 'Bloqué' : 'Non détecté', style: s.sec ? ('color:' + acc) : 'color:#ADA89E' };
+    });
+    var CO = [
+      { t: 'Expérience de jeu', d: 'Ce que vit le joueur : une expérience fluide, réactive et lisible, où la technologie sous-jacente reste invisible.' },
+      { t: 'Plateforme', d: 'Les services qui orchestrent comptes, économies de jeu et inventaires, avec la même exigence de performance que le jeu lui-même.' },
+      { t: 'Registre & actifs', d: 'La couche où vivent les actifs numériques et les transactions : sécurité, traçabilité et cohérence d’état avant tout.' }
+    ];
+    var couches = CO.map(function (k, i) {
+      var on = s.couche === i;
+      return {
+        n: NUM[i], t: k.t, d: k.d, active: on, pressed: on ? 'true' : 'false',
+        style: 'top:' + (20 + i * 130) + 'px;' + (on ? 'background:#0B0B0A;color:#F3EFE7;border-color:#0B0B0A;transform:rotateX(58deg) rotateZ(-38deg) translateZ(34px)' : ''),
+        lblStyle: on ? 'color:#ADA89E' : '',
+        pick: function () { self.setState({ couche: i }); }
+      };
+    });
+    return {
+      rootStyle: '--acc:' + acc,
+      menu: s.menu, menuExp: s.menu ? 'true' : 'false',
+      toggleMenu: function () { self.setState({ menu: !s.menu }); },
+      exig: exig,
+      lat: lat, latLabel: lat + ' ms', latState: latState,
+      latStStyle: lat < 60 ? ('color:' + acc) : 'color:#F3EFE7',
+      gaugeStyle: 'stroke-dasharray:' + L + ';stroke-dashoffset:' + (L * (1 - ratio)).toFixed(1) + ';transition:stroke-dashoffset .5s',
+      needleStyle: 'transform:rotate(' + (-90 + ratio * 180).toFixed(1) + 'deg)',
+      setLat: function (e) { self.setState({ lat: parseInt(e.target.value, 10) || 1 }); },
+      systemes: systemes,
+      syncText: s.sync ? 'Synchronisés : les quatre systèmes avancent au même rythme — l’image est cohérente.' : 'Désynchronisés : chaque système suit son propre rythme — saccades et incohérences apparaissent.',
+      syncAria: s.sync ? 'true' : 'false',
+      syncTrack: s.sync ? ('background:' + acc + ';border-color:' + acc) : '',
+      syncKnob: s.sync ? 'transform:translateX(22px)' : '',
+      toggleSync: function () { self.setState({ sync: !s.sync }); },
+      cells: cells, joueurs: s.joueurs, joueursLabel: s.joueurs.toLocaleString('fr-FR'),
+      setJoueurs: function (e) { self.setState({ joueurs: parseInt(e.target.value, 10) || 100 }); },
+      events: events,
+      secText: s.sec ? 'Protection active : les comportements anormaux sont bloqués, l’expérience des joueurs honnêtes reste intacte.' : 'Protection désactivée : rien n’arrête la triche — l’équité et la confiance s’effondrent.',
+      secAria: s.sec ? 'true' : 'false',
+      secTrack: s.sec ? ('background:' + acc + ';border-color:' + acc) : '',
+      secKnob: s.sec ? 'transform:translateX(22px)' : '',
+      toggleSec: function () { self.setState({ sec: !s.sec }); },
+      couches: couches
+    };
+  }
+}
+</script>
+</body>
+</html>

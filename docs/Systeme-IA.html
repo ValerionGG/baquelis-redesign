@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Système — IA</title>
+<script src="vendor/preact.min.js"></script>
+<script src="dc.js"></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<script type="text/x-dc-template" id="dc-template">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#F2F1EC}
+sc-for,sc-if{display:contents}
+.pp,.pp *{box-sizing:border-box}
+.pp{font-family:'Schibsted Grotesk',system-ui,sans-serif;color:#111;background-color:#F2F1EC;background-image:linear-gradient(rgba(17,17,17,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.045) 1px,transparent 1px),linear-gradient(rgba(17,17,17,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.06) 1px,transparent 1px);background-size:8px 8px,8px 8px,64px 64px,64px 64px;overflow-x:clip;-webkit-font-smoothing:antialiased}
+.pp a{color:inherit}
+.mono{font-family:'DM Mono',ui-monospace,monospace}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.lbl{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#C2410C}
+.sub{color:#5A5852}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:var(--acc,#FF5B1F);color:#111;border:1.5px solid #111;font:600 15px/1 'Schibsted Grotesk',sans-serif;text-decoration:none;box-shadow:4px 4px 0 #111;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #111}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #111}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:transparent;color:#111;border:1.5px solid #111;font:600 15px/1 'Schibsted Grotesk',sans-serif;text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
+.btn2:hover{background:#111;color:#F2F1EC}
+.tl{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+.tl:hover{color:#C2410C;border-color:#C2410C}
+.hd{position:sticky;top:0;z-index:20;background:rgba(242,241,236,.94);backdrop-filter:blur(6px);border-bottom:1.5px solid #111}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:23px;letter-spacing:-.035em;min-height:44px}
+.logo svg{transition:transform .6s cubic-bezier(.7,0,.2,1)}
+.logo:hover svg{transform:rotate(90deg)}
+.dnav{display:flex;gap:2px}
+.dnav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;font-weight:500;font-size:15px;position:relative}
+.dnav a::after{content:"";position:absolute;left:14px;right:14px;bottom:9px;height:2px;background:var(--acc,#FF5B1F);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.dnav a:hover::after,.dnav a.on::after{transform:scaleX(1)}
+.burger{display:none;width:48px;height:48px;align-items:center;justify-content:center;border:1.5px solid #111;background:transparent;cursor:pointer;color:#111}
+.mnav a{display:flex;align-items:center;justify-content:space-between;min-height:54px;border-bottom:1px solid rgba(17,17,17,.15);text-decoration:none;font-weight:600;font-size:18px}
+.tk{background:linear-gradient(#111,#111) 0 0/14px 2px no-repeat,linear-gradient(#111,#111) 0 0/2px 14px no-repeat,linear-gradient(#111,#111) 100% 0/14px 2px no-repeat,linear-gradient(#111,#111) 100% 0/2px 14px no-repeat,linear-gradient(#111,#111) 0 100%/14px 2px no-repeat,linear-gradient(#111,#111) 0 100%/2px 14px no-repeat,linear-gradient(#111,#111) 100% 100%/14px 2px no-repeat,linear-gradient(#111,#111) 100% 100%/2px 14px no-repeat}
+.sheet{background:#FBFAF6;border:1.5px solid #111}
+.fl{display:flex;align-items:center;min-height:44px;text-decoration:none;color:#3A3934;transition:color .2s,padding .2s}
+.fl:hover{color:#C2410C;padding-left:6px}
+.cart{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:1.5px;background:#111;border:1.5px solid #111;margin-top:48px}
+.cart div{background:#ECEBE4;padding:12px 14px;min-height:64px}
+.cart b{display:block;font:500 10px 'DM Mono',monospace;letter-spacing:.1em;color:#5A5852;margin-bottom:6px}
+:focus-visible{outline:2px solid #0089BF;outline-offset:3px}
+@keyframes rv{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes ln{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+@keyframes caret{50%{opacity:0}}
+@keyframes flow{to{stroke-dashoffset:-20}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rv{animation:rv .9s cubic-bezier(.2,.7,.2,1) both}
+@supports (animation-timeline:view()){.sr{animation:rv linear both;animation-timeline:view();animation-range:entry 5% cover 25%}}
+.capb{flex:1;min-width:220px;text-align:left;font:inherit;cursor:pointer;padding:18px 20px;border:0;border-right:1.5px solid #111;min-height:88px;display:flex;flex-direction:column;gap:6px;transition:background .3s,color .3s}
+.capb:hover{background:#ECEBE4}
+.pl text{font-family:'DM Mono',monospace}
+.lk{fill:none;stroke:#111;stroke-width:1.5;stroke-dasharray:5 5;animation:flow 1s linear infinite}
+.uc{text-align:left;font:inherit;cursor:pointer;padding:20px;min-height:132px;border:0;display:flex;flex-direction:column;justify-content:space-between;gap:16px;transition:background .3s,color .3s}
+.uc:hover{background:#FFFFFF}
+.seg{min-height:44px;padding:0 18px;border:0;font:600 14px 'Schibsted Grotesk',sans-serif;cursor:pointer;transition:background .3s,color .3s}
+.task{width:100%;text-align:left;font:inherit;cursor:pointer;padding:16px 18px;min-height:72px;border:1.5px solid #111;display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:center;transition:background .3s,color .3s,transform .3s}
+.task:hover{transform:translateX(4px)}
+.ln{animation:ln .45s cubic-bezier(.2,.7,.2,1) both}
+.caret{display:inline-block;width:9px;height:16px;background:var(--acc,#FF5B1F);vertical-align:middle;animation:caret 1s steps(1) infinite}
+.spin{display:inline-block;width:12px;height:12px;border:2px solid #F2F1EC;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+@media(max-width:960px){.dnav{display:none}.burger{display:inline-flex}.hide-sm{display:none}}
+@media(max-width:700px){.wrap{padding:0 16px}.capb{min-width:100%;border-right:0;border-bottom:1.5px solid #111}}
+@media (prefers-reduced-motion:reduce){.pp *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="pp" style="{{ rootStyle }}">
+
+<div class="mono" style="border-bottom:1px solid rgba(17,17,17,.15);font-size:12px;color:#5A5852">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;min-height:36px;gap:16px;flex-wrap:wrap">
+    <span>DOC BQL-SYS-03 · FEUILLE 03/06 · RÉV. C</span>
+    <a class="tl" href="index.html" style="display:inline-flex;align-items:center;min-height:36px">← Toutes les propositions</a>
+  </div>
+</div>
+
+<header class="hd">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:24px">
+    <a href="Systeme-Accueil.html" class="logo" aria-label="Baquelis, accueil">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" fill="none" stroke="#111" stroke-width="2"></rect><path d="M8 8H22M8 8V22M8 15H18" stroke="#111" stroke-width="1.5" fill="none"></path><circle cx="8" cy="8" r="2.6" fill="#111"></circle><circle cx="22" cy="8" r="2.2" fill="#111"></circle><rect x="17" y="17" width="8" height="8" style="fill:var(--acc,#FF5B1F)"></rect></svg>
+      <span>Baquelis</span>
+    </a>
+    <nav class="dnav" aria-label="Navigation principale">
+      <a href="Systeme-Expertises.html">Expertises</a>
+      <a class="on" href="Systeme-IA.html" aria-current="page">IA</a>
+      <a href="Systeme-Jeux.html">Jeux &amp; Web3</a>
+      <a href="Systeme-Offres.html">Offres</a>
+      <a href="Systeme-Contact.html">Contact</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <a class="btn hide-sm" href="Systeme-Contact.html">Réserver un appel</a>
+      <button class="burger" aria-label="Ouvrir ou fermer le menu" onClick="{{ toggleMenu }}"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M2 6H20M2 11H20M2 16H14" stroke="#111" stroke-width="1.8" fill="none"></path></svg></button>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="wrap mnav" style="padding-bottom:20px">
+      <a href="Systeme-Expertises.html">Expertises <span class="mono sub" style="font-size:12px">02</span></a>
+      <a href="Systeme-IA.html">IA <span class="mono sub" style="font-size:12px">03</span></a>
+      <a href="Systeme-Jeux.html">Jeux &amp; Web3 <span class="mono sub" style="font-size:12px">04</span></a>
+      <a href="Systeme-Offres.html">Offres <span class="mono sub" style="font-size:12px">05</span></a>
+      <a href="Systeme-Contact.html">Contact <span class="mono sub" style="font-size:12px">06</span></a>
+      <a class="btn" href="Systeme-Contact.html" style="margin-top:18px;justify-content:center">Commencer</a>
+    </div>
+  </sc-if>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="wrap" style="padding-top:80px;padding-bottom:96px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:56px;align-items:center">
+    <div class="rv">
+      <div class="lbl" style="margin-bottom:22px">Module IA · BQL-AI-03 · Excellence IA</div>
+      <h1 style="margin:0 0 24px;font-weight:800;font-size:clamp(40px,5.6vw,86px);line-height:.95;letter-spacing:-.045em;overflow-wrap:anywhere">Transformez la productivité avec les agents IA<span style="color:var(--acc,#FF5B1F)">.</span></h1>
+      <p class="sub" style="margin:0 0 30px;font-size:18px;line-height:1.6;max-width:560px">Modèles affinés sur vos données, agents autonomes, intégration dans vos processus : notre expertise peut, selon notre promesse, multiplier votre productivité par 10.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a class="btn" href="#demo">Lancer la démo ATOM</a>
+        <a class="btn2" href="Systeme-Contact.html">Parler à un expert</a>
+      </div>
+    </div>
+    <div class="rv sheet tk" style="animation-delay:.2s">
+      <div class="mono" style="display:flex;justify-content:space-between;font-size:11px;padding:12px 18px;border-bottom:1.5px solid #111;letter-spacing:.06em"><span>FICHE AGENT · ATOM</span><span style="color:#006E99">● DÉMONSTRATION</span></div>
+      <div style="padding:24px 24px 10px;display:flex;align-items:center;gap:20px">
+        <svg width="84" height="84" viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="38" fill="none" stroke="#111" stroke-width="1.5"></circle><circle cx="42" cy="42" r="24" fill="none" stroke="#0089BF" stroke-width="1.3" stroke-dasharray="3 4"></circle><circle cx="42" cy="42" r="9" style="fill:var(--acc,#FF5B1F)" stroke="#111" stroke-width="1.5"></circle><circle cx="42" cy="4" r="4" fill="#111"></circle><circle cx="80" cy="42" r="4" fill="#111"></circle><circle cx="18" cy="61" r="3.5" fill="#0089BF"></circle></svg>
+        <div><div style="font-weight:800;font-size:34px;letter-spacing:-.04em;line-height:1">ATOM</div><div class="mono sub" style="font-size:12px;margin-top:6px">Agent IA de Baquelis</div></div>
+      </div>
+      <div class="mono" style="font-size:12.5px;padding:8px 24px 22px">
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed rgba(17,17,17,.3)"><span class="sub">TYPE</span><span>agent autonome</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed rgba(17,17,17,.3)"><span class="sub">MODÈLE</span><span>affiné sur vos données</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed rgba(17,17,17,.3)"><span class="sub">COORDINATION</span><span>multi-agents</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed rgba(17,17,17,.3)"><span class="sub">CONFIDENTIALITÉ</span><span>données isolées</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:10px 0"><span class="sub">PRODUCTIVITÉ VISÉE</span><span style="font-weight:500;color:#C2410C">×10 · promesse</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 CAPACITÉS -->
+<section style="border-top:1.5px solid #111;padding-top:96px;padding-bottom:104px">
+  <div class="wrap">
+    <div class="sr" style="margin-bottom:36px">
+      <div class="lbl" style="margin-bottom:14px">§ 01 — 3 capacités · chaîne de traitement</div>
+      <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:820px">De vos données à vos processus, sans rupture.</h2>
+    </div>
+    <div class="sheet tk sr">
+      <div role="tablist" aria-label="Capacités IA" style="display:flex;flex-wrap:wrap;border-bottom:1.5px solid #111">
+        <sc-for list="{{ cap.tabs }}" as="t" hint-placeholder-count="3">
+          <button class="capb" role="tab" style="{{ t.style }}" aria-selected="{{ t.on }}" onClick="{{ t.pick }}"><span class="mono" style="font-size:12px">{{ t.code }}</span><span style="font-weight:700;font-size:20px;letter-spacing:-.015em">{{ t.title }}</span></button>
+        </sc-for>
+      </div>
+      <div style="padding:20px 14px 6px;overflow-x:auto">
+        <svg class="pl" viewBox="0 0 1000 170" width="100%" style="min-width:720px" role="img" aria-label="Chaîne : vos données, affinage, modèle affiné, agents, vos processus">
+          <path class="lk" d="M170 85H214"></path><path class="lk" d="M374 85H418"></path><path class="lk" d="M578 85H622"></path><path class="lk" d="M782 85H826"></path>
+          <g style="{{ cap.k0 }}"><rect x="10" y="45" width="160" height="80" fill="#FBFAF6" stroke="#111" stroke-width="1.5"></rect><text x="24" y="68" style="font-size:10px;fill:#5A5852">K-01</text><text x="24" y="98" style="font:700 17px 'Schibsted Grotesk',sans-serif;fill:#111">Vos données</text></g>
+          <g style="{{ cap.k1 }}"><rect x="214" y="45" width="160" height="80" fill="#FBFAF6" stroke="#111" stroke-width="1.5"></rect><text x="228" y="68" style="font-size:10px;fill:#5A5852">K-02</text><text x="228" y="98" style="font:700 17px 'Schibsted Grotesk',sans-serif;fill:#111">Affinage</text></g>
+          <g style="{{ cap.k2 }}"><rect x="418" y="45" width="160" height="80" fill="#FBFAF6" stroke="#111" stroke-width="1.5"></rect><text x="432" y="68" style="font-size:10px;fill:#5A5852">K-03</text><text x="432" y="98" style="font:700 17px 'Schibsted Grotesk',sans-serif;fill:#111">Modèle affiné</text></g>
+          <g style="{{ cap.k3 }}"><rect x="622" y="45" width="160" height="80" fill="#FBFAF6" stroke="#111" stroke-width="1.5"></rect><text x="636" y="68" style="font-size:10px;fill:#5A5852">K-04</text><text x="636" y="98" style="font:700 17px 'Schibsted Grotesk',sans-serif;fill:#111">Agents</text></g>
+          <g style="{{ cap.k4 }}"><rect x="826" y="45" width="160" height="80" fill="#FBFAF6" stroke="#111" stroke-width="1.5"></rect><text x="840" y="68" style="font-size:10px;fill:#5A5852">K-05</text><text x="840" y="98" style="font:700 17px 'Schibsted Grotesk',sans-serif;fill:#111">Vos processus</text></g>
+          <g style="{{ cap.f0 }}"><rect x="2" y="30" width="576" height="110" fill="none" stroke-width="2" stroke-dasharray="8 5" style="stroke:var(--acc,#FF5B1F)"></rect><text x="2" y="22" style="font-size:10px;fill:#C2410C;letter-spacing:.08em">PÉRIMÈTRE IA-01 · AFFINAGE</text></g>
+          <g style="{{ cap.f1 }}"><rect x="410" y="30" width="380" height="110" fill="none" stroke-width="2" stroke-dasharray="8 5" style="stroke:var(--acc,#FF5B1F)"></rect><text x="410" y="22" style="font-size:10px;fill:#C2410C;letter-spacing:.08em">PÉRIMÈTRE IA-02 · AGENTS</text></g>
+          <g style="{{ cap.f2 }}"><rect x="614" y="30" width="380" height="110" fill="none" stroke-width="2" stroke-dasharray="8 5" style="stroke:var(--acc,#FF5B1F)"></rect><text x="614" y="22" style="font-size:10px;fill:#C2410C;letter-spacing:.08em">PÉRIMÈTRE IA-03 · INTÉGRATION</text></g>
+        </svg>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:0;border-top:1.5px solid #111">
+        <div style="padding:28px 30px;border-right:1.5px solid #111;min-width:0">
+          <h3 style="margin:0 0 10px;font-size:28px;letter-spacing:-.025em">{{ cap.cur.title }}</h3>
+          <p class="sub" style="margin:0;line-height:1.6;font-size:16.5px">{{ cap.cur.text }}</p>
+        </div>
+        <div style="padding:22px 30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:10px;align-content:center;min-width:0">
+          <sc-for list="{{ cap.cur.pts }}" as="p" hint-placeholder-count="4">
+            <div class="mono ln" style="font-size:13px;border:1px solid #111;padding:13px 14px;display:flex;gap:10px;align-items:center;background:#F2F1EC"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6L5 9L10 3" stroke="#006E99" stroke-width="1.8" fill="none"></path></svg>{{ p }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 CAS D'USAGE -->
+<section style="background:#ECEBE4;border-top:1.5px solid #111;padding-top:96px;padding-bottom:104px">
+  <div class="wrap">
+    <div class="sr" style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px">
+      <div>
+        <div class="lbl" style="margin-bottom:14px">§ 02 — 6 cas d’usage · sélection → détail</div>
+        <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:760px">Six schémas d’application, prêts à adapter.</h2>
+      </div>
+      <span class="mono sub" style="font-size:12px">SÉLECTION : CAS {{ uc.cur.n }}</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:28px;align-items:start">
+      <div class="sr" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:1.5px;background:#111;border:1.5px solid #111">
+        <sc-for list="{{ uc.list }}" as="u" hint-placeholder-count="6">
+          <button class="uc" style="{{ u.style }}" aria-pressed="{{ u.on }}" onClick="{{ u.pick }}">
+            <span class="mono" style="font-size:22px;font-weight:500">{{ u.n }}</span>
+            <span style="font-weight:700;font-size:16px;line-height:1.25">{{ u.t }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div class="sheet tk sr" style="min-width:0">
+        <div class="mono" style="display:flex;justify-content:space-between;font-size:11px;padding:12px 22px;border-bottom:1.5px solid #111;letter-spacing:.06em"><span>CAS {{ uc.cur.n }} · FICHE D’APPLICATION</span><span class="sub">{{ uc.cur.cap }}</span></div>
+        <div style="padding:28px 26px">
+          <h3 style="margin:0 0 12px;font-size:clamp(24px,2.4vw,32px);letter-spacing:-.025em;line-height:1.1">{{ uc.cur.t }}</h3>
+          <p class="sub" style="margin:0 0 24px;line-height:1.6;font-size:16px">{{ uc.cur.d }}</p>
+          <div style="display:grid;grid-template-columns:28px 1fr;gap:0 14px">
+            <span class="mono" style="font-size:11px;color:#C2410C;padding-top:3px">IN</span><div style="padding-bottom:16px;border-left:1.5px solid #111;padding-left:16px;margin-left:-8px"><div class="mono sub" style="font-size:11px">ENTRÉE</div><div style="font-weight:600;margin-top:4px">{{ uc.cur.in }}</div></div>
+            <span class="mono" style="font-size:11px;color:#C2410C;padding-top:3px">FX</span><div style="padding-bottom:16px;border-left:1.5px solid #111;padding-left:16px;margin-left:-8px"><div class="mono sub" style="font-size:11px">TRAITEMENT</div><div style="font-weight:600;margin-top:4px">{{ uc.cur.fx }}</div></div>
+            <span class="mono" style="font-size:11px;color:#C2410C;padding-top:3px">OUT</span><div style="border-left:1.5px solid #111;padding-left:16px;margin-left:-8px"><div class="mono sub" style="font-size:11px">SORTIE</div><div style="font-weight:600;margin-top:4px">{{ uc.cur.out }}</div></div>
+          </div>
+          <sc-if value="{{ uc.cur.hasNote }}" hint-placeholder-val="{{ false }}">
+            <p class="mono" style="margin:22px 0 0;font-size:12px;color:#006E99;line-height:1.6;border-top:1px dashed rgba(17,17,17,.3);padding-top:14px">{{ uc.cur.note }}</p>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATEUR -->
+<section style="border-top:1.5px solid #111;padding-top:96px;padding-bottom:104px">
+  <div class="wrap">
+    <div class="sr" style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px">
+      <div>
+        <div class="lbl" style="margin-bottom:14px">§ 03 — Comparateur · cas 05</div>
+        <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:760px">Modèle affiné ou RAG : choisir en connaissance.</h2>
+      </div>
+      <div role="group" aria-label="Affichage du comparatif" style="display:inline-flex;border:1.5px solid #111;flex-wrap:wrap">
+        <button class="seg" style="{{ cmp.sA }}" aria-pressed="{{ cmp.pA }}" onClick="{{ cmp.setA }}">Modèle affiné</button>
+        <button class="seg" style="{{ cmp.sB }}" aria-pressed="{{ cmp.pB }}" onClick="{{ cmp.setB }}">RAG</button>
+        <button class="seg" style="{{ cmp.sC }}" aria-pressed="{{ cmp.pC }}" onClick="{{ cmp.setC }}">Côte à côte</button>
+      </div>
+    </div>
+    <div class="sheet sr" style="overflow-x:auto">
+      <div style="min-width:680px">
+        <div style="display:grid;grid-template-columns:220px 1fr 1fr;border-bottom:1.5px solid #111">
+          <div class="mono sub" style="padding:16px 20px;font-size:11px">CRITÈRE</div>
+          <div style="{{ cmp.hA }}"><span class="mono" style="font-size:11px;display:block;margin-bottom:4px">COL. A</span>Modèle affiné</div>
+          <div style="{{ cmp.hB }}"><span class="mono" style="font-size:11px;display:block;margin-bottom:4px">COL. B</span>RAG</div>
+        </div>
+        <sc-for list="{{ cmp.rows }}" as="r" hint-placeholder-count="6">
+          <div style="display:grid;grid-template-columns:220px 1fr 1fr;border-bottom:1px solid rgba(17,17,17,.15)">
+            <div class="mono" style="padding:16px 20px;font-size:12.5px;font-weight:500">{{ r.k }}</div>
+            <div style="{{ r.sa }}">{{ r.a }}</div>
+            <div style="{{ r.sb }}">{{ r.b }}</div>
+          </div>
+        </sc-for>
+        <div style="padding:18px 20px;font-weight:600;display:flex;gap:12px;align-items:center"><span style="width:10px;height:10px;background:var(--acc,#FF5B1F);border:1px solid #111;flex:none"></span>{{ cmp.verdict }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DÉMO ATOM -->
+<section id="demo" style="background:#111;color:#F2F1EC;padding-top:96px;padding-bottom:104px">
+  <div class="wrap">
+    <div class="sr" style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px">
+      <div>
+        <div class="mono" style="font-size:12px;letter-spacing:.08em;color:var(--acc,#FF5B1F);margin-bottom:14px">§ 04 — DÉMO ATOM · DÉMONSTRATION SCÉNARISÉE</div>
+        <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:760px">Confiez une tâche à ATOM, regardez-le raisonner.</h2>
+      </div>
+      <p class="mono" style="margin:0;font-size:12px;color:#C9C7BF;max-width:340px;line-height:1.6">Démonstration scénarisée : aucune donnée réelle, aucun appel réseau. Les étapes sont rejouées pour illustrer le fonctionnement d’un agent.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:28px;align-items:start">
+      <div class="sr" style="display:flex;flex-direction:column;gap:12px">
+        <div class="mono" style="font-size:11px;color:#C9C7BF;letter-spacing:.06em">1 · CHOISIR UNE TÂCHE</div>
+        <sc-for list="{{ demo.tasks }}" as="t" hint-placeholder-count="3">
+          <button class="task" style="{{ t.style }}" aria-pressed="{{ t.on }}" onClick="{{ t.pick }}">
+            <span class="mono" style="font-size:12px">{{ t.code }}</span>
+            <span><span style="display:block;font-weight:700;font-size:17px">{{ t.t }}</span><span style="display:block;font-size:13.5px;opacity:.8;margin-top:3px">{{ t.d }}</span></span>
+          </button>
+        </sc-for>
+        <div class="mono" style="font-size:11px;color:#C9C7BF;letter-spacing:.06em;margin-top:12px">2 · EXÉCUTER</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn" onClick="{{ demo.run }}" style="box-shadow:4px 4px 0 #F2F1EC">{{ demo.runLabel }}</button>
+          <button class="btn2" onClick="{{ demo.reset }}" style="color:#F2F1EC;border-color:#F2F1EC">Réinitialiser</button>
+        </div>
+      </div>
+      <div class="sr" style="grid-column:span 2;min-width:0;border:1.5px solid #F2F1EC;background:#1A1A19">
+        <div class="mono" style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid rgba(242,241,236,.25);font-size:12px;flex-wrap:wrap">
+          <span>atom@baquelis:~/demo — {{ demo.cur.code }}</span>
+          <span style="{{ demo.statusStyle }}">{{ demo.status }}</span>
+        </div>
+        <div class="mono" style="padding:22px 20px;min-height:360px;font-size:13.5px;line-height:1.75" aria-live="polite">
+          <div style="color:#C9C7BF">› tâche : {{ demo.cur.t }}</div>
+          <sc-for list="{{ demo.lines }}" as="l" hint-placeholder-count="3">
+            <div class="ln" style="display:grid;grid-template-columns:70px 1fr;gap:10px;padding:6px 0;border-bottom:1px dashed rgba(242,241,236,.12)">
+              <span style="color:#7FCBEA">{{ l.n }}</span>
+              <span><span style="color:#F2F1EC">{{ l.t }}</span> <span style="color:#9BD8A8">✓</span></span>
+            </div>
+          </sc-for>
+          <sc-if value="{{ demo.running }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:8px 0;color:#C9C7BF;display:flex;gap:10px;align-items:center"><span class="spin"></span>ATOM réfléchit…</div>
+          </sc-if>
+          <sc-if value="{{ demo.idle }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:8px 0;color:#C9C7BF">En attente · choisissez une tâche puis « Lancer ATOM » <span class="caret"></span></div>
+          </sc-if>
+          <sc-if value="{{ demo.done }}" hint-placeholder-val="{{ false }}">
+            <div class="ln" style="margin-top:18px;border:1.5px solid var(--acc,#FF5B1F);padding:16px 18px;background:#111">
+              <div style="font-size:11px;color:var(--acc,#FF5B1F);letter-spacing:.08em;margin-bottom:8px">RÉSULTAT · DÉMONSTRATION</div>
+              <div style="font-family:'Schibsted Grotesk',sans-serif;font-size:17px;line-height:1.5;color:#F2F1EC">{{ demo.cur.result }}</div>
+            </div>
+          </sc-if>
+        </div>
+        <div style="height:4px;background:rgba(242,241,236,.12)"><div style="{{ demo.bar }}"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-top:104px;padding-bottom:112px">
+  <div class="wrap sr" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:40px;align-items:end">
+    <h2 style="margin:0;font-size:clamp(36px,5vw,72px);line-height:.98;letter-spacing:-.045em;font-weight:800">Prêt à transformer votre entreprise<span style="color:var(--acc,#FF5B1F)"> ?</span></h2>
+    <div>
+      <p class="sub" style="margin:0 0 24px;font-size:17px;line-height:1.6">Identifions ensemble le premier cas d’usage à automatiser et la formule adaptée.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="Systeme-Contact.html">Commencer aujourd’hui</a><a class="btn2" href="Systeme-Offres.html">Voir les formules</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="border-top:1.5px solid #111;background:#ECEBE4">
+  <div class="wrap" style="padding-top:64px;padding-bottom:32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:40px">
+      <div>
+        <a href="Systeme-Accueil.html" class="logo" aria-label="Baquelis, accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" fill="none" stroke="#111" stroke-width="2"></rect><path d="M8 8H22M8 8V22M8 15H18" stroke="#111" stroke-width="1.5" fill="none"></path><circle cx="8" cy="8" r="2.6" fill="#111"></circle><circle cx="22" cy="8" r="2.2" fill="#111"></circle><rect x="17" y="17" width="8" height="8" style="fill:var(--acc,#FF5B1F)"></rect></svg><span>Baquelis</span></a>
+        <p style="margin:16px 0 6px;font-weight:600">Flexibilité. Continuité. Performance.</p>
+        <p class="sub" style="margin:0;font-size:14px;line-height:1.6">Construit sur la confiance. Guidé par les résultats.</p>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Navigation</div>
+        <a class="fl" href="Systeme-Expertises.html">Expertises</a><a class="fl" href="Systeme-IA.html">Intelligence artificielle</a><a class="fl" href="Systeme-Jeux.html">Jeux &amp; Web3</a><a class="fl" href="Systeme-Contact.html">Contact</a>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Formules</div>
+        <a class="fl" href="Systeme-Offres.html">Intégration — 4 500 €/mois</a><a class="fl" href="Systeme-Offres.html">Flex — 6 200 €/mois</a><a class="fl" href="Systeme-Offres.html">Performance — 18 900 €/mois</a>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Société</div>
+        <p style="margin:12px 0;font-size:15px;line-height:1.6">Siège : 31 B avenue Maréchal Foch, 06000 Nice</p>
+        <p class="sub" style="margin:0 0 8px;font-size:14px">[RAISON SOCIALE] · [N° TVA]</p>
+        <p class="mono" style="margin:0;font-size:13px">[contact@domaine-baquelis]</p>
+      </div>
+    </div>
+    <div class="cart mono">
+      <div><b>PROJET</b>Baquelis</div>
+      <div><b>DOCUMENT</b>Système — IA</div>
+      <div><b>FEUILLE</b>03 / 06</div>
+      <div><b>RÉVISION</b>C</div>
+      <div><b>ÉCHELLE</b>1:1</div>
+      <div><b>DROITS</b>© 2026 Baquelis</div>
+    </div>
+    <div class="mono sub" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;padding-top:18px">
+      <span>Proposition de refonte — concept · Direction 07 « Système »</span>
+      <a class="tl" href="index.html" style="display:inline-flex;align-items:center;min-height:44px">Toutes les propositions</a>
+    </div>
+  </div>
+</footer>
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5600},"accent":{"editor":"color","default":"#FF5B1F","options":["#FF5B1F","#0089BF","#111111"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu:false, cap:0, uc:0, cmp:"both", task:0, shown:0, running:false, done:false };
+    this.timer = null;
+  }
+  componentWillUnmount(){ if(this.timer){ clearInterval(this.timer); this.timer = null; } }
+  stop(){ if(this.timer){ clearInterval(this.timer); this.timer = null; } }
+  run(){
+    this.stop();
+    this.setState({ shown:0, running:true, done:false });
+    this.timer = setInterval(() => {
+      const n = this.state.shown + 1;
+      if(n >= 5){ this.stop(); this.setState({ shown:5, running:false, done:true }); return; }
+      this.setState({ shown:n });
+    }, 850);
+  }
+  renderVals(){
+    const acc = (this.props && this.props.accent) || "#FF5B1F";
+    const CAP = [
+      { code:"IA-01", title:"Affinage de modèles", text:"Des modèles entraînés sur vos données et vos cas d’usage, pour une intelligence spécifique à votre métier.", pts:["Formation spécifique au domaine","Optimisation des performances","Apprentissage continu","Confidentialité & sécurité"], on:[0,1,2], fx:6, fw:568 },
+      { code:"IA-02", title:"Agents autonomes", text:"Des agents qui exécutent des tâches complexes, prennent des décisions et s’adaptent.", pts:["Automatisation de tâches","Prise de décision","Coordination multi-agents","Apprentissage & adaptation"], on:[2,3], fx:410, fw:378 },
+      { code:"IA-03", title:"Intégration métier", text:"L’IA intégrée dans vos processus existants, là où vos équipes travaillent déjà.", pts:["Automatisation des flux","Traitement de données","Analytique prédictive","Insights temps réel"], on:[3,4], fx:614, fw:378 }
+    ];
+    const ci = this.state.cap, C = CAP[ci];
+    const cap = {
+      tabs: CAP.map((c,i) => ({ code:c.code, title:c.title, on:i === ci ? "true" : "false",
+        style:i === ci ? "background:#111;color:#F2F1EC" : "background:transparent;color:#111",
+        pick:() => this.setState({ cap:i }) })),
+      cur:C,
+      f0:"opacity:" + (ci === 0 ? 1 : 0) + ";transition:opacity .5s ease",
+      f1:"opacity:" + (ci === 1 ? 1 : 0) + ";transition:opacity .5s ease",
+      f2:"opacity:" + (ci === 2 ? 1 : 0) + ";transition:opacity .5s ease"
+    };
+    [0,1,2,3,4].forEach(k => { cap["k" + k] = "opacity:" + (C.on.indexOf(k) >= 0 ? 1 : 0.32) + ";transition:opacity .45s ease"; });
+
+    const UC = [
+      { n:"01", t:"Automatisation du support client", cap:"AGENTS · MODÈLES AFFINÉS", d:"Des agents qui comprennent les demandes, répondent aux cas simples et escaladent les cas sensibles avec tout le contexte.", in:"Demandes clients (e-mail, chat)", fx:"Compréhension, recherche dans la base de connaissances, réponse ou escalade", out:"Réponses envoyées, tickets escaladés documentés", hasNote:true, note:"Promesse Baquelis : des agents traitant 90 % des demandes avec une qualité de réponse de niveau humain. Affirmation du site, non mesurée ici." },
+      { n:"02", t:"Pipeline de génération de contenu", cap:"MODÈLES AFFINÉS · INTÉGRATION", d:"Une chaîne de production de contenus au ton de votre marque, avec validation humaine avant publication.", in:"Briefs, charte éditoriale", fx:"Génération, relecture par agent, validation humaine", out:"Contenus prêts à publier", hasNote:false, note:"" },
+      { n:"03", t:"Intelligence métier prédictive", cap:"INTÉGRATION MÉTIER", d:"Anticiper plutôt que constater : des modèles qui projettent vos indicateurs et signalent les écarts.", in:"Données historiques de l’activité", fx:"Modèles prédictifs, détection d’écarts", out:"Prévisions, alertes, insights temps réel", hasNote:false, note:"" },
+      { n:"04", t:"Optimisation des processus", cap:"AGENTS · INTÉGRATION", d:"Repérer les goulots d’étranglement et automatiser les étapes à faible valeur.", in:"Flux et procédures existants", fx:"Cartographie, détection des goulots, automatisation", out:"Processus allégés et mesurables", hasNote:false, note:"" },
+      { n:"05", t:"Modèles affinés vs RAG", cap:"AFFINAGE", d:"Un modèle affiné sur votre domaine : précision supérieure, réponses plus rapides, intelligence spécifique. Voir le comparateur ci-dessous.", in:"Vos données métier", fx:"Affinage, évaluation, apprentissage continu", out:"Un modèle qui parle votre métier", hasNote:false, note:"" },
+      { n:"06", t:"Automatisation métier agentique", cap:"AGENTS · MULTI-AGENTS", d:"Plusieurs agents coordonnés planifient, exécutent et contrôlent une tâche métier de bout en bout.", in:"Un objectif métier", fx:"Planification, exécution coordonnée, contrôle", out:"Tâche réalisée, journal de décisions", hasNote:false, note:"" }
+    ];
+    const ui = this.state.uc;
+    const uc = {
+      cur:UC[ui],
+      list: UC.map((u,i) => ({ n:u.n, t:u.t, on:i === ui ? "true" : "false",
+        style:i === ui ? "background:" + acc + ";color:#111" : "background:#F2F1EC;color:#111",
+        pick:() => this.setState({ uc:i }) }))
+    };
+
+    const ROWS = [
+      ["Principe","Le modèle apprend vos données et votre vocabulaire.","Le modèle consulte des documents au moment de répondre."],
+      ["Précision métier","Supérieure sur votre domaine.","Dépend de la qualité des documents retrouvés."],
+      ["Vitesse","Réponses plus rapides : pas d’étape de recherche.","Une étape de recherche avant chaque réponse."],
+      ["Mise à jour","Apprentissage continu, réentraînement planifié.","Immédiate dès qu’un document change."],
+      ["Spécificité","Intelligence spécifique à votre métier.","Connaissances générales et documents fournis."],
+      ["Idéal pour","Tâches récurrentes, ton et format maîtrisés.","Bases documentaires vastes et changeantes."]
+    ];
+    const m = this.state.cmp;
+    const segOn = "background:#111;color:#F2F1EC", segOff = "background:transparent;color:#111";
+    const cell = (show, hl) => "padding:16px 20px;line-height:1.5;font-size:15px;transition:opacity .4s,background .4s;opacity:" + (show ? 1 : 0.25) + ";background:" + (hl ? "rgba(255,91,31,.10)" : "transparent");
+    const head = (show, hl) => "padding:16px 20px;font-weight:700;font-size:18px;transition:opacity .4s,background .4s;opacity:" + (show ? 1 : 0.3) + ";background:" + (hl ? acc : "transparent");
+    const cmp = {
+      sA:m === "a" ? segOn : segOff, sB:m === "b" ? segOn : segOff, sC:m === "both" ? segOn : segOff,
+      pA:m === "a" ? "true" : "false", pB:m === "b" ? "true" : "false", pC:m === "both" ? "true" : "false",
+      setA:() => this.setState({ cmp:"a" }), setB:() => this.setState({ cmp:"b" }), setC:() => this.setState({ cmp:"both" }),
+      hA:head(m !== "b", m === "a"), hB:head(m !== "a", m === "b"),
+      rows: ROWS.map(r => ({ k:r[0], a:r[1], b:r[2], sa:cell(m !== "b", m === "a"), sb:cell(m !== "a", m === "b") })),
+      verdict: m === "a" ? "Modèle affiné : précision supérieure, réponses plus rapides, intelligence spécifique." : (m === "b" ? "RAG : pertinent quand vos documents changent souvent." : "Souvent, la bonne architecture combine les deux — nous vous aidons à choisir.")
+    };
+
+    const TASKS = [
+      { code:"T-01", t:"Trier les demandes support", d:"Classer, répondre, escalader", steps:["Lecture de la file de demandes (jeu d’exemple)","Classification par intention et priorité","Rédaction des réponses aux demandes simples","Escalade des cas sensibles avec contexte","Synthèse transmise à l’équipe support"], result:"Demandes classées, réponses proposées pour validation, cas sensibles escaladés avec leur historique. Données fictives." },
+      { code:"T-02", t:"Préparer le rapport hebdomadaire", d:"Collecter, analyser, rédiger", steps:["Connexion aux sources d’exemple","Extraction des indicateurs de la semaine","Détection des variations notables","Rédaction d’une synthèse lisible","Soumission pour validation humaine"], result:"Brouillon de rapport hebdomadaire prêt à relire : indicateurs, variations commentées, points d’attention. Données fictives." },
+      { code:"T-03", t:"Coordonner un flux multi-agents", d:"Planifier, exécuter, contrôler", steps:["Agent planificateur : découpage de l’objectif","Agent données : vérification des entrées","Agent exécution : traitement des sous-tâches","Agent contrôle : revue qualité du résultat","Journal de décisions consolidé"], result:"Objectif découpé, exécuté et contrôlé par quatre agents coordonnés, avec un journal de décisions consultable. Scénario illustratif." }
+    ];
+    const ti = this.state.task, T = TASKS[ti];
+    const sh = this.state.shown, running = this.state.running, done = this.state.done;
+    const demo = {
+      cur:T, running, done, idle:!running && !done && sh === 0,
+      runLabel: running ? "Exécution…" : (done ? "Relancer ATOM" : "Lancer ATOM"),
+      status: running ? "● EN COURS" : (done ? "● TERMINÉ" : "○ PRÊT"),
+      statusStyle: "color:" + (running ? acc : (done ? "#9BD8A8" : "#C9C7BF")),
+      bar:"height:4px;background:" + acc + ";transition:width .7s ease;width:" + (sh * 20) + "%",
+      lines: T.steps.slice(0, sh).map((s,i) => ({ n:"[0" + (i + 1) + "/05]", t:s })),
+      tasks: TASKS.map((x,i) => ({ code:x.code, t:x.t, d:x.d, on:i === ti ? "true" : "false",
+        style:i === ti ? "background:#F2F1EC;color:#111;border-color:#F2F1EC" : "background:transparent;color:#F2F1EC;border-color:rgba(242,241,236,.4)",
+        pick:() => { this.stop(); this.setState({ task:i, shown:0, running:false, done:false }); } })),
+      run:() => { if(!this.state.running) this.run(); },
+      reset:() => { this.stop(); this.setState({ shown:0, running:false, done:false }); }
+    };
+
+    return {
+      rootStyle:"--acc:" + acc,
+      menuOpen:this.state.menu,
+      toggleMenu:() => this.setState({ menu:!this.state.menu }),
+      cap, uc, cmp, demo
+    };
+  }
+}
+</script>
+</body>
+</html>

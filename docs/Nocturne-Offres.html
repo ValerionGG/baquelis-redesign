@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Nocturne — Offres</title>
+<script src="vendor/preact.min.js"></script>
+<script src="dc.js"></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<script type="text/x-dc-template" id="dc-template">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#08080B}
+sc-for,sc-if{display:contents}
+.nx,.nx *{box-sizing:border-box}
+.nx{font-family:'Outfit',system-ui,sans-serif;color:#EFEDE8;background:#08080B;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.nx a{color:inherit;text-decoration:none}
+.nx h1,.nx h2,.nx h3,.nx h4,.nx p{margin:0}
+.nx button{font-family:inherit;cursor:pointer}
+.nx :focus-visible{outline:2px solid #F2B544;outline-offset:3px;border-radius:6px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+@media (max-width:720px){.wrap{padding:0 16px}}
+.amb{color:#F2B544}
+.muted{color:#9B988F}
+.hdr{position:sticky;top:0;z-index:50;background:rgba(8,8,11,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(239,237,232,.07)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+.logo{display:flex;align-items:center;gap:12px;min-height:44px}
+.logo-word{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:.2em;font-size:17px}
+.logo .ring{transform-origin:17px 17px;animation:spin 16s linear infinite}
+.nav{display:flex;gap:2px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font-size:14.5px;color:#C9C6BE;border-radius:999px;transition:color .3s,background .3s}
+.nav a:hover{color:#EFEDE8;background:rgba(239,237,232,.06)}
+.nav a[aria-current="page"]{color:#F2B544}
+.hdr-cta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid transparent;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,background .35s,color .35s,border-color .35s;white-space:nowrap}
+.btn-amber{background:#F2B544;color:#08080B}
+.btn-amber:hover{transform:translateY(-2px);box-shadow:0 14px 44px -10px rgba(242,181,68,.6)}
+.btn-ghost{border-color:rgba(239,237,232,.24);color:#EFEDE8;background:rgba(8,8,11,.35)}
+.btn-ghost:hover{border-color:#F2B544;color:#F2B544}
+.btn svg{transition:transform .35s}
+.btn:hover svg{transform:translateX(4px)}
+.burger{display:none;width:48px;height:48px;border-radius:999px;border:1px solid rgba(239,237,232,.2);background:transparent;color:#EFEDE8;align-items:center;justify-content:center}
+@media (max-width:1060px){.nav,.hdr-cta .btn-ghost{display:none}.burger{display:inline-flex}}
+@media (max-width:520px){.hdr-cta .btn-amber{display:none}}
+.mnav{display:grid;padding:6px 0 22px}
+.mnav a{display:flex;align-items:center;min-height:54px;font-family:'Syne',sans-serif;font-weight:700;font-size:22px;border-bottom:1px solid rgba(239,237,232,.08)}
+.eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#F2B544;font-weight:600}
+.scene{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#9B988F;font-weight:500}
+.scene b{color:#F2B544;font-weight:600}
+.scene i{display:block;width:56px;height:1px;background:linear-gradient(90deg,#F2B544,transparent)}
+.h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,4.8vw,66px);line-height:1.02;letter-spacing:-.02em;overflow-wrap:anywhere}
+.lead{font-size:clamp(17px,1.4vw,19px);color:#C9C6BE;max-width:640px}
+.sec{padding:130px 0;position:relative}
+@media (max-width:720px){.sec{padding:84px 0}}
+.sec-head{display:grid;gap:22px;margin-bottom:56px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes lnUp{from{transform:translateY(108%)}to{transform:translateY(0)}}
+@keyframes bulbs{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes drift{from{transform:scale(1.04)}to{transform:scale(1.12) translate(-22px,-10px)}}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-12px,8px)}50%{transform:translate(10px,-14px)}75%{transform:translate(-6px,12px)}100%{transform:translate(0,0)}}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-14px,-8px)}}
+@keyframes rise{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:.3;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* hero / marquee */
+.stage{position:relative;overflow:hidden;padding:90px 0 120px}
+.stage-bg{position:absolute;top:-60px;left:-60px;right:-60px;bottom:-60px;background:url(assets/city-night-tower.webp) center/cover;filter:sepia(1) saturate(1.8) hue-rotate(-10deg) brightness(.22);animation:drift 28s ease-in-out infinite alternate;transition:transform 1s cubic-bezier(.16,.84,.24,1)}
+.stage-fog{position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(50% 40% at 50% 30%,rgba(242,181,68,.16),transparent 70%),linear-gradient(180deg,rgba(8,8,11,.6),rgba(8,8,11,.2) 40%,#08080B)}
+.grain{position:absolute;top:-40px;left:-40px;right:-40px;bottom:-40px;pointer-events:none;z-index:7;opacity:.1;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");animation:grain .9s steps(5) infinite}
+.marquee{position:relative;z-index:2;text-align:center;margin-bottom:70px}
+.bulbs{display:flex;justify-content:center;gap:18px;margin:0 auto 26px;max-width:520px;overflow:hidden}
+.bulbs i{flex:0 0 8px;height:8px;border-radius:50%;background:#F2B544;box-shadow:0 0 12px #F2B544;animation:bulbs 1.4s ease-in-out infinite}
+.bulbs i:nth-child(2n){animation-delay:.7s}
+.m-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(36px,6.4vw,94px);line-height:.98;letter-spacing:-.02em;max-width:1100px;margin:20px auto 22px;overflow-wrap:anywhere}
+.ln{display:block;overflow:hidden;padding-bottom:.06em}
+.ln-in{display:inline-block;animation:lnUp 1.1s cubic-bezier(.2,.8,.1,1) both}
+.fade{animation:fadeUp 1s cubic-bezier(.2,.8,.2,1) both}
+/* posters */
+.posters{position:relative;z-index:2;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:26px;align-items:start;perspective:1400px}
+.pw{animation:rise 1.2s cubic-bezier(.2,.8,.2,1) both}
+.poster{position:relative;height:700px;border-radius:8px;overflow:hidden;background:#121218;border:1px solid rgba(239,237,232,.1);display:flex;flex-direction:column;transition:transform .9s cubic-bezier(.16,.84,.24,1),box-shadow .7s,border-color .7s;transform-style:preserve-3d}
+.poster:hover{box-shadow:0 50px 100px -40px rgba(242,181,68,.45)}
+.poster img{position:absolute;top:0;left:0;width:100%;height:700px;object-fit:cover;filter:brightness(.5) saturate(.85);transition:transform 1.8s cubic-bezier(.2,.8,.2,1),filter 1s}
+.poster:hover img{transform:scale(1.08);filter:brightness(.62) saturate(1)}
+.poster .shade{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(8,8,11,.55),rgba(8,8,11,.05) 26%,rgba(8,8,11,.55) 48%,rgba(8,8,11,.98) 74%)}
+.p-in{position:relative;z-index:2;display:flex;flex-direction:column;height:700px;padding:26px 28px 28px}
+.p-top{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:#D3D0C8}
+.p-pres{margin-top:70px;text-align:center;font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:#C9C6BE}
+.p-title{text-align:center;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(38px,3.6vw,52px);line-height:1;text-transform:uppercase;letter-spacing:.02em;margin-top:10px;overflow-wrap:anywhere}
+.p-tag{text-align:center;font-size:14px;color:#C9C6BE;margin:10px auto 0;max-width:260px}
+.p-bottom{margin-top:auto}
+.p-price{display:flex;align-items:baseline;justify-content:center;gap:6px}
+.p-price b{font-family:'Syne',sans-serif;font-weight:800;font-size:44px;line-height:1;color:#F2B544}
+.p-price span{color:#C9C6BE;font-size:15px}
+.p-save{text-align:center;font-size:13px;color:#EFEDE8;margin-top:8px}
+.p-credits{margin-top:16px;padding-top:14px;border-top:1px solid rgba(239,237,232,.16);text-align:center;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#B4B1A9;line-height:1.85}
+.p-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+.p-btns .btn{padding:0 12px;font-size:14px}
+.ribbon{display:inline-flex;align-items:center;min-height:28px;padding:0 12px;border-radius:999px;background:#F2B544;color:#08080B;font-size:10px;letter-spacing:.22em;font-weight:700}
+/* compare */
+.cmp{border-radius:16px;overflow:hidden;border:1px solid rgba(239,237,232,.08)}
+.cr{display:grid;grid-template-columns:minmax(0,1.1fr) repeat(3,minmax(0,1fr));border-bottom:1px solid rgba(239,237,232,.07);transition:background .3s}
+.cr:last-child{border-bottom:0}
+.cr:hover{background:rgba(239,237,232,.02)}
+.cr > div{padding:18px 22px;font-size:14.5px;color:#C9C6BE;transition:background .5s,color .5s}
+.cr .k{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#EFEDE8;background:#0E0E13}
+.cr.h > div{background:#0C0C10;font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:#EFEDE8}
+.cr.h small{display:block;font-family:'Outfit',sans-serif;font-weight:500;font-size:13px;color:#9B988F;margin-top:2px}
+@media (max-width:820px){.cr{grid-template-columns:repeat(3,minmax(0,1fr))}.cr .k{grid-column:1/-1;padding:12px 14px}.cr > div{padding:12px 10px;font-size:13px}.cr.h > div:first-child{display:none}.cr.h > div{font-size:15px}}
+/* simulator */
+.sim{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);border-radius:18px;overflow:hidden;border:1px solid rgba(242,181,68,.25);background:#121218}
+@media (max-width:960px){.sim{grid-template-columns:1fr}}
+.sim-ctrl{padding:42px}
+@media (max-width:720px){.sim-ctrl{padding:26px 22px}}
+.fbtns{display:grid;gap:8px;margin:18px 0 30px}
+.fbtn{display:flex;justify-content:space-between;align-items:center;min-height:58px;padding:0 20px;border-radius:12px;border:1px solid rgba(239,237,232,.12);background:transparent;color:#EFEDE8;font-size:16px;font-weight:600;transition:all .35s}
+.fbtn:hover{border-color:rgba(242,181,68,.45)}
+.fbtn span{font-weight:400;font-size:14px;color:#9B988F;transition:color .35s}
+.range{width:100%;accent-color:#F2B544;height:44px;cursor:pointer}
+.rl{display:flex;justify-content:space-between;font-size:12px;color:#9B988F}
+.sim-out{position:relative;padding:42px;background:radial-gradient(70% 70% at 70% 30%,rgba(242,181,68,.12),transparent 70%),#0B0B10;display:grid;align-content:center;gap:26px;overflow:hidden}
+@media (max-width:720px){.sim-out{padding:26px 22px}}
+.big{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(46px,6.4vw,92px);line-height:1;color:#F2B544;letter-spacing:-.02em;font-variant-numeric:tabular-nums;animation:pop .5s both;overflow-wrap:anywhere}
+.out-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:10px}
+.out-grid div{padding:16px 18px;border-radius:12px;background:#15151C;border:1px solid rgba(239,237,232,.07);font-size:13px;color:#9B988F}
+.out-grid b{display:block;font-family:'Syne',sans-serif;font-size:22px;color:#EFEDE8;margin-top:4px;font-variant-numeric:tabular-nums}
+.bars{display:grid;gap:10px}
+.bar-l{display:flex;justify-content:space-between;font-size:13px;color:#9B988F;margin-bottom:6px}
+.bar-t{height:12px;border-radius:6px;background:#1E1E26;overflow:hidden}
+.bar-t i{display:block;height:12px;border-radius:6px;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.note{font-size:12.5px;color:#9B988F}
+/* faq */
+.faq{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:60px}
+@media (max-width:960px){.faq{grid-template-columns:1fr;gap:30px}}
+.qa{border-top:1px solid rgba(239,237,232,.1)}
+.q{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:center;gap:16px;width:100%;min-height:76px;padding:12px 0;background:transparent;border:0;border-bottom:1px solid rgba(239,237,232,.1);color:#EFEDE8;text-align:left;font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(17px,1.5vw,20px);transition:color .3s}
+.q:hover{color:#F2B544}
+.q-pl{width:44px;height:44px;border-radius:50%;border:1px solid rgba(239,237,232,.2);display:flex;align-items:center;justify-content:center;transition:transform .45s,background .35s,color .35s,border-color .35s}
+.a{padding:4px 60px 26px 0;color:#C9C6BE;font-size:16px;border-bottom:1px solid rgba(239,237,232,.1);animation:fadeUp .45s both}
+/* cta + footer */
+.cta{position:relative;padding:150px 0;overflow:hidden;text-align:center}
+.cta-bg{position:absolute;top:-40px;left:-40px;right:-40px;bottom:-40px;background:url(assets/cubes-gold.webp) center/cover;filter:brightness(.33);animation:kb 20s ease-in-out infinite alternate}
+.cta-shade{position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(70% 70% at 50% 50%,rgba(8,8,11,.3),#08080B)}
+.cta-in{position:relative;z-index:2}
+.cta h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(34px,5.6vw,80px);line-height:1;letter-spacing:-.02em;margin:22px auto 34px;max-width:1000px;overflow-wrap:anywhere}
+.ftr{background:#050507;border-top:1px solid rgba(239,237,232,.07);padding:90px 0 36px}
+.ftr-word{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(46px,13vw,184px);line-height:.9;letter-spacing:.04em;color:transparent;-webkit-text-stroke:1px rgba(242,181,68,.4);transition:color .8s;margin-bottom:60px;overflow-wrap:anywhere}
+.ftr-word:hover{color:rgba(242,181,68,.12)}
+.ftr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:36px}
+.ftr h4{font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:#9B988F;font-weight:600;margin-bottom:16px}
+.ftr-grid a,.ftr-grid p{display:flex;align-items:center;min-height:36px;color:#D3D0C8;font-size:15px;transition:color .3s}
+.ftr-grid a:hover{color:#F2B544}
+.ftr-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:60px;padding-top:26px;border-top:1px solid rgba(239,237,232,.07);font-size:13px;color:#9B988F}
+.ftr-bottom a{min-height:44px;display:inline-flex;align-items:center}
+.ftr-bottom a:hover{color:#F2B544}
+</style>
+</helmet>
+<div class="nx">
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="Nocturne-Accueil.html" aria-label="Baquelis, retour à l’accueil">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle class="ring" cx="17" cy="17" r="15.5" fill="none" stroke="#F2B544" stroke-width="1.4" stroke-dasharray="70 28"></circle><path d="M12.5 9.5h5.6a3.9 3.9 0 0 1 0 7.8h-5.6zM12.5 17.3h6.6a4.6 4.6 0 0 1 0 9.2h-6.6z" fill="none" stroke="#EFEDE8" stroke-width="1.8"></path><circle cx="26" cy="8" r="2" fill="#F2B544"></circle></svg>
+      <span class="logo-word">BAQUELIS</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="Nocturne-Expertises.html">Expertises</a>
+      <a href="Nocturne-IA.html">IA</a>
+      <a href="Nocturne-Jeux.html">Jeux &amp; Web3</a>
+      <a href="Nocturne-Offres.html" aria-current="page">Offres</a>
+      <a href="Nocturne-Contact.html">Contact</a>
+    </nav>
+    <div class="hdr-cta">
+      <a class="btn btn-ghost" href="Nocturne-Contact.html">Réserver un appel</a>
+      <a class="btn btn-amber" href="Nocturne-Contact.html">Commencer</a>
+      <button class="burger" type="button" aria-label="{{ menuLabel }}" aria-expanded="{{ menuExp }}" onClick="{{ toggleMenu }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"></path></svg></button>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="wrap">
+      <nav class="mnav" aria-label="Navigation mobile">
+        <a href="Nocturne-Expertises.html">Expertises</a>
+        <a href="Nocturne-IA.html">IA</a>
+        <a href="Nocturne-Jeux.html">Jeux &amp; Web3</a>
+        <a href="Nocturne-Offres.html" style="color:#F2B544">Offres</a>
+        <a href="Nocturne-Contact.html">Contact</a>
+        <a class="btn btn-amber" href="Nocturne-Contact.html" style="margin-top:18px;font-family:'Outfit',sans-serif;font-size:15px;border:0">Réserver un appel</a>
+      </nav>
+    </div>
+  </sc-if>
+</header>
+
+<main>
+<!-- À L'AFFICHE : trois affiches -->
+<section class="stage" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" aria-label="Les trois formules">
+  <div class="stage-bg" style="{{ bgStyle }}" aria-hidden="true"></div>
+  <div class="stage-fog" aria-hidden="true"></div>
+  <sc-if value="{{ grainOn }}" hint-placeholder-val="{{ true }}"><div class="grain" aria-hidden="true"></div></sc-if>
+  <div class="wrap">
+    <div class="marquee">
+      <div class="bulbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="scene fade" style="justify-content:center;animation-delay:.3s"><b>Acte V</b><i></i>À l’affiche</div>
+      <h1 class="m-h1">
+        <span class="ln"><span class="ln-in" style="animation-delay:.5s">Trois formules.</span></span>
+        <span class="ln"><span class="ln-in amb" style="animation-delay:.75s">Une seule exigence.</span></span>
+      </h1>
+      <p class="lead fade" style="margin:0 auto;animation-delay:1.1s">Des formules mensuelles, une tarification transparente, des économies affichées face au recrutement. Choisissez votre affiche.</p>
+    </div>
+    <div class="posters">
+      <sc-for list="{{ posters }}" as="p" hint-placeholder-count="3">
+        <div class="pw" style="{{ p.delay }}">
+          <article class="poster" style="{{ p.style }}">
+            <img src="{{ p.img }}" alt="{{ p.alt }}">
+            <div class="shade"></div>
+            <div class="p-in">
+              <div class="p-top"><span>Formule {{ p.roman }}</span>
+                <sc-if value="{{ p.pop }}" hint-placeholder-val="{{ false }}"><span class="ribbon">Plus populaire</span></sc-if>
+                <sc-if value="{{ p.notPop }}" hint-placeholder-val="{{ true }}"><span>{{ p.aud }}</span></sc-if>
+              </div>
+              <div class="p-pres">Baquelis présente</div>
+              <h2 class="p-title" style="{{ p.titleStyle }}">{{ p.name }}</h2>
+              <p class="p-tag">{{ p.tag }}</p>
+              <div class="p-bottom">
+                <div class="p-price"><b>{{ p.price }}</b><span>/ mois</span></div>
+                <div class="p-save">{{ p.save }}</div>
+                <div class="p-credits">{{ p.credits }}</div>
+                <div class="p-btns">
+                  <button class="btn btn-ghost" type="button" onClick="{{ p.pick }}" aria-pressed="{{ p.pressed }}" style="{{ p.selStyle }}">{{ p.selLabel }}</button>
+                  <a class="btn btn-amber" href="Nocturne-Contact.html">Commencer</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIF -->
+<section class="sec" style="padding-top:60px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="scene"><b>Scène 01</b><i></i>Le générique complet</div>
+      <h2 class="h2">Le comparatif,<br>ligne par ligne.</h2>
+      <p class="lead">La formule sélectionnée est mise en lumière : <span class="amb">{{ fName }}</span>.</p>
+    </div>
+    <div class="cmp" role="table" aria-label="Comparatif des formules">
+      <div class="cr h" role="row">
+        <div role="columnheader">Critère</div>
+        <div role="columnheader" style="{{ c0 }}">Intégration<small>4 500 €/mois</small></div>
+        <div role="columnheader" style="{{ c1 }}">Flex<small>6 200 €/mois</small></div>
+        <div role="columnheader" style="{{ c2 }}">Performance<small>18 900 €/mois</small></div>
+      </div>
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="9">
+        <div class="cr" role="row">
+          <div class="k" role="rowheader">{{ r.k }}</div>
+          <div role="cell" style="{{ r.s0 }}">{{ r.a }}</div>
+          <div role="cell" style="{{ r.s1 }}">{{ r.b }}</div>
+          <div role="cell" style="{{ r.s2 }}">{{ r.c }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATEUR -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="scene"><b>Scène 02</b><i></i>Le box-office</div>
+      <h2 class="h2">Simulez vos<br><span class="amb">économies.</span></h2>
+    </div>
+    <div class="sim">
+      <div class="sim-ctrl">
+        <div class="eyebrow">1 · Votre formule</div>
+        <div class="fbtns" role="radiogroup" aria-label="Formule">
+          <sc-for list="{{ fbtns }}" as="b" hint-placeholder-count="3">
+            <button class="fbtn" type="button" role="radio" aria-checked="{{ b.pressed }}" onClick="{{ b.pick }}" style="{{ b.style }}">{{ b.t }}<span style="{{ b.sub }}">{{ b.price }}</span></button>
+          </sc-for>
+        </div>
+        <div class="eyebrow">2 · Durée</div>
+        <label for="mo" style="display:flex;justify-content:space-between;align-items:baseline;margin:14px 0 4px"><span class="muted" style="font-size:14px">Nombre de mois</span><b style="font-family:'Syne',sans-serif;font-size:26px">{{ months }} mois</b></label>
+        <input id="mo" class="range" type="range" min="{{ minMo }}" max="36" step="1" value="{{ months }}" onInput="{{ setMonths }}">
+        <div class="rl"><span>Minimum : {{ minMo }} mois</span><span>36 mois</span></div>
+      </div>
+      <div class="sim-out" aria-live="polite">
+        <div>
+          <div class="muted" style="font-size:14px">Économie cumulée estimée sur {{ months }} mois</div>
+          <div class="big">{{ cumTxt }}</div>
+        </div>
+        <div class="out-grid">
+          <div>Économie mensuelle<b>{{ saveTxt }}</b></div>
+          <div>Budget Baquelis<b>{{ budgetTxt }}</b></div>
+          <div>Équivalent recrutement<b>{{ hireTxt }}</b></div>
+        </div>
+        <div class="bars" aria-hidden="true">
+          <div><div class="bar-l"><span>Recrutement équivalent</span><span>{{ hireTxt }}</span></div><div class="bar-t"><i style="width:100%;background:#3A3A44"></i></div></div>
+          <div><div class="bar-l"><span>Baquelis · {{ fName }}</span><span>{{ budgetTxt }}</span></div><div class="bar-t"><i style="{{ barStyle }}"></i></div></div>
+        </div>
+        <p class="note">Estimation basée sur les chiffres Baquelis : économie mensuelle « vs recrutement » affichée pour chaque formule (1 500 €, 2 300 € ou 12 000 € par mois), multipliée par la durée choisie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap faq">
+    <div>
+      <div class="scene"><b>Scène 03</b><i></i>Questions</div>
+      <h2 class="h2" style="margin-top:22px;font-size:clamp(30px,3.6vw,52px)">Les questions qu’on nous pose.</h2>
+      <p class="lead" style="margin-top:18px">Une autre question ? <a class="amb" href="Nocturne-Contact.html" style="border-bottom:1px solid rgba(242,181,68,.4)">Parlons-en</a>.</p>
+    </div>
+    <div class="qa">
+      <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="8">
+        <button class="q" type="button" onClick="{{ q.pick }}" aria-expanded="{{ q.pressed }}">
+          <span>{{ q.q }}</span>
+          <span class="q-pl" style="{{ q.pl }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}"><div class="a">{{ q.a }}</div></sc-if>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-bg" aria-hidden="true"></div>
+  <div class="cta-shade" aria-hidden="true"></div>
+  <div class="wrap cta-in">
+    <div class="eyebrow">Formule {{ fName }} sélectionnée</div>
+    <h2>Prêt à transformer votre entreprise ?</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+      <a class="btn btn-amber" href="Nocturne-Contact.html">Commencer aujourd’hui <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="btn btn-ghost" href="Nocturne-Contact.html">Nous contacter</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-word" aria-hidden="true">BAQUELIS</div>
+    <div class="ftr-grid">
+      <div><h4>Baquelis</h4><p>Flexibilité. Continuité. Performance.</p><p class="muted">Excellence IA par la technologie.</p></div>
+      <div><h4>Explorer</h4><a href="Nocturne-Expertises.html">Expertises</a><a href="Nocturne-IA.html">Intelligence artificielle</a><a href="Nocturne-Jeux.html">Jeux &amp; Web3</a><a href="Nocturne-Contact.html">Contact</a></div>
+      <div><h4>Formules</h4><a href="Nocturne-Offres.html">Intégration · 4 500 €/mois</a><a href="Nocturne-Offres.html">Flex · 6 200 €/mois</a><a href="Nocturne-Offres.html">Performance · 18 900 €/mois</a></div>
+      <div><h4>Siège</h4><p>31 B avenue Maréchal Foch</p><p>06000 Nice</p><p>[contact@domaine-baquelis]</p></div>
+    </div>
+    <div class="ftr-bottom">
+      <span>© 2026 Baquelis · [RAISON SOCIALE] · [N° TVA]</span>
+      <a href="index.html">Toutes les propositions</a>
+      <span>Proposition de refonte — concept</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5600},"grain":{"editor":"boolean","default":true},"featured":{"editor":"select","default":"Flex","options":["Intégration","Flex","Performance"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    const map = { 'Intégration':0, 'Flex':1, 'Performance':2 };
+    const f = props && map[props.featured] !== undefined ? map[props.featured] : 1;
+    this.state = { menu:false, mx:0, my:0, f:f, months:12, faq:0 };
+  }
+  val(e){ return e && e.target ? e.target.value : e; }
+  eur(n){ return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' €'; }
+  move(e){
+    const t = e && e.currentTarget;
+    if (!t || !t.getBoundingClientRect) return;
+    const r = t.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    this.setState({ mx: (e.clientX - r.left) / r.width - 0.5, my: (e.clientY - r.top) / r.height - 0.5 });
+  }
+  pickF(i){
+    const MIN = [12, 6, 2];
+    this.setState({ f: i, months: Math.max(this.state.months, MIN[i]) });
+  }
+  renderVals(){
+    const s = this.state, pr = this.props || {};
+    const F = [
+      { name:'Intégration', roman:'I', price:4500, save:1500, min:12, aud:'Startups & PME', img:'assets/city-night-tower.webp', alt:'Tour illuminée dans la nuit',
+        tag:'Idéal pour startups et PME avec des besoins techniques spécifiques.',
+        credits:'1 profil technique dédié · changement de profil sous 30 jours · rapports mensuels · heures standard 40 h / semaine · support e-mail et chat · engagement minimum 12 mois' },
+      { name:'Flex', roman:'II', price:6200, save:2300, min:6, aud:'Projets évolutifs', img:'assets/city-neon-aerial.webp', alt:'Vue aérienne d’une ville néon',
+        tag:'Idéal pour les entreprises avec des projets évolutifs. Flexibilité maximale.',
+        credits:'1 profil technique senior, changement rapide · changement de profil sous 15 jours · support prioritaire · rapports hebdomadaires détaillés · documentation et passation renforcées · 50 h / semaine · engagement minimum 6 mois' },
+      { name:'Performance', roman:'III', price:18900, save:12000, min:2, aud:'Grands comptes', img:'assets/cubes-gold.webp', alt:'Cubes et sphères dorés sur fond sombre',
+        tag:'Idéal pour grandes entreprises et projets stratégiques complexes.',
+        credits:'Équipe de 5 experts seniors dédiés · lead tech + product owner inclus · support prioritaire 24/7 et hotline · gestion de projet agile complète · rapports quotidiens et tableaux de bord · espace Slack dédié · engagement minimum 2 mois' }
+    ];
+    const posters = F.map((p, i) => {
+      const on = s.f === i;
+      const ry = (s.mx * 8).toFixed(2), rx = (-s.my * 5).toFixed(2);
+      return { name: p.name, roman: p.roman, aud: p.aud, img: p.img, alt: p.alt, tag: p.tag, credits: p.credits,
+        pop: i === 1, notPop: i !== 1,
+        price: this.eur(p.price), save: 'Économisez ' + this.eur(p.save) + '/mois vs recrutement',
+        delay: 'animation-delay:' + (0.3 + i * 0.15).toFixed(2) + 's',
+        style: 'transform:rotateY(' + ry + 'deg) rotateX(' + rx + 'deg) translateY(' + (on ? -14 : 0) + 'px);' + (on ? 'border-color:#F2B544;box-shadow:0 0 0 1px #F2B544,0 50px 100px -40px rgba(242,181,68,.55)' : ''),
+        titleStyle: on ? 'color:#F2B544' : '',
+        pressed: on ? 'true' : 'false',
+        selLabel: on ? 'Sélectionnée' : 'Sélectionner',
+        selStyle: on ? 'border-color:#F2B544;color:#F2B544' : '',
+        pick: () => this.pickF(i) };
+    });
+    const HL = 'background:rgba(242,181,68,.08);color:#EFEDE8';
+    const cs = (j) => s.f === j ? HL : '';
+    const ROWS = [
+      ['Idéal pour', 'Startups et PME aux besoins techniques spécifiques', 'Entreprises avec projets évolutifs', 'Grandes entreprises, projets stratégiques complexes'],
+      ['Profils', '1 profil technique dédié', '1 profil technique senior, changement rapide', 'Équipe de 5 experts seniors dédiés'],
+      ['Engagement minimum', '12 mois', '6 mois', '2 mois'],
+      ['Changement de profil', 'Sous 30 jours', 'Sous 15 jours', 'Composition d’équipe ajustée avec vous'],
+      ['Heures couvertes', 'Standard · 40 h / semaine', 'Étendues · 50 h / semaine', 'Couverture 24/7'],
+      ['Support', 'E-mail et chat', 'E-mail et chat prioritaire', 'Prioritaire 24/7 et hotline'],
+      ['Rapports', 'Mensuels', 'Hebdomadaires détaillés', 'Quotidiens personnalisés + tableaux de bord'],
+      ['Inclus en plus', '—', 'Documentation et passation renforcées', 'Lead tech + product owner, gestion agile complète, Slack dédié'],
+      ['Économie vs recrutement', '1 500 €/mois', '2 300 €/mois', '12 000 €/mois']
+    ];
+    const rows = ROWS.map(r => ({ k: r[0], a: r[1], b: r[2], c: r[3], s0: cs(0), s1: cs(1), s2: cs(2) }));
+    const fb = F.map((p, i) => ({ t: p.name, price: this.eur(p.price) + ' / mois',
+      pressed: s.f === i ? 'true' : 'false',
+      style: s.f === i ? 'border-color:#F2B544;background:rgba(242,181,68,.1)' : '',
+      sub: s.f === i ? 'color:#F2B544' : '',
+      pick: () => this.pickF(i) }));
+    const P = F[s.f];
+    const months = Math.max(Number(s.months) || P.min, P.min);
+    const budget = P.price * months, hire = (P.price + P.save) * months;
+
+    const FAQ = [
+      ['Quel est l’engagement minimum ?', '12 mois pour Intégration, 6 mois pour Flex et 2 mois pour Performance. Au-delà, la collaboration se poursuit au mois.'],
+      ['Puis-je changer de profil en cours de route ?', 'Oui : sous 30 jours avec Intégration, sous 15 jours avec Flex (changement rapide). Avec Performance, la composition de l’équipe de 5 experts s’ajuste avec vous, en lien avec le lead tech.'],
+      ['Quels horaires sont couverts ?', 'Heures standard (40 h par semaine) pour Intégration, heures étendues (50 h par semaine) pour Flex, couverture 24/7 pour Performance.'],
+      ['Quel support est inclus ?', 'E-mail et chat pour Intégration ; e-mail et chat prioritaire pour Flex ; support prioritaire 24/7, hotline et espace Slack dédié pour Performance.'],
+      ['À quelle fréquence recevrai-je des rapports ?', 'Rapports mensuels (Intégration), hebdomadaires détaillés (Flex), quotidiens personnalisés avec tableaux de bord (Performance) — et un suivi des progrès en temps réel dans tous les cas.'],
+      ['Comment est calculée l’économie « vs recrutement » ?', 'Ce sont les montants affichés par Baquelis pour chaque formule : 1 500 €, 2 300 € et 12 000 € par mois. Le simulateur les multiplie simplement par la durée choisie. [MÉTHODE DE CALCUL À CONFIRMER]'],
+      ['Modèle affiné ou RAG : quelle différence ?', 'Un modèle affiné est entraîné sur vos données : précision supérieure, réponses plus rapides, intelligence spécifique à votre métier. Le RAG va chercher l’information dans vos documents au moment de répondre. Nous vous aidons à choisir lors du cadrage.'],
+      ['Pourquoi parler de jeux vidéo ?', 'Parce que les jeux sont les applications les plus difficiles : temps réel, architecture complexe, multijoueur, sécurité. Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique.'],
+      ['Y a-t-il des coûts cachés ?', 'Non. Transparence radicale : tarification mensuelle connue d’avance, rapports réguliers et communication ouverte.']
+    ];
+    const faqs = FAQ.map((q, i) => {
+      const open = s.faq === i;
+      return { q: q[0], a: q[1], open: open, pressed: open ? 'true' : 'false',
+        pl: open ? 'transform:rotate(45deg);background:#F2B544;color:#08080B;border-color:#F2B544' : '',
+        pick: () => this.setState({ faq: open ? -1 : i }) };
+    });
+
+    return {
+      menuOpen: s.menu,
+      menuLabel: s.menu ? 'Fermer le menu' : 'Ouvrir le menu',
+      menuExp: s.menu ? 'true' : 'false',
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      onMove: (e) => this.move(e),
+      onLeave: () => this.setState({ mx: 0, my: 0 }),
+      bgStyle: 'transform:translate3d(' + (s.mx * -24).toFixed(1) + 'px,' + (s.my * -14).toFixed(1) + 'px,0)',
+      grainOn: pr.grain !== false,
+      posters: posters,
+      fName: P.name,
+      c0: cs(0) ? 'color:#F2B544;' + HL : '', c1: cs(1) ? 'color:#F2B544;' + HL : '', c2: cs(2) ? 'color:#F2B544;' + HL : '',
+      rows: rows,
+      fbtns: fb,
+      months: months, minMo: P.min,
+      setMonths: (e) => this.setState({ months: Number(this.val(e)) }),
+      cumTxt: this.eur(P.save * months),
+      saveTxt: this.eur(P.save),
+      budgetTxt: this.eur(budget),
+      hireTxt: this.eur(hire),
+      barStyle: 'width:' + (budget / hire * 100).toFixed(1) + '%;background:linear-gradient(90deg,#B8862E,#F2B544)',
+      faqs: faqs
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Monolithe — Expertises</title>
+<script src="vendor/preact.min.js"></script>
+<script src="dc.js"></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<script type="text/x-dc-template" id="dc-template">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#0B0B0A}
+sc-for,sc-if{display:contents}
+.m-root{font-family:'Manrope',system-ui,sans-serif;font-size:16px;line-height:1.6;color:#F3EFE7;background:#0B0B0A;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.m-root *,.m-root *::before,.m-root *::after{box-sizing:border-box}
+.m-root img{display:block;max-width:100%}
+.m-root button{font-family:inherit;cursor:pointer}
+.m-root a:focus-visible,.m-root button:focus-visible,.m-root input:focus-visible,.m-root textarea:focus-visible{outline:1px solid var(--acc);outline-offset:4px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 48px}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+.ink{background:#0B0B0A;color:#F3EFE7}
+.ivory{background:#F3EFE7;color:#0B0B0A}
+.lbl{font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;line-height:1.5;margin:0}
+.ink .lbl,.ink .muted{color:#ADA89E}
+.ivory .lbl,.ivory .muted{color:#5E5A53}
+.ivory p{color:#2A2926}
+.ink p{color:#D6D1C7}
+.sec{padding:140px 0;position:relative}
+.chap{display:flex;align-items:center;gap:16px;margin:0 0 34px}
+.chap-n{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:24px;line-height:1;min-width:30px}
+.chap-l{display:block;width:56px;height:1px;background:var(--acc);flex:none}
+.h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(50px,6.6vw,104px);line-height:.98;letter-spacing:-.015em;margin:0;overflow-wrap:anywhere}
+.h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(40px,5vw,76px);line-height:1.02;letter-spacing:-.01em;margin:0;overflow-wrap:anywhere}
+.h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(26px,2.4vw,36px);line-height:1.12;margin:0}
+.h1 em,.h2 em,.h3 em{font-style:italic}
+.lead{font-size:18px;line-height:1.7;max-width:560px;margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:50px;padding:0 28px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:1px solid transparent;border-radius:0;transition:background .35s,color .35s,border-color .35s}
+.btn .arr{transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.btn:hover .arr{transform:translateX(6px)}
+.btn-light{background:#F3EFE7;color:#0B0B0A}
+.btn-light:hover{background:#FFFFFF}
+.btn-ghost{color:#F3EFE7;border-color:rgba(243,239,231,.32);background:transparent}
+.btn-ghost:hover{border-color:#F3EFE7}
+.btn-dark{background:#0B0B0A;color:#F3EFE7}
+.btn-dark:hover{background:#2A2926}
+.btn-out{color:#0B0B0A;border-color:rgba(11,11,10,.4);background:transparent}
+.btn-out:hover{border-color:#0B0B0A}
+.btn[disabled]{opacity:.35;cursor:not-allowed}
+.acc-fill{fill:var(--acc)}
+/* header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(11,11,10,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(243,239,231,.08)}
+.hdr-in{display:flex;align-items:center;gap:36px;height:84px}
+.logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:#F3EFE7;min-height:44px}
+.logo-w{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:21px;letter-spacing:.34em;text-transform:uppercase}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font-size:13px;font-weight:500;letter-spacing:.04em;color:#CFCAC0;text-decoration:none;transition:color .3s}
+.nav a::after{content:"";position:absolute;left:14px;right:14px;bottom:8px;height:1px;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.nav a:hover,.nav a[aria-current="page"]{color:#F3EFE7}
+.nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1)}
+.burger{display:none;margin-left:auto;width:48px;height:48px;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(243,239,231,.25);color:#F3EFE7}
+.mnav{display:flex;flex-direction:column;padding-top:8px;padding-bottom:28px;border-top:1px solid rgba(243,239,231,.08);animation:drop .4s ease both}
+.ml{display:flex;align-items:center;justify-content:space-between;min-height:58px;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;color:#F3EFE7;text-decoration:none;border-bottom:1px solid rgba(243,239,231,.08)}
+.mnav .btn{margin-top:22px}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}}
+@media(max-width:1000px){.nav,.hdr-cta{display:none}.burger{display:inline-flex}}
+@media(min-width:1001px){.mnav{display:none}}
+/* footer */
+.ftr{padding:110px 0 40px;border-top:1px solid rgba(243,239,231,.08)}
+.ftr-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:48px}
+.ftr-col{display:flex;flex-direction:column;align-items:flex-start}
+.ftr-h{margin-bottom:14px}
+.ftr-col a{display:inline-flex;align-items:center;min-height:38px;font-size:14px;color:#D6D1C7;text-decoration:none;transition:color .3s}
+.ftr-col a:hover{color:#F3EFE7}
+.ftr .ftr-tag{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:30px;line-height:1.15;margin:0;color:#F3EFE7}
+.ftr-addr{font-style:normal;font-size:14px;line-height:1.8;color:#D6D1C7;margin-bottom:6px}
+.ftr-giant{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(84px,16vw,236px);line-height:.9;letter-spacing:-.02em;margin:90px 0 36px;color:#F3EFE7;display:flex;align-items:flex-end;gap:24px}
+.ftr-giant i{display:block;flex:1;height:1px;background:var(--acc);margin-bottom:.16em;font-style:normal}
+.ftr-bot{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-between;align-items:center;padding-top:26px;border-top:1px solid rgba(243,239,231,.1);font-size:13px;color:#ADA89E}
+.ftr-bot a{color:#F3EFE7;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.ftr-bot a:hover{text-decoration:underline}
+/* motion */
+@keyframes rise{from{opacity:0;transform:translateY(26px)}}
+@keyframes panel{from{opacity:0;transform:translateY(18px)}}
+.rise{animation:rise 1.1s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.45s}.d4{animation-delay:.65s}
+@supports (animation-timeline: view()){.rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 26%}}
+@media(max-width:700px){.wrap{padding:0 20px}.sec{padding:96px 0}}
+@media (prefers-reduced-motion: reduce){.m-root *{animation:none !important;transition:none !important}}
+.head-split{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:60px;align-items:end}
+@media(max-width:980px){.head-split{grid-template-columns:1fr;gap:32px}}
+
+/* hero : quatre monolithes */
+.hero{padding:96px 0 110px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:end}
+.slabs{display:flex;align-items:flex-end;justify-content:center;gap:22px;height:520px;perspective:1200px;position:relative}
+.slabs::after{content:"";position:absolute;left:0;right:0;bottom:62px;height:1px;background:linear-gradient(90deg,rgba(243,239,231,0),rgba(243,239,231,.25),rgba(243,239,231,0))}
+.slab{display:flex;flex-direction:column;align-items:center;gap:14px;background:transparent;border:0;padding:0;color:#ADA89E;transition:color .4s}
+.slab:hover{color:#F3EFE7}
+.slab-b{position:relative;width:72px;overflow:hidden;background:linear-gradient(100deg,#1D1C1A,#0B0B0A 45%,#201F1D 60%,#0B0B0A);border:1px solid rgba(243,239,231,.14);box-shadow:0 40px 60px -20px rgba(0,0,0,.95);transition:transform .8s cubic-bezier(.2,.7,.2,1),border-color .5s,height .8s cubic-bezier(.2,.7,.2,1)}
+.slab-b::before{content:"";position:absolute;top:-10%;bottom:-10%;left:-90%;width:60%;background:linear-gradient(90deg,rgba(243,239,231,0),rgba(243,239,231,.1),rgba(243,239,231,0));transform:skewX(-12deg);animation:sheen 7s ease-in-out infinite}
+.slab:nth-child(2) .slab-b::before{animation-delay:1s}.slab:nth-child(3) .slab-b::before{animation-delay:2s}.slab:nth-child(4) .slab-b::before{animation-delay:3s}
+@keyframes sheen{0%,30%{left:-90%}75%,100%{left:150%}}
+.slab:hover .slab-b{transform:translateY(-8px)}
+.slab-base{display:block;width:88px;height:1px;background:transparent;transition:background .4s}
+.slab .serif{font-style:italic;font-size:22px;line-height:1}
+.slab-t{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;max-width:110px;text-align:center;min-height:32px;line-height:1.4}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr}.slabs{height:440px;gap:10px}.slab-b{width:54px}.slab-base{width:64px}.slab-t{font-size:9.5px;max-width:76px}}
+
+/* I — piliers en détail */
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(11,11,10,.18);margin-top:80px}
+.tab{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:118px;padding:24px 22px 24px 0;background:transparent;border:0;color:#5E5A53;text-align:left;transition:color .4s}
+.tab:hover{color:#0B0B0A}
+.tab .serif{font-style:italic;font-size:22px}
+.tab-t{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(20px,1.9vw,27px);line-height:1.15}
+.tab-bar{position:absolute;left:0;right:0;top:-1px;height:2px;background:transparent;transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.pd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:80px;margin-top:56px;padding-top:56px;border-top:1px solid #0B0B0A;animation:panel .7s cubic-bezier(.2,.7,.2,1) both}
+.pd-ghost{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:180px;line-height:.8;color:#E3DDD2}
+.pd-q{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(24px,2.3vw,32px);line-height:1.3;margin:26px 0 0;color:#0B0B0A !important}
+.pd-pt{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:24px 0;border-top:1px solid rgba(11,11,10,.16);transition:padding .4s}
+.pd-pt:hover{padding-left:10px}
+.pd-pt:first-child{border-top:0;padding-top:0}
+.pd-pt .serif{font-style:italic;font-size:20px;color:#77736B}
+.pd-pt h4{margin:0 0 6px;font-size:16px;font-weight:700}
+.pd-pt p{margin:0;font-size:15px}
+@media(max-width:900px){.tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.pd{grid-template-columns:1fr;gap:36px}.pd-ghost{font-size:120px}}
+
+/* II — domaines */
+.dom-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px;margin-top:80px;align-items:start}
+.dom{position:relative;display:grid;grid-template-columns:56px 1fr 30px;align-items:center;width:100%;min-height:96px;padding:0;background:transparent;border:0;border-top:1px solid rgba(243,239,231,.12);color:#9A958B;text-align:left;transition:color .4s,padding .5s}
+.dom:last-child{border-bottom:1px solid rgba(243,239,231,.12)}
+.dom:hover{color:#F3EFE7;padding-left:10px}
+.dom .serif{font-style:italic;font-size:20px}
+.dom-t{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(26px,2.6vw,38px);line-height:1.1}
+.dom-dot{width:9px;height:9px;border-radius:50%;border:1px solid currentColor;justify-self:end;transition:background .4s}
+.dom-card{animation:panel .7s cubic-bezier(.2,.7,.2,1) both}
+.dom-img{position:relative;overflow:hidden;border:1px solid rgba(243,239,231,.12)}
+.dom-img img{width:100%;height:440px;object-fit:cover;filter:grayscale(1) contrast(1.12) brightness(.72);animation:zoomin 1.6s cubic-bezier(.2,.7,.2,1) both}
+@keyframes zoomin{from{transform:scale(1.12)}}
+.dom-img .lbl{position:absolute;left:20px;top:20px;color:#F3EFE7 !important;background:rgba(11,11,10,.7);padding:8px 12px}
+.dom-card p{margin:26px 0 0;font-size:17px;line-height:1.7}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tag{font-size:12px;letter-spacing:.06em;padding:8px 14px;border:1px solid rgba(243,239,231,.22);color:#D6D1C7}
+.dom-note{margin-top:22px;font-size:13px;color:#ADA89E}
+@media(max-width:980px){.dom-grid{grid-template-columns:1fr;gap:40px}.dom-img img{height:300px}}
+
+/* III — méthode */
+.tl{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-top:90px}
+.tl-line{position:absolute;left:0;right:0;top:27px;height:1px;background:rgba(11,11,10,.2)}
+.tl-fill{position:absolute;left:0;top:27px;height:1px;background:var(--acc);transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.tl-step{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:16px;background:transparent;border:0;padding:0 16px 0 0;color:#0B0B0A;text-align:left}
+.tl-node{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#F3EFE7;border:1px solid rgba(11,11,10,.3);font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:20px;transition:background .5s,color .5s,border-color .5s,transform .5s}
+.tl-step:hover .tl-node{transform:scale(1.08);border-color:#0B0B0A}
+.tl-t{font-size:14px;font-weight:600;line-height:1.4;max-width:190px}
+.md{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:72px;margin-top:64px;padding:56px;background:#0B0B0A;color:#F3EFE7;animation:panel .6s cubic-bezier(.2,.7,.2,1) both}
+.md p{color:#D6D1C7 !important;font-size:17px;line-height:1.7;margin:18px 0 0}
+.md .lbl{color:#ADA89E !important}
+.md-box{border-top:1px solid rgba(243,239,231,.18);padding-top:22px}
+.md-box + .md-box{margin-top:26px}
+.md-v{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:26px;line-height:1.25;margin-top:8px}
+.md-nav{display:flex;gap:10px;margin-top:36px}
+.md .btn-ghost{min-width:50px;padding:0 18px}
+@media(max-width:900px){.tl{grid-template-columns:repeat(5,minmax(0,1fr))}.tl-t{font-size:10.5px}.tl-node{width:44px;height:44px;font-size:17px}.tl-line,.tl-fill{top:21px}.md{grid-template-columns:1fr;gap:32px;padding:32px 24px}}
+
+/* IV — engagements */
+.art{border-top:1px solid rgba(243,239,231,.14)}
+.art:last-child{border-bottom:1px solid rgba(243,239,231,.14)}
+.art-h{display:grid;grid-template-columns:200px 1fr 44px;align-items:center;gap:24px;width:100%;min-height:112px;padding:0;background:transparent;border:0;color:#F3EFE7;text-align:left}
+.art-h .lbl{transition:color .4s}
+.art-t{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(30px,3.6vw,54px);line-height:1.05;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.art-h:hover .art-t{transform:translateX(12px)}
+.art-ic{width:44px;height:44px;border:1px solid rgba(243,239,231,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .5s,border-color .4s}
+.art-h:hover .art-ic{border-color:#F3EFE7}
+.art-b{display:grid;grid-template-columns:200px minmax(0,1fr) minmax(0,1fr);gap:24px;padding:0 0 46px;animation:panel .6s cubic-bezier(.2,.7,.2,1) both}
+.art-b p{margin:0;font-size:17px;line-height:1.75}
+.art-b .serif{font-style:italic;font-size:24px;line-height:1.35;color:#F3EFE7}
+.sign{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-top:64px}
+.sign svg path{stroke-dasharray:900;stroke-dashoffset:900;animation:ink 4s ease-in-out .6s forwards}
+@keyframes ink{to{stroke-dashoffset:0}}
+@media(max-width:900px){.art-h{grid-template-columns:1fr 44px;padding:22px 0}.art-h .lbl{grid-column:1 / -1}.art-b{grid-template-columns:1fr}}
+
+.cta{text-align:center;padding:160px 0}
+.cta .h2{font-size:clamp(44px,6vw,96px)}
+.cta .ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:48px}
+</style>
+</helmet>
+<div class="m-root" style="{{ rootStyle }}">
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="Monolithe-Accueil.html" aria-label="Baquelis — accueil">
+      <svg width="16" height="30" viewBox="0 0 16 30" aria-hidden="true"><rect x="3" y="1" width="10" height="24" fill="#F3EFE7"></rect><rect x="3" y="1" width="3" height="24" fill="#BDB7AC"></rect><rect x="0" y="28" width="16" height="1" class="acc-fill"></rect></svg>
+      <span class="logo-w">Baquelis</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="Monolithe-Expertises.html" aria-current="page">Expertises</a>
+      <a href="Monolithe-IA.html">IA</a>
+      <a href="Monolithe-Jeux.html">Jeux &amp; Web3</a>
+      <a href="Monolithe-Offres.html">Offres</a>
+      <a href="Monolithe-Contact.html">Contact</a>
+    </nav>
+    <a class="btn btn-light hdr-cta" href="Monolithe-Contact.html">Réserver un appel</a>
+    <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="{{ menuExp }}" onClick="{{ toggleMenu }}"><svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 1h20M0 11h20"></path></svg></button>
+  </div>
+  <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+    <nav class="mnav wrap" aria-label="Navigation mobile">
+      <a class="ml" href="Monolithe-Expertises.html">Expertises <span class="lbl">I</span></a>
+      <a class="ml" href="Monolithe-IA.html">Intelligence artificielle <span class="lbl">II</span></a>
+      <a class="ml" href="Monolithe-Jeux.html">Jeux &amp; Web3 <span class="lbl">III</span></a>
+      <a class="ml" href="Monolithe-Offres.html">Offres <span class="lbl">IV</span></a>
+      <a class="ml" href="Monolithe-Contact.html">Contact <span class="lbl">V</span></a>
+      <a class="btn btn-light" href="Monolithe-Contact.html">Commencer</a>
+    </nav>
+  </sc-if>
+</header>
+
+<!-- HERO -->
+<section class="hero ink">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="chap rise d1"><span class="chap-l"></span><span class="lbl">Expertises — Solutions éprouvées</span></div>
+      <h1 class="h1 rise d2">Nous ne livrons pas seulement du code. <em>Nous bâtissons des systèmes.</em></h1>
+      <p class="lead rise d3" style="margin-top:36px">Des systèmes évolutifs qui grandissent avec votre entreprise — portés par quatre piliers, cinq domaines d’intervention et une méthode en cinq étapes.</p>
+    </div>
+    <div class="rise d3">
+      <div class="slabs" role="tablist" aria-label="Choisir un pilier">
+        <sc-for list="{{ piliers }}" as="p" hint-placeholder-count="4">
+          <button class="slab" type="button" role="tab" aria-selected="{{ p.pressed }}" onClick="{{ p.pick }}" style="{{ p.slabTxt }}">
+            <span class="slab-b" style="{{ p.slabStyle }}"></span>
+            <span class="slab-base" style="{{ p.baseStyle }}"></span>
+            <span class="serif">{{ p.n }}</span>
+            <span class="slab-t">{{ p.short }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- I — PILIERS -->
+<section class="sec ivory">
+  <div class="wrap">
+    <div class="head-split rv">
+      <div>
+        <div class="chap"><span class="chap-n">I</span><span class="chap-l"></span><span class="lbl">Les quatre piliers</span></div>
+        <h2 class="h2">Quatre engagements de fond, <em>une seule manière de travailler.</em></h2>
+      </div>
+      <p class="lead">Chaque pilier se traduit en pratiques concrètes, visibles dès les premières semaines de collaboration.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Piliers">
+      <sc-for list="{{ piliers }}" as="p" hint-placeholder-count="4">
+        <button class="tab" type="button" role="tab" aria-selected="{{ p.pressed }}" style="{{ p.tabStyle }}" onClick="{{ p.pick }}">
+          <span class="tab-bar" style="{{ p.barStyle }}"></span>
+          <span class="serif">{{ p.n }}</span>
+          <span class="tab-t">{{ p.t }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <sc-for list="{{ piliers }}" as="p" hint-placeholder-count="1">
+      <sc-if value="{{ p.active }}" hint-placeholder-val="{{ true }}">
+        <div class="pd" role="tabpanel">
+          <div>
+            <div class="pd-ghost" aria-hidden="true">{{ p.n }}</div>
+            <h3 class="h3" style="margin-top:20px;font-size:44px">{{ p.t }}</h3>
+            <p class="pd-q">« {{ p.q }} »</p>
+          </div>
+          <div>
+            <sc-for list="{{ p.pts }}" as="pt" hint-placeholder-count="4">
+              <div class="pd-pt"><span class="serif">{{ pt.n }}</span><div><h4>{{ pt.t }}</h4><p>{{ pt.d }}</p></div></div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+    </sc-for>
+  </div>
+</section>
+
+<!-- II — DOMAINES -->
+<section class="sec ink">
+  <div class="wrap">
+    <div class="head-split rv">
+      <div>
+        <div class="chap"><span class="chap-n">II</span><span class="chap-l"></span><span class="lbl">Domaines d’intervention</span></div>
+        <h2 class="h2">Cinq territoires, <em>une même rigueur.</em></h2>
+      </div>
+      <p class="lead">Du produit grand public à l’infrastructure critique, nos équipes interviennent là où la technique fait la différence.</p>
+    </div>
+    <div class="dom-grid">
+      <div role="tablist" aria-label="Domaines">
+        <sc-for list="{{ domaines }}" as="d" hint-placeholder-count="5">
+          <button class="dom" type="button" role="tab" aria-selected="{{ d.pressed }}" style="{{ d.rowStyle }}" onClick="{{ d.pick }}">
+            <span class="serif">{{ d.n }}</span>
+            <span class="dom-t">{{ d.t }}</span>
+            <span class="dom-dot" style="{{ d.dot }}"></span>
+          </button>
+        </sc-for>
+      </div>
+      <div>
+        <sc-for list="{{ domaines }}" as="d" hint-placeholder-count="1">
+          <sc-if value="{{ d.active }}" hint-placeholder-val="{{ true }}">
+            <div class="dom-card" role="tabpanel">
+              <div class="dom-img"><img src="{{ d.img }}" alt="{{ d.alt }}"><span class="lbl">Domaine {{ d.n }}</span></div>
+              <p>{{ d.d }}</p>
+              <div class="tags">
+                <sc-for list="{{ d.tags }}" as="tg" hint-placeholder-count="3"><span class="tag">{{ tg.x }}</span></sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </sc-for>
+        <p class="dom-note">Technologies employées : [STACK À CONFIRMER]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- III — MÉTHODE -->
+<section class="sec ivory">
+  <div class="wrap">
+    <div class="head-split rv">
+      <div>
+        <div class="chap"><span class="chap-n">III</span><span class="chap-l"></span><span class="lbl">La méthode</span></div>
+        <h2 class="h2">De l’appel découverte <em>au suivi en temps réel.</em></h2>
+      </div>
+      <p class="lead">Cinq étapes, toujours dans le même ordre. Parcourez-les pour voir ce que vous obtenez à chacune.</p>
+    </div>
+    <div class="tl" role="tablist" aria-label="Étapes">
+      <span class="tl-line"></span>
+      <span class="tl-fill" style="{{ fillStyle }}"></span>
+      <sc-for list="{{ etapes }}" as="e" hint-placeholder-count="5">
+        <button class="tl-step" type="button" role="tab" aria-selected="{{ e.pressed }}" onClick="{{ e.pick }}">
+          <span class="tl-node" style="{{ e.node }}">{{ e.n }}</span>
+          <span class="tl-t">{{ e.t }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <sc-for list="{{ etapes }}" as="e" hint-placeholder-count="1">
+      <sc-if value="{{ e.active }}" hint-placeholder-val="{{ true }}">
+        <div class="md" role="tabpanel">
+          <div>
+            <p class="lbl">Étape {{ e.n }} sur V</p>
+            <h3 class="h3" style="margin-top:14px;font-size:46px;color:#F3EFE7">{{ e.t }}</h3>
+            <p>{{ e.d }}</p>
+            <div class="md-nav">
+              <button class="btn btn-ghost" type="button" aria-label="Étape précédente" onClick="{{ prev }}"><svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 5H2M6 1L2 5l4 4"></path></svg></button>
+              <button class="btn btn-light" type="button" onClick="{{ next }}">{{ nextLabel }} <svg class="arr" width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h16M12 1l4 4-4 4"></path></svg></button>
+            </div>
+          </div>
+          <div>
+            <div class="md-box"><p class="lbl">Ce que vous obtenez</p><div class="md-v">{{ e.out }}</div></div>
+            <div class="md-box"><p class="lbl">Délai</p><div class="md-v">{{ e.dl }}</div></div>
+          </div>
+        </div>
+      </sc-if>
+    </sc-for>
+  </div>
+</section>
+
+<!-- IV — ENGAGEMENTS -->
+<section class="sec ink">
+  <div class="wrap">
+    <div class="head-split rv">
+      <div>
+        <div class="chap"><span class="chap-n">IV</span><span class="chap-l"></span><span class="lbl">Nos engagements — le manifeste</span></div>
+        <h2 class="h2">Ce que nous signons, <em>avant même le contrat.</em></h2>
+      </div>
+      <p class="lead">Quatre articles, inspirés de nos piliers. Ouvrez-les : ils ne contiennent aucune petite ligne.</p>
+    </div>
+    <div style="margin-top:80px">
+      <sc-for list="{{ articles }}" as="a" hint-placeholder-count="4">
+        <div class="art rv">
+          <button class="art-h" type="button" aria-expanded="{{ a.exp }}" onClick="{{ a.toggle }}">
+            <span class="lbl" style="{{ a.lblStyle }}">{{ a.k }}</span>
+            <span class="art-t">{{ a.t }}</span>
+            <span class="art-ic" style="{{ a.icStyle }}"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M7 0v14M0 7h14"></path></svg></span>
+          </button>
+          <sc-if value="{{ a.open }}" hint-placeholder-val="{{ false }}">
+            <div class="art-b">
+              <span></span>
+              <p class="serif">{{ a.lead }}</p>
+              <p>{{ a.d }}</p>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <div class="sign rv">
+      <p class="lbl">Fait à Nice — 31 B avenue Maréchal Foch</p>
+      <svg width="260" height="80" viewBox="0 0 260 80" fill="none" aria-label="Signature Baquelis" role="img"><path d="M8 58c18-30 30-46 36-44 7 3-14 42-6 44 9 2 18-30 30-30 9 0 0 26 9 26s16-22 26-22c8 0 2 20 11 20 10 0 15-24 26-24 9 0 4 22 13 22 12 0 18-30 30-30 10 0-6 34 6 32 10-2 20-14 34-16" stroke="#F3EFE7" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta ivory">
+  <div class="wrap">
+    <p class="lbl rv" style="margin-bottom:28px">Construire ensemble</p>
+    <h2 class="h2 rv">Une expertise, <em>dès le mois prochain.</em></h2>
+    <div class="ctas rv">
+      <a class="btn btn-dark" href="Monolithe-Offres.html">Voir les formules <svg class="arr" width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h16M12 1l4 4-4 4"></path></svg></a>
+      <a class="btn btn-out" href="Monolithe-Contact.html">Réserver un appel</a>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr ink">
+  <div class="wrap">
+    <div class="ftr-top">
+      <div class="ftr-col">
+        <p class="ftr-tag">La technologie, <em>tenue comme une maison.</em></p>
+        <p class="lbl" style="margin-top:22px">Flexibilité · Continuité · Performance</p>
+      </div>
+      <div class="ftr-col"><p class="lbl ftr-h">La maison</p><a href="Monolithe-Expertises.html">Expertises</a><a href="Monolithe-IA.html">Intelligence artificielle</a><a href="Monolithe-Jeux.html">Jeux &amp; Web3</a><a href="Monolithe-Contact.html">Contact</a></div>
+      <div class="ftr-col"><p class="lbl ftr-h">Formules</p><a href="Monolithe-Offres.html">Intégration — 4&nbsp;500&nbsp;€/mois</a><a href="Monolithe-Offres.html">Flex — 6&nbsp;200&nbsp;€/mois</a><a href="Monolithe-Offres.html">Performance — 18&nbsp;900&nbsp;€/mois</a></div>
+      <div class="ftr-col"><p class="lbl ftr-h">Siège</p><address class="ftr-addr">31 B avenue Maréchal Foch<br>06000 Nice, France</address><a href="Monolithe-Contact.html">[contact@domaine-baquelis]</a></div>
+    </div>
+    <div class="ftr-giant" aria-hidden="true">Baquelis<i></i></div>
+    <div class="ftr-bot"><span>© 2026 Baquelis · [RAISON SOCIALE] · [N° TVA]</span><span>Proposition de refonte — concept</span><a href="index.html">Toutes les propositions →</a></div>
+  </div>
+</footer>
+
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6200},"accent":{"editor":"color","default":"#00AEEF","options":["#00AEEF","#7C5CFF","#F5B700"]}}'>
+class Component extends DCLogic {
+  constructor(props){ super(props); this.state = { menu: false, pilier: 0, domaine: 0, etape: 0, art: 0 }; }
+  renderVals() {
+    var self = this, s = this.state;
+    var acc = (this.props && this.props.accent) || '#00AEEF';
+    var R = ['i.', 'ii.', 'iii.', 'iv.'];
+    var PIL = [
+      { n: 'I', short: 'Solutions éprouvées', t: 'Solutions éprouvées', h: 330, q: 'Nous ne livrons pas seulement du code — nous construisons des systèmes évolutifs qui grandissent avec votre entreprise.',
+        pts: [['Architecture évolutive', 'Des fondations pensées pour absorber la croissance, sans tout réécrire à chaque étape.'], ['Pile technologique moderne', 'Des outils actuels, choisis pour leur robustesse et leur pérennité plutôt que pour la mode.'], ['Solutions cloud-native', 'Déploiement, mise à l’échelle et résilience conçus pour le cloud dès la première ligne.'], ['Optimisation des performances', 'Mesurer, profiler, améliorer : la vitesse comme exigence continue, pas comme correctif.']] },
+      { n: 'II', short: 'Partenariat', t: 'Partenariat, pas d’externalisation', h: 400, q: 'Nos experts deviennent une extension de votre équipe : mêmes objectifs, mêmes rituels, même exigence.',
+        pts: [['Intégration d’équipe dédiée', 'Vos experts Baquelis travaillent dans vos outils et vos rituels, au quotidien.'], ['Engagement à long terme', 'Une relation pensée dans la durée, pour capitaliser sur la connaissance de votre produit.'], ['Alignement culturel', 'Nous adoptons votre façon de travailler, de prioriser et de décider.'], ['Communication fluide', 'Des échanges directs avec ceux qui font, sans intermédiaire inutile.']] },
+      { n: 'III', short: 'Rapidité & précision', t: 'Rapidité avec précision', h: 280, q: 'Du concept à la livraison, nous avançons vite — sans jamais compromettre la qualité.',
+        pts: [['Prototypage rapide', 'Valider une idée tôt, avant d’y investir lourdement.'], ['Méthodologie agile', 'Des cycles courts, des priorités revues, des livraisons régulières.'], ['Assurance qualité', 'Tests et revues intégrés au flux de travail, jamais ajoutés à la fin.'], ['Intégration continue', 'Chaque modification vérifiée et intégrable à tout moment.']] },
+      { n: 'IV', short: 'Transparence', t: 'Transparence radicale', h: 360, q: 'Pas de coûts cachés, pas de mises à jour vagues : vos progrès sont visibles en temps réel.',
+        pts: [['Suivi des progrès en temps réel', 'Vous voyez l’avancement au moment où il se produit.'], ['Tarification transparente', 'Des prix mensuels publiés, sans coûts cachés.'], ['Rapports réguliers', 'Mensuels, hebdomadaires ou quotidiens selon la formule choisie.'], ['Communication ouverte', 'Les difficultés se disent tôt, les décisions se prennent ensemble.']] }
+    ];
+    var piliers = PIL.map(function (p, i) {
+      var on = s.pilier === i;
+      return {
+        n: p.n, t: p.t, short: p.short, q: p.q, active: on, pressed: on ? 'true' : 'false',
+        pts: p.pts.map(function (x, j) { return { n: R[j], t: x[0], d: x[1] }; }),
+        slabStyle: 'height:' + p.h + 'px;' + (on ? 'border-color:rgba(243,239,231,.7);transform:translateY(-14px) rotateY(-10deg)' : ''),
+        baseStyle: on ? ('background:' + acc) : '',
+        slabTxt: on ? 'color:#F3EFE7' : '',
+        tabStyle: on ? 'color:#0B0B0A' : '',
+        barStyle: on ? ('transform:scaleX(1);background:' + acc) : '',
+        pick: function () { self.setState({ pilier: i }); }
+      };
+    });
+    var DOM = [
+      { t: 'Applications web & mobiles', img: 'assets/laptop-code.webp', alt: 'Ordinateur portable affichant du code', d: 'Des produits numériques soignés et robustes, du parcours utilisateur à l’architecture qui les porte.', tags: ['Applications web', 'Applications mobiles', 'Interfaces métier'] },
+      { t: 'Plateformes temps réel', img: 'assets/server-lights.webp', alt: 'Voyants de serveurs dans la pénombre', d: 'Des systèmes où chaque milliseconde compte : synchronisation, flux continus et cohérence d’état.', tags: ['Flux de données', 'Synchronisation', 'Tableaux de bord temps réel'] },
+      { t: 'Jeux & Web3', img: 'assets/controller-neon.webp', alt: 'Manette de jeu dans la pénombre', d: 'Le terrain le plus exigeant qui soit : performance, multijoueur, sécurité — et les économies numériques du Web3.', tags: ['Jeux en ligne', 'Multijoueur', 'Plateformes Web3'] },
+      { t: 'IA appliquée', img: 'assets/cpu-hand.webp', alt: 'Puce électronique tenue entre deux doigts', d: 'Modèles affinés, agents autonomes et intégration de l’IA dans vos processus existants.', tags: ['Affinage de modèles', 'Agents autonomes', 'Analytique prédictive'] },
+      { t: 'Cloud & performance', img: 'assets/datacenter-corridor.webp', alt: 'Couloir de centre de données sombre', d: 'Des infrastructures cloud-native, observables et optimisées, prêtes à encaisser la croissance.', tags: ['Architecture cloud', 'Optimisation', 'Fiabilité'] }
+    ];
+    var NUM = ['I', 'II', 'III', 'IV', 'V'];
+    var domaines = DOM.map(function (d, i) {
+      var on = s.domaine === i;
+      return {
+        n: NUM[i], t: d.t, img: d.img, alt: d.alt, d: d.d, active: on, pressed: on ? 'true' : 'false',
+        tags: d.tags.map(function (x) { return { x: x }; }),
+        rowStyle: on ? 'color:#F3EFE7;padding-left:10px' : '',
+        dot: on ? ('background:' + acc + ';border-color:' + acc) : '',
+        pick: function () { self.setState({ domaine: i }); }
+      };
+    });
+    var ETP = [
+      { t: 'Appel découverte', d: 'Un échange pour comprendre votre contexte, vos objectifs et vos contraintes. Nous écoutons avant de proposer quoi que ce soit.', out: 'Une compréhension partagée de votre besoin.', dl: '[DÉLAI]' },
+      { t: 'Cadrage & choix de formule', d: 'Nous traduisons le besoin en périmètre clair et recommandons la formule adaptée : Intégration, Flex ou Performance.', out: 'Un périmètre écrit et une formule recommandée.', dl: '[DÉLAI]' },
+      { t: 'Sélection du profil ou de l’équipe', d: 'Un profil dédié, un profil senior ou une équipe de cinq experts avec Lead tech et Product Owner : nous constituons l’ensemble juste.', out: 'Un profil ou une équipe proposés pour votre projet.', dl: 'Changement de profil sous 30 j (Intégration) ou 15 j (Flex).' },
+      { t: 'Intégration à vos outils et rituels', d: 'Nos experts rejoignent vos outils, vos cérémonies et votre culture. Un partenariat, pas une externalisation.', out: 'Des experts opérationnels dans votre environnement.', dl: '[DÉLAI]' },
+      { t: 'Suivi temps réel & ajustements', d: 'Progrès visibles en temps réel, rapports réguliers, ajustements continus. La transparence radicale, au quotidien.', out: 'Une visibilité continue et des ajustements rapides.', dl: 'Rapports mensuels, hebdomadaires ou quotidiens selon la formule.' }
+    ];
+    var etapes = ETP.map(function (e, i) {
+      var on = s.etape === i, done = i < s.etape;
+      return {
+        n: NUM[i], t: e.t, d: e.d, out: e.out, dl: e.dl, active: on, pressed: on ? 'true' : 'false',
+        node: on ? ('background:#0B0B0A;color:#F3EFE7;border-color:#0B0B0A;box-shadow:0 0 0 6px #F3EFE7,0 0 0 7px ' + acc) : (done ? 'background:#0B0B0A;color:#F3EFE7;border-color:#0B0B0A' : ''),
+        pick: function () { self.setState({ etape: i }); }
+      };
+    });
+    var ART = [
+      { k: 'Article premier', t: 'Transparence', lead: 'Vous voyez ce que nous voyons, au moment où nous le voyons.', d: 'Tarifs publiés, suivi des progrès en temps réel, rapports réguliers. Aucun coût caché, aucune mise à jour vague : si quelque chose dérape, vous l’apprenez de nous, et tôt.' },
+      { k: 'Article II', t: 'Continuité', lead: 'Un projet ne s’arrête pas parce qu’une personne change.', d: 'Documentation tenue à jour, passation renforcée, changement de profil encadré (sous 30 jours en Intégration, 15 jours en Flex) et engagement dans la durée : la connaissance reste chez vous.' },
+      { k: 'Article III', t: 'Sécurité & confidentialité des données', lead: 'Vos données vous appartiennent. Elles le restent.', d: 'Confidentialité et sécurité intégrées dès la conception, y compris lorsque nous affinons des modèles d’IA sur vos données. Accès limités au strict nécessaire.' },
+      { k: 'Article IV', t: 'Qualité', lead: 'Aller vite ne justifie jamais de mal faire.', d: 'Assurance qualité, revues et intégration continue font partie du travail, pas d’une étape finale. Nous construisons des systèmes qui durent, pas seulement du code qui fonctionne aujourd’hui.' }
+    ];
+    var articles = ART.map(function (a, i) {
+      var on = s.art === i;
+      return {
+        k: a.k, t: a.t, lead: a.lead, d: a.d, open: on, exp: on ? 'true' : 'false',
+        lblStyle: on ? 'color:#F3EFE7' : '',
+        icStyle: on ? ('transform:rotate(45deg);border-color:' + acc) : '',
+        toggle: function () { self.setState({ art: on ? -1 : i }); }
+      };
+    });
+    return {
+      rootStyle: '--acc:' + acc,
+      menu: s.menu, menuExp: s.menu ? 'true' : 'false',
+      toggleMenu: function () { self.setState({ menu: !s.menu }); },
+      piliers: piliers, domaines: domaines, etapes: etapes, articles: articles,
+      fillStyle: 'width:' + (s.etape * 20) + '%',
+      isFirst: s.etape === 0,
+      nextLabel: s.etape === 4 ? 'Recommencer' : 'Étape suivante',
+      prev: function () { if (s.etape > 0) self.setState({ etape: s.etape - 1 }); },
+      next: function () { self.setState({ etape: (s.etape + 1) % 5 }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

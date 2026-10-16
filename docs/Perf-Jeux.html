@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Performance — Jeux &amp; Web3</title>
+<script src="vendor/preact.min.js"></script>
+<script src="dc.js"></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<script type="text/x-dc-template" id="dc-template">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Barlow:wght@400;500;600;700&amp;family=Barlow+Condensed:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0;background:#0A0A0A}
+sc-for,sc-if{display:contents}
+.pf{background:#0A0A0A;color:#F5F5F5;font-family:'Barlow',system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden;position:relative}
+.pf *{box-sizing:border-box}
+.pf a{color:inherit;text-decoration:none}
+.pf img{display:block;max-width:100%}
+.pf button,.pf input,.pf select,.pf textarea{font-family:inherit}
+.pf h1,.pf h2,.pf h3,.pf h4,.pf p{margin:0}
+.pf :focus-visible{outline:2px solid var(--v);outline-offset:3px}
+.an{font-family:'Anton',Impact,'Arial Narrow',sans-serif;font-weight:400;text-transform:uppercase;line-height:.92;letter-spacing:.005em;overflow-wrap:anywhere}
+.bc{font-family:'Barlow Condensed',sans-serif}
+.tn{font-variant-numeric:tabular-nums}
+.wrap{max-width:1440px;margin:0 auto;padding:0 40px}
+.mut{color:#9A9A9A}
+.vc{color:var(--v)}
+.eb{display:inline-flex;align-items:center;gap:12px;font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--v)}
+.eb::before{content:"";width:24px;height:9px;background:var(--v);clip-path:polygon(35% 0,100% 0,65% 100%,0 100%)}
+.live{display:inline-flex;align-items:center;gap:8px;font:700 12px/1 'Barlow Condensed',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#FF3B30}
+.live i,.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#FF3B30;animation:blink 1.1s steps(2) infinite}
+@keyframes blink{50%{opacity:.15}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:0 32px;background:var(--v);color:#0A0A0A;border:0;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s}
+.pf a.btn{color:#0A0A0A}
+.btn:hover{transform:translateX(5px);background:#F5F5F5}
+.btn svg{transition:transform .3s}
+.btn:hover svg{transform:translateX(5px)}
+.btn-sm{min-height:46px;padding:0 24px;font-size:14px}
+.btn-o,.pf a.btn-o{background:transparent;color:#F5F5F5;clip-path:none;border:2px solid #3A3A3A}
+.btn-o:hover,.pf a.btn-o:hover{background:transparent;border-color:var(--v);color:var(--v)}
+.btn-k,.pf a.btn-k{background:#0A0A0A;color:var(--v)}
+.btn-k:hover,.pf a.btn-k:hover{background:#262626}
+.btn-ko,.pf a.btn-ko{background:transparent;color:#0A0A0A;clip-path:none;border:2px solid #0A0A0A}
+.btn-ko:hover,.pf a.btn-ko:hover{background:#0A0A0A;color:var(--v)}
+.tk{height:40px;background:var(--v);color:#0A0A0A;overflow:hidden;display:flex;align-items:center}
+.tk span{display:inline-flex;align-items:center;gap:12px;padding:0 26px;font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.tk span::after{content:"";width:16px;height:12px;margin-left:26px;background:#0A0A0A;clip-path:polygon(40% 0,100% 0,60% 100%,0 100%)}
+.mq{display:flex;width:max-content;animation:mq 40s linear infinite;animation-play-state:var(--play)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.hd{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.94);backdrop-filter:blur(12px);border-bottom:1px solid #222}
+.hd-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px}
+.logo{display:inline-flex;align-items:center;gap:12px;min-height:44px}
+.logo .an{font-size:30px;letter-spacing:.05em}
+.logo svg{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.logo:hover svg{transform:skewX(-14deg) translateX(4px)}
+.nav{display:flex;gap:4px}
+.nl{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font:600 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#CFCFCF;transition:color .25s}
+.nl::after{content:"";position:absolute;left:14px;right:14px;bottom:7px;height:3px;background:var(--v);transform:scaleX(0) skewX(-30deg);transform-origin:left;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.nl:hover,.nl[aria-current="page"]{color:#F5F5F5}
+.nl:hover::after,.nl[aria-current="page"]::after{transform:scaleX(1) skewX(-30deg)}
+.hd-r{display:flex;align-items:center;gap:18px}
+.burger{display:none;width:48px;height:48px;align-items:center;justify-content:center;background:#161616;border:1px solid #2A2A2A;color:#F5F5F5;cursor:pointer}
+.mnav{border-top:1px solid #222;background:#0A0A0A;padding:8px 16px 24px;animation:rise .4s both}
+.mnav a{display:flex;align-items:center;justify-content:space-between;min-height:58px;border-bottom:1px solid #222;font-size:34px}
+.mnav a.btn{margin-top:18px;font-size:15px;border:0}
+.sec{padding:120px 0;position:relative}
+.sh{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:56px}
+.h2{font-size:clamp(44px,6.4vw,98px);margin-top:18px}
+.lead{font-size:19px;color:#CFCFCF;max-width:520px}
+.chip{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:transparent;border:1px solid #363636;color:#F5F5F5;font:700 14px/1 'Barlow Condensed',sans-serif;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.chip:hover{border-color:var(--v);color:var(--v);transform:translateY(-2px)}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes slideL{from{opacity:0;transform:translateX(-90px) skewX(-10deg)}to{opacity:1;transform:none}}
+@keyframes slideR{from{opacity:0;transform:translateX(90px) skewX(-10deg)}to{opacity:1;transform:none}}
+@keyframes cutDiag{from{clip-path:polygon(100% 0,100% 0,100% 100%,100% 100%)}to{clip-path:polygon(30% 0,100% 0,100% 100%,0 100%)}}
+@keyframes pop{0%{opacity:0;transform:scale(.4) rotate(-12deg)}70%{transform:scale(1.08) rotate(2deg)}100%{opacity:1;transform:none}}
+.rv{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.35s}.d4{animation-delay:.5s}.d5{animation-delay:.65s}.d6{animation-delay:.8s}
+.ft{border-top:1px solid #222;padding:96px 0 32px;background:#0A0A0A}
+.ft-big{font-size:clamp(40px,8.6vw,136px);line-height:.88}
+.ft-big span{display:block}
+.ft-big .o{color:transparent;-webkit-text-stroke:1.5px #F5F5F5}
+.ft-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:40px;padding:64px 0 48px;margin-top:64px;border-top:1px solid #222;border-bottom:1px solid #222}
+.ft h4{font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--v);margin-bottom:14px}
+.fl{display:flex;align-items:center;min-height:44px;color:#C8C8C8;transition:color .2s,transform .2s}
+.fl:hover{color:var(--v);transform:translateX(6px)}
+.ft-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;padding-top:28px;font-size:14px;color:#9A9A9A}
+.ft-bot a{text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px}
+.cta{background:var(--v);color:#0A0A0A;clip-path:polygon(0 90px,100% 0,100% 100%,0 100%);padding:190px 0 130px}
+.cta h2{font-size:clamp(50px,9vw,152px);max-width:1240px}
+.cta .eb{color:#0A0A0A}
+.cta .eb::before{background:#0A0A0A}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.note{font-size:14px;color:#9A9A9A;margin-top:14px}
+.rng{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;cursor:pointer;margin:0}
+.rng::-webkit-slider-runnable-track{height:6px;background:#2A2A2A}
+.rng::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:30px;height:30px;margin-top:-12px;background:var(--v);border:0;clip-path:polygon(28% 0,100% 0,72% 100%,0 100%)}
+.rng::-moz-range-track{height:6px;background:#2A2A2A}
+.rng::-moz-range-thumb{width:28px;height:28px;border:0;border-radius:0;background:var(--v)}
+@media(max-width:1080px){.nav{display:none}.burger{display:inline-flex}.hide-m{display:none}}
+@media(max-width:720px){.wrap{padding:0 16px}.sec{padding:84px 0}.hd-r .btn{display:none}.hide-s{display:none}}
+
+/* — Jeux — */
+.sv{stroke:var(--v)}
+.fv{fill:var(--v)}
+.ph{position:relative;min-height:940px;padding:64px 0 80px;border-bottom:1px solid #222}
+.ph-img,.ph-stripe{position:absolute;top:0;bottom:0;right:0;width:48%;clip-path:polygon(30% 0,100% 0,100% 100%,0 100%)}
+.ph-stripe{background:var(--v);transform:translateX(-28px);animation:cutDiag .9s cubic-bezier(.77,0,.18,1) .05s both}
+.ph-img{background:#161616 url(assets/gaming-den-neon.webp) center/cover no-repeat;filter:saturate(.35) contrast(1.15) brightness(.55);animation:cutDiag 1.1s cubic-bezier(.77,0,.18,1) .3s both}
+.ph-in{position:relative;z-index:2}
+.ph-t{font-size:clamp(44px,10.5vw,160px);line-height:.86;margin-top:28px}
+.kl{display:block;animation:slideL 1s cubic-bezier(.2,.8,.2,1) both}
+.kl:nth-child(1){animation-delay:.1s}.kl:nth-child(2){animation-delay:.2s;animation-name:slideR}.kl:nth-child(3){animation-delay:.3s;color:var(--v)}.kl:nth-child(4){animation-delay:.4s;animation-name:slideR}.kl:nth-child(5){animation-delay:.5s;color:transparent;-webkit-text-stroke:2px #F5F5F5}
+.ph-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:40px;align-items:end;margin-top:44px}
+.ph .lead{max-width:620px;font-size:21px}
+.hudj{background:rgba(22,22,22,.94);border:1px solid #2A2A2A}
+.hudj-h{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #2A2A2A}
+.hudj-r{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 18px;border-bottom:1px solid #222;font:600 16px/1.2 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase;transition:background .25s}
+.hudj-r:last-child{border-bottom:0}
+.hudj-r:hover{background:#1F1F1F}
+.hudj-r b{font-family:'Anton',sans-serif;font-weight:400;font-size:22px;color:var(--v)}
+.spd{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:16px}
+.gauge{background:#121212;border:1px solid #262626;padding:36px 36px 28px;position:relative}
+.gauge svg{display:block;width:100%;height:auto}
+.needle{transition:transform .7s cubic-bezier(.3,1.4,.5,1)}
+.read{display:flex;align-items:flex-end;justify-content:center;gap:12px;margin-top:-6px}
+.read b{font:800 clamp(64px,7vw,108px)/.9 'Barlow Condensed',sans-serif;letter-spacing:-.01em}
+.read span{font:700 22px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;padding-bottom:12px;color:#9A9A9A}
+.zone{text-align:center;margin-top:10px;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.28em;text-transform:uppercase}
+.ctrl{background:#161616;border:1px solid #262626;padding:36px;display:flex;flex-direction:column;gap:18px}
+.scen{display:grid;gap:8px}
+.scb{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;padding:0 18px;background:#0A0A0A;border:1px solid #2A2A2A;color:#F5F5F5;cursor:pointer;font:700 16px/1.1 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase;text-align:left;transition:border-color .25s,transform .25s}
+.scb:hover{border-color:var(--v);transform:translateX(5px)}
+.legend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.legend div{padding:10px;border-top:4px solid #3A3A3A;font:700 12px/1.2 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C8C8C8}
+.reqs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:12px}
+.req{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:280px;padding:30px;background:#161616;border:1px solid #262626;color:#F5F5F5;text-align:left;cursor:pointer;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s}
+.req:hover{transform:translateY(-8px) skewX(-1.5deg);border-color:#4A4A4A}
+.req::after{content:"";position:absolute;top:0;right:0;width:18px;height:18px;background:var(--v);clip-path:polygon(0 0,100% 0,100% 100%)}
+.req-i{font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#9A9A9A}
+.req-s{font-family:'Anton',sans-serif;font-size:clamp(52px,5vw,76px);line-height:1;margin-top:18px}
+.req-l{font:700 15px/1.3 'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#C8C8C8}
+.req-t{margin-top:auto;font:700 22px/1.1 'Barlow Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.req-d{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;margin-top:12px;padding:44px;background:#121212;border:1px solid #262626;animation:rise .5s both}
+.req-d h3{font-size:clamp(36px,3.6vw,56px);margin-top:16px}
+.req-d p{font-size:19px;color:#D2D2D2;margin-top:16px}
+.bars{display:grid;gap:14px;align-content:center}
+.bar{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center;font:700 13px/1.2 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C8C8C8}
+.bar i{display:block;height:14px;background:#262626;position:relative;overflow:hidden}
+.bar i::after{content:"";position:absolute;top:0;bottom:0;left:0;width:100%;background:var(--v);transform-origin:left;animation:fill 1.2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fill{from{transform:scaleX(0)}}
+.sim{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:16px}
+.sim-c{background:#161616;border:1px solid #262626;padding:36px;display:flex;flex-direction:column;gap:20px}
+.sim-n{font:800 clamp(56px,6vw,92px)/.9 'Barlow Condensed',sans-serif}
+.sim-k{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sim-k div{padding:16px;background:#0A0A0A;border:1px solid #262626}
+.sim-k b{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:36px;line-height:1;color:var(--v)}
+.sim-k span{display:block;margin-top:8px;font:600 13px/1.3 'Barlow Condensed',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9A9A9A}
+.arena{background:#0F0F0F;border:1px solid #262626;padding:30px;display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:8px;align-content:center}
+.pl{height:22px;background:#222;clip-path:polygon(30% 0,100% 0,70% 100%,0 100%);transition:background .4s}
+.xfer{display:grid;gap:10px}
+.xr{display:grid;grid-template-columns:minmax(0,1fr) 80px minmax(0,1fr);align-items:center;gap:20px;padding:26px 30px;background:#161616;border:1px solid #262626;transition:border-color .3s,background .3s}
+.xr:hover{border-color:var(--v);background:#1A1A1A}
+.xr-a{font:700 clamp(20px,2vw,28px)/1.15 'Barlow Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.xr-a small{display:block;font:600 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.22em;color:#9A9A9A;margin-bottom:10px}
+.xr-ar{display:flex;justify-content:center;color:var(--v);transition:transform .35s}
+.xr:hover .xr-ar{transform:translateX(10px)}
+.xr-b{font-size:18px;color:#D6D6D6}
+.xr-b small{display:block;font:600 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--v);margin-bottom:10px}
+.w3{position:relative;padding:150px 0;overflow:hidden}
+.w3-bg{position:absolute;top:0;bottom:0;left:0;right:0;background:#161616 url(assets/holo-foil.webp) center/cover no-repeat;filter:saturate(.5) brightness(.42);clip-path:polygon(0 0,100% 70px,100% 100%,0 calc(100% - 70px))}
+.w3-in{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+.w3 h2{font-size:clamp(44px,6.4vw,104px);margin-top:18px}
+.w3-g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.w3-c{background:rgba(10,10,10,.86);border:1px solid #2E2E2E;padding:24px;min-height:150px;transition:transform .3s,border-color .3s}
+.w3-c:hover{transform:translateY(-5px);border-color:var(--v)}
+.w3-c svg{color:var(--v)}
+.w3-c b{display:block;margin-top:16px;font:700 19px/1.15 'Barlow Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase}
+.tbc{display:inline-flex;margin-top:24px;padding:10px 14px;border:1px dashed #555;font:600 14px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#C8C8C8}
+@media(max-width:960px){.ph-img,.ph-stripe{width:100%;opacity:.3}.ph-row,.spd,.sim,.req-d,.w3-in{grid-template-columns:1fr}.xr{grid-template-columns:1fr}.xr-ar{justify-content:flex-start;transform:rotate(90deg);width:40px}.xr:hover .xr-ar{transform:rotate(90deg) translateX(6px)}}
+@media(max-width:720px){.gauge,.ctrl,.sim-c,.req-d{padding:24px}.arena{grid-template-columns:repeat(12,minmax(0,1fr));gap:5px;padding:18px}.legend{grid-template-columns:repeat(2,minmax(0,1fr))}.w3-g{grid-template-columns:1fr}.bar{grid-template-columns:110px minmax(0,1fr)}}
+</style>
+</helmet>
+<div class="pf" style="{{ rootStyle }}">
+
+<div class="tk" aria-hidden="true">
+  <div class="mq">
+    <span>Suivi temps réel</span><span>Intégration · 4 500 €/mois</span><span>Flex · 6 200 €/mois · Plus populaire</span><span>Performance · 18 900 €/mois</span><span>Changement de profil sous 15 jours</span><span>Excellence IA</span>
+    <span>Suivi temps réel</span><span>Intégration · 4 500 €/mois</span><span>Flex · 6 200 €/mois · Plus populaire</span><span>Performance · 18 900 €/mois</span><span>Changement de profil sous 15 jours</span><span>Excellence IA</span>
+  </div>
+</div>
+
+<header class="hd">
+  <div class="wrap hd-in">
+    <a href="Perf-Accueil.html" class="logo" aria-label="Baquelis — accueil">
+      <svg width="36" height="30" viewBox="0 0 36 30" aria-hidden="true"><path d="M9 0h27l-9 30H0z" style="fill:var(--v)"></path><path d="M15 7h10l-1.7 6H13.3zM12.6 16h10l-1.8 6h-10z" fill="#0A0A0A"></path></svg>
+      <span class="an">Baquelis</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="nl" href="Perf-Expertises.html">Expertises</a>
+      <a class="nl" href="Perf-IA.html">IA</a>
+      <a class="nl" href="Perf-Jeux.html" aria-current="page">Jeux &amp; Web3</a>
+      <a class="nl" href="Perf-Offres.html">Offres</a>
+      <a class="nl" href="Perf-Contact.html">Contact</a>
+    </nav>
+    <div class="hd-r">
+      <a class="nl hide-m" href="Perf-Contact.html">Réserver un appel</a>
+      <a class="btn btn-sm" href="Perf-Contact.html">Commencer</a>
+      <button class="burger" type="button" aria-label="Ouvrir ou fermer le menu" aria-expanded="{{ menuExp }}" onClick="{{ toggleMenu }}">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h11"></path></svg>
+      </button>
+    </div>
+  </div>
+  <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+    <nav class="mnav" aria-label="Navigation mobile">
+      <a class="an" href="Perf-Expertises.html">Expertises</a>
+      <a class="an" href="Perf-IA.html">IA</a>
+      <a class="an" href="Perf-Jeux.html">Jeux &amp; Web3</a>
+      <a class="an" href="Perf-Offres.html">Offres</a>
+      <a class="an" href="Perf-Contact.html">Contact</a>
+      <a class="btn" href="Perf-Contact.html">Commencer</a>
+    </nav>
+  </sc-if>
+</header>
+
+<main>
+<section class="ph" aria-labelledby="ph-t">
+  <div class="ph-stripe" aria-hidden="true"></div>
+  <div class="ph-img" aria-hidden="true"></div>
+  <div class="wrap ph-in">
+    <div style="display:flex;gap:26px;align-items:center;flex-wrap:wrap" class="rv"><span class="eb">Jeux &amp; Web3 · Preuve d’excellence</span><span class="live"><i></i>Temps réel</span></div>
+    <h1 class="an ph-t" id="ph-t"><span class="kl">Les jeux</span><span class="kl">sont les</span><span class="kl">applications</span><span class="kl">les plus</span><span class="kl">difficiles.</span></h1>
+    <div class="ph-row">
+      <p class="lead rv d5">Performances temps réel, gestion d’état complexe, expérience fluide sans la moindre faille. Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique.</p>
+      <div class="hudj rv d6">
+        <div class="hudj-h"><span class="bc" style="font-weight:700;letter-spacing:.2em;font-size:13px;text-transform:uppercase">Feuille de match</span><span class="live"><i></i>4 exigences</span></div>
+        <div class="hudj-r"><b>01</b><span>Performance temps réel</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true"><path d="M4 12l5 5L20 6"></path></svg></div>
+        <div class="hudj-r"><b>02</b><span>Architecture complexe</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true"><path d="M4 12l5 5L20 6"></path></svg></div>
+        <div class="hudj-r"><b>03</b><span>Multijoueur évolutif</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true"><path d="M4 12l5 5L20 6"></path></svg></div>
+        <div class="hudj-r"><b>04</b><span>Sécurité &amp; anti-triche</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true"><path d="M4 12l5 5L20 6"></path></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPTEUR DE LATENCE -->
+<section class="sec" aria-labelledby="spd-t">
+  <div class="wrap">
+    <div class="sh">
+      <div><span class="eb">01 · Compteur de latence</span><h2 class="an h2" id="spd-t">Chaque milliseconde<br>compte</h2></div>
+      <p class="lead">Choisissez un type d’application ou réglez la cible : l’aiguille montre le niveau d’exigence. Plus la latence baisse, plus on entre en zone de compétition.</p>
+    </div>
+    <div class="spd">
+      <div class="gauge">
+        <svg viewBox="0 0 520 290" fill="none" role="img" aria-label="{{ gaugeAria }}">
+          <path d="M30 250 A230 230 0 0 1 124.8 63.9" stroke="#3A3A3A" stroke-width="16"></path>
+          <path d="M124.8 63.9 A230 230 0 0 1 331.1 31.3" stroke="#8A8A8A" stroke-width="16"></path>
+          <path d="M331.1 31.3 A230 230 0 0 1 459.2 135" stroke="#F5F5F5" stroke-width="16"></path>
+          <path d="M459.2 135 A230 230 0 0 1 490 250" class="sv" stroke-width="16"></path>
+          <g stroke="#5A5A5A" stroke-width="3">
+            <path d="M50 250 L70 250"></path><path d="M60.3 185.1 L79.3 191.3"></path><path d="M90.1 126.5 L106.3 138.3"></path><path d="M136.5 80.1 L148.3 96.3"></path><path d="M195.1 50.3 L201.3 69.3"></path><path d="M260 40 L260 60"></path><path d="M324.9 50.3 L318.7 69.3"></path><path d="M383.5 80.1 L371.7 96.3"></path><path d="M429.9 126.5 L413.7 138.3"></path><path d="M459.7 185.1 L440.7 191.3"></path><path d="M470 250 L450 250"></path>
+          </g>
+          <g fill="#9A9A9A" font-family="Barlow Condensed" font-size="15" font-weight="700" letter-spacing="1.5"><text x="74" y="276">300 MS</text><text x="236" y="98">17 MS</text><text x="396" y="276">1 MS</text></g>
+          <g class="needle" style="{{ needleStyle }}">
+            <path d="M260 250 L254 240 L260 66 L266 240 Z" class="fv"></path>
+          </g>
+          <circle cx="260" cy="250" r="20" fill="#0A0A0A" class="sv" stroke-width="4"></circle>
+          <circle cx="260" cy="250" r="6" class="fv"></circle>
+        </svg>
+        <div class="read" aria-live="polite"><b class="tn" style="{{ zoneColor }}">{{ msTxt }}</b><span>ms</span></div>
+        <div class="zone" style="{{ zoneColor }}">Zone · {{ zone }}</div>
+      </div>
+      <div class="ctrl">
+        <span class="bc mut" style="font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:13px">Type d’application</span>
+        <div class="scen" role="group" aria-label="Scénarios">
+          <sc-for list="{{ scen }}" as="c" hint-placeholder-count="4">
+            <button class="scb" type="button" aria-pressed="{{ c.pressed }}" style="{{ c.style }}" onClick="{{ c.pick }}"><span>{{ c.k }}</span><span class="tn">{{ c.ms }}</span></button>
+          </sc-for>
+        </div>
+        <label class="bc mut" for="lat" style="font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:13px;margin-top:8px">Régler la latence ciblée</label>
+        <input id="lat" class="rng" type="range" min="0" max="100" step="1" value="{{ x }}" onInput="{{ setX }}">
+        <div class="legend" aria-hidden="true">
+          <div>Confort</div><div style="border-color:#8A8A8A">Réactif</div><div style="border-color:#F5F5F5">Temps réel</div><div style="border-color:var(--v)">Compétition</div>
+        </div>
+        <p class="note" style="margin-top:4px">Valeurs illustratives : chaque projet a sa propre cible. Notre culture, héritée du jeu : viser la réponse sub-milliseconde et une synchronisation parfaite entre systèmes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 EXIGENCES -->
+<section class="sec" style="padding-top:20px" aria-labelledby="req-t">
+  <div class="wrap">
+    <div class="sh">
+      <div><span class="eb">02 · Pourquoi les jeux définissent l’excellence</span><h2 class="an h2" id="req-t">Les quatre<br>exigences</h2></div>
+      <p class="lead">Quatre contraintes simultanées, sans droit à l’erreur. Sélectionnez une carte pour ouvrir la fiche technique.</p>
+    </div>
+    <div class="reqs" role="tablist" aria-label="Exigences">
+      <sc-for list="{{ reqs }}" as="r" hint-placeholder-count="4">
+        <button class="req" type="button" role="tab" aria-selected="{{ r.sel }}" style="{{ r.style }}" onClick="{{ r.pick }}">
+          <span class="req-i" style="{{ r.iStyle }}">Exigence {{ r.n }}</span>
+          <span class="req-s" style="{{ r.sStyle }}">{{ r.stat }}</span>
+          <span class="req-l" style="{{ r.iStyle }}">{{ r.lab }}</span>
+          <span class="req-t">{{ r.t }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <sc-for list="{{ reqs }}" as="r" hint-placeholder-count="4">
+      <sc-if value="{{ r.on }}" hint-placeholder-val="{{ false }}">
+        <div class="req-d" role="tabpanel">
+          <div>
+            <span class="eb">Fiche {{ r.n }} / 04</span>
+            <h3 class="an">{{ r.t }}</h3>
+            <p>{{ r.d }}</p>
+          </div>
+          <div class="bars" aria-label="Composantes de l’exigence">
+            <sc-for list="{{ r.parts }}" as="b" hint-placeholder-count="3">
+              <div class="bar"><span>{{ b.k }}</span><i style="{{ b.style }}"></i></div>
+            </sc-for>
+            <p class="note">Composantes travaillées simultanément — représentation illustrative.</p>
+          </div>
+        </div>
+      </sc-if>
+    </sc-for>
+  </div>
+</section>
+
+<!-- SIMULATEUR JOUEURS -->
+<section class="sec" style="padding-top:20px" aria-labelledby="sim-t">
+  <div class="wrap">
+    <div class="sh">
+      <div><span class="eb">03 · Simulateur illustratif</span><h2 class="an h2" id="sim-t">Des milliers<br>de joueurs, un état</h2></div>
+      <p class="lead">Faites monter la charge : l’arène se remplit, l’architecture se répartit, l’état reste cohérent. Les valeurs sont purement illustratives.</p>
+    </div>
+    <div class="sim">
+      <div class="sim-c">
+        <span class="bc mut" style="font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:13px">Joueurs simultanés (illustratif)</span>
+        <div class="sim-n tn vc" aria-live="polite">{{ playersTxt }}</div>
+        <label class="bc mut" for="pl" style="font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:13px">Régler la charge</label>
+        <input id="pl" class="rng" type="range" min="0" max="100" step="1" value="{{ load }}" onInput="{{ setLoad }}">
+        <div class="sim-k">
+          <div><b class="tn">{{ shards }}</b><span>Instances réparties</span></div>
+          <div><b>Stable</b><span>Cohérence d’état</span></div>
+        </div>
+        <p class="note" style="margin-top:0">Hypothèse de démonstration : une instance pour 2 500 joueurs. Chaque architecture réelle est dimensionnée sur mesure.</p>
+      </div>
+      <div class="arena" aria-hidden="true">
+        <sc-for list="{{ dots }}" as="d" hint-placeholder-count="96">
+          <span class="pl" style="{{ d }}"></span>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFERT -->
+<section class="sec" style="padding-top:20px" aria-labelledby="xf-t">
+  <div class="wrap">
+    <div class="sh">
+      <div><span class="eb">04 · Ce que vous y gagnez</span><h2 class="an h2" id="xf-t">L’exigence du jeu,<br>dans vos projets</h2></div>
+      <p class="lead">Vous ne construisez pas forcément un jeu. Mais chaque projet profite des réflexes acquis sur les applications les plus exigeantes.</p>
+    </div>
+    <div class="xfer">
+      <div class="xr rv d1"><div class="xr-a"><small>Dans le jeu</small>Réponse sub-milliseconde</div><div class="xr-ar" aria-hidden="true"><svg width="44" height="24" viewBox="0 0 44 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M0 12h40M30 2l10 10-10 10"></path></svg></div><div class="xr-b"><small>Dans votre projet</small>Des applications métier réactives et des tableaux de bord qui se mettent à jour sans attendre.</div></div>
+      <div class="xr rv d2"><div class="xr-a"><small>Dans le jeu</small>Graphismes, physique, réseau, saisie simultanés</div><div class="xr-ar" aria-hidden="true"><svg width="44" height="24" viewBox="0 0 44 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M0 12h40M30 2l10 10-10 10"></path></svg></div><div class="xr-b"><small>Dans votre projet</small>Des architectures qui orchestrent plusieurs services en parallèle sans se bloquer.</div></div>
+      <div class="xr rv d3"><div class="xr-a"><small>Dans le jeu</small>Milliers d’utilisateurs, état cohérent</div><div class="xr-ar" aria-hidden="true"><svg width="44" height="24" viewBox="0 0 44 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M0 12h40M30 2l10 10-10 10"></path></svg></div><div class="xr-b"><small>Dans votre projet</small>Des plateformes qui tiennent la charge les jours de pic, avec des données justes pour tous.</div></div>
+      <div class="xr rv d4"><div class="xr-a"><small>Dans le jeu</small>Anti-triche sans dégrader l’expérience</div><div class="xr-ar" aria-hidden="true"><svg width="44" height="24" viewBox="0 0 44 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M0 12h40M30 2l10 10-10 10"></path></svg></div><div class="xr-b"><small>Dans votre projet</small>Une sécurité qui protège vos données et vos utilisateurs sans ralentir le parcours.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WEB3 -->
+<section class="w3" aria-labelledby="w3-t">
+  <div class="w3-bg" aria-hidden="true"></div>
+  <div class="wrap w3-in">
+    <div>
+      <span class="eb">05 · Web3</span>
+      <h2 class="an" id="w3-t">Plateforme de gaming Web3</h2>
+      <p class="lead" style="margin-top:24px;max-width:560px;color:#E2E2E2">Une plateforme de jeu Web3 cumule toutes les contraintes : temps réel, multijoueur, sécurité des échanges et confiance des joueurs. C’est notre terrain d’entraînement le plus exigeant.</p>
+      <span class="tbc">Détails de la plateforme : [À CONFIRMER]</span>
+      <div class="ctas" style="margin-top:32px"><a class="btn" href="Perf-Contact.html">Parler de votre projet jeu
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+    </div>
+    <div class="w3-g">
+      <div class="w3-c"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"></path></svg><b>Expérience temps réel</b></div>
+      <div class="w3-c"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 4v5c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V7z"></path><path d="M9 12l2 2 4-4"></path></svg><b>Sécurité des échanges</b></div>
+      <div class="w3-c"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="8" cy="8" r="3.2"></circle><circle cx="17" cy="9" r="2.6"></circle><path d="M2.5 20c.6-3.6 2.9-5.6 5.5-5.6s4.9 2 5.5 5.6M14 15.2c.9-.6 1.9-.9 3-.9 2.3 0 4 1.7 4.5 4.7"></path></svg><b>Multijoueur à grande échelle</b></div>
+      <div class="w3-c"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg><b>État complexe synchronisé</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" aria-labelledby="cta-t">
+  <div class="wrap">
+    <span class="eb">Coup d’envoi</span>
+    <h2 class="an" id="cta-t" style="margin-top:22px">Prêt à transformer votre entreprise ?</h2>
+    <div class="ctas" style="margin-top:44px">
+      <a class="btn btn-k" href="Perf-Contact.html">Nous contacter
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="btn btn-ko" href="Perf-Offres.html">Voir les formules</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-big an" aria-hidden="true"><span>Flexibilité.</span><span class="o">Continuité.</span><span class="vc">Performance.</span></div>
+    <div class="ft-grid">
+      <div>
+        <a href="Perf-Accueil.html" class="logo" aria-label="Baquelis — accueil">
+          <svg width="36" height="30" viewBox="0 0 36 30" aria-hidden="true"><path d="M9 0h27l-9 30H0z" style="fill:var(--v)"></path><path d="M15 7h10l-1.7 6H13.3zM12.6 16h10l-1.8 6h-10z" fill="#0A0A0A"></path></svg>
+          <span class="an">Baquelis</span>
+        </a>
+        <p class="mut" style="margin-top:18px;font-size:15px">Partenaire technologique : équipes dédiées, IA appliquée, expertise jeux &amp; Web3.</p>
+        <p style="margin-top:18px;font-size:15px">31 B avenue Maréchal Foch<br>06000 Nice</p>
+      </div>
+      <div><h4>Explorer</h4>
+        <a class="fl" href="Perf-Expertises.html">Expertises</a><a class="fl" href="Perf-IA.html">Intelligence artificielle</a><a class="fl" href="Perf-Jeux.html">Jeux &amp; Web3</a><a class="fl" href="Perf-Contact.html">Contact</a>
+      </div>
+      <div><h4>Formules</h4>
+        <a class="fl" href="Perf-Offres.html">Intégration · 4 500 €</a><a class="fl" href="Perf-Offres.html">Flex · 6 200 €</a><a class="fl" href="Perf-Offres.html">Performance · 18 900 €</a>
+      </div>
+      <div><h4>Contact</h4>
+        <a class="fl" href="Perf-Contact.html">[contact@domaine-baquelis]</a><a class="fl" href="Perf-Contact.html">Réserver un appel</a>
+        <p class="mut" style="font-size:14px;margin-top:10px">[RAISON SOCIALE] · TVA [N° TVA]</p>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>© 2026 Baquelis. Tous droits réservés.</span>
+      <span>Proposition de refonte — concept · <a href="index.html">Toutes les propositions</a></span>
+    </div>
+  </div>
+</footer>
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6500},"accent":{"editor":"color","default":"#E6FF2E","options":["#E6FF2E","#00AEEF","#FF7A1A"]},"motion":{"editor":"boolean","default":true}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu:false, x:72, req:0, load:40 };
+  }
+  pad(n){ return n < 10 ? '0' + n : String(n); }
+  val(e){ return Number(e && e.target ? e.target.value : e); }
+  ms(x){ return Math.pow(300, 1 - x / 100); }
+  msTxt(x){ const v = this.ms(x); return v <= 1.05 ? '≤ 1' : (v < 10 ? v.toFixed(1).replace('.', ',') : String(Math.round(v))); }
+  fmt(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+  renderVals(){
+    const s = this.state;
+    const acc = this.props.accent || '#E6FF2E';
+    const ON = 'background:var(--v);color:#0A0A0A;border-color:var(--v)';
+
+    const angle = -90 + 180 * s.x / 100;
+    const zone = s.x < 30 ? 'Confort' : (s.x < 60 ? 'Réactif' : (s.x < 83 ? 'Temps réel' : 'Compétition'));
+    const zoneColor = s.x < 30 ? 'color:#C8C8C8' : (s.x < 60 ? 'color:#DADADA' : (s.x < 83 ? 'color:#F5F5F5' : 'color:var(--v)'));
+    const scen = [
+      { k:'Application métier', x:15 },
+      { k:'Tableau de bord temps réel', x:45 },
+      { k:'Jeu multijoueur', x:72 },
+      { k:'Synchronisation entre systèmes', x:100 }
+    ].map(c => ({
+      k: c.k, ms: this.msTxt(c.x) + ' ms',
+      pressed: s.x === c.x ? 'true' : 'false',
+      style: s.x === c.x ? ON : '',
+      pick: () => this.setState({ x: c.x })
+    }));
+
+    const R = [
+      { t:'Performance temps réel', stat:'< 1 ms', lab:'Réponse sub-milliseconde', d:'Une réponse sub-milliseconde et une synchronisation parfaite entre systèmes : chaque action du joueur doit être prise en compte instantanément, partout.', parts:[['Réactivité',96],['Synchronisation',92],['Fluidité',88]] },
+      { t:'Architecture complexe', stat:'4 en 1', lab:'Graphismes · physique · réseau · saisie', d:'Graphismes, physique, réseau et saisie tournent simultanément. L’architecture doit tout orchestrer sans qu’un système en ralentisse un autre.', parts:[['Graphismes',90],['Physique',84],['Réseau',94],['Saisie',88]] },
+      { t:'Multijoueur évolutif', stat:'Milliers', lab:'D’utilisateurs simultanés', d:'Des milliers d’utilisateurs simultanés, une cohérence d’état sans faille et une latence minimale, même quand la charge monte d’un coup.', parts:[['Montée en charge',92],['Cohérence d’état',96],['Latence minimale',90]] },
+      { t:'Sécurité & anti-triche', stat:'Bouclier', lab:'Protection sans friction', d:'Une protection avancée contre la triche et les abus, sans jamais dégrader l’expérience du joueur. La sécurité doit être invisible et implacable.', parts:[['Détection',90],['Protection',94],['Expérience préservée',96]] }
+    ];
+    const reqs = R.map((r, i) => ({
+      n: this.pad(i + 1), t: r.t, stat: r.stat, lab: r.lab, d: r.d, on: s.req === i,
+      sel: s.req === i ? 'true' : 'false',
+      style: s.req === i ? 'background:var(--v);color:#0A0A0A;border-color:var(--v)' : '',
+      sStyle: s.req === i ? 'color:#0A0A0A' : 'color:var(--v)',
+      iStyle: s.req === i ? 'color:#0A0A0A' : '',
+      parts: r.parts.map(p => ({ k: p[0], style: 'width:' + p[1] + '%' })),
+      pick: () => this.setState({ req:i })
+    }));
+
+    const raw = 100 * Math.pow(500, s.load / 100);
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)) - 1);
+    const players = Math.round(raw / mag) * mag;
+    const lit = Math.max(1, Math.round(96 * s.load / 100));
+    const dots = [];
+    for (let i = 0; i < 96; i++) dots.push(i < lit ? 'background:var(--v);transition-delay:' + (i * 6) + 'ms' : '');
+
+    return {
+      rootStyle: '--v:' + acc + ';--play:' + (this.props.motion === false ? 'paused' : 'running'),
+      menu: s.menu, menuExp: s.menu ? 'true' : 'false', toggleMenu: () => this.setState({ menu: !s.menu }),
+      x: String(s.x), setX: e => this.setState({ x: this.val(e) }),
+      needleStyle: 'transform-origin:260px 250px;transform:rotate(' + angle + 'deg)',
+      msTxt: this.msTxt(s.x), zone, zoneColor, scen,
+      gaugeAria: 'Compteur de latence illustratif : ' + this.msTxt(s.x) + ' ms, zone ' + zone,
+      reqs,
+      load: String(s.load), setLoad: e => this.setState({ load: this.val(e) }),
+      playersTxt: this.fmt(players), shards: String(Math.max(1, Math.ceil(players / 2500))), dots
+    };
+  }
+}
+</script>
+</body>
+</html>

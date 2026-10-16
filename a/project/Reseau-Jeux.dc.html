@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Réseau — Jeux &amp; Web3</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+sc-for,sc-if{display:contents}
+*{box-sizing:border-box}
+.rx{background:#060B18;color:#E6ECF7;font-family:'Space Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+.rx a{color:inherit}
+.rx p{margin:0}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px);position:relative}
+.gridbg{background-image:linear-gradient(rgba(23,34,61,.55) 1px,transparent 1px),linear-gradient(90deg,rgba(23,34,61,.55) 1px,transparent 1px);background-size:56px 56px}
+.strip{border-bottom:1px solid #17223D;font-size:12px;color:#8E9BB5;background:#050915}
+.strip-in{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:36px;flex-wrap:wrap}
+.strip a{color:#00AEEF;text-decoration:none;padding:8px 0}
+.strip a:hover{text-decoration:underline}
+.hdr{position:sticky;top:0;z-index:50;background:rgba(6,11,24,.88);backdrop-filter:blur(14px);border-bottom:1px solid #17223D}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:22px;letter-spacing:-.02em;min-height:44px}
+.logo-pulse{animation:pulse 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.nav{display:flex;gap:2px}
+.nav a{padding:12px 14px;border-radius:8px;text-decoration:none;color:#8E9BB5;font-size:15px;font-weight:500;transition:color .2s,background .2s}
+.nav a:hover,.nav a.on{color:#E6ECF7;background:#0C1428}
+.nav a.on{box-shadow:inset 0 -2px 0 #3DFFA2}
+.hdr-cta{display:flex;align-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:10px;background:#3DFFA2;color:#060B18;font-weight:600;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:inherit;font-size:16px;transition:transform .2s,box-shadow .25s,border-color .2s,background .2s}
+.rx a.btn{color:#060B18}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 4px rgba(61,255,162,.16),0 14px 34px -12px rgba(61,255,162,.6)}
+.btn-ghost,.rx a.btn-ghost{background:transparent;color:#E6ECF7;border:1px solid #2A3A60}
+.btn-ghost:hover{border-color:#00AEEF;box-shadow:0 0 0 4px rgba(0,174,239,.14)}
+.btn-sm{min-height:44px;padding:0 16px;font-size:15px}
+.menu-btn{display:none;width:44px;height:44px;border-radius:10px;border:1px solid #2A3A60;background:#0C1428;color:#E6ECF7;cursor:pointer;align-items:center;justify-content:center}
+.mnav{display:flex;flex-direction:column;padding:6px clamp(16px,4vw,40px) 16px;border-top:1px solid #17223D}
+.mnav a{padding:14px 4px;border-bottom:1px solid #17223D;text-decoration:none;font-weight:500}
+@media(max-width:900px){.nav{display:none}.menu-btn{display:inline-flex}.hdr-cta .btn{display:none}}
+@media(min-width:901px){.mnav{display:none}}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:#8E9BB5}
+.dot{width:8px;height:8px;border-radius:50%;background:#3DFFA2;animation:ping 1.8s infinite;flex:none}
+.h1{font-size:clamp(40px,5.6vw,82px);line-height:.98;letter-spacing:-.045em;font-weight:700;margin:22px 0 0;overflow-wrap:anywhere}
+.h2{font-size:clamp(32px,4.2vw,56px);line-height:1.04;letter-spacing:-.03em;font-weight:600;margin:16px 0 0;overflow-wrap:anywhere}
+.lead{color:#8E9BB5;font-size:clamp(17px,1.4vw,19px);max-width:640px;margin-top:18px}
+.sec{padding:clamp(72px,9vw,128px) 0;position:relative}
+.card{background:#0C1428;border:1px solid #17223D;border-radius:16px;transition:border-color .25s,transform .25s,box-shadow .25s}
+.lift:hover{transform:translateY(-4px);border-color:#00AEEF;box-shadow:0 22px 50px -26px rgba(0,174,239,.6)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.06em;padding:4px 10px;border-radius:999px;border:1px solid #2A3A60;color:#8E9BB5;white-space:nowrap}
+.illu{color:#FFB020;border-color:rgba(255,176,32,.45)}
+.kpi{padding:16px;border-radius:12px;background:#060B18;border:1px solid #17223D}
+.kpi-l{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#8E9BB5;font-family:'JetBrains Mono',monospace}
+.kpi-v{font-size:30px;font-weight:500;margin-top:4px;font-family:'JetBrains Mono',monospace;line-height:1.2}
+.dot-s{width:6px;height:6px;border-radius:50%;background:#3DFFA2;flex:none;box-shadow:0 0 8px #3DFFA2}
+.ftr{border-top:1px solid #17223D;background:#050915;padding:72px 0 28px;font-size:15px}
+.ftr-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:40px}
+.ftr h4{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8E9BB5;font-weight:500;margin:0 0 12px}
+.ftr-l a{display:flex;align-items:center;min-height:40px;color:#E6ECF7;text-decoration:none;transition:color .2s}
+.ftr-l a:hover{color:#3DFFA2}
+.ftr-b{margin-top:56px;padding-top:22px;border-top:1px solid #17223D;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#8E9BB5;font-size:13px}
+.rv{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.08s}.d2{animation-delay:.18s}.d3{animation-delay:.28s}.d4{animation-delay:.4s}
+:focus-visible{outline:2px solid #00AEEF;outline-offset:3px}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(61,255,162,.55)}70%{box-shadow:0 0 0 10px rgba(61,255,162,0)}100%{box-shadow:0 0 0 0 rgba(61,255,162,0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fadeIn2{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes needle{0%,100%{transform:rotate(-74deg)}40%{transform:rotate(-66deg)}70%{transform:rotate(-78deg)}}
+@keyframes lane{from{transform:translateX(-100%)}to{transform:translateX(420%)}}
+@keyframes sweep{from{left:0}to{left:100%}}
+@keyframes scanY{0%{top:0}100%{top:100%}}
+@keyframes pop{from{opacity:0;scale:.2}to{opacity:1;scale:1}}
+@keyframes flow{to{background-position:-40px 0}}
+@keyframes pk{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@keyframes hubp{0%{box-shadow:0 0 0 0 rgba(61,255,162,.5)}100%{box-shadow:0 0 0 18px rgba(61,255,162,0)}}
+/* page */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid #17223D}
+.hero-img{position:absolute;left:0;right:0;top:0;bottom:0;background:linear-gradient(90deg,rgba(6,11,24,.97) 30%,rgba(6,11,24,.55) 70%,rgba(6,11,24,.8)),url(assets/gaming-den-neon.webp) center/cover}
+.hero-in{position:relative;padding:clamp(64px,9vw,128px) 0 clamp(64px,8vw,112px);max-width:820px}
+.hudr{position:absolute;right:clamp(16px,4vw,40px);top:40px;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.hudr span{background:rgba(6,11,24,.8);border:1px solid #2A3A60;border-radius:8px;padding:6px 10px;font-size:12px}
+@media(max-width:900px){.hudr{display:none}}
+.quoteb{margin-top:36px;padding:18px 20px;border-left:0;border:1px solid #2A3A60;border-radius:14px;background:rgba(12,20,40,.8);max-width:620px;font-size:17px}
+.rq-g{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:24px;margin-top:48px}
+@media(max-width:960px){.rq-g{grid-template-columns:minmax(0,1fr)}}
+.rql{display:flex;flex-direction:column;gap:10px}
+.rqb{text-align:left;min-height:84px;padding:16px 18px;border-radius:14px;border:1px solid #17223D;background:transparent;color:#E6ECF7;font-family:inherit;cursor:pointer;display:flex;flex-direction:column;gap:2px;transition:border-color .2s,background .2s,transform .2s}
+.rqb:hover{transform:translateX(4px);border-color:#2A3A60}
+.rqb .mono{font-size:12px;color:#8E9BB5}
+.rqb b{font-size:19px;font-weight:600}
+.rqp{padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:18px;min-height:470px}
+.vis{border-radius:14px;border:1px solid #17223D;background:#060B18;padding:20px;position:relative;overflow:hidden;min-height:230px;animation:fadeIn .5s both}
+.gauge svg{width:100%;max-width:380px;height:auto;display:block;margin:0 auto}
+.ndl{animation:needle 3s ease-in-out infinite;transform-box:view-box;transform-origin:190px 190px}
+.lanes{display:flex;flex-direction:column;gap:12px;position:relative}
+.ln{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:center;font-size:13px}
+.ln-t{height:22px;border-radius:6px;background:#0C1428;border:1px solid #17223D;overflow:hidden;position:relative}
+.ln-t i{position:absolute;top:3px;bottom:3px;width:22%;border-radius:4px;animation:lane 1.6s linear infinite;display:block}
+.sweep{position:absolute;top:-6px;bottom:-6px;width:2px;background:#FFB020;box-shadow:0 0 12px #FFB020;animation:sweep 1.6s linear infinite}
+.shield{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:center}
+@media(max-width:560px){.shield{grid-template-columns:minmax(0,1fr)}}
+.sh-i{position:relative;width:120px;height:140px}
+.sh-scan{position:absolute;left:8px;right:8px;height:2px;background:#3DFFA2;box-shadow:0 0 12px #3DFFA2;animation:scanY 2.2s ease-in-out infinite alternate}
+.chk{display:flex;flex-direction:column;gap:8px}
+.chk div{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:8px;border:1px solid #17223D;background:#0C1428;font-size:14.5px}
+.sim{margin-top:48px;border-radius:22px;border:1px solid #17223D;background:#0A1122;overflow:hidden;box-shadow:0 40px 120px -60px rgba(61,255,162,.35)}
+.sim-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 18px;border-bottom:1px solid #17223D;background:#0C1428}
+.sim-ctl{padding:22px 22px 8px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:end}
+@media(max-width:800px){.sim-ctl{grid-template-columns:minmax(0,1fr)}}
+.big{font-size:clamp(44px,5vw,72px);font-weight:600;letter-spacing:-.04em;line-height:1}
+.rng{width:100%;margin-top:18px;height:44px;accent-color:#3DFFA2;cursor:pointer}
+.pre{display:flex;gap:6px;flex-wrap:wrap}
+.pre button{min-height:44px;padding:0 14px;border-radius:10px;border:1px solid #17223D;background:#060B18;color:#E6ECF7;font-family:'JetBrains Mono',monospace;font-size:13px;cursor:pointer;transition:border-color .2s}
+.pre button:hover{border-color:#00AEEF}
+.mesh{position:relative;height:460px;margin:8px 22px 0;border-radius:16px;border:1px solid #17223D;background:radial-gradient(circle at 50% 50%,rgba(0,174,239,.07),transparent 70%),#060B18;overflow:hidden}
+.mesh-grid{position:absolute;left:0;right:0;top:0;bottom:0;background-image:linear-gradient(rgba(23,34,61,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(23,34,61,.5) 1px,transparent 1px);background-size:40px 40px}
+.bb{position:absolute;left:12.5%;right:12.5%;top:229px;height:2px;background-image:linear-gradient(90deg,#00AEEF 0 12px,transparent 12px 40px);background-size:40px 2px;animation:flow 1s linear infinite;transition:opacity .4s}
+.hub{position:absolute;top:230px;width:0;height:0;transition:opacity .4s}
+.hub0{left:12.5%}.hub1{left:37.5%}.hub2{left:62.5%}.hub3{left:87.5%}
+@media(max-width:760px){.mesh{height:620px}.bb{display:none}.hub{transform:scale(.62)}.hub0{left:28%;top:160px}.hub1{left:72%;top:160px}.hub2{left:28%;top:460px}.hub3{left:72%;top:460px}}
+.spoke{position:absolute;left:0;top:-1px;height:2px;transform-origin:0 50%;display:block;animation:pop .5s both;background:linear-gradient(90deg,rgba(0,174,239,.15),rgba(0,174,239,.6))}
+.pl{position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;display:block;animation:pop .5s both;border:2px solid #060B18}
+.hub-core{position:absolute;left:-17px;top:-17px;width:34px;height:34px;border-radius:9px;border:2px solid;display:block;transition:all .4s;z-index:2}
+.hub-l{position:absolute;left:-40px;top:24px;width:80px;text-align:center;font-size:11px;letter-spacing:.08em;z-index:2}
+.readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:12px;padding:22px}
+.spark{display:flex;align-items:flex-end;gap:3px;height:40px;margin-top:8px}
+.spark i{flex:1;display:block;border-radius:2px 2px 0 0;transition:height .6s}
+.why{display:flex;flex-direction:column;margin-top:48px;border-top:1px solid #17223D}
+.wr{display:grid;grid-template-columns:minmax(0,5fr) 80px minmax(0,6fr);gap:20px;align-items:center;padding:26px 8px;border-bottom:1px solid #17223D;transition:background .3s}
+.wr:hover{background:#0C1428}
+.wr-a{font-size:clamp(19px,1.8vw,24px);font-weight:600;letter-spacing:-.01em}
+.wr-a span{display:block;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#8E9BB5;font-weight:500;letter-spacing:.1em}
+.wr-l{height:2px;background:#17223D;position:relative;overflow:hidden}
+.wr-l i{position:absolute;top:0;bottom:0;left:-40%;width:40%;background:#3DFFA2;display:block;transition:left .6s}
+.wr:hover .wr-l i{left:100%}
+.wr-b{color:#8E9BB5}
+.wr-b b{color:#E6ECF7;font-weight:600;display:block}
+@media(max-width:760px){.wr{grid-template-columns:minmax(0,1fr)}.wr-l{display:none}}
+.w3{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;margin-top:48px;align-items:stretch}
+@media(max-width:960px){.w3{grid-template-columns:minmax(0,1fr)}}
+.chain{padding:24px;display:flex;flex-direction:column;gap:18px}
+.blocks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;position:relative}
+@media(max-width:560px){.blocks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.blk{padding:14px 12px;border-radius:10px;border:1px solid #2A3A60;background:#060B18;font-size:13.5px;position:relative;cursor:pointer;transition:border-color .25s,transform .25s;min-height:96px;text-align:left;color:#E6ECF7;font-family:inherit}
+.blk:hover{transform:translateY(-3px);border-color:#00AEEF}
+.blk b{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;color:#8E9BB5;font-weight:500;margin-bottom:4px}
+.w3img{position:relative;border-radius:16px;overflow:hidden;border:1px solid #17223D;min-height:360px}
+.w3img img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;display:block}
+.w3img .tag{position:absolute;left:16px;bottom:16px;background:rgba(6,11,24,.85)}
+.cta-bg{background:linear-gradient(90deg,rgba(6,11,24,.97) 35%,rgba(6,11,24,.55)),url(assets/controller-hands.webp) center/cover;border-radius:24px;border:1px solid #17223D;padding:clamp(40px,6vw,88px)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="rx">
+<div class="strip mono"><div class="wrap strip-in"><span>BAQUELIS · JEUX &amp; WEB3</span><a href="Main.dc.html">Toutes les propositions →</a></div></div>
+<header class="hdr">
+<div class="wrap hdr-in">
+<a href="Reseau-Accueil.dc.html" class="logo" aria-label="Baquelis — accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M7 8 L23 6 L15 23 Z" fill="none" stroke="#2A3A60" stroke-width="1.6"></path><circle cx="7" cy="8" r="3.4" fill="#00AEEF"></circle><circle cx="23" cy="6" r="3.4" fill="#E6ECF7"></circle><circle class="logo-pulse" cx="15" cy="23" r="3.8" fill="#3DFFA2"></circle></svg><span>Baquelis</span></a>
+<nav class="nav" aria-label="Navigation principale"><a href="Reseau-Expertises.dc.html">Expertises</a><a href="Reseau-IA.dc.html">IA</a><a href="Reseau-Jeux.dc.html" class="on" aria-current="page">Jeux &amp; Web3</a><a href="Reseau-Offres.dc.html">Offres</a><a href="Reseau-Contact.dc.html">Contact</a></nav>
+<div class="hdr-cta"><a class="btn btn-sm" href="Reseau-Contact.dc.html">Réserver un appel</a><button class="menu-btn" aria-label="Ouvrir ou fermer le menu" onClick="{{ toggleMenu }}"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h9"></path></svg></button></div>
+</div>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><nav class="mnav" aria-label="Navigation mobile"><a href="Reseau-Expertises.dc.html">Expertises</a><a href="Reseau-IA.dc.html">IA</a><a href="Reseau-Jeux.dc.html">Jeux &amp; Web3</a><a href="Reseau-Offres.dc.html">Offres</a><a href="Reseau-Contact.dc.html">Contact — Réserver un appel</a></nav></sc-if>
+</header>
+
+<main>
+<section class="hero">
+<div class="hero-img" role="img" aria-label="Salle de jeu éclairée au néon"></div>
+<div class="wrap">
+<div class="hudr mono" aria-hidden="true"><span><span style="{{ ui.accentText }}">●</span> ÉTAT SYNCHRONISÉ</span><span>TEMPS RÉEL</span><span>ANTI-TRICHE ACTIF</span></div>
+<div class="hero-in">
+<div class="eyebrow rv"><span class="dot" style="{{ ui.dotBg }}"></span>Jeux &amp; Web3 · preuve d’excellence</div>
+<h1 class="h1 rv d1">Les jeux sont les applications les plus <span style="{{ ui.accentText }}">difficiles.</span></h1>
+<p class="lead rv d2" style="color:#B4BFD4">Performances temps réel, gestion d’état complexe, expériences fluides : un jeu ne pardonne rien. C’est pour cela que nous en avons fait notre terrain d’entraînement.</p>
+<p class="quoteb rv d3">« Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique. »</p>
+<div class="rv d4" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px"><a class="btn" href="#sim" style="{{ ui.ctaBg }}">Tester le simulateur</a><a class="btn btn-ghost" href="Reseau-Contact.dc.html">Parler de votre projet</a></div>
+</div>
+</div>
+</section>
+
+<section class="sec">
+<div class="wrap">
+<div class="eyebrow">Pourquoi les jeux définissent l’excellence</div>
+<h2 class="h2">Quatre exigences, aucun compromis.</h2>
+<div class="rq-g">
+<div class="rql" role="tablist" aria-label="Les 4 exigences"><sc-for list="{{ reqs }}" as="r" hint-placeholder-count="4"><button class="rqb" role="tab" style="{{ r.st }}" onClick="{{ r.pick }}" aria-selected="{{ r.sel }}"><span class="mono">{{ r.n }}</span><b>{{ r.t }}</b></button></sc-for></div>
+<div class="card rqp">
+<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><span class="tag"><span class="dot" style="{{ ui.dotBg }}"></span>EXIGENCE {{ rq.n }} / 04</span><span class="tag illu">VISUALISATION ILLUSTRATIVE</span></div>
+<div style="font-size:clamp(26px,2.6vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15">{{ rq.t }}</div>
+<p style="color:#8E9BB5;max-width:620px">{{ rq.d }}</p>
+<sc-if value="{{ rq.v0 }}" hint-placeholder-val="{{ true }}"><div class="vis gauge">
+<svg viewBox="0 0 380 220" aria-hidden="true">
+<path d="M30 190 A160 160 0 0 1 350 190" fill="none" stroke="#17223D" stroke-width="18" stroke-linecap="round"></path>
+<path d="M30 190 A160 160 0 0 1 110 51" fill="none" style="{{ ui.stroke }}" stroke-width="18" stroke-linecap="round"></path>
+<path d="M110 51 A160 160 0 0 1 270 51" fill="none" stroke="#00AEEF" stroke-opacity=".35" stroke-width="18"></path>
+<path d="M270 51 A160 160 0 0 1 350 190" fill="none" stroke="#FFB020" stroke-opacity=".5" stroke-width="18" stroke-linecap="round"></path>
+<g class="ndl"><line x1="190" y1="190" x2="190" y2="58" stroke="#E6ECF7" stroke-width="3" stroke-linecap="round"></line></g>
+<circle cx="190" cy="190" r="10" fill="#0C1428" stroke="#E6ECF7" stroke-width="2"></circle>
+<text x="30" y="215" class="mono" fill="#8E9BB5" font-size="11">RAPIDE</text><text x="350" y="215" text-anchor="end" class="mono" fill="#8E9BB5" font-size="11">LENT</text>
+</svg>
+<div class="mono" style="text-align:center;font-size:13px;color:#8E9BB5;margin-top:4px">Objectif : réponse sub-milliseconde, synchronisation parfaite entre systèmes</div>
+</div></sc-if>
+<sc-if value="{{ rq.v1 }}" hint-placeholder-val="{{ false }}"><div class="vis"><div class="lanes mono">
+<div class="ln"><span>GRAPHISMES</span><span class="ln-t"><i style="background:#00AEEF"></i></span></div>
+<div class="ln"><span>PHYSIQUE</span><span class="ln-t"><i style="{{ rq.laneA }}"></i></span></div>
+<div class="ln"><span>RÉSEAU</span><span class="ln-t"><i style="background:#00AEEF;animation-delay:-.4s"></i></span></div>
+<div class="ln"><span>SAISIE</span><span class="ln-t"><i style="{{ rq.laneB }}"></i></span></div>
+</div><p class="mono" style="font-size:12px;color:#8E9BB5;margin-top:18px">Quatre systèmes exécutés simultanément, à chaque image.</p></div></sc-if>
+<sc-if value="{{ rq.v2 }}" hint-placeholder-val="{{ false }}"><div class="vis" style="display:flex;flex-direction:column;gap:14px;justify-content:center"><p style="font-size:18px">Des milliers d’utilisateurs simultanés, une cohérence d’état sans faille, une latence minimale.</p><a class="btn btn-ghost" href="#sim" style="align-self:flex-start">Ouvrir le simulateur de joueurs →</a></div></sc-if>
+<sc-if value="{{ rq.v3 }}" hint-placeholder-val="{{ false }}"><div class="vis shield">
+<div class="sh-i"><svg width="120" height="140" viewBox="0 0 120 140" aria-hidden="true"><path d="M60 6 L110 24 V66 C110 100 88 124 60 134 C32 124 10 100 10 66 V24 Z" fill="#0C1428" stroke="#00AEEF" stroke-width="2"></path><path d="M40 70 l14 14 l28 -30" fill="none" style="{{ ui.stroke }}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="sh-scan"></span></div>
+<div class="chk mono"><div><span>Validation côté serveur</span><span style="{{ ui.accentText }}">OK</span></div><div><span>Détection d’anomalies</span><span style="{{ ui.accentText }}">OK</span></div><div><span>Intégrité des échanges</span><span style="{{ ui.accentText }}">OK</span></div><div><span>Expérience préservée</span><span style="{{ ui.accentText }}">OK</span></div></div>
+</div></sc-if>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec gridbg" id="sim" style="border-top:1px solid #17223D;border-bottom:1px solid #17223D">
+<div class="wrap">
+<div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end"><div><div class="eyebrow">Multijoueur évolutif · simulateur</div><h2 class="h2">Combien de joueurs simultanés ?</h2><p class="lead">Faites glisser le curseur : le maillage s’étend, de nouveaux serveurs s’activent, l’état reste cohérent.</p></div><span class="tag illu">SIMULATION — VALEURS ILLUSTRATIVES</span></div>
+<div class="sim">
+<div class="sim-bar"><div style="display:flex;gap:10px;align-items:center"><span class="dot" style="{{ ui.dotBg }}"></span><span class="mono" style="font-size:13px">maillage-temps-reel · {{ sim.status }}</span></div><span class="mono" style="font-size:12px;color:#8E9BB5">{{ sim.nodesTxt }}</span></div>
+<div class="sim-ctl">
+<div><div class="kpi-l">Joueurs simultanés</div><div class="big mono" style="{{ ui.accentText }}">{{ sim.players }}</div>
+<input class="rng" type="range" min="0" max="100" step="1" value="{{ sim.v }}" onInput="{{ setV }}" aria-label="Nombre de joueurs simultanés"></div>
+<div class="pre" role="group" aria-label="Préréglages"><sc-for list="{{ presets }}" as="p" hint-placeholder-count="4"><button onClick="{{ p.pick }}" style="{{ p.st }}">{{ p.l }}</button></sc-for></div>
+</div>
+<div class="mesh" aria-hidden="true">
+<div class="mesh-grid"></div>
+<div class="bb" style="{{ sim.bb }}"></div>
+<div class="hub hub0" style="{{ sim.h0.st }}"><sc-for list="{{ sim.h0.nodes }}" as="n" hint-placeholder-count="8"><i class="spoke" style="{{ n.sp }}"></i><i class="pl" style="{{ n.st }}"></i></sc-for><span class="hub-core" style="{{ sim.h0.core }}"></span><span class="hub-l mono" style="{{ sim.h0.lc }}">{{ sim.h0.l }}</span></div>
+<div class="hub hub1" style="{{ sim.h1.st }}"><sc-for list="{{ sim.h1.nodes }}" as="n" hint-placeholder-count="8"><i class="spoke" style="{{ n.sp }}"></i><i class="pl" style="{{ n.st }}"></i></sc-for><span class="hub-core" style="{{ sim.h1.core }}"></span><span class="hub-l mono" style="{{ sim.h1.lc }}">{{ sim.h1.l }}</span></div>
+<div class="hub hub2" style="{{ sim.h2.st }}"><sc-for list="{{ sim.h2.nodes }}" as="n" hint-placeholder-count="8"><i class="spoke" style="{{ n.sp }}"></i><i class="pl" style="{{ n.st }}"></i></sc-for><span class="hub-core" style="{{ sim.h2.core }}"></span><span class="hub-l mono" style="{{ sim.h2.lc }}">{{ sim.h2.l }}</span></div>
+<div class="hub hub3" style="{{ sim.h3.st }}"><sc-for list="{{ sim.h3.nodes }}" as="n" hint-placeholder-count="8"><i class="spoke" style="{{ n.sp }}"></i><i class="pl" style="{{ n.st }}"></i></sc-for><span class="hub-core" style="{{ sim.h3.core }}"></span><span class="hub-l mono" style="{{ sim.h3.lc }}">{{ sim.h3.l }}</span></div>
+</div>
+<div class="readout" aria-live="polite">
+<div class="kpi"><div class="kpi-l">Latence moyenne</div><div class="kpi-v" style="{{ sim.latSt }}">{{ sim.lat }}</div><div class="spark"><sc-for list="{{ sim.spark }}" as="b" hint-placeholder-count="16"><i style="{{ b }}"></i></sc-for></div></div>
+<div class="kpi"><div class="kpi-l">Serveurs actifs</div><div class="kpi-v">{{ sim.servers }}</div><p class="mono" style="font-size:12px;color:#8E9BB5;margin-top:8px">répartition automatique de la charge</p></div>
+<div class="kpi"><div class="kpi-l">Mises à jour d’état / s</div><div class="kpi-v">{{ sim.ups }}</div><p class="mono" style="font-size:12px;color:#8E9BB5;margin-top:8px">à 30 synchronisations par seconde</p></div>
+<div class="kpi"><div class="kpi-l">Cohérence d’état</div><div class="kpi-v" style="{{ ui.accentText }}">SYNCHRO</div><p class="mono" style="font-size:12px;color:#8E9BB5;margin-top:8px">tous les clients voient le même monde</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec">
+<div class="wrap">
+<div class="eyebrow">Ce que cela change pour vous</div>
+<h2 class="h2">Une exigence de jeu,<br>un bénéfice pour tous les projets.</h2>
+<p class="lead">Vous ne construisez pas forcément un jeu. Mais votre produit profite de chaque leçon apprise sur le terrain le plus exigeant.</p>
+<div class="why">
+<div class="wr"><div class="wr-a"><span>JEU · 01</span>Performance temps réel</div><div class="wr-l"><i></i></div><div class="wr-b"><b>Des applications qui répondent instantanément</b>Vos utilisateurs ne voient jamais d’attente, même aux heures de pointe.</div></div>
+<div class="wr"><div class="wr-a"><span>JEU · 02</span>Architecture complexe</div><div class="wr-l"><i></i></div><div class="wr-b"><b>Des systèmes qui orchestrent beaucoup de briques</b>Paiement, données, IA, interfaces : tout fonctionne ensemble, sans casser.</div></div>
+<div class="wr"><div class="wr-a"><span>JEU · 03</span>Multijoueur évolutif</div><div class="wr-l"><i></i></div><div class="wr-b"><b>Des plateformes qui tiennent la montée en charge</b>Croître de dix à des milliers d’utilisateurs sans tout réécrire.</div></div>
+<div class="wr"><div class="wr-a"><span>JEU · 04</span>Sécurité &amp; anti-triche</div><div class="wr-l"><i></i></div><div class="wr-b"><b>Une protection qui ne freine pas l’expérience</b>Vos données et vos utilisateurs protégés, sans friction inutile.</div></div>
+</div>
+</div>
+</section>
+
+<section class="sec gridbg" style="border-top:1px solid #17223D">
+<div class="wrap">
+<div class="eyebrow">Plateforme Web3</div>
+<h2 class="h2">Une plateforme de gaming Web3,<br>pensée comme un système temps réel.</h2>
+<div class="w3">
+<div class="card chain">
+<p style="color:#8E9BB5">Le Web3 ajoute une couche d’exigence : des échanges qui doivent rester sûrs, vérifiables et rapides, sans dégrader l’expérience de jeu. Cliquez sur un bloc pour explorer la chaîne.</p>
+<div class="blocks"><sc-for list="{{ blocks }}" as="b" hint-placeholder-count="4"><button class="blk" style="{{ b.st }}" onClick="{{ b.pick }}" aria-pressed="{{ b.pr }}"><b>{{ b.k }}</b>{{ b.t }}</button></sc-for></div>
+<svg viewBox="0 0 600 24" aria-hidden="true" style="width:100%;height:auto;display:block"><line x1="10" y1="12" x2="590" y2="12" stroke="#17223D" stroke-width="2"></line><line x1="10" y1="12" x2="590" y2="12" pathLength="100" style="{{ ui.stroke }}" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 98" fill="none"><animate attributeName="stroke-dashoffset" from="100" to="0" dur="3s" repeatCount="indefinite"></animate></line></svg>
+<div class="kpi" style="{{ blk.anim }}"><div class="kpi-l">{{ blk.k }} · {{ blk.t }}</div><p style="margin-top:6px">{{ blk.d }}</p></div>
+</div>
+<div class="w3img"><img src="assets/holo-foil.webp" alt="Film holographique irisé"><span class="tag">ACTIFS NUMÉRIQUES · ILLUSTRATION</span></div>
+</div>
+</div>
+</section>
+
+<section class="sec" style="padding-top:0">
+<div class="wrap">
+<div class="cta-bg">
+<div class="eyebrow"><span class="dot" style="{{ ui.dotBg }}"></span>Votre défi technique</div>
+<h2 class="h2" style="max-width:760px">Prêt à transformer votre entreprise ?</h2>
+<p class="lead">Jeu, plateforme temps réel ou application métier exigeante : parlons de votre défi le plus difficile.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px"><a class="btn" href="Reseau-Contact.dc.html" style="{{ ui.ctaBg }}">Commencer aujourd’hui</a><a class="btn btn-ghost" href="Reseau-Offres.dc.html">Voir les formules</a></div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="ftr">
+<div class="wrap">
+<div class="ftr-g">
+<div><a href="Reseau-Accueil.dc.html" class="logo" aria-label="Baquelis — accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M7 8 L23 6 L15 23 Z" fill="none" stroke="#2A3A60" stroke-width="1.6"></path><circle cx="7" cy="8" r="3.4" fill="#00AEEF"></circle><circle cx="23" cy="6" r="3.4" fill="#E6ECF7"></circle><circle cx="15" cy="23" r="3.8" fill="#3DFFA2"></circle></svg><span>Baquelis</span></a><p style="color:#8E9BB5;margin-top:12px;max-width:280px">Flexibilité. Continuité. Performance. Excellence IA par la technologie.</p><p style="margin-top:16px;font-size:14px;color:#8E9BB5">31 B avenue Maréchal Foch<br>06000 Nice</p><p class="mono" style="margin-top:8px;font-size:13px">[contact@domaine-baquelis]</p></div>
+<div><h4>Navigation</h4><div class="ftr-l"><a href="Reseau-Expertises.dc.html">Expertises</a><a href="Reseau-IA.dc.html">Intelligence artificielle</a><a href="Reseau-Jeux.dc.html">Jeux &amp; Web3</a><a href="Reseau-Offres.dc.html">Offres</a><a href="Reseau-Contact.dc.html">Contact</a></div></div>
+<div><h4>Offres</h4><div class="ftr-l"><a href="Reseau-Offres.dc.html">Intégration — 4&nbsp;500&nbsp;€/mois</a><a href="Reseau-Offres.dc.html">Flex — 6&nbsp;200&nbsp;€/mois</a><a href="Reseau-Offres.dc.html">Performance — 18&nbsp;900&nbsp;€/mois</a></div></div>
+<div><h4>Société</h4><div class="ftr-l" style="color:#8E9BB5;font-size:14px"><span style="display:block;padding:9px 0">[RAISON SOCIALE]</span><span style="display:block;padding:9px 0">TVA : [N° TVA]</span><a href="Main.dc.html">Toutes les propositions</a></div></div>
+</div>
+<div class="ftr-b mono"><span>© 2026 Baquelis</span><span>Proposition de refonte — concept · Direction 4 · Réseau</span></div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6900},"accent":{"editor":"color","default":"#3DFFA2","options":["#3DFFA2","#00AEEF","#FFB020"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu: false, req: 0, v: 55, tick: 0, blk: 0 };
+  }
+  componentDidMount(){
+    this.timer = setInterval(() => this.setState({ tick: this.state.tick + 1 }), 1000);
+  }
+  componentWillUnmount(){ clearInterval(this.timer); }
+  renderVals(){
+    const s = this.state;
+    const A = (this.props && this.props.accent) || '#3DFFA2';
+
+    const R = [
+      { t: 'Performance temps réel', d: 'Réponse sub-milliseconde et synchronisation parfaite entre systèmes : chaque image compte.' },
+      { t: 'Architecture complexe', d: 'Graphismes, physique, réseau et saisie, exécutés simultanément sans jamais se bloquer.' },
+      { t: 'Multijoueur évolutif', d: 'Des milliers d’utilisateurs simultanés, la cohérence d’état et une latence minimale.' },
+      { t: 'Sécurité & anti-triche', d: 'Une protection avancée, sans dégrader l’expérience de jeu.' }
+    ];
+    const reqs = R.map((r, i) => ({
+      n: '0' + (i + 1), t: r.t, sel: i === s.req ? 'true' : 'false',
+      st: i === s.req ? 'border-color:' + A + ';background:#0C1428;box-shadow:inset 3px 0 0 ' + A : '',
+      pick: () => this.setState({ req: i })
+    }));
+    const rq = {
+      n: '0' + (s.req + 1), t: R[s.req].t, d: R[s.req].d,
+      v0: s.req === 0, v1: s.req === 1, v2: s.req === 2, v3: s.req === 3,
+      laneA: 'background:' + A + ';animation-delay:-.8s', laneB: 'background:' + A + ';animation-delay:-1.2s'
+    };
+
+    // ponytail: courbe logarithmique 2 -> 10 000 joueurs, valeurs purement illustratives
+    const players = Math.round(2 * Math.pow(5000, s.v / 100));
+    const fmt = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    const lg = Math.log10(players);
+    const total = Math.min(players, 64, Math.max(2, Math.round(4 + 15 * lg)));
+    const active = players < 400 ? 1 : players < 1500 ? 2 : players < 4500 ? 3 : 4;
+    const per = [0, 0, 0, 0];
+    for (let k = 0; k < total; k++) per[k % active]++;
+    const LBL = ['SERVEUR 1', 'SERVEUR 2', 'SERVEUR 3', 'SERVEUR 4'];
+    const mk = j => {
+      const nodes = [];
+      for (let k = 0; k < per[j]; k++) {
+        const r = 36 + 84 * Math.sqrt((k + 0.5) / 16);
+        const a = k * 2.39996 + j * 0.7;
+        const dx = Math.cos(a) * r, dy = Math.sin(a) * r * 0.82;
+        const len = Math.sqrt(dx * dx + dy * dy);
+        const ang = Math.atan2(dy, dx);
+        const hot = (k + s.tick) % 9 === 0;
+        nodes.push({
+          sp: 'width:' + Math.round(len - 6) + 'px;transform:rotate(' + ang.toFixed(3) + 'rad);animation-delay:' + (k * 0.02) + 's',
+          st: 'transform:translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px);background:' + (hot ? A : '#00AEEF') + ';box-shadow:0 0 ' + (hot ? 12 : 6) + 'px ' + (hot ? A : 'rgba(0,174,239,.6)') + ';animation-delay:' + (k * 0.02) + 's'
+        });
+      }
+      const on = j < active;
+      return {
+        nodes: nodes, l: on ? LBL[j] : 'EN VEILLE',
+        st: 'opacity:' + (on ? 1 : 0.45),
+        core: on ? 'border-color:' + A + ';background:#0C1428;animation:hubp 1.6s infinite' : 'border-color:#2A3A60;background:#060B18',
+        lc: on ? 'color:#E6ECF7' : 'color:#8E9BB5'
+      };
+    };
+    const latBase = 12 + 6 * lg - (active - 1) * 2;
+    const jitter = t => Math.sin(t * 1.7) * 1.4 + Math.sin(t * 0.6) * 0.9;
+    const lat = Math.max(4, latBase + jitter(s.tick));
+    const spark = [];
+    for (let k = 15; k >= 0; k--) {
+      const L = Math.max(4, latBase + jitter(s.tick - k));
+      spark.push('height:' + Math.round(6 + L) + 'px;background:' + (k === 0 ? A : (L > 30 ? '#FFB020' : '#00AEEF')) + ';opacity:' + (k === 0 ? 1 : 0.55));
+    }
+    const sim = {
+      v: s.v, players: fmt(players),
+      status: active > 1 ? active + ' serveurs synchronisés' : 'serveur unique',
+      nodesTxt: total + ' nœuds affichés · 1 nœud ≈ ' + fmt(Math.max(1, Math.round(players / total))) + ' joueur(s)',
+      h0: mk(0), h1: mk(1), h2: mk(2), h3: mk(3),
+      bb: 'opacity:' + (active > 1 ? 1 : 0.15),
+      lat: '≈ ' + lat.toFixed(1) + ' ms', latSt: lat > 30 ? 'color:#FFB020' : 'color:#E6ECF7',
+      spark: spark, servers: active + ' / 4', ups: fmt(players * 30)
+    };
+    const PR = [[0, '2'], [46, '≈ 100'], [73, '≈ 1 000'], [100, '10 000']];
+    const presets = PR.map(p => ({ l: p[1], st: s.v === p[0] ? 'border-color:' + A + ';color:' + A : '', pick: () => this.setState({ v: p[0] }) }));
+
+    const B = [
+      { k: 'BLOC 01', t: 'Identité joueur', d: 'Une identité portable et sécurisée, reconnue par la plateforme sans ralentir la connexion.' },
+      { k: 'BLOC 02', t: 'Actifs numériques', d: 'Des objets de jeu possédés par les joueurs, dont l’état reste cohérent partout.' },
+      { k: 'BLOC 03', t: 'Échanges sécurisés', d: 'Des transactions vérifiables, protégées par la même culture anti-triche que nos jeux.' },
+      { k: 'BLOC 04', t: 'Temps réel', d: 'La couche Web3 se synchronise avec le jeu sans dégrader la fluidité de l’expérience.' }
+    ];
+    const blocks = B.map((b, i) => ({ k: b.k, t: b.t, pr: i === s.blk ? 'true' : 'false', st: i === s.blk ? 'border-color:' + A + ';box-shadow:0 0 0 4px rgba(61,255,162,.12)' : '', pick: () => this.setState({ blk: i }) }));
+    const cb = B[s.blk];
+    const blk = { k: cb.k, t: cb.t, d: cb.d, anim: 'animation:' + (s.blk % 2 ? 'fadeIn' : 'fadeIn2') + ' .4s both' };
+
+    return {
+      menuOpen: s.menu,
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      ui: { dotBg: 'background:' + A, accentText: 'color:' + A, ctaBg: 'background:' + A, stroke: 'stroke:' + A },
+      reqs: reqs, rq: rq, sim: sim, presets: presets,
+      setV: e => this.setState({ v: Number(e.target.value) }),
+      blocks: blocks, blk: blk
+    };
+  }
+}
+</script>
+</body>
+</html>

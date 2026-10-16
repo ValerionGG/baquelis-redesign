@@ -1,0 +1,426 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-17T10:00:00Z"
+ },
+ "title": "Baquelis — propositions 1 à 5",
+ "launch": {
+  "view": "focused",
+  "file": "Main.dc.html"
+ },
+ "pages": [
+  {
+   "id": "capa",
+   "name": "Couverture"
+  },
+  {
+   "id": "noyau",
+   "name": "1 · Noyau"
+  },
+  {
+   "id": "agent",
+   "name": "2 · Agent"
+  },
+  {
+   "id": "monolithe",
+   "name": "3 · Monolithe"
+  },
+  {
+   "id": "reseau",
+   "name": "4 · Réseau"
+  },
+  {
+   "id": "arcade",
+   "name": "5 · Arcade"
+  }
+ ],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 1900,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Couverture — les 10 propositions",
+   "page": "capa"
+  },
+  "Noyau-Accueil.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 8572,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Noyau · Accueil",
+   "page": "noyau"
+  },
+  "Noyau-Expertises.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 6721,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Noyau · Expertises",
+   "page": "noyau"
+  },
+  "Noyau-IA.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 6056,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Noyau · IA & agents",
+   "page": "noyau"
+  },
+  "Noyau-Jeux.dc.html": {
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 5194,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Noyau · Jeux & Web3",
+   "page": "noyau"
+  },
+  "Noyau-Offres.dc.html": {
+   "x": 6080,
+   "y": 0,
+   "w": 1440,
+   "h": 5904,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Noyau · Offres",
+   "page": "noyau"
+  },
+  "Noyau-Contact.dc.html": {
+   "x": 7600,
+   "y": 0,
+   "w": 1440,
+   "h": 3597,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Noyau · Contact",
+   "page": "noyau"
+  },
+  "Agent-Accueil.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 8302,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Agent · Accueil",
+   "page": "agent"
+  },
+  "Agent-Expertises.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 5787,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Agent · Expertises",
+   "page": "agent"
+  },
+  "Agent-IA.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 5896,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Agent · IA & agents",
+   "page": "agent"
+  },
+  "Agent-Jeux.dc.html": {
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 4464,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Agent · Jeux & Web3",
+   "page": "agent"
+  },
+  "Agent-Offres.dc.html": {
+   "x": 6080,
+   "y": 0,
+   "w": 1440,
+   "h": 5782,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Agent · Offres",
+   "page": "agent"
+  },
+  "Agent-Contact.dc.html": {
+   "x": 7600,
+   "y": 0,
+   "w": 1440,
+   "h": 2878,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Agent · Contact",
+   "page": "agent"
+  },
+  "Monolithe-Accueil.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 10365,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Monolithe · Accueil",
+   "page": "monolithe"
+  },
+  "Monolithe-Expertises.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 7293,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Monolithe · Expertises",
+   "page": "monolithe"
+  },
+  "Monolithe-IA.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 6736,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Monolithe · IA & agents",
+   "page": "monolithe"
+  },
+  "Monolithe-Jeux.dc.html": {
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 5861,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Monolithe · Jeux & Web3",
+   "page": "monolithe"
+  },
+  "Monolithe-Offres.dc.html": {
+   "x": 6080,
+   "y": 0,
+   "w": 1440,
+   "h": 7293,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Monolithe · Offres",
+   "page": "monolithe"
+  },
+  "Monolithe-Contact.dc.html": {
+   "x": 7600,
+   "y": 0,
+   "w": 1440,
+   "h": 3562,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Monolithe · Contact",
+   "page": "monolithe"
+  },
+  "Reseau-Accueil.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 8491,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Réseau · Accueil",
+   "page": "reseau"
+  },
+  "Reseau-Expertises.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 5908,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Réseau · Expertises",
+   "page": "reseau"
+  },
+  "Reseau-IA.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 5965,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Réseau · IA & agents",
+   "page": "reseau"
+  },
+  "Reseau-Jeux.dc.html": {
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 6173,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Réseau · Jeux & Web3",
+   "page": "reseau"
+  },
+  "Reseau-Offres.dc.html": {
+   "x": 6080,
+   "y": 0,
+   "w": 1440,
+   "h": 5848,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Réseau · Offres",
+   "page": "reseau"
+  },
+  "Reseau-Contact.dc.html": {
+   "x": 7600,
+   "y": 0,
+   "w": 1440,
+   "h": 2510,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Réseau · Contact",
+   "page": "reseau"
+  },
+  "Arcade-Accueil.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 8000,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Arcade · Accueil",
+   "page": "arcade"
+  },
+  "Arcade-Expertises.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 5714,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Arcade · Expertises",
+   "page": "arcade"
+  },
+  "Arcade-IA.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 6017,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Arcade · IA & agents",
+   "page": "arcade"
+  },
+  "Arcade-Jeux.dc.html": {
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 4787,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Arcade · Jeux & Web3",
+   "page": "arcade"
+  },
+  "Arcade-Offres.dc.html": {
+   "x": 6080,
+   "y": 0,
+   "w": 1440,
+   "h": 6073,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Arcade · Offres",
+   "page": "arcade"
+  },
+  "Arcade-Contact.dc.html": {
+   "x": 7600,
+   "y": 0,
+   "w": 1440,
+   "h": 1820,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Arcade · Contact",
+   "page": "arcade"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "Noyau-Accueil.dc.html",
+  "Noyau-Expertises.dc.html",
+  "Noyau-IA.dc.html",
+  "Noyau-Jeux.dc.html",
+  "Noyau-Offres.dc.html",
+  "Noyau-Contact.dc.html",
+  "Agent-Accueil.dc.html",
+  "Agent-Expertises.dc.html",
+  "Agent-IA.dc.html",
+  "Agent-Jeux.dc.html",
+  "Agent-Offres.dc.html",
+  "Agent-Contact.dc.html",
+  "Monolithe-Accueil.dc.html",
+  "Monolithe-Expertises.dc.html",
+  "Monolithe-IA.dc.html",
+  "Monolithe-Jeux.dc.html",
+  "Monolithe-Offres.dc.html",
+  "Monolithe-Contact.dc.html",
+  "Reseau-Accueil.dc.html",
+  "Reseau-Expertises.dc.html",
+  "Reseau-IA.dc.html",
+  "Reseau-Jeux.dc.html",
+  "Reseau-Offres.dc.html",
+  "Reseau-Contact.dc.html",
+  "Arcade-Accueil.dc.html",
+  "Arcade-Expertises.dc.html",
+  "Arcade-IA.dc.html",
+  "Arcade-Jeux.dc.html",
+  "Arcade-Offres.dc.html",
+  "Arcade-Contact.dc.html"
+ ],
+ "notes": {
+  "t_noyau": {
+   "x": 0,
+   "y": -340,
+   "text": "1 · Noyau — précision d’ingénierie, lueur cyan",
+   "kind": "title1",
+   "maxW": 9040,
+   "page": "noyau"
+  },
+  "t_agent": {
+   "x": 0,
+   "y": -340,
+   "text": "2 · Agent — une conversation avec ATOM",
+   "kind": "title1",
+   "maxW": 9040,
+   "page": "agent"
+  },
+  "t_monolithe": {
+   "x": 0,
+   "y": -340,
+   "text": "3 · Monolithe — conseil de prestige",
+   "kind": "title1",
+   "maxW": 9040,
+   "page": "monolithe"
+  },
+  "t_reseau": {
+   "x": 0,
+   "y": -340,
+   "text": "4 · Réseau — le temps réel rendu visible",
+   "kind": "title1",
+   "maxW": 9040,
+   "page": "reseau"
+  },
+  "t_arcade": {
+   "x": 0,
+   "y": -340,
+   "text": "5 · Arcade — l’ADN jeu vidéo, haut de gamme",
+   "kind": "title1",
+   "maxW": 9040,
+   "page": "arcade"
+  }
+ },
+ "designSystems": []
+}

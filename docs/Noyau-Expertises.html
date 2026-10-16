@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Noyau — Expertises</title>
+<script src="vendor/preact.min.js"></script>
+<script src="dc.js"></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<script type="text/x-dc-template" id="dc-template">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&amp;family=Geist+Mono:wght@400..600&amp;display=swap">
+<style>
+body{margin:0;background:#07090C}
+sc-for,sc-if{display:contents}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+.nx{--c:#00AEEF;--w:#FFB547;background:#07090C;color:#E7EDF3;font-family:'Geist',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;position:relative;overflow:hidden}
+.nx *{box-sizing:border-box}
+.nx a{color:inherit;text-decoration:none}
+.nx img{display:block;max-width:100%}
+.nx button{font-family:inherit;color:inherit}
+.nx h1,.nx h2,.nx h3,.nx h4,.nx p{margin:0}
+.nx ::selection{background:var(--c);color:#03131B}
+.mono{font-family:'Geist Mono',ui-monospace,monospace}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px;position:relative}
+.lab{font-family:'Geist Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#8A96A3}
+.c{color:var(--c)}
+.mut{color:#8A96A3}
+.disp{font-weight:600;letter-spacing:-.045em;line-height:.98;overflow-wrap:anywhere}
+.h2{font-size:clamp(34px,4.4vw,60px);font-weight:600;letter-spacing:-.04em;line-height:1.03;overflow-wrap:anywhere}
+.lead{font-size:clamp(17px,1.35vw,19px);color:#B4BFCA;line-height:1.65}
+.gridbg{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#131920 1px,transparent 1px),linear-gradient(90deg,#131920 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 60% 40%,#000 25%,transparent 78%);mask-image:radial-gradient(ellipse 70% 60% at 60% 40%,#000 25%,transparent 78%)}
+.panel{background:#0E1217;border:1px solid #1C232B;border-radius:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:10px;border:1px solid var(--c);background:var(--c);color:#03131B;font:600 15px/1 'Geist',sans-serif;cursor:pointer;box-shadow:0 10px 30px -12px color-mix(in srgb,var(--c) 75%,transparent);transition:box-shadow .3s,transform .3s,border-color .3s,background .3s}
+.nx a.btn{color:#03131B}
+.btn:hover{transform:translateY(-1px);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 20%,transparent),0 14px 40px -8px color-mix(in srgb,var(--c) 80%,transparent)}
+.btn svg{transition:transform .3s}
+.btn:hover svg{transform:translateX(3px)}
+.btn-g,.nx a.btn-g{background:rgba(255,255,255,.02);color:#E7EDF3;border-color:#2A333D;box-shadow:none}
+.btn-g:hover{border-color:var(--c);box-shadow:0 0 26px -8px color-mix(in srgb,var(--c) 70%,transparent)}
+.btn-sm{min-height:44px;padding:0 16px;font-size:14px}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.kbd{display:inline-flex;align-items:center;font:500 11px/1 'Geist Mono',monospace;padding:4px 6px;border:1px solid #2A333D;border-bottom-width:2px;border-radius:6px;color:#8A96A3;background:#0B0E12}
+.nx :focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.hdr{position:relative;z-index:50;border-bottom:1px solid #1C232B;background:rgba(7,9,12,.75);backdrop-filter:blur(14px)}
+.hrow{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:21px;letter-spacing:-.035em;min-height:44px}
+.lspin{transform-box:fill-box;transform-origin:center;animation:spin 14s linear infinite}
+.nl{display:inline-flex;align-items:center;min-height:44px;padding:0 13px;font-size:14px;color:#B4BFCA;border-radius:8px;transition:color .2s,background .2s}
+.nl:hover{color:#fff;background:#0E1217}
+.cmdk{display:inline-flex;align-items:center;gap:10px;min-height:44px;min-width:44px;padding:0 8px 0 12px;background:#0B0E12;border:1px solid #1C232B;border-radius:10px;color:#8A96A3;font-size:14px;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.cmdk:hover{border-color:#2F3A45;color:#E7EDF3;box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 14%,transparent)}
+.burger{display:none}
+.ib{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid #1C232B;border-radius:10px;background:#0B0E12;cursor:pointer}
+.mnav{border-top:1px solid #1C232B;padding:8px 20px 22px}
+.mi{display:flex;justify-content:space-between;align-items:center;min-height:54px;border-bottom:1px solid #1C232B;font-size:18px}
+.palx{position:absolute;left:0;right:0;top:86px;z-index:90;padding:0 20px;animation:palIn .28s cubic-bezier(.2,.8,.2,1) both}
+.pal{max-width:660px;margin:0 auto;background:rgba(14,18,23,.97);border:1px solid #2A333D;border-radius:16px;box-shadow:0 40px 120px -20px #000,0 0 70px -24px color-mix(in srgb,var(--c) 55%,transparent);backdrop-filter:blur(20px);overflow:hidden}
+.pal-in{display:flex;align-items:center;gap:12px;padding:0 12px 0 18px;border-bottom:1px solid #1C232B;color:#8A96A3}
+.pal-in input{flex:1;min-width:0;min-height:60px;background:transparent;border:0;color:#E7EDF3;font:400 17px 'Geist',sans-serif;outline:none}
+.pal-in input::placeholder{color:#76838F}
+.pal-tabs{display:flex;gap:6px;padding:8px 12px;border-bottom:1px solid #1C232B}
+.ptab{min-height:44px;padding:0 14px;border:1px solid transparent;border-radius:8px;background:transparent;color:#8A96A3;font:500 12px 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:color .2s,background .2s}
+.ptab:hover{color:#E7EDF3}
+.pal-list{max-height:360px;overflow:auto;padding:8px}
+.pit{display:grid;grid-template-columns:76px minmax(0,1fr) auto 18px;align-items:center;gap:12px;min-height:50px;padding:0 12px;border-radius:10px;transition:background .15s}
+.pit:hover,.pit:focus-visible{background:#151B22}
+.pk{font:500 10px/1 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;padding:6px 0;border-radius:5px;border:1px solid #2A333D;color:#8A96A3;text-align:center}
+.pgo{opacity:0;transform:translateX(-4px);transition:opacity .2s,transform .2s;color:var(--c)}
+.pit:hover .pgo,.pit:focus-visible .pgo{opacity:1;transform:none}
+.pal-f{display:flex;justify-content:space-between;gap:12px;padding:12px 18px;border-top:1px solid #1C232B;font:500 11px 'Geist Mono',monospace;color:#8A96A3;letter-spacing:.04em}
+@keyframes palIn{from{opacity:0;transform:translateY(-10px) scale(.985)}to{opacity:1;transform:none}}
+.ft{border-top:1px solid #1C232B;padding:80px 0 28px;position:relative;background:linear-gradient(#07090C,#090C10)}
+.fgrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px}
+.fl{display:flex;align-items:center;min-height:44px;color:#B4BFCA;font-size:14px;transition:color .2s}
+.fl:hover{color:var(--c)}
+.fi{display:flex;align-items:center;min-height:44px;color:#8A96A3;font:500 13px 'Geist Mono',monospace}
+.fwm{font-weight:600;font-size:clamp(56px,17vw,250px);letter-spacing:-.065em;line-height:.82;color:transparent;-webkit-text-stroke:1px #222B34;margin:72px 0 0;white-space:nowrap;user-select:none;text-align:center}
+.fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid #1C232B;padding-top:22px;margin-top:8px;font:500 12px 'Geist Mono',monospace;color:#8A96A3}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.up{animation:up .9s cubic-bezier(.2,.8,.2,1) both}
+.d1{animation-delay:.08s}.d2{animation-delay:.18s}.d3{animation-delay:.28s}.d4{animation-delay:.38s}.d5{animation-delay:.48s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes flow{to{stroke-dashoffset:-20}}
+@keyframes rot{to{--a:360deg}}
+.live{display:inline-flex;align-items:center;gap:8px;font:500 11px/1 'Geist Mono',monospace;letter-spacing:.1em;color:var(--w);padding:6px 10px;border:1px solid rgba(255,181,71,.32);border-radius:999px;background:rgba(255,181,71,.06)}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--w);box-shadow:0 0 10px var(--w);animation:pulse 1.6s infinite}
+.sect{padding:120px 0;position:relative}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:56px}
+.eyb{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px}
+.eyb::before{content:"";width:18px;height:1px;background:var(--c);box-shadow:0 0 8px var(--c)}
+.spot{position:relative;overflow:hidden;isolation:isolate}
+.spot .glow{position:absolute;width:520px;height:520px;left:50%;top:0;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--c) 20%,transparent),transparent);opacity:0;transition:opacity .4s,left .55s cubic-bezier(.2,.8,.2,1),top .55s cubic-bezier(.2,.8,.2,1);pointer-events:none;z-index:0}
+.spot:hover .glow{opacity:1}
+.zs{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);z-index:3}
+.zs i{display:block}
+.spot:has(.zs i:nth-child(1):hover) .glow{left:15%;top:15%}
+.spot:has(.zs i:nth-child(2):hover) .glow{left:50%;top:15%}
+.spot:has(.zs i:nth-child(3):hover) .glow{left:85%;top:15%}
+.spot:has(.zs i:nth-child(4):hover) .glow{left:15%;top:50%}
+.spot:has(.zs i:nth-child(5):hover) .glow{left:50%;top:50%}
+.spot:has(.zs i:nth-child(6):hover) .glow{left:85%;top:50%}
+.spot:has(.zs i:nth-child(7):hover) .glow{left:15%;top:85%}
+.spot:has(.zs i:nth-child(8):hover) .glow{left:50%;top:85%}
+.spot:has(.zs i:nth-child(9):hover) .glow{left:85%;top:85%}
+.spot>.in{position:relative;z-index:1}
+.chip{display:inline-flex;align-items:center;min-height:30px;padding:0 10px;border:1px solid #1C232B;border-radius:6px;font:500 12px 'Geist Mono',monospace;color:#B4BFCA;background:#07090C}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+/* page: expertises */
+.hero{position:relative;padding:96px 0 64px}
+.hg{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:56px;align-items:end}
+.spec{font:400 13.5px 'Geist Mono',monospace}
+.spec>div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;padding:13px 20px;border-top:1px solid #1C232B}
+.spec>div:first-of-type{border-top:0}
+.strip{position:relative;border-radius:20px;overflow:hidden;border:1px solid #1C232B;height:440px}
+.strip img{width:100%;height:440px;object-fit:cover;filter:saturate(.6) brightness(.6) contrast(1.1);transform:scale(1.02);transition:transform 1.6s cubic-bezier(.2,.8,.2,1),filter .8s}
+.strip:hover img{transform:scale(1.06);filter:saturate(.85) brightness(.7)}
+.scan{position:absolute;left:0;right:0;height:1px;top:0;background:linear-gradient(90deg,transparent,var(--c),transparent);box-shadow:0 0 18px var(--c);animation:scan 6s linear infinite;opacity:.7}
+@keyframes scan{0%{transform:translateY(0)}100%{transform:translateY(440px)}}
+.pin{position:absolute;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #2A333D;border-radius:999px;background:rgba(7,9,12,.8);backdrop-filter:blur(8px);font:500 12px 'Geist Mono',monospace;color:#E7EDF3}
+.pin i{width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent);animation:pulse 2s infinite}
+.tabs{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:20px}
+.tl{display:flex;flex-direction:column;gap:8px}
+.tb{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:center;text-align:left;padding:18px 18px;min-height:44px;border:1px solid #1C232B;border-radius:14px;background:#0B0E12;cursor:pointer;transition:border-color .3s,background .3s,box-shadow .3s;overflow:hidden}
+.tb:hover{border-color:#2A3540;background:#0E1217}
+.tb .bar{position:absolute;left:0;bottom:0;height:2px;background:var(--c);box-shadow:0 0 10px var(--c);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.tp{padding:40px;animation:up .55s cubic-bezier(.2,.8,.2,1) both}
+.fgrid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:12px;margin-top:30px}
+.fc{padding:22px;border:1px solid #1C232B;border-radius:12px;background:#0B0E12;transition:border-color .3s,transform .3s}
+.fc:hover{border-color:color-mix(in srgb,var(--c) 50%,#1C232B);transform:translateY(-2px)}
+.dom{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.dc{display:block;border:1px solid #1C232B;border-radius:18px;background:#0B0E12;min-height:250px;transition:border-color .35s,transform .35s}
+.dc:hover{border-color:#2A3540;transform:translateY(-2px)}
+.dc .in{display:flex;flex-direction:column;height:auto;min-height:250px;padding:28px}
+.dc .go{margin-top:auto;padding-top:22px;display:flex;justify-content:space-between;align-items:center;font:500 12px 'Geist Mono',monospace;color:#8A96A3;transition:color .3s}
+.dc:hover .go{color:var(--c)}
+.ms{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:20px}
+.mb{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;align-items:center;width:100%;text-align:left;padding:10px 12px;min-height:64px;border:1px solid transparent;border-radius:12px;background:transparent;cursor:pointer;transition:background .3s,border-color .3s}
+.mb:hover{background:#0B0E12}
+.mn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid #2A333D;font:500 13px 'Geist Mono',monospace;transition:all .35s}
+.mp{padding:40px;display:flex;flex-direction:column;animation:up .5s both}
+.prog{height:4px;border-radius:4px;background:#151B22;overflow:hidden}
+.prog span{display:block;height:4px;background:var(--c);box-shadow:0 0 12px var(--c);transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid #1C232B}
+.li svg{flex:none;margin-top:4px;color:var(--c)}
+.eng{border-top:1px solid #1C232B}
+.eb{display:grid;grid-template-columns:90px minmax(0,1fr) 44px;gap:24px;align-items:center;width:100%;text-align:left;padding:30px 0;min-height:44px;background:transparent;border:0;cursor:pointer}
+.eb .et{font-size:clamp(26px,3.4vw,46px);font-weight:600;letter-spacing:-.04em;line-height:1.05;transition:color .3s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.eb:hover .et{transform:translateX(8px)}
+.pm{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid #2A333D;border-radius:50%;transition:transform .4s,border-color .3s}
+.ebody{display:grid;grid-template-columns:90px minmax(0,1fr);gap:24px;padding:0 0 34px;animation:up .45s both}
+.cta{position:relative;overflow:hidden;border:1px solid #1C232B;border-radius:24px;padding:88px 40px;text-align:center;background:radial-gradient(ellipse at 50% 120%,color-mix(in srgb,var(--c) 16%,transparent),transparent 60%),#090C10}
+@media (max-width:1080px){.nav-links{display:none!important}.burger{display:inline-flex}.hide-m{display:none!important}.hg{grid-template-columns:1fr}.tabs,.ms{grid-template-columns:1fr}}
+@media (max-width:900px){.dom{grid-template-columns:1fr}.dom>*{grid-column:auto!important}.fgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:720px){.wrap{padding:0 20px}.sect{padding:80px 0}.hide-s{display:none!important}.tp,.mp{padding:26px}.spec>div{grid-template-columns:1fr;gap:2px}.eb{grid-template-columns:50px minmax(0,1fr) 44px;gap:12px}.ebody{grid-template-columns:1fr}.strip,.strip img{height:300px}.pin{display:none}.cta{padding:64px 22px}}
+@media (max-width:520px){.fgrid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.nx *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="nx" style="{{ rootStyle }}">
+
+<header class="hdr">
+  <div class="wrap hrow">
+    <a class="logo" href="Noyau-Accueil.html" aria-label="Baquelis — accueil">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="13.5" fill="none" stroke="#2A333D"></circle><circle class="lspin" cx="15" cy="15" r="9" fill="none" stroke-width="1.5" stroke-dasharray="14 4.85" style="stroke:var(--c)"></circle><circle cx="15" cy="15" r="3.6" style="fill:var(--c);filter:drop-shadow(0 0 4px var(--c))"></circle></svg>
+      <span>Baquelis</span>
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale" style="display:flex;gap:2px">
+      <sc-for list="{{ navs }}" as="n" hint-placeholder-count="5"><a class="nl" href="{{ n.href }}" aria-current="{{ n.cur }}" style="{{ n.style }}">{{ n.label }}</a></sc-for>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px">
+      <button type="button" class="cmdk" onClick="{{ openPal }}" aria-expanded="{{ palExp }}" aria-label="Recherche rapide dans les pages et sections">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <span class="hide-s">Aller à…</span><span class="kbd hide-s">⌘K</span>
+      </button>
+      <a class="btn btn-sm hide-m" href="Noyau-Contact.html">Réserver un appel</a>
+      <button type="button" class="ib burger" onClick="{{ toggleMenu }}" aria-expanded="{{ menuExp }}" aria-label="Ouvrir le menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg></button>
+    </div>
+  </div>
+  <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+    <nav class="mnav" aria-label="Menu mobile">
+      <sc-for list="{{ navs }}" as="n" hint-placeholder-count="5"><a class="mi" href="{{ n.href }}">{{ n.label }}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></sc-for>
+      <a class="btn" href="Noyau-Contact.html" style="margin-top:18px;width:100%">Commencer</a>
+    </nav>
+  </sc-if>
+</header>
+<sc-if value="{{ pal }}" hint-placeholder-val="{{ false }}">
+  <div class="palx">
+    <div class="pal" role="dialog" aria-label="Navigation rapide">
+      <div class="pal-in">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input type="text" value="{{ q }}" onInput="{{ setQ }}" placeholder="Page, section… (ex. FAQ, ATOM, Flex)" aria-label="Filtrer les pages et sections" autocomplete="off">
+        <button type="button" class="kbd" onClick="{{ closePal }}" aria-label="Fermer la recherche" style="min-height:44px;min-width:52px;justify-content:center;cursor:pointer">Échap</button>
+      </div>
+      <div class="pal-tabs" role="group" aria-label="Type de résultat"><sc-for list="{{ palTabs }}" as="t" hint-placeholder-count="3"><button type="button" class="ptab" style="{{ t.style }}" aria-pressed="{{ t.pressed }}" onClick="{{ t.pick }}">{{ t.label }}</button></sc-for></div>
+      <div class="pal-list">
+        <sc-for list="{{ palItems }}" as="it" hint-placeholder-count="6"><a class="pit" href="{{ it.href }}"><span class="pk">{{ it.kind }}</span><span style="color:#E7EDF3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ it.label }}</span><span class="mut hide-s" style="font-size:13px">{{ it.page }}</span><svg class="pgo" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></sc-for>
+        <sc-if value="{{ palEmpty }}" hint-placeholder-val="{{ false }}"><p class="mut" style="padding:30px 14px;text-align:center;font-size:15px">Aucun résultat pour « {{ q }} ». Essayez « offres » ou « agents ».</p></sc-if>
+      </div>
+      <div class="pal-f"><span>{{ palCount }}</span><span>Baquelis · navigation rapide</span></div>
+    </div>
+  </div>
+</sc-if>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="gridbg" aria-hidden="true"></div>
+  <div class="wrap hg">
+    <div>
+      <p class="lab eyb up">Expertises · Partenaire technologique</p>
+      <h1 class="disp up d1" style="font-size:clamp(42px,6vw,86px)">Le noyau technique<br><span class="mut">de votre équipe.</span></h1>
+      <p class="lead up d2" style="margin-top:26px;max-width:560px">Des experts qui deviennent une extension de votre équipe, des systèmes évolutifs qui grandissent avec votre entreprise, et des progrès visibles en temps réel.</p>
+      <div class="up d3" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px">
+        <a class="btn" href="#piliers">Explorer les 4 piliers<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg></a>
+        <a class="btn btn-g" href="#methode">La méthode en 5 étapes</a>
+      </div>
+    </div>
+    <div class="panel up d3" style="overflow:hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid #1C232B"><span class="mono mut" style="font-size:12px">baquelis.spec</span><span class="live"><i></i>V2026</span></div>
+      <div class="spec">
+        <div><span class="mut">modèle</span><span>Partenariat, pas d’externalisation</span></div>
+        <div><span class="mut">formules</span><span>Intégration · <span class="c">Flex</span> · Performance</span></div>
+        <div><span class="mut">équipe</span><span>1 profil dédié → 5 experts seniors</span></div>
+        <div><span class="mut">changement</span><span>Profil sous 15 j (Flex) / 30 j (Intégration)</span></div>
+        <div><span class="mut">rapports</span><span>Mensuels → hebdomadaires → quotidiens</span></div>
+        <div><span class="mut">couverture</span><span>40 h/sem. → 50 h/sem. → 24/7</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 40px">
+  <div class="wrap">
+    <div class="strip">
+      <img src="assets/team-laptops.webp" alt="Équipe technique au travail autour d’ordinateurs portables">
+      <div class="scan" aria-hidden="true"></div>
+      <span class="pin" style="left:8%;top:22%"><i></i>Profil dédié intégré</span>
+      <span class="pin" style="left:46%;top:58%"><i></i>Rituels partagés</span>
+      <span class="pin" style="right:6%;top:16%"><i></i>Suivi en temps réel</span>
+      <span class="pin" style="right:12%;bottom:12%"><i></i>Documentation &amp; passation</span>
+    </div>
+  </div>
+</section>
+
+<!-- PILIERS -->
+<section class="sect" id="piliers">
+  <div class="wrap">
+    <div class="shead">
+      <div><p class="lab eyb">Solutions éprouvées · 4 piliers</p><h2 class="h2">Ce qui fait tenir<br>le noyau.</h2></div>
+      <p class="lead" style="max-width:400px">Quatre principes qui guident chaque mission, de la première ligne de code au dernier rapport.</p>
+    </div>
+    <div class="tabs">
+      <div class="tl" role="tablist" aria-label="Piliers" aria-orientation="vertical">
+        <sc-for list="{{ ptabs }}" as="t" hint-placeholder-count="4"><button type="button" role="tab" class="tb" style="{{ t.style }}" aria-selected="{{ t.sel }}" onClick="{{ t.pick }}"><span class="mono c" style="font-size:12px">{{ t.n }}</span><span style="font-weight:600;font-size:16px">{{ t.t }}</span><span></span><span class="mut" style="font-size:13px">{{ t.s }}</span><span class="bar" style="{{ t.bar }}"></span></button></sc-for>
+      </div>
+      <sc-for list="{{ ppanels }}" as="p" hint-placeholder-count="1">
+        <sc-if value="{{ p.on }}" hint-placeholder-val="{{ true }}">
+          <div class="panel tp" role="tabpanel">
+            <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center"><span class="lab c">{{ p.n }} · Pilier</span><span class="chip">{{ p.tag }}</span></div>
+            <h3 style="font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-.035em;line-height:1.1;margin-top:18px">{{ p.t }}</h3>
+            <p class="lead" style="margin-top:14px;max-width:680px">{{ p.q }}</p>
+            <div class="fgrid4">
+              <sc-for list="{{ p.f }}" as="f" hint-placeholder-count="4"><div class="fc"><p class="mono c" style="font-size:12px">{{ f.n }}</p><p style="font-weight:600;margin:8px 0 6px">{{ f.t }}</p><p class="mut" style="font-size:14px">{{ f.d }}</p></div></sc-for>
+            </div>
+            <div style="display:flex;gap:14px;align-items:center;margin-top:28px;padding-top:22px;border-top:1px solid #1C232B"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color:var(--c);flex:none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg><p style="font-size:15px"><span class="mut">Pour vous :</span> {{ p.gain }}</p></div>
+          </div>
+        </sc-if>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINES -->
+<section class="sect" id="domaines" style="border-top:1px solid #1C232B">
+  <div class="wrap">
+    <div class="shead">
+      <div><p class="lab eyb">Domaines d’intervention</p><h2 class="h2">Là où nos équipes<br>font la différence.</h2></div>
+      <p class="mono mut" style="font-size:13px;max-width:360px">Technologies utilisées : [STACK À CONFIRMER]</p>
+    </div>
+    <div class="dom">
+      <a class="dc spot" href="Noyau-Contact.html" style="grid-column:span 3">
+        <span class="zs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="glow" aria-hidden="true"></span>
+        <span class="in"><span class="lab c">D/01</span><span style="display:block;font-size:26px;font-weight:600;letter-spacing:-.03em;margin:12px 0 10px">Applications web &amp; mobiles</span><span class="mut" style="display:block;font-size:15px;max-width:460px">Produits métier, plateformes clients, outils internes : des interfaces soignées sur une architecture évolutive.</span><span class="chips" style="margin-top:18px"><span class="chip">produit</span><span class="chip">front</span><span class="chip">back-end</span><span class="chip">mobile</span></span><span class="go">Parler de votre projet<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></span></span>
+      </a>
+      <a class="dc spot" href="Noyau-Jeux.html" style="grid-column:span 3">
+        <span class="zs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="glow" aria-hidden="true"></span>
+        <span class="in"><span class="lab c">D/02</span><span style="display:block;font-size:26px;font-weight:600;letter-spacing:-.03em;margin:12px 0 10px">Plateformes temps réel</span><span class="mut" style="display:block;font-size:15px;max-width:460px">Synchronisation, faible latence, cohérence d’état : des systèmes qui réagissent à l’instant.</span><span class="chips" style="margin-top:18px"><span class="chip">synchronisation</span><span class="chip">latence</span><span class="chip">état partagé</span></span><span class="go">Voir l’exigence temps réel<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></span></span>
+      </a>
+      <a class="dc spot" href="Noyau-Jeux.html#web3" style="grid-column:span 2">
+        <span class="zs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="glow" aria-hidden="true"></span>
+        <span class="in"><span class="lab c">D/03</span><span style="display:block;font-size:24px;font-weight:600;letter-spacing:-.03em;margin:12px 0 10px">Jeux &amp; Web3</span><span class="mut" style="display:block;font-size:15px">Les applications les plus exigeantes, et notre preuve d’excellence technique.</span><span class="go">Jeux &amp; Web3<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></span></span>
+      </a>
+      <a class="dc spot" href="Noyau-IA.html" style="grid-column:span 2">
+        <span class="zs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="glow" aria-hidden="true"></span>
+        <span class="in"><span class="lab c">D/04</span><span style="display:block;font-size:24px;font-weight:600;letter-spacing:-.03em;margin:12px 0 10px">IA appliquée</span><span class="mut" style="display:block;font-size:15px">Modèles affinés, agents autonomes et intégration dans vos processus existants.</span><span class="go">Intelligence artificielle<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></span></span>
+      </a>
+      <a class="dc spot" href="#methode" style="grid-column:span 2">
+        <span class="zs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="glow" aria-hidden="true"></span>
+        <span class="in"><span class="lab c">D/05</span><span style="display:block;font-size:24px;font-weight:600;letter-spacing:-.03em;margin:12px 0 10px">Cloud &amp; performance</span><span class="mut" style="display:block;font-size:15px">Solutions cloud-native, mise à l’échelle et optimisation continue des performances.</span><span class="go">Notre méthode<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg></span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTHODE -->
+<section class="sect" id="methode" style="border-top:1px solid #1C232B">
+  <div class="gridbg" aria-hidden="true" style="opacity:.6"></div>
+  <div class="wrap">
+    <div class="shead">
+      <div><p class="lab eyb">Méthode · onboarding</p><h2 class="h2">Cinq étapes,<br>zéro zone grise.</h2></div>
+      <p class="lead" style="max-width:400px">Parcourez les étapes : chacune précise ce que vous obtenez et dans quel délai.</p>
+    </div>
+    <div class="ms">
+      <div role="tablist" aria-label="Étapes" aria-orientation="vertical" style="display:flex;flex-direction:column;gap:4px">
+        <sc-for list="{{ msteps }}" as="m" hint-placeholder-count="5"><button type="button" role="tab" class="mb" style="{{ m.style }}" aria-selected="{{ m.sel }}" onClick="{{ m.pick }}"><span class="mn" style="{{ m.nstyle }}">{{ m.n }}</span><span><span style="display:block;font-weight:600">{{ m.t }}</span><span class="mono mut" style="display:block;font-size:12px">{{ m.state }}</span></span></button></sc-for>
+      </div>
+      <div class="panel mp" role="tabpanel">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px"><span class="lab">Étape <span class="c">{{ ms.n }}</span> / 05</span><span class="chip">{{ ms.delai }}</span></div>
+        <div class="prog" style="margin-top:16px" aria-hidden="true"><span style="{{ msProg }}"></span></div>
+        <h3 style="font-size:clamp(26px,2.8vw,36px);font-weight:600;letter-spacing:-.035em;margin-top:30px">{{ ms.t }}</h3>
+        <p class="lead" style="margin-top:12px">{{ ms.d }}</p>
+        <p class="lab" style="margin-top:30px;margin-bottom:6px">Ce que vous obtenez</p>
+        <sc-for list="{{ ms.out }}" as="o" hint-placeholder-count="3"><div class="li"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg><span>{{ o.t }}</span></div></sc-for>
+        <div style="display:flex;gap:10px;margin-top:30px;flex-wrap:wrap">
+          <button type="button" class="btn btn-g btn-sm" onClick="{{ prevStep }}" disabled="{{ prevDis }}" aria-label="Étape précédente"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Précédente</button>
+          <button type="button" class="btn btn-sm" onClick="{{ nextStep }}" disabled="{{ nextDis }}" aria-label="Étape suivante">Suivante<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENTS -->
+<section class="sect" id="engagements" style="border-top:1px solid #1C232B">
+  <div class="wrap">
+    <div class="shead">
+      <div><p class="lab eyb">Engagements · manifeste</p><h2 class="h2">Construit sur la confiance.<br><span class="mut">Guidé par les résultats.</span></h2></div>
+      <p class="lead" style="max-width:380px">Impact mesurable, innovation, fiabilité, engagement à long terme. Quatre promesses que nous tenons.</p>
+    </div>
+    <div style="border-bottom:1px solid #1C232B">
+      <sc-for list="{{ engs }}" as="e" hint-placeholder-count="4">
+        <div class="eng">
+          <button type="button" class="eb" onClick="{{ e.pick }}" aria-expanded="{{ e.exp }}"><span class="mono c" style="font-size:14px">{{ e.n }}</span><span class="et" style="{{ e.tstyle }}">{{ e.t }}</span><span class="pm" style="{{ e.pstyle }}" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+          <sc-if value="{{ e.open }}" hint-placeholder-val="{{ false }}">
+            <div class="ebody"><span></span><div><p class="lead" style="max-width:760px">{{ e.d }}</p><div class="chips" style="margin-top:16px"><sc-for list="{{ e.k }}" as="k" hint-placeholder-count="3"><span class="chip">{{ k.t }}</span></sc-for></div></div></div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 110px">
+  <div class="wrap">
+    <div class="cta">
+      <div class="gridbg" aria-hidden="true"></div>
+      <div style="position:relative">
+        <p class="lab eyb" style="justify-content:center">Transformer l’ambition en réalité</p>
+        <h2 class="h2" style="max-width:820px;margin:0 auto">Prêt à transformer votre entreprise ?</h2>
+        <p class="lead" style="max-width:560px;margin:18px auto 0">Des solutions pour les besoins d’aujourd’hui, qui vous préparent aux défis de demain.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px">
+          <a class="btn" href="Noyau-Contact.html">Commencer aujourd’hui<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a class="btn btn-g" href="Noyau-Offres.html">Comparer les formules</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="logo" href="Noyau-Accueil.html" aria-label="Baquelis — accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="13.5" fill="none" stroke="#2A333D"></circle><circle cx="15" cy="15" r="9" fill="none" stroke-width="1.5" stroke-dasharray="14 4.85" style="stroke:var(--c)"></circle><circle cx="15" cy="15" r="3.6" style="fill:var(--c)"></circle></svg><span>Baquelis</span></a>
+        <p class="mut" style="margin-top:16px;max-width:320px;font-size:15px">Partenaire technologique : équipes dédiées, intelligence artificielle et exigence issue du jeu vidéo.</p>
+        <p class="mono" style="margin-top:20px;font-size:13px;color:#B4BFCA;line-height:1.9">31 B avenue Maréchal Foch<br>06000 Nice, France<br><span class="c">[contact@domaine-baquelis]</span></p>
+      </div>
+      <div><p class="lab" style="margin-bottom:10px">Navigation</p><a class="fl" href="Noyau-Accueil.html">Accueil</a><a class="fl" href="Noyau-Expertises.html">Expertises</a><a class="fl" href="Noyau-IA.html">Intelligence artificielle</a><a class="fl" href="Noyau-Jeux.html">Jeux &amp; Web3</a><a class="fl" href="Noyau-Contact.html">Contact</a></div>
+      <div><p class="lab" style="margin-bottom:10px">Offres</p><a class="fl" href="Noyau-Offres.html">Intégration — 4 500 €/mois</a><a class="fl" href="Noyau-Offres.html">Flex — 6 200 €/mois</a><a class="fl" href="Noyau-Offres.html">Performance — 18 900 €/mois</a><a class="fl" href="Noyau-Offres.html#simulateur">Simulateur d’économies</a></div>
+      <div><p class="lab" style="margin-bottom:10px">Société</p><span class="fi">[RAISON SOCIALE]</span><span class="fi">TVA : [N° TVA]</span><a class="fl" href="Noyau-Contact.html#rdv">Réserver un appel</a><a class="fl" href="index.html">Toutes les propositions</a></div>
+    </div>
+    <div class="fwm" aria-hidden="true">Baquelis</div>
+    <div class="fbot"><span>© 2026 Baquelis · Flexibilité. Continuité. Performance.</span><span>Proposition de refonte — concept · Direction 01 · Noyau</span></div>
+  </div>
+</footer>
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6400},"accent":{"editor":"color","default":"#00AEEF","options":["#00AEEF","#7C5CFF","#F5B700"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { pal:false, q:'', palF:'Tout', menu:false, tab:0, etape:0, eng:0 };
+  }
+  norm(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+  palData(){
+    return [
+      { k:'Page', l:'Accueil', p:'Vue d’ensemble', h:'Noyau-Accueil.html', t:'home noyau signature' },
+      { k:'Page', l:'Expertises', p:'4 piliers · méthode', h:'Noyau-Expertises.html', t:'equipe dediee piliers' },
+      { k:'Page', l:'Intelligence artificielle', p:'Modèles & agents', h:'Noyau-IA.html', t:'ia ai agents modeles atom' },
+      { k:'Page', l:'Jeux & Web3', p:'Excellence technique', h:'Noyau-Jeux.html', t:'jeux gaming web3 latence' },
+      { k:'Page', l:'Offres', p:'Intégration · Flex · Performance', h:'Noyau-Offres.html', t:'prix tarifs formules' },
+      { k:'Page', l:'Contact', p:'Réserver un appel', h:'Noyau-Contact.html', t:'rendez-vous formulaire' },
+      { k:'Section', l:'Les 4 piliers', p:'Expertises', h:'Noyau-Expertises.html#piliers', t:'solutions partenariat rapidite transparence' },
+      { k:'Section', l:'Domaines d’intervention', p:'Expertises', h:'Noyau-Expertises.html#domaines', t:'web mobile cloud temps reel' },
+      { k:'Section', l:'Méthode en 5 étapes', p:'Expertises', h:'Noyau-Expertises.html#methode', t:'onboarding etapes' },
+      { k:'Section', l:'Engagements', p:'Expertises', h:'Noyau-Expertises.html#engagements', t:'manifeste securite qualite' },
+      { k:'Section', l:'Démo ATOM', p:'IA', h:'Noyau-IA.html#atom', t:'agent demonstration' },
+      { k:'Section', l:'6 cas d’usage', p:'IA', h:'Noyau-IA.html#cas', t:'support contenu predictif' },
+      { k:'Section', l:'Modèle affiné vs RAG', p:'IA', h:'Noyau-IA.html#rag', t:'affinage fine-tuning' },
+      { k:'Section', l:'Les 4 exigences du jeu', p:'Jeux & Web3', h:'Noyau-Jeux.html#exigences', t:'latence multijoueur anti-triche' },
+      { k:'Section', l:'Plateforme Web3', p:'Jeux & Web3', h:'Noyau-Jeux.html#web3', t:'blockchain actifs' },
+      { k:'Section', l:'Simulateur d’économies', p:'Offres', h:'Noyau-Offres.html#simulateur', t:'economies recrutement calcul' },
+      { k:'Section', l:'Comparatif des offres', p:'Offres', h:'Noyau-Offres.html#comparatif', t:'tableau' },
+      { k:'Section', l:'FAQ', p:'Offres', h:'Noyau-Offres.html#faq', t:'questions engagement support' },
+      { k:'Section', l:'Prise de rendez-vous', p:'Contact', h:'Noyau-Contact.html#rdv', t:'creneaux agenda appel' },
+      { k:'Lien', l:'Toutes les propositions', p:'Canvas', h:'index.html', t:'propositions main' }
+    ];
+  }
+  shell(page){
+    const s = this.state, q = this.norm(s.q).trim(), f = s.palF;
+    const items = this.palData()
+      .filter(it => (f === 'Tout' || it.k === f) && (!q || this.norm(it.l + ' ' + it.p + ' ' + it.t).indexOf(q) > -1))
+      .map(it => ({ kind: it.k, label: it.l, page: it.p, href: it.h }));
+    const palTabs = [['Tout','Tout'],['Page','Pages'],['Section','Sections']].map(([v, l]) => ({
+      label: l, pressed: f === v ? 'true' : 'false',
+      style: f === v ? 'background:#151B22;color:#E7EDF3;border-color:#2F3A45' : '',
+      pick: () => this.setState({ palF: v })
+    }));
+    const navs = [['Expertises','Noyau-Expertises.html'],['IA','Noyau-IA.html'],['Jeux & Web3','Noyau-Jeux.html'],['Offres','Noyau-Offres.html'],['Contact','Noyau-Contact.html']]
+      .map(([l, h]) => ({ label: l, href: h, cur: l === page ? 'page' : 'false', style: l === page ? 'color:#fff;background:#0E1217;box-shadow:inset 0 -2px 0 var(--c)' : '' }));
+    const accent = (this.props && this.props.accent) || '#00AEEF';
+    return {
+      rootStyle: '--c:' + accent, navs,
+      pal: s.pal, palExp: s.pal ? 'true' : 'false', q: s.q,
+      setQ: e => this.setState({ q: e && e.target ? e.target.value : '' }),
+      palItems: items, palEmpty: items.length === 0, palTabs,
+      palCount: items.length + (items.length > 1 ? ' résultats' : ' résultat'),
+      openPal: () => this.setState({ pal: !s.pal, menu: false }),
+      closePal: () => this.setState({ pal: false, q: '' }),
+      menu: s.menu, menuExp: s.menu ? 'true' : 'false',
+      toggleMenu: () => this.setState({ menu: !s.menu, pal: false })
+    };
+  }
+  renderVals(){
+    const s = this.state;
+    const PIL = [
+      { t:'Solutions éprouvées', s:'Des systèmes qui grandissent', tag:'Architecture',
+        q:'Nous ne livrons pas seulement du code — nous construisons des systèmes évolutifs qui grandissent avec votre entreprise.',
+        gain:'un système qui suit votre croissance, au lieu de la freiner.',
+        f:[{t:'Architecture évolutive',d:'Des fondations pensées pour absorber la croissance sans réécriture.'},{t:'Pile technologique moderne',d:'Des choix actuels, maintenables et documentés.'},{t:'Solutions cloud-native',d:'Déploiement, mise à l’échelle et résilience intégrés dès la conception.'},{t:'Optimisation des performances',d:'Mesurer, profiler, améliorer — en continu.'}] },
+      { t:'Partenariat, pas d’externalisation', s:'Une extension de votre équipe', tag:'Équipe',
+        q:'Nos experts deviennent une extension de votre équipe : mêmes outils, mêmes rituels, mêmes objectifs.',
+        gain:'une équipe qui connaît votre produit, votre culture et vos priorités.',
+        f:[{t:'Intégration d’équipe dédiée',d:'Vos experts rejoignent vos outils et vos cérémonies.'},{t:'Engagement à long terme',d:'Une relation construite dans la durée, pas une mission ponctuelle.'},{t:'Alignement culturel',d:'Une façon de travailler qui épouse la vôtre.'},{t:'Communication fluide',d:'Des échanges directs avec celles et ceux qui construisent.'}] },
+      { t:'Rapidité avec précision', s:'Vite, sans compromis', tag:'Livraison',
+        q:'Du concept à la livraison, nous avançons vite — sans jamais compromettre la qualité.',
+        gain:'des livraisons rapides qui ne créent pas de dette technique.',
+        f:[{t:'Prototypage rapide',d:'Valider une idée vite, avant d’engager plus loin.'},{t:'Méthodologie agile',d:'Des itérations courtes et des priorités claires.'},{t:'Assurance qualité',d:'Tests et revues intégrés au rythme de livraison.'},{t:'Intégration continue',d:'Chaque changement vérifié, chaque livraison maîtrisée.'}] },
+      { t:'Transparence radicale', s:'Progrès visibles, prix clairs', tag:'Suivi',
+        q:'Pas de coûts cachés ni de mises à jour vagues : vous voyez les progrès en temps réel.',
+        gain:'vous savez à tout moment où en est votre projet, et ce qu’il coûte.',
+        f:[{t:'Suivi des progrès en temps réel',d:'L’avancement visible à tout moment, sans relance.'},{t:'Tarification transparente',d:'Un prix mensuel clair, sans coût caché.'},{t:'Rapports réguliers',d:'Mensuels, hebdomadaires ou quotidiens selon la formule.'},{t:'Communication ouverte',d:'Les difficultés sont dites tôt, avec des options.'}] }
+    ];
+    const ptabs = PIL.map((p, i) => ({
+      n: 'P/0' + (i + 1), t: p.t, s: p.s, sel: s.tab === i ? 'true' : 'false',
+      style: s.tab === i ? 'border-color:color-mix(in srgb,var(--c) 55%,#1C232B);background:#0E1217;box-shadow:0 20px 50px -30px var(--c)' : '',
+      bar: 'width:' + (s.tab === i ? '100%' : '0'),
+      pick: () => this.setState({ tab: i })
+    }));
+    const ppanels = PIL.map((p, i) => ({
+      on: s.tab === i, n: 'P/0' + (i + 1), t: p.t, q: p.q, tag: p.tag, gain: p.gain,
+      f: p.f.map((x, j) => ({ n: '0' + (i + 1) + '.' + (j + 1), t: x.t, d: x.d }))
+    }));
+    const STEPS = [
+      { t:'Appel découverte', d:'Nous écoutons vos enjeux, votre contexte technique et vos échéances, pour comprendre ce qui compte vraiment.', delai:'Délai : [DÉLAI]',
+        out:['Une compréhension partagée de vos enjeux','Premières pistes techniques','Une recommandation de formule'] },
+      { t:'Cadrage & choix de formule', d:'Intégration, Flex ou Performance : nous fixons le périmètre, les objectifs et le rythme de reporting.', delai:'Délai : [DÉLAI]',
+        out:['Périmètre et objectifs écrits','Formule choisie et engagement minimum clair','Modalités de suivi et de rapports'] },
+      { t:'Sélection du profil ou de l’équipe', d:'Un profil technique dédié, un profil senior ou une équipe de 5 experts seniors avec lead tech et Product Owner.', delai:'Changement : 30 j / 15 j',
+        out:['Profil(s) présenté(s) selon votre contexte','Changement de profil sous 30 jours (Intégration) ou 15 jours (Flex)','Équipe complète pour la formule Performance'] },
+      { t:'Intégration à vos outils et rituels', d:'Messagerie, gestion des tickets, cérémonies agiles : l’équipe travaille comme une extension de la vôtre.', delai:'Délai : [DÉLAI]',
+        out:['Accès à vos outils et environnements','Participation à vos rituels','Documentation de démarrage'] },
+      { t:'Suivi temps réel & ajustements', d:'Les progrès sont visibles en continu, les rapports suivent le rythme de votre formule, et l’équipe s’ajuste.', delai:'En continu',
+        out:['Suivi des progrès en temps réel','Rapports mensuels, hebdomadaires ou quotidiens','Ajustements de profil ou de périmètre'] }
+    ];
+    const e = s.etape;
+    const msteps = STEPS.map((x, i) => ({
+      n: '0' + (i + 1), t: x.t, sel: e === i ? 'true' : 'false',
+      state: i < e ? 'terminé' : (i === e ? 'en cours' : 'à venir'),
+      style: e === i ? 'background:#0E1217;border-color:#1C232B' : '',
+      nstyle: i < e ? 'border-color:var(--c);color:var(--c)' : (i === e ? 'border-color:var(--c);background:var(--c);color:#03131B;box-shadow:0 0 18px -2px var(--c)' : ''),
+      pick: () => this.setState({ etape: i })
+    }));
+    const cur = STEPS[e];
+    const ENG = [
+      { t:'Transparence', d:'Pas de coûts cachés, pas de mises à jour vagues. Un prix mensuel clair, des progrès visibles en temps réel et des difficultés signalées tôt, avec des options.', k:['Tarification transparente','Suivi temps réel','Rapports réguliers'] },
+      { t:'Continuité', d:'Documentation tenue à jour, passation renforcée, engagement à long terme : la connaissance reste chez vous, même lorsqu’un profil change.', k:['Documentation','Passation','Engagement long terme'] },
+      { t:'Sécurité & confidentialité des données', d:'Vos données restent les vôtres. Accès limités au nécessaire, modèles IA entraînés dans le respect de la confidentialité, pratiques revues avec vos équipes.', k:['Confidentialité','Accès maîtrisés','IA responsable'] },
+      { t:'Qualité', d:'Assurance qualité, intégration continue et revues systématiques : la rapidité ne se fait jamais au détriment de la précision.', k:['Assurance qualité','Intégration continue','Revues de code'] }
+    ];
+    const engs = ENG.map((x, i) => ({
+      n: '0' + (i + 1), t: x.t, d: x.d, k: x.k.map(t => ({ t })), open: s.eng === i, exp: s.eng === i ? 'true' : 'false',
+      tstyle: s.eng === i ? 'color:#fff' : 'color:#8A96A3',
+      pstyle: s.eng === i ? 'transform:rotate(45deg);border-color:var(--c);color:var(--c)' : '',
+      pick: () => this.setState({ eng: s.eng === i ? -1 : i })
+    }));
+    return Object.assign(this.shell('Expertises'), {
+      ptabs, ppanels, msteps,
+      ms: { n: '0' + (e + 1), t: cur.t, d: cur.d, delai: cur.delai, out: cur.out.map(t => ({ t })) },
+      msProg: 'width:' + ((e + 1) * 20) + '%',
+      prevDis: e === 0, nextDis: e === 4,
+      prevStep: () => this.setState({ etape: Math.max(0, e - 1) }),
+      nextStep: () => this.setState({ etape: Math.min(4, e + 1) }),
+      engs
+    });
+  }
+}
+</script>
+</body>
+</html>

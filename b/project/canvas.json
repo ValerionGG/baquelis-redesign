@@ -1,0 +1,426 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-17T10:00:00Z"
+ },
+ "title": "Baquelis — propositions 6 à 10",
+ "launch": {
+  "view": "focused",
+  "file": "Main.dc.html"
+ },
+ "pages": [
+  {
+   "id": "capa",
+   "name": "Couverture"
+  },
+  {
+   "id": "holo",
+   "name": "6 · Holo"
+  },
+  {
+   "id": "systeme",
+   "name": "7 · Système"
+  },
+  {
+   "id": "perf",
+   "name": "8 · Performance"
+  },
+  {
+   "id": "nocturne",
+   "name": "9 · Nocturne"
+  },
+  {
+   "id": "clarte",
+   "name": "10 · Clarté"
+  }
+ ],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 1900,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Couverture — les 10 propositions",
+   "page": "capa"
+  },
+  "Holo-Accueil.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 6713,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Holo · Accueil",
+   "page": "holo"
+  },
+  "Holo-Expertises.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 4973,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Holo · Expertises",
+   "page": "holo"
+  },
+  "Holo-IA.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 5320,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Holo · IA & agents",
+   "page": "holo"
+  },
+  "Holo-Jeux.dc.html": {
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 4565,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Holo · Jeux & Web3",
+   "page": "holo"
+  },
+  "Holo-Offres.dc.html": {
+   "x": 6080,
+   "y": 0,
+   "w": 1440,
+   "h": 5260,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Holo · Offres",
+   "page": "holo"
+  },
+  "Holo-Contact.dc.html": {
+   "x": 7600,
+   "y": 0,
+   "w": 1440,
+   "h": 2527,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Holo · Contact",
+   "page": "holo"
+  },
+  "Systeme-Accueil.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 7143,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Système · Accueil",
+   "page": "systeme"
+  },
+  "Systeme-Expertises.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 4882,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Système · Expertises",
+   "page": "systeme"
+  },
+  "Systeme-IA.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 5179,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Système · IA & agents",
+   "page": "systeme"
+  },
+  "Systeme-Jeux.dc.html": {
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 4531,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Système · Jeux & Web3",
+   "page": "systeme"
+  },
+  "Systeme-Offres.dc.html": {
+   "x": 6080,
+   "y": 0,
+   "w": 1440,
+   "h": 5342,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Système · Offres",
+   "page": "systeme"
+  },
+  "Systeme-Contact.dc.html": {
+   "x": 7600,
+   "y": 0,
+   "w": 1440,
+   "h": 2331,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Système · Contact",
+   "page": "systeme"
+  },
+  "Perf-Accueil.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 10980,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Performance · Accueil",
+   "page": "perf"
+  },
+  "Perf-Expertises.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 6678,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Performance · Expertises",
+   "page": "perf"
+  },
+  "Perf-IA.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 6685,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Performance · IA & agents",
+   "page": "perf"
+  },
+  "Perf-Jeux.dc.html": {
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 7558,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Performance · Jeux & Web3",
+   "page": "perf"
+  },
+  "Perf-Offres.dc.html": {
+   "x": 6080,
+   "y": 0,
+   "w": 1440,
+   "h": 6761,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Performance · Offres",
+   "page": "perf"
+  },
+  "Perf-Contact.dc.html": {
+   "x": 7600,
+   "y": 0,
+   "w": 1440,
+   "h": 4786,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Performance · Contact",
+   "page": "perf"
+  },
+  "Nocturne-Accueil.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 8877,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Nocturne · Accueil",
+   "page": "nocturne"
+  },
+  "Nocturne-Expertises.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 6418,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Nocturne · Expertises",
+   "page": "nocturne"
+  },
+  "Nocturne-IA.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 6802,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Nocturne · IA & agents",
+   "page": "nocturne"
+  },
+  "Nocturne-Jeux.dc.html": {
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 5680,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Nocturne · Jeux & Web3",
+   "page": "nocturne"
+  },
+  "Nocturne-Offres.dc.html": {
+   "x": 6080,
+   "y": 0,
+   "w": 1440,
+   "h": 6155,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Nocturne · Offres",
+   "page": "nocturne"
+  },
+  "Nocturne-Contact.dc.html": {
+   "x": 7600,
+   "y": 0,
+   "w": 1440,
+   "h": 2509,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Nocturne · Contact",
+   "page": "nocturne"
+  },
+  "Clarte-Accueil.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 8011,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Clarté · Accueil",
+   "page": "clarte"
+  },
+  "Clarte-Expertises.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 4754,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Clarté · Expertises",
+   "page": "clarte"
+  },
+  "Clarte-IA.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 1440,
+   "h": 4954,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Clarté · IA & agents",
+   "page": "clarte"
+  },
+  "Clarte-Jeux.dc.html": {
+   "x": 4560,
+   "y": 0,
+   "w": 1440,
+   "h": 4057,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Clarté · Jeux & Web3",
+   "page": "clarte"
+  },
+  "Clarte-Offres.dc.html": {
+   "x": 6080,
+   "y": 0,
+   "w": 1440,
+   "h": 5735,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Clarté · Offres",
+   "page": "clarte"
+  },
+  "Clarte-Contact.dc.html": {
+   "x": 7600,
+   "y": 0,
+   "w": 1440,
+   "h": 2253,
+   "expand": "fill",
+   "is_interactive": true,
+   "title": "Clarté · Contact",
+   "page": "clarte"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "Holo-Accueil.dc.html",
+  "Holo-Expertises.dc.html",
+  "Holo-IA.dc.html",
+  "Holo-Jeux.dc.html",
+  "Holo-Offres.dc.html",
+  "Holo-Contact.dc.html",
+  "Systeme-Accueil.dc.html",
+  "Systeme-Expertises.dc.html",
+  "Systeme-IA.dc.html",
+  "Systeme-Jeux.dc.html",
+  "Systeme-Offres.dc.html",
+  "Systeme-Contact.dc.html",
+  "Perf-Accueil.dc.html",
+  "Perf-Expertises.dc.html",
+  "Perf-IA.dc.html",
+  "Perf-Jeux.dc.html",
+  "Perf-Offres.dc.html",
+  "Perf-Contact.dc.html",
+  "Nocturne-Accueil.dc.html",
+  "Nocturne-Expertises.dc.html",
+  "Nocturne-IA.dc.html",
+  "Nocturne-Jeux.dc.html",
+  "Nocturne-Offres.dc.html",
+  "Nocturne-Contact.dc.html",
+  "Clarte-Accueil.dc.html",
+  "Clarte-Expertises.dc.html",
+  "Clarte-IA.dc.html",
+  "Clarte-Jeux.dc.html",
+  "Clarte-Offres.dc.html",
+  "Clarte-Contact.dc.html"
+ ],
+ "notes": {
+  "t_holo": {
+   "x": 0,
+   "y": -340,
+   "text": "6 · Holo — luxe Web3 holographique",
+   "kind": "title1",
+   "maxW": 9040,
+   "page": "holo"
+  },
+  "t_systeme": {
+   "x": 0,
+   "y": -340,
+   "text": "7 · Système — l’artisanat de l’ingénierie",
+   "kind": "title1",
+   "maxW": 9040,
+   "page": "systeme"
+  },
+  "t_perf": {
+   "x": 0,
+   "y": -340,
+   "text": "8 · Performance — énergie e-sport",
+   "kind": "title1",
+   "maxW": 9040,
+   "page": "perf"
+  },
+  "t_nocturne": {
+   "x": 0,
+   "y": -340,
+   "text": "9 · Nocturne — bande-annonce de studio",
+   "kind": "title1",
+   "maxW": 9040,
+   "page": "nocturne"
+  },
+  "t_clarte": {
+   "x": 0,
+   "y": -340,
+   "text": "10 · Clarté — la transparence radicale",
+   "kind": "title1",
+   "maxW": 9040,
+   "page": "clarte"
+  }
+ },
+ "designSystems": []
+}

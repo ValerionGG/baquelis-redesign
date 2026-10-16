@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Clarté — Contact</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&amp;display=swap">
+<style>
+body{margin:0}
+sc-for,sc-if{display:contents}
+.bq{font-family:"Hanken Grotesk",system-ui,sans-serif;color:#0F1720;background:#FFFFFF;-webkit-font-smoothing:antialiased;line-height:1.5}
+.bq *{box-sizing:border-box}
+.bq a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+.serif{font-family:"Newsreader",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:0}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:#4A5563;margin:0}
+.num{font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--l);color:#0F1720;font-weight:600;font-size:13px;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.chip-o{display:inline-flex;align-items:center;gap:6px;border:1px solid #E3E7EC;color:#4A5563;font-weight:500;font-size:13px;padding:5px 11px;border-radius:999px;background:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;transition:background .25s,color .25s,transform .25s,border-color .25s;border:1px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap}
+.bq .btn-p{background:var(--c);color:#fff}
+.bq .btn-p:hover{background:#0F1720;transform:translateY(-1px)}
+.bq .btn-g{border-color:#0F1720;color:#0F1720;background:transparent}
+.bq .btn-g:hover{background:#0F1720;color:#fff}
+.btn svg{transition:transform .25s}
+.btn:hover svg{transform:translateX(3px)}
+.tb-l{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--l);margin-right:8px;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(198,244,50,.7)}70%{box-shadow:0 0 0 8px rgba(198,244,50,0)}100%{box-shadow:0 0 0 0 rgba(198,244,50,0)}}
+.hdr{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid #E3E7EC}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:21px;letter-spacing:-.03em;min-height:44px}
+.nav-d{display:flex;gap:4px}
+.nav-d a{text-decoration:none;font-weight:500;font-size:15px;color:#4A5563;padding:0 14px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px;transition:background .2s,color .2s}
+.nav-d a:hover{background:#F3F5F7;color:#0F1720}
+.nav-d a[aria-current="page"]{color:#0F1720;background:#F3F5F7}
+.burger{display:none;width:48px;height:48px;border-radius:999px;border:1px solid #E3E7EC;background:#fff;align-items:center;justify-content:center;cursor:pointer;color:#0F1720}
+.mnav{display:none;border-top:1px solid #E3E7EC;padding:12px 20px 20px}
+.mnav a{display:flex;align-items:center;min-height:48px;text-decoration:none;font-weight:600;font-size:17px;border-bottom:1px solid #E3E7EC}
+.card{background:#fff;border:1px solid #E3E7EC;border-radius:20px}
+.rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.fadein{animation:fadein .5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pop{animation:pop .6s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.opt{font-family:inherit;cursor:pointer;text-align:left;border-radius:16px;transition:background .25s,border-color .25s,color .25s,box-shadow .25s,transform .25s}
+.opt:hover{border-color:#0F1720;transform:translateY(-2px)}
+.fld{width:100%;font-family:inherit;font-size:16px;color:#0F1720;background:#fff;border:1px solid #C9D1DA;border-radius:12px;padding:12px 14px;min-height:50px;transition:border-color .2s,box-shadow .2s}
+.fld:hover{border-color:#0F1720}
+.fld:focus{outline:none;border-color:var(--c);box-shadow:0 0 0 3px rgba(0,131,184,.18)}
+.lbl{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+.bq :focus-visible{outline:3px solid var(--c);outline-offset:3px}
+.ft a{text-decoration:none;color:#C5CDD6;display:inline-flex;min-height:36px;align-items:center;transition:color .2s}
+.ft a:hover{color:#fff}
+.slot{font-family:inherit;cursor:pointer;border-radius:12px;min-height:48px;padding:0 14px;font-weight:600;font-size:14px;transition:background .2s,color .2s,border-color .2s}
+.slot:hover{border-color:#0F1720}
+@media (max-width:960px){.nav-d{display:none}.burger{display:inline-flex}.mnav{display:block}.hide-s{display:none}}
+@media (max-width:640px){.wrap{padding:0 20px}}
+</style>
+</helmet>
+<div class="bq" style="{{ rootStyle }}">
+
+<div style="background:#0F1720;color:#fff;font-size:13px">
+<div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:8px 16px;min-height:40px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px">
+<span><span class="dot"></span>Prix publics : dès 4 500 €/mois, sans frais cachés. <a href="Clarte-Offres.dc.html" class="tb-l">Voir le comparatif</a></span>
+<a href="Main.dc.html" class="tb-l">Toutes les propositions</a>
+</div>
+</div>
+
+<header class="hdr">
+<div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px">
+<a href="Clarte-Accueil.dc.html" class="logo" aria-label="Baquelis, accueil">
+<svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="8" fill="#0F1720"></rect><rect x="8" y="8" width="14" height="14" rx="3" fill="none" stroke="#fff" stroke-width="2"></rect><rect x="15" y="15" width="7" height="7" rx="1.5" style="fill:var(--l)"></rect></svg>
+<span>Baquelis</span>
+</a>
+<nav class="nav-d" aria-label="Navigation principale">
+<a href="Clarte-Expertises.dc.html">Expertises</a>
+<a href="Clarte-IA.dc.html">IA</a>
+<a href="Clarte-Jeux.dc.html">Jeux &amp; Web3</a>
+<a href="Clarte-Offres.dc.html">Offres</a>
+<a href="Clarte-Contact.dc.html" aria-current="page">Contact</a>
+</nav>
+<div style="display:flex;gap:10px;align-items:center">
+<a href="Clarte-Contact.dc.html" class="btn btn-p hide-s">Réserver un appel</a>
+<button class="burger" type="button" aria-label="Ouvrir ou fermer le menu" onClick="{{ toggleNav }}"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"></path></svg></button>
+</div>
+</div>
+<sc-if value="{{ navOpen }}" hint-placeholder-val="{{ false }}">
+<nav class="mnav" aria-label="Navigation mobile">
+<a href="Clarte-Expertises.dc.html">Expertises</a>
+<a href="Clarte-IA.dc.html">IA</a>
+<a href="Clarte-Jeux.dc.html">Jeux &amp; Web3</a>
+<a href="Clarte-Offres.dc.html">Offres</a>
+<a href="Clarte-Contact.dc.html">Contact</a>
+</nav>
+</sc-if>
+</header>
+
+<!-- HERO -->
+<section style="padding:72px 0 40px">
+<div class="wrap">
+<p class="eyebrow rise">Contact · réserver un appel</p>
+<h1 class="rise d1" style="margin:20px 0 0;font-weight:700;font-size:clamp(38px,4.8vw,70px);line-height:1.02;letter-spacing:-.045em;max-width:980px;overflow-wrap:anywhere">Quatre questions. <span class="serif" style="font-weight:400;color:var(--c)">Un devis que vous connaissez déjà.</span></h1>
+<p class="rise d2" style="font-size:18px;color:#4A5563;margin:20px 0 0;max-width:620px">Décrivez votre besoin en moins d’une minute. Le récapitulatif affiche le prix de la formule choisie au fur et à mesure.</p>
+</div>
+</section>
+
+<!-- FORMULAIRE -->
+<section style="padding:24px 0 96px">
+<div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:24px;align-items:start">
+
+<div class="card" style="padding:clamp(24px,3.6vw,40px);box-shadow:0 40px 80px -56px rgba(15,23,32,.4)">
+<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+<form onSubmit="{{ submit }}" novalidate="novalidate" aria-label="Demande de contact">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+<span class="num" style="font-weight:600">Étape {{ stepNum }} / 4 · {{ stepTitle }}</span>
+<span class="chip-o">Prototype · rien n’est envoyé</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:16px" aria-hidden="true">
+<sc-for list="{{ prog }}" as="g" hint-placeholder-count="4"><div style="{{ g.style }}"></div></sc-for>
+</div>
+
+<sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}">
+<fieldset class="fadein" style="border:0;padding:0;margin:28px 0 0">
+<legend style="font-size:26px;font-weight:700;letter-spacing:-.02em;padding:0">De quoi avez-vous besoin ?</legend>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:10px;margin-top:20px">
+<sc-for list="{{ needs }}" as="o" hint-placeholder-count="4">
+<button type="button" class="opt" style="{{ o.style }}" aria-pressed="{{ o.pressed }}" onClick="{{ o.pick }}">
+<span style="display:flex;justify-content:space-between;align-items:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="{{ o.icon }}"></path></svg><span style="{{ o.tick }}"></span></span>
+<span style="display:block;font-weight:700;font-size:18px;margin-top:18px">{{ o.t }}</span>
+<span style="display:block;font-size:14px;opacity:.8;margin-top:2px">{{ o.d }}</span>
+</button>
+</sc-for>
+</div>
+</fieldset>
+</sc-if>
+
+<sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+<fieldset class="fadein" style="border:0;padding:0;margin:28px 0 0">
+<legend style="font-size:26px;font-weight:700;letter-spacing:-.02em;padding:0">Quelle formule envisagez-vous ?</legend>
+<div style="display:grid;gap:10px;margin-top:20px">
+<sc-for list="{{ plans }}" as="o" hint-placeholder-count="4">
+<button type="button" class="opt" style="{{ o.style }}" aria-pressed="{{ o.pressed }}" onClick="{{ o.pick }}">
+<span style="display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%"><span><span style="display:block;font-weight:700;font-size:18px">{{ o.t }}</span><span style="display:block;font-size:14px;opacity:.8">{{ o.d }}</span></span><span class="num" style="font-weight:700;font-size:20px;white-space:nowrap">{{ o.price }}</span></span>
+</button>
+</sc-for>
+</div>
+</fieldset>
+</sc-if>
+
+<sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+<fieldset class="fadein" style="border:0;padding:0;margin:28px 0 0">
+<legend style="font-size:26px;font-weight:700;letter-spacing:-.02em;padding:0">Quelle est la taille de votre entreprise ?</legend>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:10px;margin-top:20px">
+<sc-for list="{{ sizes }}" as="o" hint-placeholder-count="4">
+<button type="button" class="opt" style="{{ o.style }}" aria-pressed="{{ o.pressed }}" onClick="{{ o.pick }}">
+<span style="display:block;font-weight:700;font-size:18px">{{ o.t }}</span>
+<span style="display:block;font-size:14px;opacity:.8;margin-top:2px">{{ o.d }}</span>
+</button>
+</sc-for>
+</div>
+</fieldset>
+</sc-if>
+
+<sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+<fieldset class="fadein" style="border:0;padding:0;margin:28px 0 0">
+<legend style="font-size:26px;font-weight:700;letter-spacing:-.02em;padding:0">Vos coordonnées</legend>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:14px;margin-top:20px">
+<div><label class="lbl" for="c-name">Nom et prénom *</label><input id="c-name" class="fld" type="text" autocomplete="name" value="{{ name }}" onInput="{{ setName }}"></div>
+<div><label class="lbl" for="c-mail">E-mail professionnel *</label><input id="c-mail" class="fld" type="email" autocomplete="email" value="{{ email }}" onInput="{{ setEmail }}"></div>
+<div><label class="lbl" for="c-co">Entreprise</label><input id="c-co" class="fld" type="text" autocomplete="organization" value="{{ company }}" onInput="{{ setCompany }}"></div>
+<div><label class="lbl" for="c-role">Fonction</label><select id="c-role" class="fld" onChange="{{ setRole }}"><option value="">Choisir…</option><option value="CEO">CEO / dirigeant</option><option value="CTO">CTO / DSI</option><option value="Produit">Produit</option><option value="Opérations">Opérations</option><option value="Autre">Autre</option></select></div>
+</div>
+<div style="margin-top:14px"><label class="lbl" for="c-msg">Votre projet en quelques lignes</label><textarea id="c-msg" class="fld" rows="4" style="resize:vertical;min-height:110px" value="{{ msg }}" onInput="{{ setMsg }}"></textarea></div>
+<button type="button" style="display:flex;gap:12px;align-items:flex-start;margin-top:16px;background:none;border:0;padding:4px 0;cursor:pointer;font-family:inherit;text-align:left;color:#0F1720;min-height:44px" role="checkbox" aria-checked="{{ consentAria }}" onClick="{{ toggleConsent }}">
+<span style="{{ consentBox }}"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#0F1720" stroke-width="2" aria-hidden="true"><path d="M2.5 7.5l3 3 6-7"></path></svg></span>
+<span style="font-size:14px;color:#4A5563">J’accepte d’être recontacté au sujet de ma demande. *</span>
+</button>
+</fieldset>
+</sc-if>
+
+<sc-if value="{{ hasErr }}" hint-placeholder-val="{{ false }}">
+<p role="alert" class="fadein" style="margin:20px 0 0;padding:12px 14px;border-radius:12px;background:#FFECE8;color:#8A1C0C;font-size:14px;font-weight:500">{{ err }}</p>
+</sc-if>
+
+<div style="display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap">
+<sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}"><button type="button" class="btn btn-g" onClick="{{ back }}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4"></path></svg>Retour</button></sc-if>
+<sc-if value="{{ noBack }}" hint-placeholder-val="{{ true }}"><span></span></sc-if>
+<sc-if value="{{ notLast }}" hint-placeholder-val="{{ true }}"><button type="button" class="btn btn-p" onClick="{{ next }}">Continuer <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></button></sc-if>
+<sc-if value="{{ isLast }}" hint-placeholder-val="{{ false }}"><button type="submit" class="btn btn-p">Envoyer la demande</button></sc-if>
+</div>
+</form>
+</sc-if>
+
+<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+<div class="fadein" style="text-align:center;padding:24px 0" role="status">
+<svg class="pop" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true"><circle cx="36" cy="36" r="34" style="fill:var(--l)"></circle><path d="M22 37l9 9 19-20" stroke="#0F1720" stroke-width="3.5"></path></svg>
+<h2 style="font-size:32px;letter-spacing:-.03em;margin:20px 0 0">Merci {{ firstName }}.</h2>
+<p style="color:#4A5563;margin:10px auto 0;max-width:440px">Votre demande « {{ recap.need }} · {{ recap.plan }} » est prête. Ceci est un prototype : <strong style="color:#0F1720">rien n’a été envoyé</strong>.</p>
+<button type="button" class="btn btn-g" style="margin-top:24px" onClick="{{ reset }}">Recommencer</button>
+</div>
+</sc-if>
+</div>
+
+<div style="display:grid;gap:16px">
+<div style="background:#0F1720;color:#fff;border-radius:20px;padding:28px" aria-live="polite">
+<div style="display:flex;justify-content:space-between;align-items:center"><p class="eyebrow" style="color:#9AA6B4">Votre récapitulatif</p><span style="display:inline-flex;align-items:center;font-size:13px;color:#C5CDD6"><span class="dot"></span>en direct</span></div>
+<div style="display:grid;margin-top:16px;font-size:15px">
+<div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #2B3644"><span style="color:#9AA6B4">Besoin</span><strong>{{ recap.need }}</strong></div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #2B3644"><span style="color:#9AA6B4">Formule</span><strong>{{ recap.plan }}</strong></div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #2B3644"><span style="color:#9AA6B4">Taille</span><strong>{{ recap.size }}</strong></div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid #2B3644"><span style="color:#9AA6B4">Engagement minimum</span><strong class="num">{{ recap.min }}</strong></div>
+</div>
+<div style="border-top:1px solid #2B3644;padding-top:16px;margin-top:4px;display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap">
+<span style="color:#9AA6B4;font-size:14px">Prix mensuel affiché</span>
+<span class="num" style="font-size:40px;font-weight:700;line-height:1;color:var(--l)">{{ recap.price }}</span>
+</div>
+<p style="margin:10px 0 0;font-size:13px;color:#C5CDD6">{{ recap.save }}</p>
+</div>
+
+<div class="card" style="padding:28px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><strong style="font-size:18px">Réserver un appel</strong><span class="chip-o">Illustratif</span></div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:16px" role="group" aria-label="Jour">
+<sc-for list="{{ days }}" as="d" hint-placeholder-count="5">
+<button type="button" class="slot" style="{{ d.style }}" aria-pressed="{{ d.pressed }}" onClick="{{ d.pick }}">{{ d.t }}</button>
+</sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));gap:6px;margin-top:8px" role="group" aria-label="Créneau">
+<sc-for list="{{ slots }}" as="t" hint-placeholder-count="3">
+<button type="button" class="slot" style="{{ t.style }}" aria-pressed="{{ t.pressed }}" onClick="{{ t.pick }}">{{ t.t }}</button>
+</sc-for>
+</div>
+<p style="margin:14px 0 0;font-size:14px;color:#4A5563">{{ rdvText }}</p>
+</div>
+
+<div class="card" style="padding:28px;display:grid;gap:14px">
+<strong style="font-size:18px">Baquelis</strong>
+<div style="display:flex;gap:12px;align-items:flex-start"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="flex:none;color:var(--c);margin-top:2px" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg><span>Siège : 31 B avenue Maréchal Foch, 06000 Nice</span></div>
+<div style="display:flex;gap:12px;align-items:flex-start"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="flex:none;color:var(--c);margin-top:2px" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg><span>[contact@domaine-baquelis]</span></div>
+<div style="display:flex;gap:12px;align-items:flex-start"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="flex:none;color:var(--c);margin-top:2px" aria-hidden="true"><path d="M4 20V8l8-4 8 4v12M9 20v-6h6v6"></path></svg><span>[RAISON SOCIALE] · [N° TVA]</span></div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- RÉASSURANCE -->
+<section style="background:#F3F5F7;padding:80px 0">
+<div class="wrap">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:0;border-top:1px solid #D5DBE2">
+<div style="padding:28px 24px 0 0"><div class="num" style="font-size:40px;font-weight:700;line-height:1">3</div><div style="color:#4A5563;margin-top:8px">prix publics, aucun devis surprise</div></div>
+<div style="padding:28px 24px 0 0"><div class="num" style="font-size:40px;font-weight:700;line-height:1">15 j</div><div style="color:#4A5563;margin-top:8px">pour changer de profil en Flex (30 j en Intégration)</div></div>
+<div style="padding:28px 24px 0 0"><div class="num" style="font-size:40px;font-weight:700;line-height:1">2 mois</div><div style="color:#4A5563;margin-top:8px">d’engagement minimum en Performance</div></div>
+<div style="padding:28px 24px 0 0"><div class="num" style="font-size:40px;font-weight:700;line-height:1">24/7</div><div style="color:#4A5563;margin-top:8px">support prioritaire et hotline en Performance</div></div>
+</div>
+<p class="serif" style="font-size:clamp(22px,2.4vw,30px);margin:56px 0 0;max-width:820px;line-height:1.35">« Construit sur la confiance. Guidé par les résultats. »</p>
+</div>
+</section>
+
+<footer class="ft" style="background:#0F1720;color:#fff;padding:72px 0 28px">
+<div class="wrap">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:40px">
+<div>
+<div style="display:flex;align-items:center;gap:10px;font-weight:700;font-size:21px;letter-spacing:-.03em"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="8" fill="#fff"></rect><rect x="8" y="8" width="14" height="14" rx="3" fill="none" stroke="#0F1720" stroke-width="2"></rect><rect x="15" y="15" width="7" height="7" rx="1.5" style="fill:var(--l)"></rect></svg>Baquelis</div>
+<p style="color:#C5CDD6;font-size:14px;margin:16px 0 0">Flexibilité. Continuité. Performance.</p>
+<p style="color:#C5CDD6;font-size:14px;margin:12px 0 0">31 B avenue Maréchal Foch<br>06000 Nice</p>
+</div>
+<div><p class="eyebrow" style="color:#9AA6B4">Navigation</p><div style="display:grid;margin-top:12px"><a href="Clarte-Accueil.dc.html">Accueil</a><a href="Clarte-Expertises.dc.html">Expertises</a><a href="Clarte-IA.dc.html">Intelligence artificielle</a><a href="Clarte-Jeux.dc.html">Jeux &amp; Web3</a></div></div>
+<div><p class="eyebrow" style="color:#9AA6B4">Offres</p><div style="display:grid;margin-top:12px"><a href="Clarte-Offres.dc.html">Intégration · 4 500 €/mois</a><a href="Clarte-Offres.dc.html">Flex · 6 200 €/mois</a><a href="Clarte-Offres.dc.html">Performance · 18 900 €/mois</a></div></div>
+<div><p class="eyebrow" style="color:#9AA6B4">Société</p><div style="display:grid;margin-top:12px;color:#C5CDD6;font-size:14px;gap:8px"><span>[RAISON SOCIALE]</span><span>[N° TVA]</span><span>[contact@domaine-baquelis]</span></div></div>
+</div>
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid #2B3644;margin-top:48px;padding-top:20px;font-size:13px;color:#9AA6B4">
+<span>© 2026 Baquelis</span>
+<span>Proposition de refonte — concept · <a href="Main.dc.html" style="min-height:auto">Toutes les propositions</a></span>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3500},"accent":{"editor":"color","default":"#0083B8","options":["#0083B8","#0F766E","#3B5BDB"]},"highlight":{"editor":"color","default":"#C6F432","options":["#C6F432","#FFD84D","#8DF0C8"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { step: 0, need: -1, plan: -1, size: -1, name: "", email: "", company: "", role: "", msg: "", consent: false, err: "", sent: false, day: 1, slot: -1, nav: false };
+  }
+  renderVals() {
+    const p = this.props || {};
+    const s = this.state;
+    const NE = [
+      { t: "Équipe technique", d: "Profil dédié ou équipe d’experts", icon: "M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 19c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5M13.5 15c.8-.4 1.6-.5 2.5-.5 2.5 0 4.7 1.5 5.5 4.5" },
+      { t: "Intelligence artificielle", d: "Modèles affinés, agents, intégration", icon: "M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM12 2v3M12 19v3M2 12h3M19 12h3" },
+      { t: "Jeux & Web3", d: "Temps réel, multijoueur, Web3", icon: "M6 9h12a4 4 0 0 1 0 8c-1.5 0-2.3-1-3-2H9c-.7 1-1.5 2-3 2a4 4 0 0 1 0-8zM8 11v3M6.5 12.5h3M15.5 12h.01M17.5 14h.01" },
+      { t: "Autre", d: "Parlons-en directement", icon: "M4 5h16v11H8l-4 4V5zM8 10h8" }
+    ];
+    const PL = [
+      { t: "Intégration", d: "1 profil dédié · min. 12 mois", price: 4500, min: 12, save: 1500 },
+      { t: "Flex", d: "1 profil senior · min. 6 mois · plus populaire", price: 6200, min: 6, save: 2300 },
+      { t: "Performance", d: "5 experts seniors · min. 2 mois", price: 18900, min: 2, save: 12000 },
+      { t: "Je ne sais pas encore", d: "Nous vous conseillerons lors de l’appel", price: 0, min: 0, save: 0 }
+    ];
+    const SZ = [
+      { t: "Startup", d: "Lancement et croissance" },
+      { t: "PME", d: "Équipe structurée" },
+      { t: "ETI", d: "Plusieurs équipes, plusieurs sites" },
+      { t: "Grande entreprise", d: "Projets stratégiques complexes" }
+    ];
+    const fmt = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " €";
+    const optStyle = (on) => "padding:20px;min-height:72px;border:1px solid " + (on ? "#0F1720;background:#0F1720;color:#fff;box-shadow:0 18px 36px -22px rgba(15,23,32,.6)" : "#E3E7EC;background:#fff;color:#0F1720");
+    const needs = NE.map((x, i) => ({
+      t: x.t, d: x.d, icon: x.icon, pressed: i === s.need ? "true" : "false", style: optStyle(i === s.need) + ";min-height:150px",
+      tick: "width:22px;height:22px;border-radius:50%;" + (i === s.need ? "background:var(--l)" : "border:1px solid #C9D1DA"),
+      pick: () => this.setState({ need: i, err: "" })
+    }));
+    const plans = PL.map((x, i) => ({
+      t: x.t, d: x.d, price: x.price ? fmt(x.price) + "/mois" : "—", pressed: i === s.plan ? "true" : "false", style: optStyle(i === s.plan),
+      pick: () => this.setState({ plan: i, err: "" })
+    }));
+    const sizes = SZ.map((x, i) => ({
+      t: x.t, d: x.d, pressed: i === s.size ? "true" : "false", style: optStyle(i === s.size) + ";min-height:100px",
+      pick: () => this.setState({ size: i, err: "" })
+    }));
+    const TITLES = ["Besoin", "Formule", "Entreprise", "Coordonnées"];
+    const prog = TITLES.map((t, i) => ({ style: "height:6px;border-radius:6px;transition:background .4s;background:" + (i < s.step ? "#0F1720" : i === s.step ? "var(--c)" : "#E3E7EC") }));
+    const validate = (st) => {
+      if (st === 0 && s.need < 0) return "Choisissez un type de besoin pour continuer.";
+      if (st === 1 && s.plan < 0) return "Choisissez une formule (ou « Je ne sais pas encore »).";
+      if (st === 2 && s.size < 0) return "Indiquez la taille de votre entreprise.";
+      if (st === 3) {
+        if (s.name.trim().length < 2) return "Indiquez votre nom.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s.email.trim())) return "Indiquez une adresse e-mail valide.";
+        if (!s.consent) return "Merci d’accepter d’être recontacté pour que nous puissions vous répondre.";
+      }
+      return "";
+    };
+    const cp = s.plan >= 0 ? PL[s.plan] : null;
+    const DAYS = ["Lun.", "Mar.", "Mer.", "Jeu.", "Ven."];
+    const SL = ["Matin [CRÉNEAUX]", "Midi [CRÉNEAUX]", "Après-midi [CRÉNEAUX]"];
+    const slotStyle = (on) => "border:1px solid " + (on ? "var(--c);background:var(--c);color:#fff" : "#E3E7EC;background:#fff;color:#0F1720");
+    return {
+      rootStyle: "--c:" + (p.accent || "#0083B8") + ";--l:" + (p.highlight || "#C6F432") + ";",
+      navOpen: s.nav,
+      toggleNav: () => this.setState({ nav: !s.nav }),
+      notSent: !s.sent, sent: s.sent,
+      stepNum: s.step + 1, stepTitle: TITLES[s.step], prog,
+      s0: s.step === 0, s1: s.step === 1, s2: s.step === 2, s3: s.step === 3,
+      needs, plans, sizes,
+      name: s.name, email: s.email, company: s.company, msg: s.msg,
+      setName: (e) => this.setState({ name: e.target.value }),
+      setEmail: (e) => this.setState({ email: e.target.value }),
+      setCompany: (e) => this.setState({ company: e.target.value }),
+      setRole: (e) => this.setState({ role: e.target.value }),
+      setMsg: (e) => this.setState({ msg: e.target.value }),
+      consentAria: s.consent ? "true" : "false",
+      toggleConsent: () => this.setState({ consent: !s.consent, err: "" }),
+      consentBox: "flex:none;width:24px;height:24px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;transition:background .2s;" + (s.consent ? "background:var(--l);border:1px solid var(--l)" : "background:#fff;border:1px solid #8A95A3;color:transparent") + (s.consent ? "" : ";opacity:1"),
+      hasErr: !!s.err, err: s.err,
+      canBack: s.step > 0, noBack: s.step === 0,
+      notLast: s.step < 3, isLast: s.step === 3,
+      back: () => this.setState({ step: Math.max(0, s.step - 1), err: "" }),
+      next: () => { const e = validate(s.step); if (e) this.setState({ err: e }); else this.setState({ step: s.step + 1, err: "" }); },
+      submit: (ev) => { ev.preventDefault(); const e = validate(3); if (e) this.setState({ err: e }); else this.setState({ sent: true, err: "" }); },
+      reset: () => this.setState({ step: 0, need: -1, plan: -1, size: -1, name: "", email: "", company: "", role: "", msg: "", consent: false, err: "", sent: false }),
+      firstName: s.name.trim().split(" ")[0] || "",
+      recap: {
+        need: s.need >= 0 ? NE[s.need].t : "—",
+        plan: cp ? cp.t : "—",
+        size: s.size >= 0 ? SZ[s.size].t : "—",
+        min: cp && cp.min ? cp.min + " mois" : "—",
+        price: cp && cp.price ? fmt(cp.price) : "—",
+        save: cp && cp.save ? "Économisez " + fmt(cp.save) + "/mois vs recrutement (chiffre Baquelis)." : "Intégration 4 500 € · Flex 6 200 € · Performance 18 900 € par mois."
+      },
+      days: DAYS.map((t, i) => ({ t, pressed: i === s.day ? "true" : "false", style: slotStyle(i === s.day) + ";padding:0 4px", pick: () => this.setState({ day: i }) })),
+      slots: SL.map((t, i) => ({ t, pressed: i === s.slot ? "true" : "false", style: slotStyle(i === s.slot), pick: () => this.setState({ slot: i }) })),
+      rdvText: s.slot >= 0 ? "Sélection : " + DAYS[s.day] + " · " + SL[s.slot] + ". Démonstration : aucun rendez-vous n’est réservé." : "Choisissez un jour et un créneau. Créneaux réels : [CRÉNEAUX]."
+    };
+  }
+}
+</script>
+</body>
+</html>

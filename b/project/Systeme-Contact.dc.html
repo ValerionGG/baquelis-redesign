@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Système — Contact</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#F2F1EC}
+sc-for,sc-if{display:contents}
+.pp,.pp *{box-sizing:border-box}
+.pp{font-family:'Schibsted Grotesk',system-ui,sans-serif;color:#111;background-color:#F2F1EC;background-image:linear-gradient(rgba(17,17,17,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.045) 1px,transparent 1px),linear-gradient(rgba(17,17,17,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.06) 1px,transparent 1px);background-size:8px 8px,8px 8px,64px 64px,64px 64px;overflow-x:clip;-webkit-font-smoothing:antialiased}
+.pp a{color:inherit}
+.mono{font-family:'DM Mono',ui-monospace,monospace}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.lbl{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#C2410C}
+.sub{color:#5A5852}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:var(--acc,#FF5B1F);color:#111;border:1.5px solid #111;font:600 15px/1 'Schibsted Grotesk',sans-serif;text-decoration:none;box-shadow:4px 4px 0 #111;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #111}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #111}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:transparent;color:#111;border:1.5px solid #111;font:600 15px/1 'Schibsted Grotesk',sans-serif;text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
+.btn2:hover{background:#111;color:#F2F1EC}
+.tl{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+.tl:hover{color:#C2410C;border-color:#C2410C}
+.hd{position:sticky;top:0;z-index:20;background:rgba(242,241,236,.94);backdrop-filter:blur(6px);border-bottom:1.5px solid #111}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:23px;letter-spacing:-.035em;min-height:44px}
+.logo svg{transition:transform .6s cubic-bezier(.7,0,.2,1)}
+.logo:hover svg{transform:rotate(90deg)}
+.dnav{display:flex;gap:2px}
+.dnav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;font-weight:500;font-size:15px;position:relative}
+.dnav a::after{content:"";position:absolute;left:14px;right:14px;bottom:9px;height:2px;background:var(--acc,#FF5B1F);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.dnav a:hover::after,.dnav a.on::after{transform:scaleX(1)}
+.burger{display:none;width:48px;height:48px;align-items:center;justify-content:center;border:1.5px solid #111;background:transparent;cursor:pointer;color:#111}
+.mnav a{display:flex;align-items:center;justify-content:space-between;min-height:54px;border-bottom:1px solid rgba(17,17,17,.15);text-decoration:none;font-weight:600;font-size:18px}
+.tk{background:linear-gradient(#111,#111) 0 0/14px 2px no-repeat,linear-gradient(#111,#111) 0 0/2px 14px no-repeat,linear-gradient(#111,#111) 100% 0/14px 2px no-repeat,linear-gradient(#111,#111) 100% 0/2px 14px no-repeat,linear-gradient(#111,#111) 0 100%/14px 2px no-repeat,linear-gradient(#111,#111) 0 100%/2px 14px no-repeat,linear-gradient(#111,#111) 100% 100%/14px 2px no-repeat,linear-gradient(#111,#111) 100% 100%/2px 14px no-repeat}
+.sheet{background:#FBFAF6;border:1.5px solid #111}
+.fl{display:flex;align-items:center;min-height:44px;text-decoration:none;color:#3A3934;transition:color .2s,padding .2s}
+.fl:hover{color:#C2410C;padding-left:6px}
+.cart{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:1.5px;background:#111;border:1.5px solid #111;margin-top:48px}
+.cart div{background:#ECEBE4;padding:12px 14px;min-height:64px}
+.cart b{display:block;font:500 10px 'DM Mono',monospace;letter-spacing:.1em;color:#5A5852;margin-bottom:6px}
+:focus-visible{outline:2px solid #0089BF;outline-offset:3px}
+@keyframes rv{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes stepIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes ping{0%{transform:scale(.6);opacity:1}100%{transform:scale(2.4);opacity:0}}
+.rv{animation:rv .9s cubic-bezier(.2,.7,.2,1) both}
+@supports (animation-timeline:view()){.sr{animation:rv linear both;animation-timeline:view();animation-range:entry 5% cover 25%}}
+.stin{animation:stepIn .45s cubic-bezier(.2,.7,.2,1) both}
+.err{animation:shake .35s ease}
+.opt{width:100%;text-align:left;font:inherit;cursor:pointer;padding:18px;min-height:96px;border:1.5px solid #111;display:flex;flex-direction:column;justify-content:space-between;gap:12px;transition:background .3s,color .3s,transform .3s,box-shadow .3s}
+.opt:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 #111}
+.fld{display:block}
+.fld span{display:block;font:500 11px 'DM Mono',monospace;letter-spacing:.06em;color:#5A5852;margin-bottom:6px}
+.fld input,.fld textarea{width:100%;min-height:50px;border:1.5px solid #111;background:#F2F1EC;padding:12px 14px;font:500 16px 'Schibsted Grotesk',sans-serif;color:#111;border-radius:0;transition:background .2s,box-shadow .2s}
+.fld textarea{min-height:110px;resize:vertical}
+.fld input:focus,.fld textarea:focus{outline:none;background:#FFFFFF;box-shadow:4px 4px 0 var(--acc,#FF5B1F)}
+.chk{display:flex;gap:12px;align-items:center;min-height:44px;background:transparent;border:0;cursor:pointer;font:inherit;color:#111;text-align:left;padding:0}
+.day{min-height:64px;flex:1;min-width:84px;border:1.5px solid #111;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:background .3s,color .3s}
+.slot{min-height:48px;border:1.5px solid #111;font:500 13px 'DM Mono',monospace;cursor:pointer;transition:background .3s,color .3s}
+.slot:hover,.day:hover{background:#ECEBE4}
+@media(max-width:960px){.dnav{display:none}.burger{display:inline-flex}.hide-sm{display:none}}
+@media(max-width:700px){.wrap{padding:0 16px}}
+@media (prefers-reduced-motion:reduce){.pp *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="pp" style="{{ rootStyle }}">
+
+<div class="mono" style="border-bottom:1px solid rgba(17,17,17,.15);font-size:12px;color:#5A5852">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;min-height:36px;gap:16px;flex-wrap:wrap">
+    <span>DOC BQL-SYS-06 · FEUILLE 06/06 · RÉV. C</span>
+    <a class="tl" href="Main.dc.html" style="display:inline-flex;align-items:center;min-height:36px">← Toutes les propositions</a>
+  </div>
+</div>
+
+<header class="hd">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:24px">
+    <a href="Systeme-Accueil.dc.html" class="logo" aria-label="Baquelis, accueil">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" fill="none" stroke="#111" stroke-width="2"></rect><path d="M8 8H22M8 8V22M8 15H18" stroke="#111" stroke-width="1.5" fill="none"></path><circle cx="8" cy="8" r="2.6" fill="#111"></circle><circle cx="22" cy="8" r="2.2" fill="#111"></circle><rect x="17" y="17" width="8" height="8" style="fill:var(--acc,#FF5B1F)"></rect></svg>
+      <span>Baquelis</span>
+    </a>
+    <nav class="dnav" aria-label="Navigation principale">
+      <a href="Systeme-Expertises.dc.html">Expertises</a>
+      <a href="Systeme-IA.dc.html">IA</a>
+      <a href="Systeme-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a href="Systeme-Offres.dc.html">Offres</a>
+      <a class="on" href="Systeme-Contact.dc.html" aria-current="page">Contact</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <a class="btn hide-sm" href="#rdv">Réserver un appel</a>
+      <button class="burger" aria-label="Ouvrir ou fermer le menu" onClick="{{ toggleMenu }}"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M2 6H20M2 11H20M2 16H14" stroke="#111" stroke-width="1.8" fill="none"></path></svg></button>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="wrap mnav" style="padding-bottom:20px">
+      <a href="Systeme-Expertises.dc.html">Expertises <span class="mono sub" style="font-size:12px">02</span></a>
+      <a href="Systeme-IA.dc.html">IA <span class="mono sub" style="font-size:12px">03</span></a>
+      <a href="Systeme-Jeux.dc.html">Jeux &amp; Web3 <span class="mono sub" style="font-size:12px">04</span></a>
+      <a href="Systeme-Offres.dc.html">Offres <span class="mono sub" style="font-size:12px">05</span></a>
+      <a href="Systeme-Contact.dc.html">Contact <span class="mono sub" style="font-size:12px">06</span></a>
+      <a class="btn" href="#rdv" style="margin-top:18px;justify-content:center">Réserver un appel</a>
+    </div>
+  </sc-if>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="wrap" style="padding-top:80px;padding-bottom:56px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:48px;align-items:end">
+    <div class="rv">
+      <div class="lbl" style="margin-bottom:22px">Ticket de cadrage BQL-REQ-06 · Contact</div>
+      <h1 style="margin:0;font-weight:800;font-size:clamp(40px,6vw,92px);line-height:.95;letter-spacing:-.045em;overflow-wrap:anywhere">Spécifions votre système<span style="color:var(--acc,#FF5B1F)">.</span></h1>
+    </div>
+    <p class="sub rv" style="animation-delay:.15s;margin:0;font-size:18px;line-height:1.6">Quatre questions, deux minutes. Nous revenons vers vous avec une première lecture de votre besoin et la formule adaptée : Intégration, Flex ou Performance.</p>
+  </div>
+</section>
+
+<!-- FORMULAIRE + INFOS -->
+<section class="wrap" style="padding-bottom:104px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:28px;align-items:start">
+    <div class="sheet tk rv" style="grid-column:span 2;min-width:0;animation-delay:.25s">
+      <!-- progression -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1.5px solid #111">
+        <sc-for list="{{ prog }}" as="p" hint-placeholder-count="4">
+          <div style="{{ p.style }}"><span class="mono" style="font-size:11px;display:block">{{ p.n }}</span><span style="font-weight:600;font-size:14px">{{ p.t }}</span></div>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submit }}" novalidate="novalidate" style="padding:32px 30px">
+          <sc-if value="{{ st.s0 }}" hint-placeholder-val="{{ true }}">
+            <fieldset class="stin" style="border:0;margin:0;padding:0">
+              <legend style="padding:0;font-size:clamp(24px,2.4vw,32px);font-weight:800;letter-spacing:-.03em;margin-bottom:6px">De quoi avez-vous besoin ?</legend>
+              <p class="sub" style="margin:0 0 22px">Un choix requis.</p>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:12px">
+                <sc-for list="{{ o.besoin }}" as="x" hint-placeholder-count="4">
+                  <button type="button" class="opt" style="{{ x.style }}" aria-pressed="{{ x.on }}" onClick="{{ x.pick }}"><span class="mono" style="font-size:11px">{{ x.code }}</span><span style="font-weight:700;font-size:18px">{{ x.t }}</span></button>
+                </sc-for>
+              </div>
+            </fieldset>
+          </sc-if>
+          <sc-if value="{{ st.s1 }}" hint-placeholder-val="{{ false }}">
+            <fieldset class="stin" style="border:0;margin:0;padding:0">
+              <legend style="padding:0;font-size:clamp(24px,2.4vw,32px);font-weight:800;letter-spacing:-.03em;margin-bottom:6px">Quelle formule envisagez-vous ?</legend>
+              <p class="sub" style="margin:0 0 22px">Indicatif : nous la validons ensemble lors de l’appel.</p>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:12px">
+                <sc-for list="{{ o.formule }}" as="x" hint-placeholder-count="4">
+                  <button type="button" class="opt" style="{{ x.style }}" aria-pressed="{{ x.on }}" onClick="{{ x.pick }}"><span class="mono" style="font-size:11px">{{ x.code }}</span><span style="font-weight:700;font-size:18px">{{ x.t }}</span></button>
+                </sc-for>
+              </div>
+            </fieldset>
+          </sc-if>
+          <sc-if value="{{ st.s2 }}" hint-placeholder-val="{{ false }}">
+            <fieldset class="stin" style="border:0;margin:0;padding:0">
+              <legend style="padding:0;font-size:clamp(24px,2.4vw,32px);font-weight:800;letter-spacing:-.03em;margin-bottom:6px">Quelle est la taille de votre entreprise ?</legend>
+              <p class="sub" style="margin:0 0 22px">Un choix requis.</p>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:12px">
+                <sc-for list="{{ o.taille }}" as="x" hint-placeholder-count="3">
+                  <button type="button" class="opt" style="{{ x.style }}" aria-pressed="{{ x.on }}" onClick="{{ x.pick }}"><span class="mono" style="font-size:11px">{{ x.code }}</span><span style="font-weight:700;font-size:18px">{{ x.t }}</span></button>
+                </sc-for>
+              </div>
+            </fieldset>
+          </sc-if>
+          <sc-if value="{{ st.s3 }}" hint-placeholder-val="{{ false }}">
+            <fieldset class="stin" style="border:0;margin:0;padding:0">
+              <legend style="padding:0;font-size:clamp(24px,2.4vw,32px);font-weight:800;letter-spacing:-.03em;margin-bottom:18px">Vos coordonnées</legend>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px">
+                <label class="fld"><span>NOM COMPLET *</span><input type="text" autocomplete="name" value="{{ f.nom }}" onInput="{{ setNom }}"></label>
+                <label class="fld"><span>E-MAIL PROFESSIONNEL *</span><input type="email" autocomplete="email" value="{{ f.email }}" onInput="{{ setEmail }}"></label>
+                <label class="fld"><span>ENTREPRISE</span><input type="text" autocomplete="organization" value="{{ f.ent }}" onInput="{{ setEnt }}"></label>
+                <label class="fld"><span>FONCTION</span><input type="text" value="{{ f.fonc }}" onInput="{{ setFonc }}" placeholder="CEO, CTO, DSI…"></label>
+              </div>
+              <label class="fld" style="margin-top:16px"><span>CONTEXTE (FACULTATIF)</span><textarea onInput="{{ setMsg }}" value="{{ f.msg }}" placeholder="Votre projet, vos contraintes, vos échéances…"></textarea></label>
+              <button type="button" class="chk" role="checkbox" aria-checked="{{ f.okA }}" onClick="{{ toggleOk }}" style="margin-top:14px">
+                <span style="{{ f.okBox }}"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7L5.5 10.5L12 3.5" stroke="#F2F1EC" stroke-width="2" fill="none"></path></svg></span>
+                <span style="font-size:14.5px">J’accepte que Baquelis me recontacte au sujet de ma demande. *</span>
+              </button>
+            </fieldset>
+          </sc-if>
+
+          <sc-if value="{{ hasErr }}" hint-placeholder-val="{{ false }}">
+            <div class="err mono" role="alert" style="margin-top:20px;border:1.5px solid #C2410C;color:#9A3412;background:rgba(255,91,31,.08);padding:12px 14px;font-size:13px">ERREUR — {{ err }}</div>
+          </sc-if>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:28px;flex-wrap:wrap;border-top:1px dashed rgba(17,17,17,.3);padding-top:22px">
+            <button type="button" class="btn2" onClick="{{ prev }}" style="{{ prevStyle }}">← Retour</button>
+            <span class="mono sub" style="font-size:12px">ÉTAPE {{ stepN }} / 04</span>
+            <sc-if value="{{ notLast }}" hint-placeholder-val="{{ true }}"><button type="button" class="btn" onClick="{{ next }}">Continuer →</button></sc-if>
+            <sc-if value="{{ isLast }}" hint-placeholder-val="{{ false }}"><button type="submit" class="btn">Envoyer le ticket</button></sc-if>
+          </div>
+        </form>
+      </sc-if>
+
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div class="stin" style="padding:36px 30px" aria-live="polite">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+            <span style="position:relative;width:16px;height:16px;display:inline-block"><span style="position:absolute;inset:0;border-radius:50%;background:#0089BF;animation:ping 1.4s ease-out infinite"></span><span style="position:absolute;inset:3px;border-radius:50%;background:#0089BF"></span></span>
+            <span class="mono" style="font-size:12px;color:#006E99;letter-spacing:.06em">TICKET {{ ticket }} · PROTOTYPE — RIEN N’EST ENVOYÉ</span>
+          </div>
+          <h2 style="margin:0 0 12px;font-size:clamp(28px,3vw,42px);letter-spacing:-.03em;line-height:1.05">Merci {{ f.prenom }}, votre spécification est prête.</h2>
+          <p class="sub" style="margin:0 0 24px;font-size:16.5px;line-height:1.6">Dans la version en ligne, ce ticket déclencherait l’étape 1 de la méthode : l’appel découverte. Ici, il s’agit d’une maquette : aucune donnée n’a quitté votre navigateur.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:1.5px;background:#111;border:1.5px solid #111;margin-bottom:24px">
+            <sc-for list="{{ recap }}" as="r" hint-placeholder-count="4">
+              <div style="background:#F2F1EC;padding:14px 16px"><div class="mono sub" style="font-size:11px;margin-bottom:6px">{{ r.k }}</div><div style="font-weight:700">{{ r.v }}</div></div>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="#rdv">Choisir un créneau</a><button type="button" class="btn2" onClick="{{ restart }}">Nouveau ticket</button></div>
+        </div>
+      </sc-if>
+    </div>
+
+    <!-- infos société -->
+    <aside class="rv" style="display:flex;flex-direction:column;gap:20px;animation-delay:.35s;min-width:0">
+      <div class="sheet">
+        <div class="mono" style="font-size:11px;padding:12px 18px;border-bottom:1.5px solid #111;letter-spacing:.06em">FICHE SOCIÉTÉ</div>
+        <div style="padding:18px">
+          <div class="mono sub" style="font-size:11px">SIÈGE</div>
+          <p style="margin:4px 0 16px;font-weight:600;font-size:16px;line-height:1.5">31 B avenue Maréchal Foch<br>06000 Nice</p>
+          <div class="mono sub" style="font-size:11px">E-MAIL</div>
+          <p class="mono" style="margin:4px 0 16px;font-size:14px">[contact@domaine-baquelis]</p>
+          <div class="mono sub" style="font-size:11px">RAISON SOCIALE · TVA</div>
+          <p style="margin:4px 0 0;font-size:14.5px">[RAISON SOCIALE] · [N° TVA]</p>
+        </div>
+      </div>
+      <div class="sheet" style="padding:14px">
+        <div class="mono sub" style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:8px"><span>PLAN DE SITUATION</span><span>SCHÉMA</span></div>
+        <svg viewBox="0 0 300 200" width="100%" role="img" aria-label="Schéma de situation du siège à Nice">
+          <path d="M0 160C60 150 110 172 170 158S260 150 300 165V200H0Z" fill="rgba(0,137,191,.12)" stroke="#0089BF" stroke-width="1.2"></path>
+          <text x="16" y="188" style="font:500 10px 'DM Mono',monospace;fill:#006E99">MER MÉDITERRANÉE</text>
+          <path d="M40 20L120 140M150 10L140 150M250 30L180 140M20 90H280M60 50H260" stroke="#111" stroke-width="1" fill="none" opacity=".35"></path>
+          <path d="M100 0L170 150" stroke="#111" stroke-width="2.4" fill="none"></path>
+          <text x="104" y="36" transform="rotate(64 104 36)" style="font:500 9px 'DM Mono',monospace;fill:#111">AV. MARÉCHAL FOCH</text>
+          <circle cx="139" cy="84" r="12" fill="none" style="stroke:var(--acc,#FF5B1F)" stroke-width="2"></circle>
+          <circle cx="139" cy="84" r="4" style="fill:var(--acc,#FF5B1F)"></circle>
+          <path d="M151 84H210" stroke="#111" stroke-width="1"></path>
+          <text x="214" y="81" style="font:700 11px 'Schibsted Grotesk',sans-serif;fill:#111">Baquelis</text>
+          <text x="214" y="94" style="font:500 9px 'DM Mono',monospace;fill:#5A5852">31 B · NICE</text>
+        </svg>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- RENDEZ-VOUS -->
+<section id="rdv" style="border-top:1.5px solid #111;background:#ECEBE4;padding-top:96px;padding-bottom:104px">
+  <div class="wrap">
+    <div class="sr" style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:32px">
+      <div>
+        <div class="lbl" style="margin-bottom:14px">§ 02 — Réserver un appel découverte · illustratif</div>
+        <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:760px">Choisissez un créneau.</h2>
+      </div>
+      <p class="mono" style="margin:0;font-size:12px;color:#006E99;max-width:320px;line-height:1.6">Agenda illustratif : les créneaux réels seront affichés ici ([CRÉNEAUX]). Aucune réservation n’est effectuée.</p>
+    </div>
+    <div class="sheet tk sr" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:0">
+      <div style="padding:30px;border-right:1.5px solid #111;min-width:0">
+        <div class="mono sub" style="font-size:11px;letter-spacing:.06em;margin-bottom:12px">1 · JOUR</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px">
+          <sc-for list="{{ rdv.days }}" as="d" hint-placeholder-count="5">
+            <button type="button" class="day" style="{{ d.style }}" aria-pressed="{{ d.on }}" onClick="{{ d.pick }}"><span class="mono" style="font-size:11px">{{ d.code }}</span><span style="font-weight:700;font-size:15px">{{ d.t }}</span></button>
+          </sc-for>
+        </div>
+        <div class="mono sub" style="font-size:11px;letter-spacing:.06em;margin-bottom:12px">2 · CRÉNEAU</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));gap:8px">
+          <sc-for list="{{ rdv.slots }}" as="s" hint-placeholder-count="4">
+            <button type="button" class="slot" style="{{ s.style }}" aria-pressed="{{ s.on }}" onClick="{{ s.pick }}">{{ s.t }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="padding:30px;display:flex;flex-direction:column;gap:16px;justify-content:center;min-width:0;background:#F2F1EC">
+        <div class="mono sub" style="font-size:11px;letter-spacing:.06em">RÉCAPITULATIF</div>
+        <div style="font-size:clamp(24px,2.4vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.1">{{ rdv.summary }}</div>
+        <p class="sub" style="margin:0;line-height:1.6">Appel découverte · format visio · étape 1 de la méthode Baquelis.</p>
+        <sc-if value="{{ rdv.ready }}" hint-placeholder-val="{{ false }}">
+          <div class="stin mono" style="font-size:12.5px;border:1.5px solid #111;background:#FBFAF6;padding:12px 14px;line-height:1.6">✓ Créneau illustratif retenu — aucune réservation n’est effectuée dans ce prototype.</div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="border-top:1.5px solid #111;background:#ECEBE4">
+  <div class="wrap" style="padding-top:64px;padding-bottom:32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:40px">
+      <div>
+        <a href="Systeme-Accueil.dc.html" class="logo" aria-label="Baquelis, accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" fill="none" stroke="#111" stroke-width="2"></rect><path d="M8 8H22M8 8V22M8 15H18" stroke="#111" stroke-width="1.5" fill="none"></path><circle cx="8" cy="8" r="2.6" fill="#111"></circle><circle cx="22" cy="8" r="2.2" fill="#111"></circle><rect x="17" y="17" width="8" height="8" style="fill:var(--acc,#FF5B1F)"></rect></svg><span>Baquelis</span></a>
+        <p style="margin:16px 0 6px;font-weight:600">Flexibilité. Continuité. Performance.</p>
+        <p class="sub" style="margin:0;font-size:14px;line-height:1.6">Construit sur la confiance. Guidé par les résultats.</p>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Navigation</div>
+        <a class="fl" href="Systeme-Expertises.dc.html">Expertises</a><a class="fl" href="Systeme-IA.dc.html">Intelligence artificielle</a><a class="fl" href="Systeme-Jeux.dc.html">Jeux &amp; Web3</a><a class="fl" href="Systeme-Contact.dc.html">Contact</a>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Formules</div>
+        <a class="fl" href="Systeme-Offres.dc.html">Intégration — 4 500 €/mois</a><a class="fl" href="Systeme-Offres.dc.html">Flex — 6 200 €/mois</a><a class="fl" href="Systeme-Offres.dc.html">Performance — 18 900 €/mois</a>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Société</div>
+        <p style="margin:12px 0;font-size:15px;line-height:1.6">Siège : 31 B avenue Maréchal Foch, 06000 Nice</p>
+        <p class="sub" style="margin:0 0 8px;font-size:14px">[RAISON SOCIALE] · [N° TVA]</p>
+        <p class="mono" style="margin:0;font-size:13px">[contact@domaine-baquelis]</p>
+      </div>
+    </div>
+    <div class="cart mono">
+      <div><b>PROJET</b>Baquelis</div>
+      <div><b>DOCUMENT</b>Système — Contact</div>
+      <div><b>FEUILLE</b>06 / 06</div>
+      <div><b>RÉVISION</b>C</div>
+      <div><b>ÉCHELLE</b>1:1</div>
+      <div><b>DROITS</b>© 2026 Baquelis</div>
+    </div>
+    <div class="mono sub" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;padding-top:18px">
+      <span>Proposition de refonte — concept · Direction 07 « Système »</span>
+      <a class="tl" href="Main.dc.html" style="display:inline-flex;align-items:center;min-height:44px">Toutes les propositions</a>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3700},"accent":{"editor":"color","default":"#FF5B1F","options":["#FF5B1F","#0089BF","#111111"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu:false, step:0, besoin:-1, formule:-1, taille:-1, nom:"", email:"", ent:"", fonc:"", msg:"", ok:false, err:"", sent:false, day:-1, slot:-1 };
+  }
+  check(step){
+    const s = this.state;
+    if(step === 0 && s.besoin < 0) return "Sélectionnez votre besoin pour continuer.";
+    if(step === 1 && s.formule < 0) return "Sélectionnez une formule (ou « Je ne sais pas encore »).";
+    if(step === 2 && s.taille < 0) return "Sélectionnez la taille de votre entreprise.";
+    if(step === 3){
+      if(s.nom.trim().length < 2) return "Indiquez votre nom complet.";
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s.email.trim())) return "Indiquez une adresse e-mail valide.";
+      if(!s.ok) return "Merci d’accepter d’être recontacté pour envoyer le ticket.";
+    }
+    return "";
+  }
+  renderVals(){
+    const acc = (this.props && this.props.accent) || "#FF5B1F";
+    const s = this.state;
+    const BES = [["N-01","Équipe technique dédiée"],["N-02","Intelligence artificielle"],["N-03","Jeux & Web3"],["N-04","Autre besoin"]];
+    const FOR = [["CFG-INT","Intégration · 4 500 €/mois"],["CFG-FLX","Flex · 6 200 €/mois"],["CFG-PRF","Performance · 18 900 €/mois"],["CFG-?","Je ne sais pas encore"]];
+    const TAI = [["T-S","Startup"],["T-M","PME"],["T-L","Grande entreprise"]];
+    const mk = (arr, key) => arr.map((a,i) => ({ code:a[0], t:a[1], on:s[key] === i ? "true" : "false",
+      style:s[key] === i ? "background:#111;color:#F2F1EC" : "background:#F2F1EC;color:#111",
+      pick:() => { const n = {}; n[key] = i; n.err = ""; this.setState(n); } }));
+    const LBL = ["Besoin","Formule","Taille","Coordonnées"];
+    const prog = LBL.map((t,i) => ({ n:"0" + (i + 1), t,
+      style:"padding:14px 16px;transition:background .4s,color .4s;" + (i < 3 ? "border-right:1.5px solid #111;" : "") + (s.sent || i < s.step ? "background:#111;color:#F2F1EC" : (i === s.step ? "background:" + acc + ";color:#111" : "background:transparent;color:#5A5852")) }));
+    const set = (k) => (e) => { const n = {}; n[k] = e.target.value; n.err = ""; this.setState(n); };
+    const prenom = (s.nom.trim().split(/\s+/)[0]) || "";
+    let h = 0; for(let i = 0; i < s.email.length; i++){ h = (h * 31 + s.email.charCodeAt(i)) % 9000; }
+    const DAYS = [["J+1","Lundi"],["J+2","Mardi"],["J+3","Mercredi"],["J+4","Jeudi"],["J+5","Vendredi"]];
+    const SLOTS = ["[CRÉNEAU A]","[CRÉNEAU B]","[CRÉNEAU C]","[CRÉNEAU D]"];
+    const ready = s.day >= 0 && s.slot >= 0;
+    return {
+      rootStyle:"--acc:" + acc,
+      menuOpen:s.menu,
+      toggleMenu:() => this.setState({ menu:!s.menu }),
+      prog,
+      showForm:!s.sent, sent:s.sent,
+      st:{ s0:s.step === 0, s1:s.step === 1, s2:s.step === 2, s3:s.step === 3 },
+      o:{ besoin:mk(BES, "besoin"), formule:mk(FOR, "formule"), taille:mk(TAI, "taille") },
+      f:{ nom:s.nom, email:s.email, ent:s.ent, fonc:s.fonc, msg:s.msg, prenom,
+        okA:s.ok ? "true" : "false",
+        okBox:"width:24px;height:24px;border:1.5px solid #111;display:inline-flex;align-items:center;justify-content:center;flex:none;transition:background .2s;background:" + (s.ok ? "#111" : "#F2F1EC") },
+      setNom:set("nom"), setEmail:set("email"), setEnt:set("ent"), setFonc:set("fonc"), setMsg:set("msg"),
+      toggleOk:() => this.setState({ ok:!s.ok, err:"" }),
+      hasErr:s.err !== "", err:s.err,
+      stepN:"0" + (s.step + 1), notLast:s.step < 3, isLast:s.step === 3,
+      prevStyle:s.step === 0 ? "visibility:hidden" : "",
+      prev:() => this.setState({ step:Math.max(0, s.step - 1), err:"" }),
+      next:() => { const e = this.check(s.step); if(e){ this.setState({ err:e }); return; } this.setState({ step:Math.min(3, s.step + 1), err:"" }); },
+      submit:(ev) => { if(ev && ev.preventDefault) ev.preventDefault(); const e = this.check(3); if(e){ this.setState({ err:e }); return; } this.setState({ sent:true, err:"" }); },
+      ticket:"BQL-" + (1000 + h),
+      recap:[
+        { k:"BESOIN", v:s.besoin >= 0 ? BES[s.besoin][1] : "—" },
+        { k:"FORMULE", v:s.formule >= 0 ? FOR[s.formule][1] : "—" },
+        { k:"TAILLE", v:s.taille >= 0 ? TAI[s.taille][1] : "—" },
+        { k:"CONTACT", v:s.ent.trim() ? s.ent.trim() : s.nom.trim() }
+      ],
+      restart:() => this.setState({ step:0, besoin:-1, formule:-1, taille:-1, nom:"", email:"", ent:"", fonc:"", msg:"", ok:false, err:"", sent:false }),
+      rdv:{
+        ready,
+        summary:ready ? DAYS[s.day][1] + " · " + SLOTS[s.slot] : (s.day >= 0 ? DAYS[s.day][1] + " · choisissez un créneau" : "Aucun créneau sélectionné"),
+        days:DAYS.map((d,i) => ({ code:d[0], t:d[1], on:s.day === i ? "true" : "false",
+          style:s.day === i ? "background:#111;color:#F2F1EC" : "background:#F2F1EC;color:#111",
+          pick:() => this.setState({ day:i }) })),
+        slots:SLOTS.map((t,i) => ({ t, on:s.slot === i ? "true" : "false",
+          style:s.slot === i ? "background:" + acc + ";color:#111" : "background:#F2F1EC;color:#111",
+          pick:() => this.setState({ slot:i }) }))
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

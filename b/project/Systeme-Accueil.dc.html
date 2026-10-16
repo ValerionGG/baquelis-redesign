@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Système — Accueil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#F2F1EC}
+sc-for,sc-if{display:contents}
+.pp,.pp *{box-sizing:border-box}
+.pp{font-family:'Schibsted Grotesk',system-ui,sans-serif;color:#111;background-color:#F2F1EC;background-image:linear-gradient(rgba(17,17,17,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.045) 1px,transparent 1px),linear-gradient(rgba(17,17,17,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.06) 1px,transparent 1px);background-size:8px 8px,8px 8px,64px 64px,64px 64px;overflow-x:clip;-webkit-font-smoothing:antialiased}
+.pp a{color:inherit}
+.mono{font-family:'DM Mono',ui-monospace,monospace}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.lbl{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#C2410C}
+.sub{color:#5A5852}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:var(--acc,#FF5B1F);color:#111;border:1.5px solid #111;font:600 15px/1 'Schibsted Grotesk',sans-serif;text-decoration:none;box-shadow:4px 4px 0 #111;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #111}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #111}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:transparent;color:#111;border:1.5px solid #111;font:600 15px/1 'Schibsted Grotesk',sans-serif;text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
+.btn2:hover{background:#111;color:#F2F1EC}
+.tl{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+.tl:hover{color:#C2410C;border-color:#C2410C}
+.hd{position:sticky;top:0;z-index:20;background:rgba(242,241,236,.94);backdrop-filter:blur(6px);border-bottom:1.5px solid #111}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:23px;letter-spacing:-.035em;min-height:44px}
+.logo svg{transition:transform .6s cubic-bezier(.7,0,.2,1)}
+.logo:hover svg{transform:rotate(90deg)}
+.dnav{display:flex;gap:2px}
+.dnav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;font-weight:500;font-size:15px;position:relative}
+.dnav a::after{content:"";position:absolute;left:14px;right:14px;bottom:9px;height:2px;background:var(--acc,#FF5B1F);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.dnav a:hover::after,.dnav a.on::after{transform:scaleX(1)}
+.burger{display:none;width:48px;height:48px;align-items:center;justify-content:center;border:1.5px solid #111;background:transparent;cursor:pointer;color:#111}
+.mnav a{display:flex;align-items:center;justify-content:space-between;min-height:54px;border-bottom:1px solid rgba(17,17,17,.15);text-decoration:none;font-weight:600;font-size:18px}
+.tk{background:linear-gradient(#111,#111) 0 0/14px 2px no-repeat,linear-gradient(#111,#111) 0 0/2px 14px no-repeat,linear-gradient(#111,#111) 100% 0/14px 2px no-repeat,linear-gradient(#111,#111) 100% 0/2px 14px no-repeat,linear-gradient(#111,#111) 0 100%/14px 2px no-repeat,linear-gradient(#111,#111) 0 100%/2px 14px no-repeat,linear-gradient(#111,#111) 100% 100%/14px 2px no-repeat,linear-gradient(#111,#111) 100% 100%/2px 14px no-repeat}
+.sheet{background:#FBFAF6;border:1.5px solid #111}
+.fl{display:flex;align-items:center;min-height:44px;text-decoration:none;color:#3A3934;transition:color .2s,padding .2s}
+.fl:hover{color:#C2410C;padding-left:6px}
+.cart{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:1.5px;background:#111;border:1.5px solid #111;margin-top:48px}
+.cart div{background:#ECEBE4;padding:12px 14px;min-height:64px}
+.cart b{display:block;font:500 10px 'DM Mono',monospace;letter-spacing:.1em;color:#5A5852;margin-bottom:6px}
+:focus-visible{outline:2px solid #0089BF;outline-offset:3px}
+@keyframes rv{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.rv{animation:rv .9s cubic-bezier(.2,.7,.2,1) both}
+@supports (animation-timeline:view()){.sr{animation:rv linear both;animation-timeline:view();animation-range:entry 5% cover 25%}}
+@keyframes flow{to{stroke-dashoffset:-20}}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes blink{50%{opacity:.25}}
+.dg text{font-family:'DM Mono',monospace}
+.nb{fill:#FBFAF6;stroke:#111;stroke-width:1.5}
+.nc{font-size:10px;fill:#5A5852;letter-spacing:.06em}
+.nt{font:700 16px 'Schibsted Grotesk',sans-serif;fill:#111}
+.ns{font-size:10.5px;fill:#5A5852}
+.lk{fill:none;stroke:#111;stroke-width:1.5;stroke-dasharray:5 5;animation:flow 1s linear infinite}
+.lc{fill:none;stroke:#0089BF;stroke-width:1.3;stroke-dasharray:2 4}
+.lo{fill:none;stroke:#C2410C;stroke-width:1.6}
+.seg{min-height:44px;padding:0 18px;border:0;font:600 14px 'Schibsted Grotesk',sans-serif;cursor:pointer;transition:background .3s,color .3s}
+.bcell{padding:32px 28px;background:#F2F1EC;transition:background .3s}
+.bcell:hover{background:#FBFAF6}
+.bcell svg{transition:transform .5s cubic-bezier(.7,0,.2,1)}
+.bcell:hover svg{transform:translate(4px,-4px)}
+.ptab{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:12px;width:100%;min-height:72px;padding:0 18px;text-align:left;cursor:pointer;font:inherit;color:#111;transition:background .3s,padding .3s}
+.ptab:hover{padding-left:24px}
+.cap{width:100%;text-align:left;font:inherit;cursor:pointer;min-height:60px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;transition:background .3s,color .3s}
+.stp{flex:1;min-width:120px;background:transparent;border:0;cursor:pointer;font:inherit;color:#111;text-align:left;padding:0;min-height:96px}
+.stp:hover .dot{transform:scale(1.15)}
+.dot{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font:500 13px 'DM Mono',monospace;border:1.5px solid #111;transition:transform .3s,background .3s,color .3s}
+.oc{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.oc:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 #111}
+.mk{animation:blink 1.6s steps(2) infinite}
+.dgw{overflow-x:auto}
+.dgw svg{min-width:760px}
+@media(max-width:960px){.dnav{display:none}.burger{display:inline-flex}.hide-sm{display:none}}
+@media(max-width:700px){.wrap{padding:0 16px}.bcell{padding:24px 18px}}
+@media (prefers-reduced-motion:reduce){.pp *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="pp" style="{{ rootStyle }}">
+
+<div class="mono" style="border-bottom:1px solid rgba(17,17,17,.15);font-size:12px;color:#5A5852">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;min-height:36px;gap:16px;flex-wrap:wrap">
+    <span>DOC BQL-SYS-01 · FEUILLE 01/06 · RÉV. C</span>
+    <a class="tl" href="Main.dc.html" style="display:inline-flex;align-items:center;min-height:36px">← Toutes les propositions</a>
+  </div>
+</div>
+
+<header class="hd">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:24px">
+    <a href="Systeme-Accueil.dc.html" class="logo" aria-label="Baquelis, accueil">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" fill="none" stroke="#111" stroke-width="2"></rect><path d="M8 8H22M8 8V22M8 15H18" stroke="#111" stroke-width="1.5" fill="none"></path><circle cx="8" cy="8" r="2.6" fill="#111"></circle><circle cx="22" cy="8" r="2.2" fill="#111"></circle><rect x="17" y="17" width="8" height="8" style="fill:var(--acc,#FF5B1F)"></rect></svg>
+      <span>Baquelis</span>
+    </a>
+    <nav class="dnav" aria-label="Navigation principale">
+      <a href="Systeme-Expertises.dc.html">Expertises</a>
+      <a href="Systeme-IA.dc.html">IA</a>
+      <a href="Systeme-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a href="Systeme-Offres.dc.html">Offres</a>
+      <a href="Systeme-Contact.dc.html">Contact</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <a class="btn hide-sm" href="Systeme-Contact.dc.html">Réserver un appel</a>
+      <button class="burger" aria-label="Ouvrir ou fermer le menu" onClick="{{ toggleMenu }}"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M2 6H20M2 11H20M2 16H14" stroke="#111" stroke-width="1.8" fill="none"></path></svg></button>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="wrap mnav" style="padding-bottom:20px">
+      <a href="Systeme-Expertises.dc.html">Expertises <span class="mono sub" style="font-size:12px">02</span></a>
+      <a href="Systeme-IA.dc.html">IA <span class="mono sub" style="font-size:12px">03</span></a>
+      <a href="Systeme-Jeux.dc.html">Jeux &amp; Web3 <span class="mono sub" style="font-size:12px">04</span></a>
+      <a href="Systeme-Offres.dc.html">Offres <span class="mono sub" style="font-size:12px">05</span></a>
+      <a href="Systeme-Contact.dc.html">Contact <span class="mono sub" style="font-size:12px">06</span></a>
+      <a class="btn" href="Systeme-Contact.dc.html" style="margin-top:18px;justify-content:center">Commencer</a>
+    </div>
+  </sc-if>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="wrap" style="padding-top:72px;padding-bottom:40px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(460px,100%),1fr));gap:48px;align-items:end">
+    <div class="rv">
+      <div class="lbl" style="margin-bottom:22px">Excellence IA — schéma 01 / système de référence</div>
+      <h1 style="margin:0;font-weight:800;font-size:clamp(40px,6.4vw,100px);line-height:.94;letter-spacing:-.045em;overflow-wrap:anywhere">Flexibilité<span style="color:var(--acc,#FF5B1F)">.</span><sup class="mono" style="font-size:12px;font-weight:400;letter-spacing:0;color:#5A5852;vertical-align:top;margin-left:6px">[01]</sup><br>Continuité<span style="color:var(--acc,#FF5B1F)">.</span><sup class="mono" style="font-size:12px;font-weight:400;letter-spacing:0;color:#5A5852;vertical-align:top;margin-left:6px">[02]</sup><br>Performance<span style="color:var(--acc,#FF5B1F)">.</span><sup class="mono" style="font-size:12px;font-weight:400;letter-spacing:0;color:#5A5852;vertical-align:top;margin-left:6px">[03]</sup></h1>
+    </div>
+    <div class="rv" style="animation-delay:.15s;max-width:520px">
+      <p style="margin:0 0 18px;font-size:clamp(19px,1.6vw,23px);line-height:1.38;font-weight:500;letter-spacing:-.01em">Nous ne livrons pas seulement du code — nous construisons des systèmes évolutifs qui grandissent avec votre entreprise.</p>
+      <p class="sub" style="margin:0 0 28px;font-size:16px;line-height:1.6">Améliorez les performances avec des équipes flexibles, un suivi en temps réel et une continuité garantie. Du code à la continuité, nous sécurisons chaque étape de votre parcours technologique.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a class="btn" href="Systeme-Contact.dc.html">Commencer aujourd’hui <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" stroke="#111" stroke-width="1.8" fill="none"></path></svg></a>
+        <a class="btn2" href="Systeme-Expertises.dc.html">En savoir plus</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIGURE 01 : diagramme d'architecture -->
+<section class="wrap rv" style="animation-delay:.35s;padding-bottom:72px">
+  <div class="sheet tk" style="position:relative">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;padding:14px 18px;border-bottom:1.5px solid #111">
+      <div class="mono" style="font-size:12px;letter-spacing:.06em"><span style="color:#C2410C">FIG. 01</span> — ARCHITECTURE DE RÉFÉRENCE · <span class="sub">{{ d.stepLabel }}</span></div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <div role="group" aria-label="Type d’architecture" style="display:inline-flex;border:1.5px solid #111">
+          <button class="seg" style="{{ d.segMono }}" aria-pressed="{{ d.isMono }}" onClick="{{ d.setMono }}">Monolithe</button>
+          <button class="seg" style="{{ d.segEvo }}" aria-pressed="{{ d.isEvo }}" onClick="{{ d.setEvo }}">Évolutif</button>
+        </div>
+        <button class="btn2" style="min-height:44px;padding:0 14px;font-size:13px" onClick="{{ d.replay }}" aria-label="Rejouer l’assemblage du schéma"><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8A5 5 0 1 1 11.5 4.5M13 2V5H10" stroke="currentColor" stroke-width="1.6" fill="none"></path></svg>Rejouer</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:0">
+      <div class="dgw" style="grid-column:span 2;padding:18px 10px 8px;min-width:0">
+        <svg class="dg" viewBox="0 0 1000 570" width="100%" role="img" aria-label="Schéma d’architecture : client, API, services, données, agents IA et monitoring">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#111"></path></marker>
+          </defs>
+          <!-- enveloppe monolithe -->
+          <g style="{{ d.mono }}">
+            <rect x="220" y="110" width="400" height="340" fill="rgba(255,91,31,.07)" stroke="#C2410C" stroke-width="1.5" stroke-dasharray="7 4"></rect>
+            <text x="232" y="130" class="nc" style="fill:#C2410C">MONOLITHE · UN SEUL DÉPLOIEMENT</text>
+            <circle cx="620" cy="110" r="13" fill="#C2410C" class="mk"></circle>
+            <text x="620" y="115" text-anchor="middle" style="font:700 14px 'Schibsted Grotesk',sans-serif;fill:#FBFAF6">!</text>
+            <text x="640" y="104" class="nc" style="fill:#C2410C">POINT UNIQUE DE DÉFAILLANCE</text>
+          </g>
+          <!-- liens évolutif -->
+          <g style="{{ d.l1 }}"><path class="lk" d="M150 280H198" marker-end="url(#ar)"></path></g>
+          <g style="{{ d.l2 }}"><path class="lk" d="M340 280C376 280 372 128 408 128" marker-end="url(#ar)"></path><path class="lk" d="M340 280H408" marker-end="url(#ar)"></path><path class="lk" d="M340 280C376 280 372 432 408 432" marker-end="url(#ar)"></path></g>
+          <g style="{{ d.l3 }}"><path class="lk" d="M570 128C606 128 602 280 638 280" marker-end="url(#ar)"></path><path class="lk" d="M570 280H638" marker-end="url(#ar)"></path><path class="lk" d="M570 432C606 432 602 280 638 280" marker-end="url(#ar)"></path></g>
+          <g style="{{ d.l4 }}"><path class="lk" d="M780 280H848" marker-end="url(#ar)"></path><text x="790" y="268" class="nc">contexte</text></g>
+          <g style="{{ d.l5 }}"><path class="lc" d="M270 316V500"></path><path class="lc" d="M490 464V500"></path><path class="lc" d="M710 316V500"></path><path class="lc" d="M915 316V500"></path><path class="lc" d="M490 160V248"></path><path class="lc" d="M490 312V400"></path></g>
+          <!-- liens monolithe -->
+          <g style="{{ d.lm }}">
+            <path class="lk" d="M150 280H218" marker-end="url(#ar)"></path>
+            <path class="lo" d="M380 176H400"></path><path class="lo" d="M310 212V236"></path><path class="lo" d="M480 208V236"></path><path class="lo" d="M400 268H420"></path><path class="lo" d="M310 300V330"></path><path class="lo" d="M500 300C500 336 420 366 380 366"></path><path class="lo" d="M380 196C420 206 446 216 456 236"></path><path class="lo" d="M372 212C380 260 410 300 430 300"></path>
+            <text x="400" y="430" class="nc" style="fill:#C2410C">COUPLAGE FORT</text>
+            <path d="M620 280H848" fill="none" stroke="#5A5852" stroke-width="1.3" stroke-dasharray="3 6"></path>
+            <path d="M727 270L743 290M743 270L727 290" stroke="#C2410C" stroke-width="2"></path>
+            <text x="690" y="306" class="nc">NON INTÉGRABLE</text>
+          </g>
+          <!-- noeuds -->
+          <g style="{{ d.n1 }}"><rect width="130" height="72" class="nb"></rect><text x="12" y="20" class="nc">N-01</text><text x="12" y="45" class="nt">Client</text><text x="12" y="61" class="ns">web · mobile</text><circle cx="130" cy="36" r="3.5" fill="#111"></circle></g>
+          <g style="{{ d.n2 }}"><rect width="140" height="72" class="nb"></rect><text x="12" y="20" class="nc">N-02</text><text x="12" y="45" class="nt">API</text><text x="12" y="61" class="ns">passerelle · auth</text><circle cx="140" cy="36" r="3.5" fill="#111"></circle></g>
+          <g style="{{ d.n3 }}"><rect width="160" height="64" class="nb"></rect><text x="12" y="19" class="nc">N-03 · SERVICE</text><text x="12" y="45" class="nt">Métier</text></g>
+          <g style="{{ d.n4 }}"><rect width="160" height="64" class="nb"></rect><text x="12" y="19" class="nc">N-04 · SERVICE</text><text x="12" y="45" class="nt">Temps réel</text></g>
+          <g style="{{ d.n5 }}"><rect width="160" height="64" class="nb"></rect><text x="12" y="19" class="nc">N-05 · SERVICE</text><text x="12" y="45" class="nt">Notifications</text></g>
+          <g style="{{ d.n6 }}"><rect width="140" height="72" class="nb"></rect><text x="12" y="20" class="nc">N-06</text><text x="12" y="45" class="nt">Données</text><text x="12" y="61" class="ns">stockage · cache</text></g>
+          <g style="{{ d.n7 }}"><rect width="130" height="72" style="fill:var(--acc,#FF5B1F);stroke:#111;stroke-width:1.5"></rect><text x="12" y="20" class="nc" style="fill:#111">N-07 · IA</text><text x="12" y="45" class="nt">Agents IA</text><text x="12" y="61" class="ns" style="fill:#111">ATOM · affinés</text></g>
+          <g style="{{ d.n8 }}"><rect width="770" height="48" fill="#FBFAF6" stroke="#0089BF" stroke-width="1.5" stroke-dasharray="6 3"></rect><text x="14" y="29" class="nc" style="fill:#006E99;font-size:11px">N-08 · MONITORING — OBSERVABILITÉ TEMPS RÉEL</text><polyline points="430,32 460,24 490,30 520,16 550,26 580,20 610,28 640,12 670,22 700,18 730,26 756,14" fill="none" stroke="#0089BF" stroke-width="1.6"></polyline></g>
+        </svg>
+      </div>
+      <div style="border-left:1.5px solid #111;padding:20px 22px;display:flex;flex-direction:column;gap:6px;min-width:0">
+        <div class="lbl" style="color:#5A5852">Paramètres · {{ d.modeName }}</div>
+        <sc-for list="{{ d.specs }}" as="sp" hint-placeholder-count="6">
+          <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed rgba(17,17,17,.3)">
+            <span class="mono sub" style="font-size:12px">{{ sp.k }}</span>
+            <span style="{{ sp.style }}">{{ sp.v }}</span>
+          </div>
+        </sc-for>
+        <p style="margin:14px 0 0;font-size:15px;line-height:1.5;font-weight:500">{{ d.caption }}</p>
+        <div class="mono sub" style="font-size:11px;line-height:1.9;margin-top:auto;padding-top:16px">
+          <div><svg width="26" height="6" aria-hidden="true"><path d="M0 3H26" stroke="#111" stroke-width="1.5" stroke-dasharray="5 4"></path></svg> appel / flux de données</div>
+          <div><svg width="26" height="6" aria-hidden="true"><path d="M0 3H26" stroke="#0089BF" stroke-width="1.5" stroke-dasharray="2 3"></path></svg> télémétrie</div>
+          <div><svg width="26" height="6" aria-hidden="true"><path d="M0 3H26" stroke="#C2410C" stroke-width="1.8"></path></svg> couplage fort</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- marquee -->
+<div style="border-top:1.5px solid #111;border-bottom:1.5px solid #111;background:#111;color:#F2F1EC;overflow:hidden">
+  <div class="mono" style="display:flex;width:max-content;animation:mq 38s linear infinite;font-size:13px;letter-spacing:.1em;min-height:48px;align-items:center;white-space:nowrap">
+    <span style="padding-right:48px">ARCHITECTURE ÉVOLUTIVE ✕ CLOUD-NATIVE ✕ INTÉGRATION CONTINUE ✕ ASSURANCE QUALITÉ ✕ SUIVI TEMPS RÉEL ✕ AGENTS AUTONOMES ✕ MODÈLES AFFINÉS ✕ MULTIJOUEUR ÉVOLUTIF ✕</span>
+    <span style="padding-right:48px">ARCHITECTURE ÉVOLUTIVE ✕ CLOUD-NATIVE ✕ INTÉGRATION CONTINUE ✕ ASSURANCE QUALITÉ ✕ SUIVI TEMPS RÉEL ✕ AGENTS AUTONOMES ✕ MODÈLES AFFINÉS ✕ MULTIJOUEUR ÉVOLUTIF ✕</span>
+  </div>
+</div>
+
+<!-- BÉNÉFICES -->
+<section class="wrap" style="padding-top:112px;padding-bottom:104px">
+  <div class="sr" style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px">
+    <div>
+      <div class="lbl" style="margin-bottom:14px">§ 01 — Sorties du système</div>
+      <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:760px">Ce que le système vous rend, chaque mois.</h2>
+    </div>
+    <p class="sub" style="margin:0;max-width:360px;line-height:1.55">Quatre bénéfices directs : nous prenons en charge la mécanique, vous gardez la main sur la valeur.</p>
+  </div>
+  <div class="sr" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:1.5px;background:#111;border:1.5px solid #111">
+    <div class="bcell">
+      <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:40px"><span class="mono" style="font-size:12px;color:#C2410C">B-01</span><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="10" fill="none" stroke="#111" stroke-width="1.6"></circle><path d="M18 4V9M18 27V32M4 18H9M27 18H32M18 18L24 12" stroke="#111" stroke-width="1.6" fill="none"></path></svg></div>
+      <h3 style="margin:0 0 10px;font-size:21px;letter-spacing:-.02em">Automatiser les tâches fastidieuses</h3>
+      <p class="sub" style="margin:0;line-height:1.55;font-size:15px">Rationaliser les opérations avec l’automatisation intelligente.</p>
+    </div>
+    <div class="bcell">
+      <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:40px"><span class="mono" style="font-size:12px;color:#C2410C">B-02</span><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="13" fill="none" stroke="#111" stroke-width="1.6"></circle><circle cx="18" cy="18" r="6" fill="none" stroke="#111" stroke-width="1.6"></circle><circle cx="18" cy="18" r="1.8" style="fill:var(--acc,#FF5B1F)"></circle></svg></div>
+      <h3 style="margin:0 0 10px;font-size:21px;letter-spacing:-.02em">Se concentrer sur l’essentiel</h3>
+      <p class="sub" style="margin:0;line-height:1.55;font-size:15px">Vous pilotez la valeur métier, nous nous occupons du reste.</p>
+    </div>
+    <div class="bcell">
+      <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:40px"><span class="mono" style="font-size:12px;color:#C2410C">B-03</span><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect x="4" y="6" width="12" height="12" fill="none" stroke="#111" stroke-width="1.6"></rect><rect x="20" y="18" width="12" height="12" fill="none" stroke="#111" stroke-width="1.6"></rect><path d="M16 12H26V18M20 24H10V18" stroke="#111" stroke-width="1.6" fill="none"></path></svg></div>
+      <h3 style="margin:0 0 10px;font-size:21px;letter-spacing:-.02em">Outils collaboratifs</h3>
+      <p class="sub" style="margin:0;line-height:1.55;font-size:15px">Un travail d’équipe renforcé, dans vos outils et vos rituels.</p>
+    </div>
+    <div class="bcell">
+      <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:40px"><span class="mono" style="font-size:12px;color:#C2410C">B-04</span><svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><path d="M4 28L13 18L19 23L32 8" stroke="#111" stroke-width="1.6" fill="none"></path><path d="M24 8H32V16" stroke="#111" stroke-width="1.6" fill="none"></path></svg></div>
+      <h3 style="margin:0 0 10px;font-size:21px;letter-spacing:-.02em">Transformer les opérations</h3>
+      <p class="sub" style="margin:0;line-height:1.55;font-size:15px">Viser l’efficacité maximale, mesurée et visible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PILIERS -->
+<section style="border-top:1.5px solid #111;padding-top:104px;padding-bottom:112px">
+  <div class="wrap">
+    <div class="sr" style="margin-bottom:44px">
+      <div class="lbl" style="margin-bottom:14px">§ 02 — Solutions éprouvées · 4 fiches techniques</div>
+      <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:820px">Quatre piliers, spécifiés comme un système.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:28px;align-items:start">
+      <div class="sr" style="border:1.5px solid #111;background:#FBFAF6">
+        <sc-for list="{{ piliers.tabs }}" as="t" hint-placeholder-count="4">
+          <button class="ptab" style="{{ t.style }}" aria-pressed="{{ t.on }}" onClick="{{ t.pick }}">
+            <span class="mono" style="font-size:13px">{{ t.code }}</span>
+            <span style="font-weight:700;font-size:18px;letter-spacing:-.015em">{{ t.title }}</span>
+            <span class="mono" style="font-size:11px;opacity:.8">RÉV. {{ t.rev }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div class="sheet tk sr" style="grid-column:span 2;min-width:0">
+        <div class="mono" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));gap:1.5px;background:#111;border-bottom:1.5px solid #111;font-size:11px;letter-spacing:.08em">
+          <div style="background:#FBFAF6;padding:10px 14px">FICHE TECHNIQUE</div>
+          <div style="background:#FBFAF6;padding:10px 14px">RÉF. {{ piliers.cur.code }}</div>
+          <div style="background:#FBFAF6;padding:10px 14px">RÉV. {{ piliers.cur.rev }}</div>
+          <div style="background:#FBFAF6;padding:10px 14px;color:#006E99">STATUT : EN SERVICE</div>
+        </div>
+        <div style="padding:32px 32px 28px">
+          <h3 style="margin:0 0 12px;font-size:clamp(26px,2.8vw,38px);letter-spacing:-.03em;line-height:1.05">{{ piliers.cur.title }}</h3>
+          <p class="sub" style="margin:0 0 28px;font-size:17px;line-height:1.55;max-width:620px">{{ piliers.cur.lead }}</p>
+          <sc-for list="{{ piliers.cur.items }}" as="it" hint-placeholder-count="4">
+            <div style="display:flex;align-items:baseline;gap:12px;padding:12px 0;border-top:1px solid rgba(17,17,17,.12)">
+              <span class="mono" style="font-size:12px;color:#C2410C">{{ it.n }}</span>
+              <span style="font-weight:600;font-size:17px">{{ it.t }}</span>
+              <span style="flex:1;border-bottom:1.5px dotted rgba(17,17,17,.35);min-width:24px"></span>
+              <span class="mono" style="font-size:11px;letter-spacing:.08em;color:#006E99;display:inline-flex;gap:6px;align-items:center"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6L5 9L10 3" stroke="#006E99" stroke-width="1.8" fill="none"></path></svg>CONFORME</span>
+            </div>
+          </sc-for>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:26px">
+            <span class="mono sub" style="font-size:11px">APPROUVÉ · BAQUELIS · FEUILLE {{ piliers.cur.sheet }}/4</span>
+            <a class="tl" href="Systeme-Expertises.dc.html" style="font-weight:600;display:inline-flex;align-items:center;min-height:44px">Lire la spécification complète →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APERÇU IA -->
+<section style="background:#111;color:#F2F1EC;padding-top:104px;padding-bottom:104px;background-image:linear-gradient(rgba(242,241,236,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(242,241,236,.05) 1px,transparent 1px);background-size:32px 32px">
+  <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:56px;align-items:center">
+    <div class="sr">
+      <div class="mono" style="font-size:12px;letter-spacing:.08em;color:var(--acc,#FF5B1F);margin-bottom:16px">§ 03 — MODULE IA · AGENT ATOM</div>
+      <h2 style="margin:0 0 20px;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800">Transformez la productivité avec les agents IA.</h2>
+      <p style="margin:0 0 28px;color:#C9C7BF;font-size:17px;line-height:1.6;max-width:520px">Personnalisation de modèles et agents autonomes : une expertise qui, selon notre promesse, peut multiplier votre productivité par 10.</p>
+      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:32px;border-top:1px solid rgba(242,241,236,.2);border-bottom:1px solid rgba(242,241,236,.2);padding:18px 0">
+        <span style="font-size:72px;font-weight:800;letter-spacing:-.05em;line-height:1;color:var(--acc,#FF5B1F)">×10</span>
+        <span class="mono" style="font-size:12px;color:#C9C7BF;line-height:1.6">PROMESSE BAQUELIS<br>PRODUCTIVITÉ VISÉE — NON MESURÉE ICI</span>
+      </div>
+      <a class="btn" href="Systeme-IA.dc.html">Voir la démo ATOM</a>
+    </div>
+    <div class="sr" style="border:1.5px solid rgba(242,241,236,.35)">
+      <sc-for list="{{ ia.tabs }}" as="c" hint-placeholder-count="3">
+        <div style="border-bottom:1px solid rgba(242,241,236,.2)">
+          <button class="cap" style="{{ c.style }}" aria-expanded="{{ c.on }}" onClick="{{ c.pick }}">
+            <span style="display:flex;gap:16px;align-items:baseline"><span class="mono" style="font-size:12px;opacity:.8">{{ c.code }}</span><span style="font-weight:700;font-size:20px;letter-spacing:-.015em">{{ c.title }}</span></span>
+            <span class="mono" style="font-size:18px">{{ c.sign }}</span>
+          </button>
+          <sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:4px 18px 22px 18px">
+              <p style="margin:0 0 14px;color:#C9C7BF;line-height:1.55">{{ c.text }}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ c.pts }}" as="p" hint-placeholder-count="4">
+                  <span class="mono" style="font-size:12px;border:1px solid rgba(242,241,236,.35);padding:7px 10px">{{ p }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- APERÇU JEUX -->
+<section class="wrap" style="padding-top:112px;padding-bottom:104px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:56px;align-items:center">
+    <div class="sr" style="position:relative;border:1.5px solid #111;background:#FBFAF6;padding:12px">
+      <div style="position:relative;height:440px;overflow:hidden">
+        <img src="assets/controller-white.webp" alt="Manette de jeu blanche sur fond gris clair" style="width:100%;height:440px;object-fit:cover;display:block;filter:grayscale(.2) contrast(1.05)">
+        <div class="mono" style="position:absolute;left:6%;top:12%;font-size:11px;background:#F2F1EC;border:1px solid #111;padding:6px 8px">A · ENTRÉE → RÉPONSE SUB-MS</div>
+        <div class="mono" style="position:absolute;right:6%;top:42%;font-size:11px;background:#F2F1EC;border:1px solid #111;padding:6px 8px">B · ÉTAT SYNCHRONISÉ</div>
+        <div class="mono" style="position:absolute;left:10%;bottom:10%;font-size:11px;background:#111;color:#F2F1EC;padding:6px 8px">C · ANTI-TRICHE</div>
+      </div>
+      <div class="mono sub" style="display:flex;justify-content:space-between;font-size:11px;padding-top:10px"><span>PL. 04 — BANC JEUX &amp; WEB3</span><span>ÉCH. 1:3</span></div>
+    </div>
+    <div class="sr">
+      <div class="lbl" style="margin-bottom:14px">§ 04 — Jeux &amp; Web3 · preuve d’excellence</div>
+      <h2 style="margin:0 0 18px;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800">Les jeux sont les applications les plus difficiles.</h2>
+      <p class="sub" style="margin:0 0 28px;font-size:17px;line-height:1.6">Performances temps réel, gestion d’état complexe, expériences fluides. Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:0;border-top:1.5px solid #111">
+        <div style="padding:14px 0;border-bottom:1px solid rgba(17,17,17,.15)"><span class="mono" style="font-size:12px;color:#C2410C">J-01</span> <b>Performance temps réel</b></div>
+        <div style="padding:14px 0;border-bottom:1px solid rgba(17,17,17,.15)"><span class="mono" style="font-size:12px;color:#C2410C">J-02</span> <b>Architecture complexe</b></div>
+        <div style="padding:14px 0;border-bottom:1px solid rgba(17,17,17,.15)"><span class="mono" style="font-size:12px;color:#C2410C">J-03</span> <b>Multijoueur évolutif</b></div>
+        <div style="padding:14px 0;border-bottom:1px solid rgba(17,17,17,.15)"><span class="mono" style="font-size:12px;color:#C2410C">J-04</span> <b>Sécurité &amp; anti-triche</b></div>
+      </div>
+      <a class="tl" href="Systeme-Jeux.dc.html" style="display:inline-flex;align-items:center;min-height:44px;margin-top:20px;font-weight:600">Ouvrir le banc d’essai jeux →</a>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTHODE -->
+<section style="border-top:1.5px solid #111;padding-top:104px;padding-bottom:104px;background:#ECEBE4">
+  <div class="wrap">
+    <div class="sr" style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:48px">
+      <div>
+        <div class="lbl" style="margin-bottom:14px">§ 05 — Séquence d’intégration</div>
+        <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800">Cinq étapes, de l’appel au suivi.</h2>
+      </div>
+      <span class="mono sub" style="font-size:12px">ÉTAPE {{ steps.curN }} / 05</span>
+    </div>
+    <div class="sr" style="position:relative">
+      <div style="position:absolute;left:20px;right:20px;top:20px;height:1.5px;background:rgba(17,17,17,.25)"></div>
+      <div style="{{ steps.bar }}"></div>
+      <div style="display:flex;gap:12px;overflow-x:auto;position:relative">
+        <sc-for list="{{ steps.list }}" as="s" hint-placeholder-count="5">
+          <button class="stp" aria-pressed="{{ s.on }}" onClick="{{ s.pick }}">
+            <span class="dot" style="{{ s.dot }}">{{ s.n }}</span>
+            <span style="display:block;margin-top:14px;font-weight:600;font-size:15px;line-height:1.3;padding-right:8px">{{ s.t }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <div class="sheet sr" style="margin-top:28px;padding:28px 30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:24px;align-items:center">
+      <div>
+        <div class="mono" style="font-size:12px;color:#C2410C;margin-bottom:8px">ÉTAPE {{ steps.curN }}</div>
+        <h3 style="margin:0;font-size:28px;letter-spacing:-.025em">{{ steps.cur.t }}</h3>
+      </div>
+      <p class="sub" style="margin:0;font-size:16px;line-height:1.6">{{ steps.cur.d }}</p>
+      <div class="mono" style="font-size:12px;line-height:1.7;border-left:1.5px solid #111;padding-left:16px"><span class="sub">DÉLAI</span><br>{{ steps.cur.delai }}</div>
+    </div>
+  </div>
+</section>
+
+<!-- APERÇU OFFRES -->
+<section class="wrap" style="padding-top:112px;padding-bottom:104px">
+  <div class="sr" style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px">
+    <div>
+      <div class="lbl" style="margin-bottom:14px">§ 06 — Configurations mensuelles</div>
+      <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800">Trois formules, des paramètres exacts.</h2>
+    </div>
+    <a class="btn2" href="Systeme-Offres.dc.html">Comparer les fiches</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px">
+    <div class="sheet oc" style="padding:26px">
+      <div class="mono sub" style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:22px"><span>CFG-INT</span><span>RÉV. 2.0</span></div>
+      <h3 style="margin:0 0 6px;font-size:26px;letter-spacing:-.025em">Intégration</h3>
+      <div style="font-size:42px;font-weight:800;letter-spacing:-.04em;margin-bottom:18px">4 500 €<span class="mono sub" style="font-size:13px;font-weight:400;letter-spacing:0"> /mois</span></div>
+      <div class="mono" style="font-size:12.5px;line-height:2.1;border-top:1px solid rgba(17,17,17,.15);padding-top:12px">
+        <div style="display:flex;justify-content:space-between"><span class="sub">HEURES</span><span>40 h/sem.</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="sub">ENGAGEMENT</span><span>12 mois min.</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="sub">ÉQUIPE</span><span>1 profil dédié</span></div>
+      </div>
+    </div>
+    <div class="sheet oc" style="padding:26px;box-shadow:6px 6px 0 var(--acc,#FF5B1F)">
+      <div class="mono" style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:22px"><span class="sub">CFG-FLX</span><span style="background:var(--acc,#FF5B1F);padding:3px 7px;border:1px solid #111">PLUS POPULAIRE</span></div>
+      <h3 style="margin:0 0 6px;font-size:26px;letter-spacing:-.025em">Flex</h3>
+      <div style="font-size:42px;font-weight:800;letter-spacing:-.04em;margin-bottom:18px">6 200 €<span class="mono sub" style="font-size:13px;font-weight:400;letter-spacing:0"> /mois</span></div>
+      <div class="mono" style="font-size:12.5px;line-height:2.1;border-top:1px solid rgba(17,17,17,.15);padding-top:12px">
+        <div style="display:flex;justify-content:space-between"><span class="sub">HEURES</span><span>50 h/sem.</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="sub">ENGAGEMENT</span><span>6 mois min.</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="sub">ÉQUIPE</span><span>1 profil senior</span></div>
+      </div>
+    </div>
+    <div class="sheet oc" style="padding:26px">
+      <div class="mono sub" style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:22px"><span>CFG-PRF</span><span>RÉV. 3.1</span></div>
+      <h3 style="margin:0 0 6px;font-size:26px;letter-spacing:-.025em">Performance</h3>
+      <div style="font-size:42px;font-weight:800;letter-spacing:-.04em;margin-bottom:18px">18 900 €<span class="mono sub" style="font-size:13px;font-weight:400;letter-spacing:0"> /mois</span></div>
+      <div class="mono" style="font-size:12.5px;line-height:2.1;border-top:1px solid rgba(17,17,17,.15);padding-top:12px">
+        <div style="display:flex;justify-content:space-between"><span class="sub">HEURES</span><span>couverture 24/7</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="sub">ENGAGEMENT</span><span>2 mois min.</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="sub">ÉQUIPE</span><span>5 experts seniors</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGE -->
+<section class="wrap" style="padding-bottom:112px">
+  <div class="sheet tk sr" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:0">
+    <div style="padding:40px 36px;grid-column:span 2;min-width:0">
+      <div class="mono" style="font-size:12px;color:#C2410C;margin-bottom:22px">PROCÈS-VERBAL DE RECETTE · RÉF. T-01</div>
+      <blockquote style="margin:0;font-size:clamp(22px,2.3vw,32px);line-height:1.3;letter-spacing:-.02em;font-weight:500">« Cette plateforme a transformé la façon dont nous gérons nos projets. Son design intuitif et ses fonctionnalités puissantes ont rationalisé notre flux de travail et amélioré la collaboration d’équipe. C’est vraiment un game-changer pour nos opérations. »</blockquote>
+    </div>
+    <div style="border-left:1.5px solid #111;padding:40px 30px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-width:0">
+      <div class="mono sub" style="font-size:11px;line-height:1.8">VALIDÉ PAR<br>CONFIANCE &amp; PARTENARIAT</div>
+      <div>
+        <svg width="140" height="44" viewBox="0 0 140 44" aria-hidden="true"><path d="M4 32C18 8 26 40 38 22S58 6 62 28 84 34 96 18 120 26 136 14" fill="none" stroke="#111" stroke-width="1.6"></path></svg>
+        <div style="font-weight:700;font-size:19px;margin-top:8px">Laura S.</div>
+        <div class="sub" style="font-size:15px">Responsable des Opérations</div>
+      </div>
+      <div class="mono" style="font-size:11px;color:#006E99">« Construit sur la confiance. Guidé par les résultats. »</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section style="border-top:1.5px solid #111;padding-top:104px;padding-bottom:112px">
+  <div class="wrap sr" style="text-align:center">
+    <div class="mono sub" style="display:flex;align-items:center;gap:12px;font-size:11px;margin-bottom:28px"><span style="flex:1;height:1px;background:#111"></span>COTE FINALE · VOTRE SYSTÈME<span style="flex:1;height:1px;background:#111"></span></div>
+    <h2 style="margin:0 auto 18px;font-size:clamp(36px,5.6vw,84px);line-height:.98;letter-spacing:-.045em;font-weight:800;max-width:1000px">Prêt à transformer votre entreprise<span style="color:var(--acc,#FF5B1F)"> ?</span></h2>
+    <p class="sub" style="margin:0 auto 34px;max-width:560px;font-size:17px;line-height:1.6">Transformer l’ambition en réalité : des solutions pour les besoins d’aujourd’hui qui préparent aux défis de demain.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a class="btn" href="Systeme-Contact.dc.html">Commencer aujourd’hui</a>
+      <a class="btn2" href="Systeme-Contact.dc.html">Nous contacter</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="border-top:1.5px solid #111;background:#ECEBE4">
+  <div class="wrap" style="padding-top:64px;padding-bottom:32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:40px">
+      <div>
+        <a href="Systeme-Accueil.dc.html" class="logo" aria-label="Baquelis, accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" fill="none" stroke="#111" stroke-width="2"></rect><path d="M8 8H22M8 8V22M8 15H18" stroke="#111" stroke-width="1.5" fill="none"></path><circle cx="8" cy="8" r="2.6" fill="#111"></circle><circle cx="22" cy="8" r="2.2" fill="#111"></circle><rect x="17" y="17" width="8" height="8" style="fill:var(--acc,#FF5B1F)"></rect></svg><span>Baquelis</span></a>
+        <p style="margin:16px 0 6px;font-weight:600">Flexibilité. Continuité. Performance.</p>
+        <p class="sub" style="margin:0;font-size:14px;line-height:1.6">Construit sur la confiance. Guidé par les résultats.</p>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Navigation</div>
+        <a class="fl" href="Systeme-Expertises.dc.html">Expertises</a><a class="fl" href="Systeme-IA.dc.html">Intelligence artificielle</a><a class="fl" href="Systeme-Jeux.dc.html">Jeux &amp; Web3</a><a class="fl" href="Systeme-Contact.dc.html">Contact</a>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Formules</div>
+        <a class="fl" href="Systeme-Offres.dc.html">Intégration — 4 500 €/mois</a><a class="fl" href="Systeme-Offres.dc.html">Flex — 6 200 €/mois</a><a class="fl" href="Systeme-Offres.dc.html">Performance — 18 900 €/mois</a>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Société</div>
+        <p style="margin:12px 0;font-size:15px;line-height:1.6">Siège : 31 B avenue Maréchal Foch, 06000 Nice</p>
+        <p class="sub" style="margin:0 0 8px;font-size:14px">[RAISON SOCIALE] · [N° TVA]</p>
+        <p class="mono" style="margin:0;font-size:13px">[contact@domaine-baquelis]</p>
+      </div>
+    </div>
+    <div class="cart mono">
+      <div><b>PROJET</b>Baquelis</div>
+      <div><b>DOCUMENT</b>Système — Accueil</div>
+      <div><b>FEUILLE</b>01 / 06</div>
+      <div><b>RÉVISION</b>C</div>
+      <div><b>ÉCHELLE</b>1:1</div>
+      <div><b>DROITS</b>© 2026 Baquelis</div>
+    </div>
+    <div class="mono sub" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;padding-top:18px">
+      <span>Proposition de refonte — concept · Direction 07 « Système »</span>
+      <a class="tl" href="Main.dc.html" style="display:inline-flex;align-items:center;min-height:44px">Toutes les propositions</a>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6500},"accent":{"editor":"color","default":"#FF5B1F","options":["#FF5B1F","#0089BF","#111111"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu:false, mode:"evo", step:8, pilier:0, ia:0, etape:0 };
+    this.timer = null;
+  }
+  componentDidMount(){ this.start(); }
+  componentWillUnmount(){ if(this.timer){ clearInterval(this.timer); this.timer = null; } }
+  start(){
+    if(this.timer){ clearInterval(this.timer); }
+    this.setState({ step:0 });
+    this.timer = setInterval(() => {
+      if(this.state.step >= 8){ clearInterval(this.timer); this.timer = null; return; }
+      this.setState({ step:this.state.step + 1 });
+    }, 380);
+  }
+  renderVals(){
+    const acc = (this.props && this.props.accent) || "#FF5B1F";
+    const s = this.state.step, mono = this.state.mode === "mono";
+    const P = {
+      evo:{n1:[20,244],n2:[200,244],n3:[410,96],n4:[410,248],n5:[410,400],n6:[640,244],n7:[850,244],n8:[210,500]},
+      mono:{n1:[20,244],n2:[240,140],n3:[400,144],n4:[240,236],n5:[420,236],n6:[240,330],n7:[850,244],n8:[210,500]}
+    };
+    const pos = mono ? P.mono : P.evo;
+    const d = {};
+    ["n1","n2","n3","n4","n5","n6","n7","n8"].forEach((k,i) => {
+      let op = s > i ? 1 : 0;
+      if(mono && (k === "n7" || k === "n8") && op) op = 0.28;
+      d[k] = "transform:translate(" + pos[k][0] + "px," + pos[k][1] + "px);opacity:" + op + ";transition:transform .9s cubic-bezier(.7,0,.2,1),opacity .5s ease";
+    });
+    const g = (c) => "opacity:" + (c ? 1 : 0) + ";transition:opacity .5s ease";
+    d.l1 = g(!mono && s >= 2); d.l2 = g(!mono && s >= 5); d.l3 = g(!mono && s >= 6); d.l4 = g(!mono && s >= 7); d.l5 = g(!mono && s >= 8);
+    d.mono = g(mono && s >= 2); d.lm = g(mono && s >= 6);
+    const names = ["initialisation","client","API","service métier","service temps réel","service notifications","données","agents IA","monitoring"];
+    d.stepLabel = s >= 8 ? "ASSEMBLÉ 08/08" : "ASSEMBLAGE 0" + s + "/08 — " + names[s].toUpperCase();
+    const on = "background:#111;color:#F2F1EC", off = "background:transparent;color:#111";
+    d.segMono = mono ? on : off; d.segEvo = mono ? off : on;
+    d.isMono = mono ? "true" : "false"; d.isEvo = mono ? "false" : "true";
+    d.setMono = () => this.setState({ mode:"mono" });
+    d.setEvo = () => this.setState({ mode:"evo" });
+    d.replay = () => this.start();
+    d.modeName = mono ? "monolithe" : "évolutif";
+    const specM = [["Déploiement","Tout ou rien"],["Montée en charge","Bloc entier"],["Défaillance","Point unique"],["Équipes","Séquentielles"],["IA & agents","Non intégrables"],["Observabilité","Boîte noire"]];
+    const specE = [["Déploiement","Par service"],["Montée en charge","Ciblée"],["Défaillance","Isolée"],["Équipes","En parallèle"],["IA & agents","Branchés aux données"],["Observabilité","Temps réel"]];
+    d.specs = (mono ? specM : specE).map(r => ({ k:r[0], v:r[1], style:"font-weight:700;font-size:15px;text-align:right;transition:color .4s;color:" + (mono ? "#C2410C" : "#111") }));
+    d.caption = mono ? "Un seul bloc : chaque évolution touche tout le système, chaque panne l’arrête." : "Des composants découplés : le système grandit avec votre entreprise, service par service.";
+
+    const PIL = [
+      { code:"P-01", rev:"3.2", title:"Solutions éprouvées", lead:"Nous ne livrons pas seulement du code — nous construisons des systèmes évolutifs qui grandissent avec votre entreprise.", items:["Architecture évolutive","Pile technologique moderne","Solutions cloud-native","Optimisation des performances"] },
+      { code:"P-02", rev:"2.6", title:"Partenariat, pas d’externalisation", lead:"Nos experts deviennent une extension de votre équipe : mêmes outils, mêmes rituels, mêmes objectifs.", items:["Intégration d’équipe dédiée","Engagement à long terme","Alignement culturel","Communication fluide"] },
+      { code:"P-03", rev:"4.1", title:"Rapidité avec précision", lead:"Du concept à la livraison, vite et sans compromis sur la qualité.", items:["Prototypage rapide","Méthodologie agile","Assurance qualité","Intégration continue"] },
+      { code:"P-04", rev:"1.9", title:"Transparence radicale", lead:"Pas de coûts cachés ni de mises à jour vagues : des progrès visibles en temps réel.", items:["Suivi des progrès en temps réel","Tarification transparente","Rapports réguliers","Communication ouverte"] }
+    ];
+    const pi = this.state.pilier;
+    const piliers = {
+      tabs: PIL.map((p,i) => ({ code:p.code, rev:p.rev, title:p.title, on:i === pi ? "true" : "false",
+        style:(i === pi ? "background:#111;color:#F2F1EC;" : "background:transparent;color:#111;") + (i < 3 ? "border:0;border-bottom:1.5px solid #111" : "border:0"),
+        pick:() => this.setState({ pilier:i }) })),
+      cur: { code:PIL[pi].code, rev:PIL[pi].rev, title:PIL[pi].title, lead:PIL[pi].lead, sheet:pi + 1, items:PIL[pi].items.map((t,j) => ({ n:"0" + (j + 1), t:t })) }
+    };
+
+    const CAP = [
+      { code:"IA-01", title:"Affinage de modèles", text:"Des modèles entraînés sur vos données et vos cas d’usage.", pts:["Formation spécifique au domaine","Optimisation des performances","Apprentissage continu","Confidentialité & sécurité"] },
+      { code:"IA-02", title:"Agents autonomes", text:"Des agents qui exécutent des tâches complexes, décident et s’adaptent.", pts:["Automatisation de tâches","Prise de décision","Coordination multi-agents","Apprentissage & adaptation"] },
+      { code:"IA-03", title:"Intégration métier", text:"L’IA branchée dans vos processus existants, sans rupture.", pts:["Automatisation des flux","Traitement de données","Analytique prédictive","Insights temps réel"] }
+    ];
+    const ii = this.state.ia;
+    const ia = { tabs: CAP.map((c,i) => ({ code:c.code, title:c.title, text:c.text, pts:c.pts, on:i === ii, sign:i === ii ? "−" : "+",
+      style:"border:0;" + (i === ii ? "background:" + acc + ";color:#111" : "background:transparent;color:#F2F1EC"),
+      pick:() => this.setState({ ia:i === ii ? -1 : i }) })) };
+
+    const ST = [
+      { t:"Appel découverte", d:"Nous écoutons votre contexte, vos objectifs et vos contraintes techniques.", delai:"[DÉLAI]" },
+      { t:"Cadrage & choix de formule", d:"Intégration, Flex ou Performance : nous dimensionnons l’engagement avec vous.", delai:"[DÉLAI]" },
+      { t:"Sélection du profil ou de l’équipe", d:"Un profil technique, un profil senior ou une équipe de 5 experts seniors selon la formule.", delai:"Changement de profil : 30 j (Intégration) · 15 j (Flex)" },
+      { t:"Intégration à vos outils et rituels", d:"Accès, canaux, cérémonies agiles : l’équipe s’installe dans votre quotidien.", delai:"[DÉLAI]" },
+      { t:"Suivi temps réel & ajustements", d:"Rapports, tableaux de bord et ajustements continus du dispositif.", delai:"Rapports mensuels · hebdomadaires · quotidiens selon la formule" }
+    ];
+    const ei = this.state.etape;
+    const steps = {
+      curN:"0" + (ei + 1), cur:ST[ei],
+      bar:"position:absolute;left:20px;top:20px;height:2px;background:" + acc + ";transition:width .6s cubic-bezier(.7,0,.2,1);width:calc((100% - 40px) * " + (ei / 4) + ")",
+      list: ST.map((x,i) => ({ n:"0" + (i + 1), t:x.t, on:i === ei ? "true" : "false",
+        dot:i < ei ? "background:#111;color:#F2F1EC" : (i === ei ? "background:" + acc + ";color:#111" : "background:#F2F1EC;color:#111"),
+        pick:() => this.setState({ etape:i }) }))
+    };
+
+    return {
+      rootStyle:"--acc:" + acc,
+      menuOpen:this.state.menu,
+      toggleMenu:() => this.setState({ menu:!this.state.menu }),
+      d, piliers, ia, steps
+    };
+  }
+}
+</script>
+</body>
+</html>

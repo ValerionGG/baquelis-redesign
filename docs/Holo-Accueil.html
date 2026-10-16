@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Holo — Accueil</title>
+<script src="vendor/preact.min.js"></script>
+<script src="dc.js"></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<script type="text/x-dc-template" id="dc-template">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;family=Unbounded:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#F4F3F8}
+sc-for,sc-if{display:contents}
+.hl,.hl *{box-sizing:border-box}
+.hl{font-family:'Figtree',system-ui,sans-serif;background:#F4F3F8;color:#14131A;line-height:1.55;font-size:16px;overflow:hidden;-webkit-font-smoothing:antialiased}
+.hl h1,.hl h2,.hl h3,.hl h4,.hl p,.hl blockquote{margin:0}
+.hl img{display:block;max-width:100%}
+.disp{font-family:'Unbounded','Figtree',sans-serif;font-weight:600;letter-spacing:-.025em;line-height:1.06;overflow-wrap:anywhere}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px;position:relative}
+.sec{padding:120px 0;position:relative}
+.h2{font-size:clamp(28px,3.3vw,48px)}
+.lead{font-size:clamp(17px,1.35vw,20px);color:#5D5B6A;max-width:620px}
+.muted{color:#5D5B6A}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#5D5B6A;display:inline-flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:26px;height:10px;border-radius:10px;background:conic-gradient(from 200deg,#ffcdee,#c4ebff,#cdfde6,#fff1bd,#e0cdff,#ffcdee);box-shadow:inset 0 0 0 1px rgba(255,255,255,.8)}
+.glass{background:rgba(255,255,255,.6);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 30px 70px -40px rgba(40,30,90,.35);border-radius:28px}
+.lnk{color:#006A93;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.lnk:hover{text-decoration:underline;text-underline-offset:5px}
+.lnk svg{transition:transform .3s}
+.lnk:hover svg{transform:translateX(4px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;color:#14131A;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,background .3s}
+.btn-p{background:#0093CC;box-shadow:0 14px 34px -14px rgba(0,147,204,.75)}
+.btn-p::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateX(-120%);transition:transform .8s ease}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 20px 44px -16px rgba(0,147,204,.85)}
+.btn-p:hover::after{transform:translateX(120%)}
+.btn-g{background:rgba(255,255,255,.75);border:1px solid rgba(20,19,26,.12)}
+.btn-g:hover{background:#fff;transform:translateY(-2px)}
+.btn-i{background:#14131A;color:#fff}
+.btn-i:hover{transform:translateY(-2px);box-shadow:0 18px 40px -18px rgba(20,19,26,.7)}
+.hl a:focus-visible,.hl button:focus-visible,.hl input:focus-visible,.hl textarea:focus-visible{outline:3px solid #0093CC;outline-offset:3px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid rgba(20,19,26,.1);font-size:13px;font-weight:500}
+.irid{background:conic-gradient(from 200deg,#ffcdee,#c4ebff,#cdfde6,#fff1bd,#e0cdff,#ffcdee)}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes fadein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes sway{0%,100%{transform:perspective(1400px) rotateX(9deg) rotateY(-16deg) rotateZ(-2deg)}50%{transform:perspective(1400px) rotateX(-5deg) rotateY(13deg) rotateZ(1deg)}}
+@keyframes sheen{0%{transform:translateX(-70%) rotate(8deg)}55%,100%{transform:translateX(70%) rotate(8deg)}}
+.rv{animation:rise .95s cubic-bezier(.2,.7,.2,1) backwards}
+.d1{animation-delay:.08s}.d2{animation-delay:.18s}.d3{animation-delay:.28s}.d4{animation-delay:.38s}
+.fade{animation:fadein .55s cubic-bezier(.2,.7,.2,1) backwards}
+/* header */
+.hdr{position:relative;z-index:20;padding:16px 0}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 8px 8px 18px;border-radius:999px}
+.logo{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:#14131A;min-height:44px}
+.mark{width:32px;height:32px;border-radius:11px;position:relative;background:conic-gradient(from 200deg,#ffbfe8,#b4e6ff,#bdfbdf,#ffeeaa,#d8c2ff,#ffbfe8);box-shadow:inset 0 0 0 1px rgba(255,255,255,.85),0 8px 18px -8px rgba(80,60,160,.6);animation:hue 10s linear infinite}
+.mark::after{content:"";position:absolute;left:9px;top:9px;width:14px;height:14px;border-radius:4px;background:#14131A;transform:rotate(45deg)}
+.wordmark{font-family:'Unbounded',sans-serif;font-weight:600;font-size:19px;letter-spacing:-.02em}
+.nav{display:flex;gap:2px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;text-decoration:none;font-weight:500;font-size:15px;color:#14131A;transition:background .25s}
+.nav a:hover{background:rgba(20,19,26,.06)}
+.nav a.on{background:#14131A;color:#fff}
+.hright{display:flex;align-items:center;gap:8px}
+.hcta{min-height:46px}
+.burger{display:none;width:46px;height:46px;border-radius:999px;border:1px solid rgba(20,19,26,.12);background:#fff;align-items:center;justify-content:center;cursor:pointer;color:#14131A}
+.mnav{margin-top:10px;padding:10px;display:grid;gap:4px;border-radius:24px}
+.mnav a{display:flex;align-items:center;min-height:48px;padding:0 16px;border-radius:14px;text-decoration:none;color:#14131A;font-weight:500}
+.mnav a:hover{background:rgba(20,19,26,.06)}
+@media (max-width:980px){.nav,.hcta{display:none}.burger{display:inline-flex}}
+@media (min-width:981px){.mnav{display:none}}
+/* footer */
+.ftr{background:#ECEBF2;padding:84px 0 32px;border-top:1px solid rgba(20,19,26,.06)}
+.fgrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px}
+.ftr h4{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;margin-bottom:10px}
+.fl{display:flex;align-items:center;min-height:44px;text-decoration:none;color:#3F3D4A;font-size:15px;transition:color .2s}
+.fl:hover{color:#006A93}
+.ftxt{color:#3F3D4A;font-size:15px;padding:11px 0}
+.fbot{margin-top:56px;padding-top:22px;border-top:1px solid rgba(20,19,26,.1);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:#5D5B6A}
+@media (max-width:860px){.fgrid{grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr))}}
+/* hero */
+.hero{padding:48px 0 56px;position:relative}
+.hero-bg{position:absolute;right:-220px;top:-160px;width:980px;height:980px;border-radius:50%;background:url(assets/iridescent-blur.webp) center/cover;opacity:.5;filter:blur(50px);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.h1{font-size:clamp(34px,4.6vw,66px);margin:24px 0 28px}
+.h1 span{display:block}
+.grad{background:linear-gradient(92deg,#14131A 8%,#3A2C7A 55%,#00618A 96%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:30px;font-size:14px;color:#5D5B6A}
+.hero-meta i{width:4px;height:4px;border-radius:50%;background:#5D5B6A;display:block}
+.stage{position:relative;min-height:600px;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.orb1{position:absolute;width:250px;height:250px;border-radius:50%;background:url(assets/sphere-pastel.webp) center/cover;top:10px;right:0;box-shadow:0 40px 80px -40px rgba(60,40,140,.45);animation:floaty 9s ease-in-out infinite}
+.orb2{position:absolute;width:150px;height:150px;border-radius:50%;background:url(assets/chrome-liquid.webp) center/cover;bottom:40px;left:10px;animation:floaty 7s ease-in-out infinite reverse;box-shadow:0 30px 60px -30px rgba(20,19,26,.5)}
+.hcard{position:relative;z-index:2;width:100%;max-width:470px;aspect-ratio:1.586;border-radius:26px;overflow:hidden;cursor:pointer;transition:transform .18s ease-out;box-shadow:0 60px 100px -46px rgba(40,20,100,.55),inset 0 0 0 1px rgba(255,255,255,.75);will-change:transform}
+.lay-foil{position:absolute;left:0;top:0;right:0;bottom:0;background:url(assets/holo-foil.webp) center/240% auto;transition:background-position .2s ease-out}
+.lay-con{position:absolute;left:0;top:0;right:0;bottom:0;background:conic-gradient(from 120deg at 30% 70%,#ffcdee,#c4ebff,#cdfde6,#fff1bd,#e0cdff,#ffcdee);mix-blend-mode:color;opacity:.45}
+.lay-wash{position:absolute;left:0;top:0;right:0;bottom:0;background:linear-gradient(155deg,rgba(255,255,255,.68),rgba(255,255,255,.28) 55%,rgba(255,255,255,.55))}
+.lay-glare{position:absolute;left:0;top:0;right:0;bottom:0;transition:opacity .3s;mix-blend-mode:soft-light}
+.sheen{position:absolute;left:-50%;top:-50%;width:200%;height:200%;background:linear-gradient(100deg,rgba(255,255,255,0) 44%,rgba(255,255,255,.85) 50%,rgba(255,255,255,0) 56%);animation:sheen 5s ease-in-out infinite;mix-blend-mode:overlay;pointer-events:none}
+.face{position:absolute;left:0;top:0;right:0;bottom:0;padding:clamp(18px,2vw,28px);display:flex;flex-direction:column;justify-content:space-between}
+.c-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.c-word{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(18px,1.8vw,25px);letter-spacing:-.03em}
+.c-tag{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#2F2D3A;text-align:right;max-width:130px;line-height:1.4}
+.c-mid{display:flex;align-items:center;gap:14px}
+.c-sig{font-family:'Unbounded',sans-serif;font-weight:500;font-size:clamp(11.5px,1.15vw,15.5px);letter-spacing:.01em}
+.c-bot{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.c-bot small{display:block;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#3B3946;font-weight:700}
+.c-bot b{font-family:'Unbounded',sans-serif;font-size:clamp(10px,.9vw,12px);font-weight:500;letter-spacing:.08em}
+.c-cols{display:flex;gap:26px}
+.c-seal{width:46px;height:46px;border-radius:50%;flex:none;background:conic-gradient(#ffb8e6,#9ee0ff,#b2fbd6,#ffe99a,#cdb4ff,#ffb8e6);box-shadow:inset 0 0 0 2px rgba(255,255,255,.8),0 6px 14px -6px rgba(60,40,140,.5);animation:hue 6s linear infinite}
+.disc{width:70%;max-width:360px;height:40px;margin-top:34px;border-radius:50%;background:radial-gradient(closest-side,rgba(60,40,140,.28),rgba(60,40,140,0))}
+.ftag{position:absolute;z-index:3;display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:16px;font-size:13px;font-weight:600}
+.ftag i{width:8px;height:8px;border-radius:50%;background:#0093CC;display:block;box-shadow:0 0 0 4px rgba(0,147,204,.18)}
+.ft1{top:70px;left:0;animation:floaty 6s ease-in-out infinite}
+.ft2{bottom:96px;right:6px;animation:floaty 7.5s ease-in-out infinite .6s}
+.hint{position:relative;z-index:2;font-size:13px;color:#5D5B6A;display:flex;align-items:center;gap:8px;margin-top:6px}
+/* benefits */
+.benef{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:6px;padding:10px}
+.bf{padding:28px 26px;border-radius:22px;transition:background .35s,transform .35s}
+.bf:hover{background:rgba(255,255,255,.85);transform:translateY(-4px)}
+.bf h3{font-size:17px;font-weight:700;margin:20px 0 8px}
+.bf p{font-size:15px;color:#5D5B6A}
+.ico{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;background:#fff;position:relative;box-shadow:0 10px 22px -12px rgba(60,40,140,.45);color:#14131A}
+.ico::before{content:"";position:absolute;left:-2px;top:-2px;right:-2px;bottom:-2px;border-radius:18px;z-index:-1;background:conic-gradient(from 200deg,#ffcdee,#c4ebff,#cdfde6,#fff1bd,#e0cdff,#ffcdee)}
+/* piliers */
+.pil-grid{display:grid;grid-template-columns:400px 1fr;gap:36px;margin-top:56px;align-items:start}
+.pil-list{display:grid;gap:8px}
+.pil-btn{display:flex;align-items:center;gap:18px;width:100%;text-align:left;padding:20px 22px;border-radius:22px;border:1px solid transparent;background:transparent;cursor:pointer;font-family:inherit;color:#14131A;transition:background .35s,border-color .35s,box-shadow .35s,transform .35s}
+.pil-btn:hover{background:rgba(255,255,255,.6);transform:translateX(4px)}
+.pil-num{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;width:46px;height:46px;flex:none;border-radius:15px;display:grid;place-items:center;background:#fff;border:1px solid rgba(20,19,26,.08);transition:all .35s}
+.pil-t{font-family:'Unbounded',sans-serif;font-size:16px;font-weight:500;letter-spacing:-.01em}
+.pil-panel{padding:14px;display:grid;grid-template-columns:1fr 1.05fr;gap:26px}
+.pil-img{border-radius:20px;overflow:hidden;position:relative;height:460px}
+.pil-img img{width:100%;height:460px;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.pil-panel:hover .pil-img img{transform:scale(1.05)}
+.pil-badge{position:absolute;left:18px;bottom:18px;width:84px;height:84px;border-radius:24px;background:url(assets/holo-foil.webp) center/cover;display:grid;place-items:center;font-family:'Unbounded',sans-serif;font-weight:700;font-size:24px;color:#14131A;box-shadow:inset 0 0 0 1px rgba(255,255,255,.8),0 18px 30px -16px rgba(20,19,26,.5)}
+.pil-badge span{background:rgba(255,255,255,.72);border-radius:12px;padding:4px 8px}
+.pil-body{padding:26px 18px 26px 0;display:flex;flex-direction:column;gap:22px}
+.pil-body h3{font-size:clamp(22px,2vw,30px)}
+.pil-q{font-size:18px;color:#3F3D4A;line-height:1.6}
+.pts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pt{display:flex;align-items:center;gap:10px;padding:14px;border-radius:14px;background:rgba(255,255,255,.75);border:1px solid rgba(20,19,26,.06);font-size:14px;font-weight:600}
+.pt svg{flex:none;color:#006A93}
+/* ia */
+.ia-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+.caps{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0}
+.promise{padding:20px 22px;border-radius:20px;background:#fff;border:1px solid rgba(20,19,26,.08);display:flex;gap:18px;align-items:center;margin-bottom:24px}
+.promise b{font-family:'Unbounded',sans-serif;font-size:34px;font-weight:600;letter-spacing:-.04em}
+.console{overflow:hidden}
+.con-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid rgba(20,19,26,.08)}
+.atom{display:flex;align-items:center;gap:12px;font-weight:700}
+.atom-av{width:36px;height:36px;border-radius:12px;background:url(assets/holo-foil.webp) center/cover;display:grid;place-items:center;font-family:'Unbounded',sans-serif;font-size:14px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.8)}
+.demo-tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#5D5B6A;padding:6px 10px;border-radius:999px;border:1px dashed rgba(20,19,26,.25)}
+.con-tabs{display:flex;gap:8px;flex-wrap:wrap;padding:16px 20px 0}
+.tab{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(20,19,26,.12);background:rgba(255,255,255,.75);font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;color:#14131A;transition:all .3s}
+.tab:hover{background:#fff}
+.con-body{padding:20px;display:grid;gap:12px;min-height:340px;align-content:start}
+.msg-u{justify-self:end;background:#14131A;color:#fff;padding:12px 16px;border-radius:18px 18px 4px 18px;max-width:82%;font-size:15px}
+.msg-s{display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:14px;background:rgba(255,255,255,.8);border:1px solid rgba(20,19,26,.06);font-size:14px}
+.msg-s svg{color:#006A93;flex:none}
+.msg-r{padding:16px;border-radius:16px;background:#fff;border:1px solid rgba(0,147,204,.4);font-size:15px;box-shadow:0 14px 30px -20px rgba(0,147,204,.6)}
+.msg-r small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#5D5B6A;margin-bottom:6px}
+/* jeux */
+.jx{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.jx-frame{position:relative;border-radius:34px;overflow:hidden;height:580px;box-shadow:0 50px 90px -50px rgba(40,20,100,.5)}
+.jx-frame img{width:100%;height:580px;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.jx-frame:hover img{transform:scale(1.06) rotate(-1deg)}
+.jx-label{position:absolute;left:20px;bottom:20px;right:20px;padding:16px 18px;border-radius:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;font-weight:600}
+.req{display:grid;gap:8px;margin:30px 0 20px}
+.req-row{display:grid;grid-template-columns:46px 1fr;gap:16px;padding:16px 18px;border-radius:18px;transition:all .35s;border:1px solid transparent}
+.req-row:hover{background:rgba(255,255,255,.8);border-color:#fff;transform:translateX(6px)}
+.req-n{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;background:#fff;border:1px solid rgba(20,19,26,.08)}
+.req-row:hover .req-n{background:conic-gradient(from 200deg,#ffcdee,#c4ebff,#cdfde6,#fff1bd,#e0cdff,#ffcdee)}
+.req-row h3{font-size:16px;font-weight:700}
+.req-row p{font-size:14px;color:#5D5B6A}
+/* methode */
+.track{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:56px}
+.track-line{position:absolute;left:23px;right:23px;top:23px;height:2px;background:rgba(20,19,26,.1);border-radius:2px}
+.track-fill{height:2px;border-radius:2px;background:linear-gradient(90deg,#7fd3ff,#b9a2ff,#ffb7e2);transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.st-btn{position:relative;display:flex;flex-direction:column;gap:14px;align-items:flex-start;background:none;border:0;padding:0;cursor:pointer;text-align:left;font-family:inherit;color:#14131A;min-height:44px}
+.st-dot{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid rgba(20,19,26,.14);font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;transition:all .4s}
+.st-btn:hover .st-dot{transform:scale(1.08)}
+.st-name{font-weight:700;font-size:15px;max-width:190px;line-height:1.35}
+.st-detail{margin-top:40px;padding:34px;display:grid;grid-template-columns:auto 1fr auto;gap:30px;align-items:center}
+.st-big{font-family:'Unbounded',sans-serif;font-size:64px;font-weight:600;letter-spacing:-.05em;line-height:1;background:url(assets/holo-foil.webp) center/cover;-webkit-background-clip:text;background-clip:text;color:transparent;filter:saturate(1.3) contrast(1.1)}
+.st-detail h3{font-size:22px;margin-bottom:8px}
+.st-nav{display:flex;gap:8px}
+.icb{width:48px;height:48px;border-radius:50%;border:1px solid rgba(20,19,26,.14);background:#fff;display:grid;place-items:center;cursor:pointer;color:#14131A;transition:all .3s}
+.icb:hover{background:#14131A;color:#fff}
+/* offres */
+.mcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px;margin-top:56px;perspective:1600px}
+.mcard{position:relative;border-radius:28px;padding:32px;min-height:400px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;overflow:hidden;text-decoration:none;color:#14131A;transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s;box-shadow:0 34px 64px -38px rgba(30,20,70,.5),inset 0 0 0 1px rgba(255,255,255,.6)}
+.mcard:hover{transform:translateY(-10px) rotateX(5deg) rotateY(-3deg);box-shadow:0 50px 80px -40px rgba(30,20,70,.6)}
+.mcard::after{content:"";position:absolute;left:-50%;top:-50%;width:200%;height:200%;background:linear-gradient(100deg,rgba(255,255,255,0) 45%,rgba(255,255,255,.6) 50%,rgba(255,255,255,0) 55%);transform:translateX(-60%);transition:transform 1.2s ease;pointer-events:none}
+.mcard:hover::after{transform:translateX(60%)}
+.mcard > *{position:relative;z-index:1}
+.silver{background:linear-gradient(135deg,#eef0f3 0%,#c6cad2 28%,#f9fafb 47%,#b4b9c3 70%,#e8eaee 100%)}
+.silver::before{content:"";position:absolute;left:0;top:0;right:0;bottom:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.22) 0 1px,rgba(0,0,0,.025) 1px 3px)}
+.irisc{background:url(assets/holo-foil.webp) center/cover}
+.irisc::before{content:"";position:absolute;left:0;top:0;right:0;bottom:0;background:linear-gradient(160deg,rgba(255,255,255,.8),rgba(255,255,255,.55))}
+.bholo{background:#111017;color:#fff}
+.bholo::before{content:"";position:absolute;left:0;top:0;right:0;bottom:0;background:url(assets/holo-foil.webp) center/cover;opacity:.28;mix-blend-mode:screen;-webkit-mask-image:radial-gradient(circle at 100% 0%,#000,transparent 60%);mask-image:radial-gradient(circle at 100% 0%,#000,transparent 60%)}
+.mc-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.mc-tier{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.mc-pop{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:999px;background:#14131A;color:#fff}
+.mc-price{font-family:'Unbounded',sans-serif;font-size:clamp(34px,3vw,44px);font-weight:600;letter-spacing:-.04em;line-height:1}
+.mc-price small{font-family:'Figtree',sans-serif;font-size:15px;font-weight:600;letter-spacing:0;margin-left:6px}
+.mc-ideal{font-size:15px;margin-top:12px;max-width:300px}
+.mc-save{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.75);color:#14131A}
+.mc-go{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:15px;padding-top:18px;border-top:1px solid rgba(20,19,26,.14)}
+.bholo .mc-go{border-top-color:rgba(255,255,255,.2)}
+.bholo .mc-ideal{color:rgba(255,255,255,.8)}
+/* temoignage */
+.testi{padding:64px;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:start}
+.qmark{width:104px;height:104px;border-radius:32px;background:url(assets/holo-foil.webp) center/cover;display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.8),0 24px 40px -24px rgba(60,40,140,.6);animation:floaty 8s ease-in-out infinite}
+.qmark span{width:60px;height:60px;border-radius:20px;background:rgba(255,255,255,.75);display:grid;place-items:center}
+.testi blockquote{font-family:'Unbounded',sans-serif;font-weight:400;font-size:clamp(19px,1.9vw,28px);line-height:1.42;letter-spacing:-.015em}
+.who{display:flex;align-items:center;gap:14px;margin-top:32px}
+.who-av{width:48px;height:48px;border-radius:50%;background:#14131A;color:#fff;display:grid;place-items:center;font-family:'Unbounded',sans-serif;font-size:14px}
+/* cta */
+.cta{position:relative;border-radius:40px;overflow:hidden;padding:100px 64px;background:#14131A;color:#fff}
+.cta-art{position:absolute;right:-140px;top:-160px;width:560px;height:560px;border-radius:50%;background:url(assets/holo-foil.webp) center/cover;animation:hue 14s linear infinite}
+.cta-art2{position:absolute;right:240px;bottom:-120px;width:240px;height:240px;border-radius:50%;background:url(assets/iridescent-wave.webp) center/cover;opacity:.85}
+.cta-in{position:relative;max-width:640px}
+.cta h2{font-size:clamp(28px,3.4vw,50px);margin:20px 0}
+.cta p{color:rgba(255,255,255,.78);font-size:18px;max-width:520px}
+.cta .eyebrow{color:rgba(255,255,255,.75)}
+@media (max-width:980px){
+ .hero-grid,.ia-grid,.jx,.pil-grid{grid-template-columns:1fr}
+ .stage{min-height:520px}
+ .hero-bg{width:640px;height:640px;right:-260px}
+}
+@media (max-width:760px){
+ .pil-panel{grid-template-columns:1fr}.pil-body{padding:8px 8px 14px}
+ .pil-img,.pil-img img{height:260px}
+ .track{grid-template-columns:1fr;gap:10px}.track-line{display:none}
+ .st-btn{flex-direction:row;align-items:center}
+ .st-detail{grid-template-columns:1fr;padding:26px}
+ .testi{grid-template-columns:1fr;padding:30px;gap:28px}
+ .cta{padding:64px 26px}.cta-art{top:-330px;right:-200px}.cta-art2{display:none}
+ .jx-frame,.jx-frame img{height:400px}
+ .pts{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+ .wrap{padding:0 16px}.sec{padding:80px 0}
+ .ftag{display:none}
+ .orb1{width:160px;height:160px}.orb2{width:100px;height:100px}
+ .stage{min-height:400px}
+}
+@media (prefers-reduced-motion:reduce){.hl *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="hl" style="background:#F4F3F8;color:#14131A">
+
+<header class="hdr">
+ <div class="wrap">
+  <div class="bar glass">
+   <a class="logo" href="Holo-Accueil.html" aria-label="Baquelis, accueil"><span class="mark" aria-hidden="true"></span><span class="wordmark">Baquelis</span></a>
+   <nav class="nav" aria-label="Navigation principale">
+    <a href="Holo-Expertises.html">Expertises</a>
+    <a href="Holo-IA.html">IA</a>
+    <a href="Holo-Jeux.html">Jeux &amp; Web3</a>
+    <a href="Holo-Offres.html">Offres</a>
+    <a href="Holo-Contact.html">Contact</a>
+   </nav>
+   <div class="hright">
+    <a class="btn btn-p hcta" href="Holo-Contact.html" style="{{ ui.cta }}">Réserver un appel</a>
+    <button class="burger" type="button" aria-label="Ouvrir ou fermer le menu" aria-expanded="{{ ui.menuOpen }}" onClick="{{ toggleMenu }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+   </div>
+  </div>
+  <sc-if value="{{ ui.menu }}" hint-placeholder-val="{{ false }}">
+   <nav class="mnav glass fade" aria-label="Navigation mobile">
+    <a href="Holo-Expertises.html">Expertises</a>
+    <a href="Holo-IA.html">IA</a>
+    <a href="Holo-Jeux.html">Jeux &amp; Web3</a>
+    <a href="Holo-Offres.html">Offres</a>
+    <a href="Holo-Contact.html">Contact</a>
+    <a class="btn btn-p" href="Holo-Contact.html" style="{{ ui.cta }}">Réserver un appel</a>
+   </nav>
+  </sc-if>
+ </div>
+</header>
+
+<main>
+<section class="hero">
+ <div class="hero-bg" aria-hidden="true"></div>
+ <div class="wrap hero-grid">
+  <div>
+   <span class="eyebrow rv">Excellence IA par la technologie</span>
+   <h1 class="disp h1 rv d1"><span>Flexibilité.</span><span>Continuité.</span><span class="grad">Performance.</span></h1>
+   <p class="lead rv d2">Améliorez les performances avec des équipes flexibles, un suivi en temps réel et une continuité garantie. Du code à la continuité, nous sécurisons chaque étape de votre parcours technologique.</p>
+   <div class="hero-cta rv d3">
+    <a class="btn btn-p" href="Holo-Offres.html" style="{{ ui.cta }}">Commencer aujourd’hui <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    <a class="btn btn-g" href="Holo-Contact.html">Réserver un appel</a>
+   </div>
+   <div class="hero-meta rv d4"><span>Formules mensuelles</span><i></i><span>Intégration · Flex · Performance</span><i></i><span>dès 4 500 €/mois</span></div>
+  </div>
+
+  <div class="stage rv d2">
+   <div class="orb1" aria-hidden="true"></div>
+   <div class="orb2" aria-hidden="true"></div>
+   <div class="hcard" style="{{ card.style }}" onMouseMove="{{ cardMove }}" onMouseLeave="{{ cardLeave }}" role="img" aria-label="Carte membre Baquelis : Flexibilité, Continuité, Performance">
+    <div class="lay-foil" style="{{ card.foil }}"></div>
+    <div class="lay-con" style="{{ card.hue }}"></div>
+    <div class="lay-wash"></div>
+    <div class="lay-glare" style="{{ card.glare }}"></div>
+    <div class="sheen"></div>
+    <div class="face">
+     <div class="c-top"><span class="c-word">Baquelis</span><span class="c-tag">Partenaire technologique</span></div>
+     <div class="c-mid">
+      <svg width="52" height="40" viewBox="0 0 52 40" aria-hidden="true"><rect x="1" y="1" width="50" height="38" rx="8" fill="#E9E4D4" stroke="#14131A" stroke-opacity=".35"></rect><path d="M1 14h15M1 26h15M36 14h15M36 26h15M16 1v38M36 1v38M16 20h20" stroke="#14131A" stroke-opacity=".35" fill="none"></path></svg>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#14131A" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M8 8.5a5 5 0 010 7M11.5 6a9 9 0 010 12M15 3.5a13 13 0 010 17"></path></svg>
+     </div>
+     <div class="c-sig">Flexibilité · Continuité · Performance</div>
+     <div class="c-bot">
+      <div class="c-cols">
+       <div><small>Carte membre</small><b>N° 0001 · 2026</b></div>
+       <div><small>Statut</small><b>Excellence IA</b></div>
+      </div>
+      <span class="c-seal" aria-hidden="true"></span>
+     </div>
+    </div>
+   </div>
+   <div class="disc" aria-hidden="true"></div>
+   <div class="ftag ft1 glass"><i></i>Suivi en temps réel</div>
+   <div class="ftag ft2 glass"><i></i>Continuité garantie</div>
+   <p class="hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="5"></rect><path d="M12 7v3"></path></svg>Survolez la carte pour l’incliner</p>
+  </div>
+ </div>
+</section>
+
+<section aria-label="Bénéfices">
+ <div class="wrap">
+  <div class="benef glass">
+   <div class="bf">
+    <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6l1-7z"></path></svg></span>
+    <h3>Automatiser les tâches fastidieuses</h3>
+    <p>Rationaliser les opérations grâce à l’automatisation intelligente.</p>
+   </div>
+   <div class="bf">
+    <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle></svg></span>
+    <h3>Se concentrer sur l’essentiel</h3>
+    <p>Vous gardez la valeur métier, nous nous occupons du reste.</p>
+   </div>
+   <div class="bf">
+    <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="3.5"></circle><path d="M3 19c.8-3 3.2-4.5 6-4.5s5.2 1.5 6 4.5"></path><path d="M16 5.5a3 3 0 010 6M21 19c-.4-1.8-1.5-3-3-3.8"></path></svg></span>
+    <h3>Outils collaboratifs</h3>
+    <p>Un travail d’équipe renforcé, des échanges fluides et partagés.</p>
+   </div>
+   <div class="bf">
+    <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 01-14.3 4.9M4 12a8 8 0 0114.3-4.9"></path><path d="M18 3v4.5h-4.5M6 21v-4.5h4.5"></path></svg></span>
+    <h3>Transformer les opérations</h3>
+    <p>Viser l’efficacité maximale, de la première ligne de code à la mise en production.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" aria-labelledby="piliers-t">
+ <div class="wrap">
+  <span class="eyebrow">Solutions éprouvées</span>
+  <h2 id="piliers-t" class="disp h2" style="margin-top:18px;max-width:820px">Quatre piliers. Une seule exigence : la vôtre.</h2>
+  <div class="pil-grid">
+   <div class="pil-list" role="group" aria-label="Choisir un pilier">
+    <sc-for list="{{ piliers }}" as="p" hint-placeholder-count="4">
+     <button class="pil-btn" type="button" style="{{ p.btnStyle }}" aria-pressed="{{ p.pressed }}" onClick="{{ p.pick }}"><span class="pil-num" style="{{ p.numStyle }}">{{ p.n }}</span><span class="pil-t">{{ p.t }}</span></button>
+    </sc-for>
+   </div>
+   <sc-for list="{{ piliers }}" as="p" hint-placeholder-count="1">
+    <sc-if value="{{ p.on }}" hint-placeholder-val="{{ true }}">
+     <article class="pil-panel glass fade">
+      <div class="pil-img"><img src="{{ p.img }}" alt="{{ p.alt }}"><div class="pil-badge" aria-hidden="true"><span>{{ p.n }}</span></div></div>
+      <div class="pil-body">
+       <span class="eyebrow">Pilier {{ p.n }}</span>
+       <h3 class="disp">{{ p.t }}</h3>
+       <p class="pil-q">{{ p.q }}</p>
+       <div class="pts">
+        <sc-for list="{{ p.pts }}" as="pt" hint-placeholder-count="4">
+         <div class="pt"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{ pt }}</div>
+        </sc-for>
+       </div>
+       <a class="lnk" href="Holo-Expertises.html">Explorer nos expertises <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </div>
+     </article>
+    </sc-if>
+   </sc-for>
+  </div>
+ </div>
+</section>
+
+<section class="sec" style="padding-top:20px" aria-labelledby="ia-t">
+ <div class="wrap ia-grid">
+  <div>
+   <span class="eyebrow">Intelligence artificielle</span>
+   <h2 id="ia-t" class="disp h2" style="margin:18px 0 22px">Transformez la productivité avec les agents IA.</h2>
+   <p class="lead">Modèles affinés sur vos données, agents autonomes qui décident et s’adaptent, intégration dans vos processus existants : l’IA devient un membre de l’équipe.</p>
+   <div class="caps"><span class="chip">Affinage de modèles</span><span class="chip">Agents autonomes</span><span class="chip">Intégration métier</span></div>
+   <div class="promise"><b>×10</b><span class="muted">Notre promesse : la personnalisation de modèles et les agents autonomes peuvent multiplier votre productivité par 10.</span></div>
+   <a class="lnk" href="Holo-IA.html">Découvrir l’IA Baquelis et la démo ATOM <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+  <div class="console glass">
+   <div class="con-top"><span class="atom"><span class="atom-av">A</span>ATOM · agent IA</span><span class="demo-tag">Démonstration scénarisée</span></div>
+   <div class="con-tabs" role="group" aria-label="Choisir une tâche">
+    <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="3">
+     <button class="tab" type="button" style="{{ t.style }}" aria-pressed="{{ t.pressed }}" onClick="{{ t.pick }}">{{ t.label }}</button>
+    </sc-for>
+   </div>
+   <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="1">
+    <sc-if value="{{ t.on }}" hint-placeholder-val="{{ true }}">
+     <div class="con-body">
+      <div class="msg-u fade">{{ t.prompt }}</div>
+      <sc-for list="{{ t.steps }}" as="st" hint-placeholder-count="3">
+       <div class="msg-s fade" style="{{ st.delay }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{ st.txt }}</div>
+      </sc-for>
+      <div class="msg-r fade" style="animation-delay:.75s"><small>Résultat</small>{{ t.result }}</div>
+     </div>
+    </sc-if>
+   </sc-for>
+  </div>
+ </div>
+</section>
+
+<section class="sec" style="padding-top:20px" aria-labelledby="jx-t">
+ <div class="wrap jx">
+  <div class="jx-frame">
+   <img src="assets/controller-purple.webp" alt="Manette de jeu translucide sur fond clair">
+   <div class="jx-label glass"><span>Jeux &amp; Web3</span><span class="muted">Preuve d’excellence technique</span></div>
+  </div>
+  <div>
+   <span class="eyebrow">Jeux &amp; Web3</span>
+   <h2 id="jx-t" class="disp h2" style="margin:18px 0 20px">Les jeux sont les applications les plus difficiles.</h2>
+   <p class="lead">Performances temps réel, gestion d’état complexe, expériences fluides. Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique.</p>
+   <div class="req">
+    <div class="req-row"><span class="req-n">01</span><div><h3>Performance temps réel</h3><p>Réponse sub-milliseconde, synchronisation parfaite entre systèmes.</p></div></div>
+    <div class="req-row"><span class="req-n">02</span><div><h3>Architecture complexe</h3><p>Graphismes, physique, réseau et saisie, simultanément.</p></div></div>
+    <div class="req-row"><span class="req-n">03</span><div><h3>Multijoueur évolutif</h3><p>Des milliers d’utilisateurs simultanés, état cohérent, latence minimale.</p></div></div>
+    <div class="req-row"><span class="req-n">04</span><div><h3>Sécurité &amp; anti-triche</h3><p>Une protection avancée qui ne dégrade pas l’expérience.</p></div></div>
+   </div>
+   <a class="lnk" href="Holo-Jeux.html">Voir notre approche Jeux &amp; Web3 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+ </div>
+</section>
+
+<section class="sec" style="padding-top:20px" aria-labelledby="me-t">
+ <div class="wrap">
+  <span class="eyebrow">Méthode</span>
+  <h2 id="me-t" class="disp h2" style="margin-top:18px;max-width:820px">Cinq étapes pour démarrer, sans friction.</h2>
+  <div class="track" role="group" aria-label="Étapes de la méthode">
+   <div class="track-line" aria-hidden="true"><div class="track-fill" style="{{ method.fill }}"></div></div>
+   <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+    <button class="st-btn" type="button" aria-pressed="{{ s.pressed }}" onClick="{{ s.pick }}"><span class="st-dot" style="{{ s.dot }}">{{ s.n }}</span><span class="st-name">{{ s.t }}</span></button>
+   </sc-for>
+  </div>
+  <sc-for list="{{ steps }}" as="s" hint-placeholder-count="1">
+   <sc-if value="{{ s.on }}" hint-placeholder-val="{{ true }}">
+    <div class="st-detail glass fade">
+     <span class="st-big" aria-hidden="true">{{ s.n }}</span>
+     <div><h3 class="disp">{{ s.t }}</h3><p class="muted">{{ s.d }}</p><p style="margin-top:10px;font-size:14px;font-weight:600">Délai : {{ s.delai }}</p></div>
+     <div class="st-nav">
+      <button class="icb" type="button" aria-label="Étape précédente" onClick="{{ method.prev }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>
+      <button class="icb" type="button" aria-label="Étape suivante" onClick="{{ method.next }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+     </div>
+    </div>
+   </sc-if>
+  </sc-for>
+ </div>
+</section>
+
+<section class="sec" style="padding-top:20px" aria-labelledby="of-t">
+ <div class="wrap">
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px">
+   <div><span class="eyebrow">Offres</span><h2 id="of-t" class="disp h2" style="margin-top:18px;max-width:760px">Trois cartes membres. Une formule mensuelle.</h2></div>
+   <a class="lnk" href="Holo-Offres.html">Comparer et simuler vos économies <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+  <div class="mcards">
+   <a class="mcard silver" href="Holo-Offres.html">
+    <div class="mc-top"><span class="mc-tier">Intégration</span><span class="c-word" style="font-size:16px">Baquelis</span></div>
+    <div><div class="mc-price">4 500 €<small>/mois</small></div><p class="mc-ideal">Idéal pour startups et PME avec des besoins techniques spécifiques.</p></div>
+    <div><span class="mc-save">Économisez 1 500 €/mois vs recrutement</span></div>
+    <div class="mc-go"><span>1 profil technique dédié</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+   </a>
+   <a class="mcard irisc" href="Holo-Offres.html">
+    <div class="mc-top"><span class="mc-tier">Flex</span><span class="mc-pop">Plus populaire</span></div>
+    <div><div class="mc-price">6 200 €<small>/mois</small></div><p class="mc-ideal">Idéal pour entreprises avec projets évolutifs : flexibilité maximale.</p></div>
+    <div><span class="mc-save">Économisez 2 300 €/mois vs recrutement</span></div>
+    <div class="mc-go"><span>1 profil senior, changement rapide</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+   </a>
+   <a class="mcard bholo" href="Holo-Offres.html">
+    <div class="mc-top"><span class="mc-tier">Performance</span><span class="c-word" style="font-size:16px">Baquelis</span></div>
+    <div><div class="mc-price">18 900 €<small>/mois</small></div><p class="mc-ideal">Idéal pour grandes entreprises et projets stratégiques complexes.</p></div>
+    <div><span class="mc-save">Économisez 12 000 €/mois vs recrutement</span></div>
+    <div class="mc-go"><span>Équipe de 5 experts seniors</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+   </a>
+  </div>
+ </div>
+</section>
+
+<section class="sec" style="padding-top:20px" aria-label="Témoignage">
+ <div class="wrap">
+  <figure class="testi glass" style="margin:0">
+   <div class="qmark" aria-hidden="true"><span><svg width="28" height="28" viewBox="0 0 24 24" fill="#14131A" aria-hidden="true"><path d="M4 18v-5.5C4 8.4 6.3 6 10 5.5V8c-2 .5-3 1.8-3 4h3v6H4zm10 0v-5.5c0-4.1 2.3-6.5 6-7V8c-2 .5-3 1.8-3 4h3v6h-6z"></path></svg></span></div>
+   <div>
+    <span class="eyebrow">Construit sur la confiance. Guidé par les résultats.</span>
+    <blockquote style="margin-top:22px">« Cette plateforme a transformé la façon dont nous gérons nos projets. Son design intuitif et ses fonctionnalités puissantes ont rationalisé notre flux de travail et amélioré la collaboration d’équipe. C’est vraiment un game-changer pour nos opérations. »</blockquote>
+    <div class="who"><span class="who-av" aria-hidden="true">LS</span><span><b>Laura S.</b><br><span class="muted">Responsable des Opérations</span></span></div>
+   </div>
+  </figure>
+ </div>
+</section>
+
+<section class="sec" style="padding-top:20px" aria-labelledby="cta-t">
+ <div class="wrap">
+  <div class="cta">
+   <div class="cta-art" aria-hidden="true"></div>
+   <div class="cta-art2" aria-hidden="true"></div>
+   <div class="cta-in">
+    <span class="eyebrow">Transformer l’ambition en réalité</span>
+    <h2 id="cta-t" class="disp">Prêt à transformer votre entreprise ?</h2>
+    <p>Des solutions pour les besoins d’aujourd’hui, qui vous préparent aux défis de demain. Parlons de votre projet.</p>
+    <div class="hero-cta">
+     <a class="btn btn-p" href="Holo-Contact.html" style="{{ ui.cta }}">Nous contacter</a>
+     <a class="btn btn-g" href="Holo-Offres.html">Voir les offres</a>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer class="ftr">
+ <div class="wrap">
+  <div class="fgrid">
+   <div>
+    <a class="logo" href="Holo-Accueil.html" aria-label="Baquelis, accueil"><span class="mark" aria-hidden="true"></span><span class="wordmark">Baquelis</span></a>
+    <p class="ftxt" style="max-width:340px">Partenaire technologique : équipes dédiées et flexibles, intelligence artificielle appliquée, exigence jeux &amp; Web3.</p>
+    <p class="disp" style="font-size:14px;font-weight:500;margin-top:8px">Flexibilité. Continuité. Performance.</p>
+   </div>
+   <div>
+    <h4>Navigation</h4>
+    <a class="fl" href="Holo-Expertises.html">Expertises</a>
+    <a class="fl" href="Holo-IA.html">Intelligence artificielle</a>
+    <a class="fl" href="Holo-Jeux.html">Jeux &amp; Web3</a>
+    <a class="fl" href="Holo-Contact.html">Contact</a>
+   </div>
+   <div>
+    <h4>Offres</h4>
+    <a class="fl" href="Holo-Offres.html">Intégration · 4 500 €/mois</a>
+    <a class="fl" href="Holo-Offres.html">Flex · 6 200 €/mois</a>
+    <a class="fl" href="Holo-Offres.html">Performance · 18 900 €/mois</a>
+   </div>
+   <div>
+    <h4>Société</h4>
+    <p class="ftxt">31 B avenue Maréchal Foch<br>06000 Nice</p>
+    <p class="ftxt">[RAISON SOCIALE] · [N° TVA]</p>
+    <p class="ftxt">[contact@domaine-baquelis]</p>
+    <a class="fl" href="index.html">Toutes les propositions</a>
+   </div>
+  </div>
+  <div class="fbot"><span>© 2026 Baquelis. Tous droits réservés.</span><span>Proposition de refonte — concept · Direction 6 · Holo</span></div>
+ </div>
+</footer>
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7000},"accent":{"editor":"color","default":"#0093CC","options":["#0093CC","#00AEEF","#B8A4FF"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu:false, hover:false, tx:0, ty:0, pilier:0, ia:0, step:0 };
+  }
+  renderVals(){
+    const s = this.state;
+    const accent = (this.props && this.props.accent) || "#0093CC";
+    const irid = "conic-gradient(from 200deg,#ffcdee,#c4ebff,#cdfde6,#fff1bd,#e0cdff,#ffcdee)";
+
+    const P = [
+      { t:"Solutions éprouvées", img:"assets/wafer.webp", alt:"Plaquette de silicium irisée", q:"Nous ne livrons pas seulement du code — nous construisons des systèmes évolutifs qui grandissent avec votre entreprise.", pts:["Architecture évolutive","Pile technologique moderne","Solutions cloud-native","Optimisation des performances"] },
+      { t:"Partenariat, pas d’externalisation", img:"assets/team-office.webp", alt:"Équipe au travail dans un bureau lumineux", q:"Nos experts deviennent une extension de votre équipe : mêmes outils, mêmes rituels, mêmes objectifs.", pts:["Intégration d’équipe dédiée","Engagement à long terme","Alignement culturel","Communication fluide"] },
+      { t:"Rapidité avec précision", img:"assets/laptop-code.webp", alt:"Ordinateur portable affichant du code", q:"Du concept à la livraison, nous avançons vite, sans jamais compromettre la qualité.", pts:["Prototypage rapide","Méthodologie agile","Assurance qualité","Intégration continue"] },
+      { t:"Transparence radicale", img:"assets/meeting-room.webp", alt:"Salle de réunion lumineuse", q:"Pas de coûts cachés ni de mises à jour vagues : vos progrès sont visibles en temps réel.", pts:["Suivi des progrès en temps réel","Tarification transparente","Rapports réguliers","Communication ouverte"] }
+    ];
+    const piliers = P.map((p, i) => {
+      const on = i === s.pilier;
+      return {
+        n: "0" + (i + 1), t: p.t, q: p.q, pts: p.pts, img: p.img, alt: p.alt, on: on,
+        pressed: on ? "true" : "false",
+        btnStyle: on ? "background:rgba(255,255,255,.85);border-color:#fff;box-shadow:0 20px 40px -26px rgba(40,30,90,.45)" : "",
+        numStyle: on ? "background:" + irid + ";border-color:rgba(255,255,255,.9)" : "",
+        pick: () => this.setState({ pilier: i })
+      };
+    });
+
+    const T = [
+      { label:"Support client", prompt:"Trie et prépare les réponses aux demandes arrivées cette nuit.", steps:["Lecture des canaux de support","Classement par urgence et par thème","Brouillons de réponse rédigés"], result:"Demandes simples prêtes à envoyer ; cas sensibles transmis à l’équipe avec un résumé." },
+      { label:"Rapport hebdo", prompt:"Prépare le rapport d’avancement de la semaine pour la direction.", steps:["Collecte des tâches closes et ouvertes","Synthèse des risques et blocages","Mise en forme pour la direction"], result:"Rapport prêt à relire : progrès, risques, prochaines étapes." },
+      { label:"Analyse des ventes", prompt:"Signale les écarts inhabituels dans les ventes du mois.", steps:["Connexion aux sources de données","Détection des écarts inhabituels","Hypothèses classées par probabilité"], result:"Écarts à examiner listés, avec des pistes d’explication et les données associées." }
+    ];
+    const tasks = T.map((t, i) => {
+      const on = i === s.ia;
+      return {
+        label: t.label, prompt: t.prompt, result: t.result, on: on,
+        pressed: on ? "true" : "false",
+        style: on ? "background:#14131A;color:#fff;border-color:#14131A" : "",
+        steps: t.steps.map((x, k) => ({ txt: x, delay: "animation-delay:" + (0.2 + k * 0.18).toFixed(2) + "s" })),
+        pick: () => this.setState({ ia: i })
+      };
+    });
+
+    const S = [
+      { t:"Appel découverte", d:"Nous écoutons vos objectifs, vos contraintes et votre contexte technique pour comprendre ce qui compte vraiment.", delai:"[DÉLAI]" },
+      { t:"Cadrage & choix de formule", d:"Nous traduisons le besoin en périmètre clair et vous orientons vers Intégration, Flex ou Performance.", delai:"[DÉLAI]" },
+      { t:"Sélection du profil ou de l’équipe", d:"Nous proposons le profil ou l’équipe adaptée. Le profil peut être changé si besoin.", delai:"changement de profil sous 30 jours (Intégration) ou 15 jours (Flex)" },
+      { t:"Intégration à vos outils et rituels", d:"Vos outils, vos rituels, votre culture : nos experts deviennent une extension de votre équipe.", delai:"[DÉLAI]" },
+      { t:"Suivi temps réel & ajustements", d:"Progrès visibles en temps réel, rapports réguliers et ajustements continus pour garder le cap.", delai:"en continu, pendant toute la collaboration" }
+    ];
+    const steps = S.map((x, i) => {
+      const on = i === s.step;
+      const done = i <= s.step;
+      return {
+        n: "0" + (i + 1), t: x.t, d: x.d, delai: x.delai, on: on,
+        pressed: on ? "true" : "false",
+        dot: on ? "background:" + irid + ";border-color:#fff;box-shadow:0 10px 24px -10px rgba(60,40,140,.6);transform:scale(1.12)" : (done ? "background:#14131A;color:#fff;border-color:#14131A" : ""),
+        pick: () => this.setState({ step: i })
+      };
+    });
+
+    const h = s.hover;
+    const card = {
+      style: h ? "transform:perspective(1400px) rotateX(" + (-s.ty * 18).toFixed(2) + "deg) rotateY(" + (s.tx * 24).toFixed(2) + "deg) scale(1.03);animation:none" : "animation:sway 9s ease-in-out infinite",
+      foil: "background-position:" + (50 + s.tx * 80).toFixed(1) + "% " + (50 + s.ty * 80).toFixed(1) + "%",
+      hue: "filter:hue-rotate(" + (s.tx * 120).toFixed(0) + "deg)",
+      glare: "opacity:" + (h ? 1 : 0) + ";background:radial-gradient(circle at " + ((s.tx + 0.5) * 100).toFixed(1) + "% " + ((s.ty + 0.5) * 100).toFixed(1) + "%,rgba(255,255,255,.95),rgba(255,255,255,0) 55%)"
+    };
+
+    return {
+      ui: { cta: "background:" + accent, menu: s.menu, menuOpen: s.menu ? "true" : "false" },
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      card: card,
+      cardMove: (e) => {
+        const el = e && e.currentTarget;
+        if (!el || !el.getBoundingClientRect) return;
+        const r = el.getBoundingClientRect();
+        if (!r.width) return;
+        const tx = Math.max(-0.5, Math.min(0.5, (e.clientX - r.left) / r.width - 0.5));
+        const ty = Math.max(-0.5, Math.min(0.5, (e.clientY - r.top) / r.height - 0.5));
+        this.setState({ hover: true, tx: tx, ty: ty });
+      },
+      cardLeave: () => this.setState({ hover: false, tx: 0, ty: 0 }),
+      piliers: piliers,
+      tasks: tasks,
+      steps: steps,
+      method: {
+        fill: "width:" + (s.step / 4 * 100).toFixed(0) + "%",
+        prev: () => this.setState({ step: (s.step + 4) % 5 }),
+        next: () => this.setState({ step: (s.step + 1) % 5 })
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

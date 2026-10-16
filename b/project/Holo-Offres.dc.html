@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Holo — Offres</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;family=Unbounded:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#F4F3F8}
+sc-for,sc-if{display:contents}
+.hl,.hl *{box-sizing:border-box}
+.hl{font-family:'Figtree',system-ui,sans-serif;background:#F4F3F8;color:#14131A;line-height:1.55;font-size:16px;overflow:hidden;-webkit-font-smoothing:antialiased}
+.hl h1,.hl h2,.hl h3,.hl h4,.hl p{margin:0}
+.hl img{display:block;max-width:100%}
+.disp{font-family:'Unbounded','Figtree',sans-serif;font-weight:600;letter-spacing:-.025em;line-height:1.06;overflow-wrap:anywhere}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px;position:relative}
+.sec{padding:120px 0;position:relative}
+.h2{font-size:clamp(28px,3.3vw,48px)}
+.lead{font-size:clamp(17px,1.35vw,20px);color:#5D5B6A;max-width:620px}
+.muted{color:#5D5B6A}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#5D5B6A;display:inline-flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:26px;height:10px;border-radius:10px;background:conic-gradient(from 200deg,#ffcdee,#c4ebff,#cdfde6,#fff1bd,#e0cdff,#ffcdee);box-shadow:inset 0 0 0 1px rgba(255,255,255,.8)}
+.glass{background:rgba(255,255,255,.6);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 30px 70px -40px rgba(40,30,90,.35);border-radius:28px}
+.lnk{color:#006A93;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.lnk:hover{text-decoration:underline;text-underline-offset:5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:0;cursor:pointer;font-family:inherit;color:#14131A;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,background .3s}
+.btn-p{background:#0093CC;box-shadow:0 14px 34px -14px rgba(0,147,204,.75)}
+.btn-p::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateX(-120%);transition:transform .8s ease}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 20px 44px -16px rgba(0,147,204,.85)}
+.btn-p:hover::after{transform:translateX(120%)}
+.btn-g{background:rgba(255,255,255,.75);border:1px solid rgba(20,19,26,.12)}
+.btn-g:hover{background:#fff;transform:translateY(-2px)}
+.btn-i{background:#14131A;color:#fff}
+.btn-i:hover{transform:translateY(-2px)}
+.btn-w{background:#fff;color:#14131A}
+.btn-w:hover{transform:translateY(-2px)}
+.btn-o{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff}
+.btn-o:hover{background:rgba(255,255,255,.1)}
+.hl a:focus-visible,.hl button:focus-visible,.hl input:focus-visible,.hl textarea:focus-visible{outline:3px solid #0093CC;outline-offset:3px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid rgba(20,19,26,.1);font-size:13px;font-weight:500}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes fadein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes sheen{0%{transform:translateX(-70%) rotate(8deg)}55%,100%{transform:translateX(70%) rotate(8deg)}}
+.rv{animation:rise .95s cubic-bezier(.2,.7,.2,1) backwards}
+.d1{animation-delay:.08s}.d2{animation-delay:.18s}.d3{animation-delay:.28s}.d4{animation-delay:.38s}
+.fade{animation:fadein .55s cubic-bezier(.2,.7,.2,1) backwards}
+.hdr{position:relative;z-index:20;padding:16px 0}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 8px 8px 18px;border-radius:999px}
+.logo{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:#14131A;min-height:44px}
+.mark{width:32px;height:32px;border-radius:11px;position:relative;background:conic-gradient(from 200deg,#ffbfe8,#b4e6ff,#bdfbdf,#ffeeaa,#d8c2ff,#ffbfe8);box-shadow:inset 0 0 0 1px rgba(255,255,255,.85),0 8px 18px -8px rgba(80,60,160,.6);animation:hue 10s linear infinite}
+.mark::after{content:"";position:absolute;left:9px;top:9px;width:14px;height:14px;border-radius:4px;background:#14131A;transform:rotate(45deg)}
+.wordmark{font-family:'Unbounded',sans-serif;font-weight:600;font-size:19px;letter-spacing:-.02em}
+.nav{display:flex;gap:2px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:999px;text-decoration:none;font-weight:500;font-size:15px;color:#14131A;transition:background .25s}
+.nav a:hover{background:rgba(20,19,26,.06)}
+.nav a.on{background:#14131A;color:#fff}
+.hright{display:flex;align-items:center;gap:8px}
+.hcta{min-height:46px}
+.burger{display:none;width:46px;height:46px;border-radius:999px;border:1px solid rgba(20,19,26,.12);background:#fff;align-items:center;justify-content:center;cursor:pointer;color:#14131A}
+.mnav{margin-top:10px;padding:10px;display:grid;gap:4px;border-radius:24px}
+.mnav a{display:flex;align-items:center;min-height:48px;padding:0 16px;border-radius:14px;text-decoration:none;color:#14131A;font-weight:500}
+.mnav a:hover{background:rgba(20,19,26,.06)}
+@media (max-width:980px){.nav,.hcta{display:none}.burger{display:inline-flex}}
+@media (min-width:981px){.mnav{display:none}}
+.ftr{background:#ECEBF2;padding:84px 0 32px;border-top:1px solid rgba(20,19,26,.06)}
+.fgrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px}
+.ftr h4{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;margin-bottom:10px}
+.fl{display:flex;align-items:center;min-height:44px;text-decoration:none;color:#3F3D4A;font-size:15px;transition:color .2s}
+.fl:hover{color:#006A93}
+.ftxt{color:#3F3D4A;font-size:15px;padding:11px 0}
+.fbot{margin-top:56px;padding-top:22px;border-top:1px solid rgba(20,19,26,.1);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:#5D5B6A}
+@media (max-width:860px){.fgrid{grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr))}}
+/* hero */
+.hero{padding:56px 0 20px;position:relative;text-align:center}
+.hero-bg{position:absolute;left:50%;top:-260px;width:1100px;height:700px;margin-left:-550px;border-radius:50%;background:url(assets/iridescent-blur.webp) center/cover;opacity:.42;filter:blur(60px);pointer-events:none}
+.h1{font-size:clamp(32px,4.4vw,64px);margin:24px auto 22px;max-width:980px}
+.grad{background:linear-gradient(92deg,#14131A 8%,#3A2C7A 55%,#00618A 96%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{margin:0 auto}
+.flipall{margin-top:28px;display:inline-flex;gap:10px;flex-wrap:wrap;justify-content:center}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:26px;margin-top:56px;align-items:end}
+.flip{perspective:1800px}
+.flip-in{position:relative;height:600px;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.flip:hover .flip-in{transform:rotateX(3deg) rotateY(-4deg) translateY(-6px)}
+.face{position:absolute;left:0;top:0;right:0;bottom:0;border-radius:30px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:32px;display:flex;flex-direction:column;gap:20px;box-shadow:0 40px 80px -46px rgba(30,20,70,.6),inset 0 0 0 1px rgba(255,255,255,.6)}
+.face > *{position:relative;z-index:1}
+.front::after{content:"";position:absolute;left:-50%;top:-50%;width:200%;height:200%;background:linear-gradient(100deg,rgba(255,255,255,0) 45%,rgba(255,255,255,.55) 50%,rgba(255,255,255,0) 55%);animation:sheen 6s ease-in-out infinite;pointer-events:none;z-index:0}
+.back{transform:rotateY(180deg)}
+.silver{background:linear-gradient(135deg,#eef0f3 0%,#c6cad2 28%,#f9fafb 47%,#b4b9c3 70%,#e8eaee 100%)}
+.silver::before{content:"";position:absolute;left:0;top:0;right:0;bottom:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.22) 0 1px,rgba(0,0,0,.025) 1px 3px);z-index:0}
+.irisc{background:url(assets/holo-foil.webp) center/cover}
+.irisc::before{content:"";position:absolute;left:0;top:0;right:0;bottom:0;background:linear-gradient(160deg,rgba(255,255,255,.8),rgba(255,255,255,.55));z-index:0}
+.bholo{background:#111017;color:#fff}
+.bholo::before{content:"";position:absolute;left:0;top:0;right:0;bottom:0;background:url(assets/holo-foil.webp) center/cover;opacity:.32;mix-blend-mode:screen;-webkit-mask-image:radial-gradient(circle at 100% 0%,#000,transparent 62%);mask-image:radial-gradient(circle at 100% 0%,#000,transparent 62%);z-index:0}
+.bk-light{background:#FBFAFD}
+.bk-irid{background:#FBFAFD}
+.bk-irid::before{content:"";position:absolute;left:0;top:0;right:0;height:10px;background:url(assets/holo-foil.webp) center/cover;z-index:0}
+.bk-dark{background:#17161E;color:#fff}
+.f-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.f-tier{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.f-word{font-family:'Unbounded',sans-serif;font-weight:700;font-size:16px;letter-spacing:-.02em}
+.pop{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;border-radius:999px;background:#14131A;color:#fff}
+.f-chip{display:flex;align-items:center;gap:12px;margin-top:6px}
+.f-price{font-family:'Unbounded',sans-serif;font-size:clamp(38px,3.4vw,50px);font-weight:600;letter-spacing:-.045em;line-height:1;margin-top:auto}
+.f-price small{font-family:'Figtree',sans-serif;font-size:16px;font-weight:600;letter-spacing:0;margin-left:6px}
+.f-ideal{font-size:16px;max-width:320px}
+.f-save{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;font-size:13px;font-weight:700;padding:9px 13px;border-radius:999px;background:rgba(255,255,255,.8);color:#14131A}
+.f-meta{display:flex;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid rgba(20,19,26,.14);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.bholo .f-meta{border-top-color:rgba(255,255,255,.2)}
+.bholo .f-ideal{color:rgba(255,255,255,.82)}
+.f-act{display:flex;gap:10px;flex-wrap:wrap}
+.flipbtn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 18px;border-radius:999px;border:1px solid rgba(20,19,26,.18);background:rgba(255,255,255,.7);cursor:pointer;font-family:inherit;font-size:14px;font-weight:700;color:#14131A;transition:all .3s}
+.flipbtn:hover{background:#fff}
+.flipbtn svg{transition:transform .5s}
+.flipbtn:hover svg{transform:rotate(180deg)}
+.flipbtn-d{border-color:rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:#fff}
+.flipbtn-d:hover{background:rgba(255,255,255,.16)}
+.feats{display:grid;gap:9px;margin:0;padding:0}
+.feat{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.4}
+.feat svg{flex:none;margin-top:2px;color:#006A93}
+.bk-dark .feat svg{color:#7FD3FF}
+.bk-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding-bottom:14px;border-bottom:1px solid rgba(20,19,26,.1)}
+.bk-dark .bk-h{border-bottom-color:rgba(255,255,255,.15)}
+.bk-h b{font-family:'Unbounded',sans-serif;font-size:20px;font-weight:600}
+.bk-foot{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap}
+/* table */
+.tbl-wrap{margin-top:48px;overflow-x:auto;border-radius:28px}
+.tbl{width:100%;min-width:780px;border-collapse:separate;border-spacing:0;font-size:15px}
+.tbl th,.tbl td{padding:18px 20px;text-align:left;border-bottom:1px solid rgba(20,19,26,.08);vertical-align:top}
+.tbl thead th{font-family:'Unbounded',sans-serif;font-size:14px;font-weight:600;padding-top:24px;padding-bottom:20px}
+.tbl thead th small{display:block;font-family:'Figtree',sans-serif;font-size:14px;font-weight:600;color:#5D5B6A;margin-top:6px}
+.tbl tbody th{font-weight:700;color:#3F3D4A;width:24%}
+.tbl tbody tr{transition:background .25s}
+.tbl tbody tr:hover{background:rgba(255,255,255,.75)}
+.tbl .fx{background:rgba(196,235,255,.32)}
+.tbl tbody tr:last-child th,.tbl tbody tr:last-child td{border-bottom:0}
+.yes{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+.yes svg{color:#006A93}
+.no{color:#5D5B6A}
+/* sim */
+.sim{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:48px;overflow:hidden}
+.sim-l{padding:40px;display:flex;flex-direction:column;gap:24px;border-right:1px solid rgba(20,19,26,.08)}
+.sim-r{padding:40px;display:flex;flex-direction:column;gap:22px;position:relative;overflow:hidden;background:rgba(255,255,255,.45)}
+.sim-r::before{content:"";position:absolute;right:-120px;top:-120px;width:300px;height:300px;border-radius:50%;background:url(assets/holo-foil.webp) center/cover;opacity:.6;filter:blur(6px);animation:hue 12s linear infinite}
+.sim-r > *{position:relative}
+.seg3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:6px;border-radius:999px;background:rgba(20,19,26,.06)}
+.seg3 button{min-height:48px;border-radius:999px;border:0;background:transparent;cursor:pointer;font-family:inherit;font-size:15px;font-weight:700;color:#14131A;transition:all .35s}
+.range{width:100%;height:44px;accent-color:#0093CC;cursor:pointer}
+.months{display:flex;justify-content:space-between;align-items:baseline}
+.months b{font-family:'Unbounded',sans-serif;font-size:32px;font-weight:600;letter-spacing:-.03em}
+.total{font-family:'Unbounded',sans-serif;font-size:clamp(36px,4vw,60px);font-weight:600;letter-spacing:-.045em;line-height:1}
+.bars{display:grid;gap:14px}
+.barrow small{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:6px}
+.bartrack{height:16px;border-radius:16px;background:rgba(20,19,26,.07);overflow:hidden}
+.bartrack i{display:block;height:16px;border-radius:16px;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini div{padding:16px;border-radius:16px;background:#fff;border:1px solid rgba(20,19,26,.06)}
+.mini small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#5D5B6A;margin-bottom:4px}
+.mini b{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:600}
+.note{font-size:13px;color:#5D5B6A}
+/* faq */
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;margin-top:20px;align-items:start}
+.qa{display:grid;gap:10px}
+.q{border-radius:22px;overflow:hidden;background:rgba(255,255,255,.6);border:1px solid #fff;transition:background .3s,box-shadow .3s}
+.q-h{display:flex;justify-content:space-between;align-items:center;gap:16px;width:100%;min-height:64px;padding:16px 22px;border:0;background:transparent;cursor:pointer;text-align:left;font-family:inherit;font-size:16px;font-weight:700;color:#14131A}
+.q-i{width:40px;height:40px;flex:none;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(20,19,26,.14);background:#fff;transition:transform .4s cubic-bezier(.2,.7,.2,1),background .3s}
+.q-a{padding:0 22px 22px;color:#3F3D4A;font-size:15px;max-width:720px}
+.cta{position:relative;border-radius:40px;overflow:hidden;padding:90px 64px;background:#14131A;color:#fff}
+.cta-art{position:absolute;right:-140px;top:-160px;width:560px;height:560px;border-radius:50%;background:url(assets/holo-foil.webp) center/cover;animation:hue 14s linear infinite}
+.cta-in{position:relative;max-width:640px}
+.cta h2{font-size:clamp(28px,3.4vw,50px);margin:20px 0}
+.cta p{color:rgba(255,255,255,.78);font-size:18px;max-width:520px}
+.cta .eyebrow{color:rgba(255,255,255,.75)}
+.row-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+@media (min-width:1100px){.lift{margin-bottom:28px}}
+@media (max-width:980px){.sim,.faq{grid-template-columns:1fr}.sim-l{border-right:0;border-bottom:1px solid rgba(20,19,26,.08)}}
+@media (max-width:760px){
+ .sim-l,.sim-r{padding:24px}
+ .cta{padding:64px 26px}.cta-art{top:-330px;right:-200px}
+ .flip-in{height:640px}
+ .face{padding:24px}
+ .mini{grid-template-columns:1fr}
+}
+@media (max-width:640px){.wrap{padding:0 16px}.sec{padding:80px 0}.seg3 button{font-size:13px}}
+@media (prefers-reduced-motion:reduce){.hl *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="hl" style="background:#F4F3F8;color:#14131A">
+
+<header class="hdr">
+ <div class="wrap">
+  <div class="bar glass">
+   <a class="logo" href="Holo-Accueil.dc.html" aria-label="Baquelis, accueil"><span class="mark" aria-hidden="true"></span><span class="wordmark">Baquelis</span></a>
+   <nav class="nav" aria-label="Navigation principale">
+    <a href="Holo-Expertises.dc.html">Expertises</a>
+    <a href="Holo-IA.dc.html">IA</a>
+    <a href="Holo-Jeux.dc.html">Jeux &amp; Web3</a>
+    <a class="on" href="Holo-Offres.dc.html" aria-current="page">Offres</a>
+    <a href="Holo-Contact.dc.html">Contact</a>
+   </nav>
+   <div class="hright">
+    <a class="btn btn-p hcta" href="Holo-Contact.dc.html" style="{{ ui.cta }}">Réserver un appel</a>
+    <button class="burger" type="button" aria-label="Ouvrir ou fermer le menu" aria-expanded="{{ ui.menuOpen }}" onClick="{{ toggleMenu }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+   </div>
+  </div>
+  <sc-if value="{{ ui.menu }}" hint-placeholder-val="{{ false }}">
+   <nav class="mnav glass fade" aria-label="Navigation mobile">
+    <a href="Holo-Expertises.dc.html">Expertises</a>
+    <a href="Holo-IA.dc.html">IA</a>
+    <a href="Holo-Jeux.dc.html">Jeux &amp; Web3</a>
+    <a href="Holo-Offres.dc.html" aria-current="page">Offres</a>
+    <a href="Holo-Contact.dc.html">Contact</a>
+    <a class="btn btn-p" href="Holo-Contact.dc.html" style="{{ ui.cta }}">Réserver un appel</a>
+   </nav>
+  </sc-if>
+ </div>
+</header>
+
+<main>
+<section class="hero">
+ <div class="hero-bg" aria-hidden="true"></div>
+ <div class="wrap">
+  <span class="eyebrow rv">Offres · formules mensuelles</span>
+  <h1 class="disp h1 rv d1">Choisissez votre <span class="grad">carte membre.</span></h1>
+  <p class="lead rv d2">Trois formules, un prix mensuel clair, aucun coût caché. Retournez une carte pour découvrir tout ce qu’elle contient.</p>
+  <div class="flipall rv d3">
+   <button class="btn btn-g" type="button" onClick="{{ flipAll }}">{{ ui.flipAllLabel }}</button>
+   <a class="btn btn-p" href="#simulateur" style="{{ ui.cta }}">Simuler mes économies</a>
+  </div>
+ </div>
+</section>
+
+<section aria-label="Les trois formules">
+ <div class="wrap">
+  <div class="cards">
+
+   <div class="flip rv d1">
+    <div class="flip-in" style="{{ o0.rot }}">
+     <div class="face front silver" style="{{ o0.frontPE }}" aria-hidden="{{ o0.frontHidden }}">
+      <div class="f-top"><span class="f-tier">Intégration</span><span class="f-word">Baquelis</span></div>
+      <div class="f-chip"><svg width="50" height="38" viewBox="0 0 52 40" aria-hidden="true"><rect x="1" y="1" width="50" height="38" rx="8" fill="#F3F4F6" stroke="#14131A" stroke-opacity=".3"></rect><path d="M1 14h15M1 26h15M36 14h15M36 26h15M16 1v38M36 1v38M16 20h20" stroke="#14131A" stroke-opacity=".3" fill="none"></path></svg></div>
+      <div class="f-price">4 500 €<small>/mois</small></div>
+      <p class="f-ideal">Idéal pour startups et PME avec des besoins techniques spécifiques.</p>
+      <span class="f-save">Économisez 1 500 €/mois vs recrutement</span>
+      <div class="f-meta"><span>1 profil dédié</span><span>12 mois min.</span></div>
+      <sc-if value="{{ o0.isFront }}" hint-placeholder-val="{{ true }}">
+       <div class="f-act"><button class="flipbtn" type="button" onClick="{{ o0.flip }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 01-14.3 4.9M4 12a8 8 0 0114.3-4.9"></path><path d="M18 3v4.5h-4.5M6 21v-4.5h4.5"></path></svg>Retourner la carte</button></div>
+      </sc-if>
+     </div>
+     <div class="face back bk-light" style="{{ o0.backPE }}" aria-hidden="{{ o0.backHidden }}">
+      <div class="bk-h"><b>Intégration</b><span class="muted">4 500 €/mois</span></div>
+      <div class="feats">
+       <sc-for list="{{ o0.feats }}" as="f" hint-placeholder-count="6">
+        <div class="feat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{ f }}</div>
+       </sc-for>
+      </div>
+      <sc-if value="{{ o0.isBack }}" hint-placeholder-val="{{ false }}">
+       <div class="bk-foot"><a class="btn btn-i" href="Holo-Contact.dc.html">Choisir Intégration</a><button class="flipbtn" type="button" onClick="{{ o0.flip }}">Retour</button></div>
+      </sc-if>
+     </div>
+    </div>
+   </div>
+
+   <div class="flip lift rv d2">
+    <div class="flip-in" style="{{ o1.rot }}">
+     <div class="face front irisc" style="{{ o1.frontPE }}" aria-hidden="{{ o1.frontHidden }}">
+      <div class="f-top"><span class="f-tier">Flex</span><span class="pop">Plus populaire</span></div>
+      <div class="f-chip"><svg width="50" height="38" viewBox="0 0 52 40" aria-hidden="true"><rect x="1" y="1" width="50" height="38" rx="8" fill="#FFF6D8" stroke="#14131A" stroke-opacity=".3"></rect><path d="M1 14h15M1 26h15M36 14h15M36 26h15M16 1v38M36 1v38M16 20h20" stroke="#14131A" stroke-opacity=".3" fill="none"></path></svg><span class="f-word">Baquelis</span></div>
+      <div class="f-price">6 200 €<small>/mois</small></div>
+      <p class="f-ideal">Idéal pour entreprises avec projets évolutifs : flexibilité maximale.</p>
+      <span class="f-save">Économisez 2 300 €/mois vs recrutement</span>
+      <div class="f-meta"><span>1 profil senior</span><span>6 mois min.</span></div>
+      <sc-if value="{{ o1.isFront }}" hint-placeholder-val="{{ true }}">
+       <div class="f-act"><button class="flipbtn" type="button" onClick="{{ o1.flip }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 01-14.3 4.9M4 12a8 8 0 0114.3-4.9"></path><path d="M18 3v4.5h-4.5M6 21v-4.5h4.5"></path></svg>Retourner la carte</button></div>
+      </sc-if>
+     </div>
+     <div class="face back bk-irid" style="{{ o1.backPE }}" aria-hidden="{{ o1.backHidden }}">
+      <div class="bk-h"><b>Flex</b><span class="muted">6 200 €/mois</span></div>
+      <div class="feats">
+       <sc-for list="{{ o1.feats }}" as="f" hint-placeholder-count="8">
+        <div class="feat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{ f }}</div>
+       </sc-for>
+      </div>
+      <sc-if value="{{ o1.isBack }}" hint-placeholder-val="{{ false }}">
+       <div class="bk-foot"><a class="btn btn-p" href="Holo-Contact.dc.html" style="{{ ui.cta }}">Choisir Flex</a><button class="flipbtn" type="button" onClick="{{ o1.flip }}">Retour</button></div>
+      </sc-if>
+     </div>
+    </div>
+   </div>
+
+   <div class="flip rv d3">
+    <div class="flip-in" style="{{ o2.rot }}">
+     <div class="face front bholo" style="{{ o2.frontPE }}" aria-hidden="{{ o2.frontHidden }}">
+      <div class="f-top"><span class="f-tier">Performance</span><span class="f-word">Baquelis</span></div>
+      <div class="f-chip"><svg width="50" height="38" viewBox="0 0 52 40" aria-hidden="true"><rect x="1" y="1" width="50" height="38" rx="8" fill="#2A2933" stroke="#FFFFFF" stroke-opacity=".35"></rect><path d="M1 14h15M1 26h15M36 14h15M36 26h15M16 1v38M36 1v38M16 20h20" stroke="#FFFFFF" stroke-opacity=".35" fill="none"></path></svg></div>
+      <div class="f-price">18 900 €<small>/mois</small></div>
+      <p class="f-ideal">Idéal pour grandes entreprises et projets stratégiques complexes.</p>
+      <span class="f-save">Économisez 12 000 €/mois vs recrutement</span>
+      <div class="f-meta"><span>5 experts seniors</span><span>2 mois min.</span></div>
+      <sc-if value="{{ o2.isFront }}" hint-placeholder-val="{{ true }}">
+       <div class="f-act"><button class="flipbtn flipbtn-d" type="button" onClick="{{ o2.flip }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 01-14.3 4.9M4 12a8 8 0 0114.3-4.9"></path><path d="M18 3v4.5h-4.5M6 21v-4.5h4.5"></path></svg>Retourner la carte</button></div>
+      </sc-if>
+     </div>
+     <div class="face back bk-dark" style="{{ o2.backPE }}" aria-hidden="{{ o2.backHidden }}">
+      <div class="bk-h"><b>Performance</b><span style="color:rgba(255,255,255,.75)">18 900 €/mois</span></div>
+      <div class="feats">
+       <sc-for list="{{ o2.feats }}" as="f" hint-placeholder-count="8">
+        <div class="feat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{ f }}</div>
+       </sc-for>
+      </div>
+      <sc-if value="{{ o2.isBack }}" hint-placeholder-val="{{ false }}">
+       <div class="bk-foot"><a class="btn btn-w" href="Holo-Contact.dc.html">Choisir Performance</a><button class="flipbtn flipbtn-d" type="button" onClick="{{ o2.flip }}">Retour</button></div>
+      </sc-if>
+     </div>
+    </div>
+   </div>
+
+  </div>
+ </div>
+</section>
+
+<section class="sec" aria-labelledby="cmp-t">
+ <div class="wrap">
+  <span class="eyebrow">Comparatif détaillé</span>
+  <h2 id="cmp-t" class="disp h2" style="margin-top:18px;max-width:860px">Tout comparer, ligne par ligne.</h2>
+  <div class="tbl-wrap glass">
+   <table class="tbl">
+    <caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Comparatif des formules Intégration, Flex et Performance</caption>
+    <thead>
+     <tr><th scope="col">Critère</th><th scope="col">Intégration<small>4 500 €/mois</small></th><th scope="col" class="fx">Flex<small>6 200 €/mois · plus populaire</small></th><th scope="col">Performance<small>18 900 €/mois</small></th></tr>
+    </thead>
+    <tbody>
+     <tr><th scope="row">Idéal pour</th><td>Startups et PME aux besoins techniques spécifiques</td><td class="fx">Entreprises avec projets évolutifs</td><td>Grandes entreprises, projets stratégiques complexes</td></tr>
+     <tr><th scope="row">Profils</th><td>1 profil technique dédié</td><td class="fx">1 profil technique senior, changement rapide</td><td>Équipe de 5 experts seniors dédiés</td></tr>
+     <tr><th scope="row">Engagement minimum</th><td>12 mois</td><td class="fx">6 mois</td><td>2 mois</td></tr>
+     <tr><th scope="row">Changement de profil</th><td>Sous 30 jours</td><td class="fx">Sous 15 jours</td><td class="no">—</td></tr>
+     <tr><th scope="row">Heures couvertes</th><td>Heures standard (40 h/semaine)</td><td class="fx">Heures étendues (50 h/semaine)</td><td>Couverture 24/7</td></tr>
+     <tr><th scope="row">Support</th><td>E-mail et chat</td><td class="fx">E-mail et chat prioritaire</td><td>Prioritaire 24/7 et hotline</td></tr>
+     <tr><th scope="row">Rapports</th><td>Mensuels</td><td class="fx">Détaillés, hebdomadaires</td><td>Quotidiens personnalisés et tableaux de bord</td></tr>
+     <tr><th scope="row">Documentation et passation</th><td class="no">—</td><td class="fx"><span class="yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Renforcées</span></td><td class="no">—</td></tr>
+     <tr><th scope="row">Lead tech + Product Owner</th><td class="no">—</td><td class="fx no">—</td><td><span class="yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Inclus</span></td></tr>
+     <tr><th scope="row">Gestion de projet agile complète</th><td class="no">—</td><td class="fx no">—</td><td><span class="yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Incluse</span></td></tr>
+     <tr><th scope="row">Espace Slack dédié</th><td class="no">—</td><td class="fx no">—</td><td><span class="yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Inclus</span></td></tr>
+     <tr><th scope="row">Économie vs recrutement</th><td><b>1 500 €/mois</b></td><td class="fx"><b>2 300 €/mois</b></td><td><b>12 000 €/mois</b></td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="note" style="margin-top:14px">« — » : non mentionné dans la formule. Détails contractuels à confirmer lors du cadrage.</p>
+ </div>
+</section>
+
+<section class="sec" id="simulateur" style="padding-top:20px" aria-labelledby="sim-t">
+ <div class="wrap">
+  <span class="eyebrow">Simulateur d’économies</span>
+  <h2 id="sim-t" class="disp h2" style="margin-top:18px;max-width:860px">Combien économisez-vous ?</h2>
+  <div class="sim glass">
+   <div class="sim-l">
+    <div>
+     <p style="font-weight:700;margin-bottom:12px">1. Votre formule</p>
+     <div class="seg3" role="group" aria-label="Choisir la formule">
+      <sc-for list="{{ simOpts }}" as="o" hint-placeholder-count="3">
+       <button type="button" style="{{ o.style }}" aria-pressed="{{ o.pressed }}" onClick="{{ o.pick }}">{{ o.t }}</button>
+      </sc-for>
+     </div>
+    </div>
+    <div>
+     <div class="months"><label for="mois" style="font-weight:700">2. Durée de la collaboration</label><b>{{ sim.months }} mois</b></div>
+     <input id="mois" class="range" type="range" min="{{ sim.min }}" max="36" step="1" value="{{ sim.months }}" onInput="{{ setMonths }}">
+     <p class="note">Engagement minimum pour {{ sim.name }} : {{ sim.min }} mois.</p>
+    </div>
+    <div class="mini">
+     <div><small>Prix de la formule</small><b>{{ sim.price }}</b></div>
+     <div><small>Économie mensuelle</small><b>{{ sim.monthly }}</b></div>
+    </div>
+   </div>
+   <div class="sim-r" aria-live="polite">
+    <span class="eyebrow">Économie cumulée estimée</span>
+    <div class="total">{{ sim.total }}</div>
+    <p class="muted">sur {{ sim.months }} mois avec la formule {{ sim.name }}, par rapport à un recrutement équivalent.</p>
+    <div class="bars">
+     <div class="barrow"><small><span>Recrutement équivalent (estimé)</span><span>{{ sim.hireTotal }}</span></small><div class="bartrack"><i style="{{ sim.hireBar }}"></i></div></div>
+     <div class="barrow"><small><span>Formule {{ sim.name }}</span><span>{{ sim.planTotal }}</span></small><div class="bartrack"><i style="{{ sim.planBar }}"></i></div></div>
+    </div>
+    <p class="note">Estimation basée sur les chiffres Baquelis (économie « vs recrutement » de 1 500, 2 300 ou 12 000 €/mois selon la formule). Non contractuel.</p>
+    <a class="btn btn-i" href="Holo-Contact.dc.html" style="align-self:flex-start">Démarrer avec {{ sim.name }}</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" style="padding-top:20px" aria-labelledby="faq-t">
+ <div class="wrap faq">
+  <div>
+   <span class="eyebrow">Questions fréquentes</span>
+   <h2 id="faq-t" class="disp h2" style="margin:18px 0 18px">Tout ce qu’il faut savoir avant de signer.</h2>
+   <p class="muted">Une autre question ? <a class="lnk" href="Holo-Contact.dc.html">Écrivez-nous</a></p>
+  </div>
+  <div class="qa">
+   <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="8">
+    <div class="q" style="{{ q.style }}">
+     <button class="q-h" type="button" aria-expanded="{{ q.expanded }}" onClick="{{ q.toggle }}">{{ q.q }}<span class="q-i" style="{{ q.icon }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></button>
+     <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
+      <p class="q-a fade">{{ q.a }}</p>
+     </sc-if>
+    </div>
+   </sc-for>
+  </div>
+ </div>
+</section>
+
+<section class="sec" style="padding-top:20px" aria-labelledby="cta-t">
+ <div class="wrap">
+  <div class="cta">
+   <div class="cta-art" aria-hidden="true"></div>
+   <div class="cta-in">
+    <span class="eyebrow">Commencer aujourd’hui</span>
+    <h2 id="cta-t" class="disp">Prêt à transformer votre entreprise ?</h2>
+    <p>Un appel découverte, un cadrage, et votre profil ou votre équipe rejoint vos rituels.</p>
+    <div class="row-cta">
+     <a class="btn btn-p" href="Holo-Contact.dc.html" style="{{ ui.cta }}">Réserver un appel</a>
+     <a class="btn btn-o" href="Holo-Expertises.dc.html">Découvrir la méthode</a>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer class="ftr">
+ <div class="wrap">
+  <div class="fgrid">
+   <div>
+    <a class="logo" href="Holo-Accueil.dc.html" aria-label="Baquelis, accueil"><span class="mark" aria-hidden="true"></span><span class="wordmark">Baquelis</span></a>
+    <p class="ftxt" style="max-width:340px">Partenaire technologique : équipes dédiées et flexibles, intelligence artificielle appliquée, exigence jeux &amp; Web3.</p>
+    <p class="disp" style="font-size:14px;font-weight:500;margin-top:8px">Flexibilité. Continuité. Performance.</p>
+   </div>
+   <div>
+    <h4>Navigation</h4>
+    <a class="fl" href="Holo-Accueil.dc.html">Accueil</a>
+    <a class="fl" href="Holo-Expertises.dc.html">Expertises</a>
+    <a class="fl" href="Holo-IA.dc.html">Intelligence artificielle</a>
+    <a class="fl" href="Holo-Jeux.dc.html">Jeux &amp; Web3</a>
+    <a class="fl" href="Holo-Contact.dc.html">Contact</a>
+   </div>
+   <div>
+    <h4>Offres</h4>
+    <a class="fl" href="Holo-Offres.dc.html">Intégration · 4 500 €/mois</a>
+    <a class="fl" href="Holo-Offres.dc.html">Flex · 6 200 €/mois</a>
+    <a class="fl" href="Holo-Offres.dc.html">Performance · 18 900 €/mois</a>
+   </div>
+   <div>
+    <h4>Société</h4>
+    <p class="ftxt">31 B avenue Maréchal Foch<br>06000 Nice</p>
+    <p class="ftxt">[RAISON SOCIALE] · [N° TVA]</p>
+    <p class="ftxt">[contact@domaine-baquelis]</p>
+    <a class="fl" href="Main.dc.html">Toutes les propositions</a>
+   </div>
+  </div>
+  <div class="fbot"><span>© 2026 Baquelis. Tous droits réservés.</span><span>Proposition de refonte — concept · Direction 6 · Holo</span></div>
+ </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5900},"accent":{"editor":"color","default":"#0093CC","options":["#0093CC","#00AEEF","#B8A4FF"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu:false, flipped:[false,false,false], plan:1, months:12, faq:0 };
+  }
+  renderVals(){
+    const s = this.state;
+    const accent = (this.props && this.props.accent) || "#0093CC";
+    const fmt = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " €";
+
+    const FEATS = [
+      ["1 profil technique dédié","Changement de profil sous 30 jours","Rapports mensuels","Heures standard (40 h/semaine)","Support e-mail et chat","Engagement minimum 12 mois"],
+      ["Flexibilité maximale","1 profil technique senior avec changement rapide","Engagement minimum 6 mois","Changement de profil sous 15 jours","Support e-mail et chat prioritaire","Rapports détaillés hebdomadaires","Documentation et passation renforcées","Heures étendues (50 h/semaine)"],
+      ["Équipe de 5 experts seniors dédiés","Engagement minimum 2 mois","Lead tech + Product Owner inclus","Support prioritaire 24/7 et hotline","Gestion de projet agile complète","Rapports quotidiens personnalisés et tableaux de bord","Couverture 24/7","Espace Slack dédié"]
+    ];
+    const card = (i) => {
+      const f = !!s.flipped[i];
+      return {
+        feats: FEATS[i],
+        rot: f ? "transform:rotateY(180deg)" : "",
+        frontPE: f ? "pointer-events:none" : "",
+        backPE: f ? "" : "pointer-events:none",
+        frontHidden: f ? "true" : "false",
+        backHidden: f ? "false" : "true",
+        isFront: !f, isBack: f,
+        flip: () => { const a = s.flipped.slice(); a[i] = !a[i]; this.setState({ flipped: a }); }
+      };
+    };
+    const allFlipped = s.flipped[0] && s.flipped[1] && s.flipped[2];
+
+    const PL = [
+      { t:"Intégration", price:4500, save:1500, min:12 },
+      { t:"Flex", price:6200, save:2300, min:6 },
+      { t:"Performance", price:18900, save:12000, min:2 }
+    ];
+    const pl = PL[s.plan];
+    const months = Math.max(pl.min, Math.min(36, s.months));
+    const planTotal = pl.price * months;
+    const hireTotal = (pl.price + pl.save) * months;
+    const simOpts = PL.map((p, i) => ({
+      t: p.t, pressed: i === s.plan ? "true" : "false",
+      style: i === s.plan ? "background:#14131A;color:#fff;box-shadow:0 10px 24px -12px rgba(20,19,26,.6)" : "",
+      pick: () => this.setState({ plan: i, months: Math.max(p.min, s.months) })
+    }));
+    const sim = {
+      name: pl.t, min: pl.min, months: months,
+      price: fmt(pl.price) + "/mois", monthly: fmt(pl.save) + "/mois",
+      total: fmt(pl.save * months),
+      planTotal: fmt(planTotal), hireTotal: fmt(hireTotal),
+      hireBar: "width:100%;background:rgba(20,19,26,.35)",
+      planBar: "width:" + (planTotal / hireTotal * 100).toFixed(1) + "%;background:linear-gradient(90deg,#7fd3ff,#b9a2ff,#ffb7e2)"
+    };
+
+    const FQ = [
+      { q:"Quel est l’engagement minimum ?", a:"12 mois pour Intégration, 6 mois pour Flex et 2 mois pour Performance. Le prix est mensuel, sans coût caché." },
+      { q:"Puis-je changer de profil en cours de route ?", a:"Oui. Le changement de profil se fait sous 30 jours avec Intégration et sous 15 jours avec Flex, qui prévoit un changement rapide. Performance s’appuie sur une équipe de 5 experts seniors dédiés, avec Lead tech et Product Owner inclus." },
+      { q:"Quels horaires sont couverts ?", a:"Heures standard (40 h/semaine) pour Intégration, heures étendues (50 h/semaine) pour Flex, et couverture 24/7 pour Performance." },
+      { q:"Quel support est inclus ?", a:"Support e-mail et chat pour Intégration, e-mail et chat prioritaire pour Flex, support prioritaire 24/7 avec hotline et espace Slack dédié pour Performance." },
+      { q:"Quels rapports vais-je recevoir ?", a:"Des rapports mensuels (Intégration), des rapports détaillés hebdomadaires (Flex) ou des rapports quotidiens personnalisés avec tableaux de bord (Performance). Dans tous les cas, le suivi des progrès se fait en temps réel." },
+      { q:"Modèle affiné ou RAG : quelle différence ?", a:"Un modèle affiné est entraîné sur vos données et vos cas d’usage : précision supérieure, réponses plus rapides, intelligence spécifique à votre métier. Le RAG va chercher l’information dans une base documentaire à chaque requête, pratique quand les données changent souvent. Les deux peuvent se combiner." },
+      { q:"Pourquoi parlez-vous autant de jeux vidéo ?", a:"Parce que les jeux sont les applications les plus difficiles : performance temps réel, architecture complexe, multijoueur évolutif, sécurité et anti-triche. Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique." },
+      { q:"Comment sont calculées les économies ?", a:"À partir des montants « vs recrutement » communiqués par Baquelis : 1 500 €/mois (Intégration), 2 300 €/mois (Flex) et 12 000 €/mois (Performance). Le simulateur multiplie ce montant par la durée choisie." }
+    ];
+    const faqs = FQ.map((x, i) => {
+      const open = i === s.faq;
+      return {
+        q: x.q, a: x.a, open: open, expanded: open ? "true" : "false",
+        style: open ? "background:rgba(255,255,255,.9);box-shadow:0 24px 50px -34px rgba(40,30,90,.5)" : "",
+        icon: open ? "transform:rotate(45deg);background:#14131A;color:#fff" : "",
+        toggle: () => this.setState({ faq: open ? -1 : i })
+      };
+    });
+
+    return {
+      ui: { cta: "background:" + accent, menu: s.menu, menuOpen: s.menu ? "true" : "false", flipAllLabel: allFlipped ? "Revoir les recto" : "Retourner toutes les cartes" },
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      flipAll: () => { const v = !allFlipped; this.setState({ flipped: [v, v, v] }); },
+      o0: card(0), o1: card(1), o2: card(2),
+      simOpts: simOpts, sim: sim,
+      setMonths: (e) => this.setState({ months: Number(e.target.value) || pl.min }),
+      faqs: faqs
+    };
+  }
+}
+</script>
+</body>
+</html>

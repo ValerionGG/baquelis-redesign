@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Monolithe — Offres</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#0B0B0A}
+sc-for,sc-if{display:contents}
+.m-root{font-family:'Manrope',system-ui,sans-serif;font-size:16px;line-height:1.6;color:#F3EFE7;background:#0B0B0A;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.m-root *,.m-root *::before,.m-root *::after{box-sizing:border-box}
+.m-root img{display:block;max-width:100%}
+.m-root button{font-family:inherit;cursor:pointer}
+.m-root a:focus-visible,.m-root button:focus-visible,.m-root input:focus-visible,.m-root textarea:focus-visible{outline:1px solid var(--acc);outline-offset:4px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 48px}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+.ink{background:#0B0B0A;color:#F3EFE7}
+.ivory{background:#F3EFE7;color:#0B0B0A}
+.lbl{font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;line-height:1.5;margin:0}
+.ink .lbl,.ink .muted{color:#ADA89E}
+.ivory .lbl,.ivory .muted{color:#5E5A53}
+.ivory p{color:#2A2926}
+.ink p{color:#D6D1C7}
+.sec{padding:140px 0;position:relative}
+.chap{display:flex;align-items:center;gap:16px;margin:0 0 34px}
+.chap-n{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:24px;line-height:1;min-width:30px}
+.chap-l{display:block;width:56px;height:1px;background:var(--acc);flex:none}
+.h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(54px,8vw,128px);line-height:.95;letter-spacing:-.015em;margin:0;overflow-wrap:anywhere}
+.h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(40px,5vw,76px);line-height:1.02;letter-spacing:-.01em;margin:0;overflow-wrap:anywhere}
+.h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(26px,2.4vw,36px);line-height:1.12;margin:0}
+.h1 em,.h2 em,.h3 em{font-style:italic}
+.lead{font-size:18px;line-height:1.7;max-width:560px;margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:50px;padding:0 28px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:1px solid transparent;border-radius:0;transition:background .35s,color .35s,border-color .35s}
+.btn .arr{transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.btn:hover .arr{transform:translateX(6px)}
+.btn-light{background:#F3EFE7;color:#0B0B0A}
+.btn-light:hover{background:#FFFFFF}
+.btn-ghost{color:#F3EFE7;border-color:rgba(243,239,231,.32);background:transparent}
+.btn-ghost:hover{border-color:#F3EFE7}
+.btn-dark{background:#0B0B0A;color:#F3EFE7}
+.btn-dark:hover{background:#2A2926}
+.btn-out{color:#0B0B0A;border-color:rgba(11,11,10,.4);background:transparent}
+.btn-out:hover{border-color:#0B0B0A}
+.acc-fill{fill:var(--acc)}
+/* header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(11,11,10,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(243,239,231,.08)}
+.hdr-in{display:flex;align-items:center;gap:36px;height:84px}
+.logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:#F3EFE7;min-height:44px}
+.logo-w{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:21px;letter-spacing:.34em;text-transform:uppercase}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font-size:13px;font-weight:500;letter-spacing:.04em;color:#CFCAC0;text-decoration:none;transition:color .3s}
+.nav a::after{content:"";position:absolute;left:14px;right:14px;bottom:8px;height:1px;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.nav a:hover,.nav a[aria-current="page"]{color:#F3EFE7}
+.nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1)}
+.burger{display:none;margin-left:auto;width:48px;height:48px;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(243,239,231,.25);color:#F3EFE7}
+.mnav{display:flex;flex-direction:column;padding-top:8px;padding-bottom:28px;border-top:1px solid rgba(243,239,231,.08);animation:drop .4s ease both}
+.ml{display:flex;align-items:center;justify-content:space-between;min-height:58px;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;color:#F3EFE7;text-decoration:none;border-bottom:1px solid rgba(243,239,231,.08)}
+.mnav .btn{margin-top:22px}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}}
+@media(max-width:1000px){.nav,.hdr-cta{display:none}.burger{display:inline-flex}}
+@media(min-width:1001px){.mnav{display:none}}
+/* footer */
+.ftr{padding:110px 0 40px;border-top:1px solid rgba(243,239,231,.08)}
+.ftr-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:48px}
+.ftr-col{display:flex;flex-direction:column;align-items:flex-start}
+.ftr-h{margin-bottom:14px}
+.ftr-col a{display:inline-flex;align-items:center;min-height:38px;font-size:14px;color:#D6D1C7;text-decoration:none;transition:color .3s}
+.ftr-col a:hover{color:#F3EFE7}
+.ftr .ftr-tag{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:30px;line-height:1.15;margin:0;color:#F3EFE7}
+.ftr-addr{font-style:normal;font-size:14px;line-height:1.8;color:#D6D1C7;margin-bottom:6px}
+.ftr-giant{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(84px,16vw,236px);line-height:.9;letter-spacing:-.02em;margin:90px 0 36px;color:#F3EFE7;display:flex;align-items:flex-end;gap:24px}
+.ftr-giant i{display:block;flex:1;height:1px;background:var(--acc);margin-bottom:.16em;font-style:normal}
+.ftr-bot{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-between;align-items:center;padding-top:26px;border-top:1px solid rgba(243,239,231,.1);font-size:13px;color:#ADA89E}
+.ftr-bot a{color:#F3EFE7;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.ftr-bot a:hover{text-decoration:underline}
+/* motion */
+@keyframes rise{from{opacity:0;transform:translateY(26px)}}
+@keyframes panel{from{opacity:0;transform:translateY(18px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rise{animation:rise 1.1s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.45s}.d4{animation-delay:.65s}
+@supports (animation-timeline: view()){.rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 26%}}
+.paper{background-color:#F3EFE7;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .24 0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(120% 80% at 20% 0%,#FAF7F1 0%,#F3EFE7 50%,#E8E2D6 100%);color:#0B0B0A}
+@media(max-width:700px){.wrap{padding:0 20px}.sec{padding:96px 0}}
+@media (prefers-reduced-motion: reduce){.m-root *{animation:none !important;transition:none !important}}
+.head-split{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:60px;align-items:end}
+@media(max-width:980px){.head-split{grid-template-columns:1fr;gap:32px}}
+
+/* hero */
+.hero{padding:110px 0 100px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:end}
+.trio{display:flex;align-items:flex-end;justify-content:center;gap:26px;height:380px;position:relative}
+.trio::after{content:"";position:absolute;left:0;right:0;bottom:56px;height:1px;background:linear-gradient(90deg,rgba(243,239,231,0),rgba(243,239,231,.25),rgba(243,239,231,0))}
+.tr{display:flex;flex-direction:column;align-items:center;gap:12px;background:transparent;border:0;padding:0;color:#ADA89E;transition:color .4s}
+.tr:hover{color:#F3EFE7}
+.tr-b{width:64px;background:linear-gradient(100deg,#1D1C1A,#0B0B0A 45%,#201F1D 60%,#0B0B0A);border:1px solid rgba(243,239,231,.14);box-shadow:0 40px 60px -20px rgba(0,0,0,.95);transition:transform .7s cubic-bezier(.2,.7,.2,1),border-color .5s}
+.tr:hover .tr-b{transform:translateY(-8px)}
+.tr-base{width:80px;height:1px;background:transparent;transition:background .4s}
+.tr .serif{font-style:italic;font-size:20px;line-height:1}
+.tr-t{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr}}
+
+/* I — maisons */
+.toolbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;margin-top:64px}
+.seg{display:inline-flex;border:1px solid rgba(243,239,231,.35)}
+.seg button{min-height:48px;padding:0 22px;background:transparent;border:0;color:#D6D1C7;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;transition:background .4s,color .4s}
+.seg button + button{border-left:1px solid rgba(243,239,231,.35)}
+.mai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:28px;margin-top:40px;align-items:stretch}
+.mai{position:relative;padding:48px 40px 40px;display:flex;flex-direction:column;transition:transform .7s cubic-bezier(.2,.7,.2,1),box-shadow .7s;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.mai:hover{transform:translateY(-10px);box-shadow:0 50px 90px -30px rgba(0,0,0,.95)}
+.mai-flex{outline:1px solid var(--acc);outline-offset:-12px}
+.seal{position:absolute;top:26px;right:26px;width:92px;height:92px}
+.seal-rot{transform-origin:50px 50px;animation:spin 40s linear infinite}
+.mai-n{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:20px;color:#77736B}
+.mai-t{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:50px;line-height:1;margin:10px 0 10px}
+.mai .mai-for{font-size:14px;color:#5E5A53;max-width:230px;margin:0}
+.mai-price{margin:32px 0 24px;padding:22px 0;border-top:1px solid rgba(11,11,10,.2);border-bottom:1px solid rgba(11,11,10,.2);min-height:122px}
+.mai-price .p{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:62px;line-height:1;display:block;animation:panel .5s cubic-bezier(.2,.7,.2,1) both}
+.mai-price .u{display:block;margin-top:8px;font-size:13px;color:#5E5A53}
+.mai-li{display:flex;gap:12px;align-items:baseline;padding:9px 0;font-size:14.5px;color:#2A2926;border-top:1px solid rgba(11,11,10,.07)}
+.mai-li:first-of-type{border-top:0}
+.mai-li::before{content:"";width:10px;height:1px;background:#0B0B0A;flex:none;transform:translateY(-4px)}
+.mai-foot{margin-top:auto;padding-top:28px;display:flex;flex-direction:column;gap:10px}
+.mai .btn{width:100%}
+.mai-sim{min-height:44px;background:transparent;border:0;color:#2A2926;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:underline;text-underline-offset:5px}
+
+/* II — comparatif */
+.tbl-wrap{margin-top:72px;overflow-x:auto;border-top:1px solid #0B0B0A}
+.tbl{width:100%;min-width:860px;border-collapse:collapse;font-size:14.5px}
+.tbl th,.tbl td{padding:18px 18px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(11,11,10,.12);transition:background .4s}
+.tbl tbody tr:hover td,.tbl tbody tr:hover th{background:rgba(11,11,10,.035)}
+.tbl thead th{padding:0;border-bottom:1px solid #0B0B0A}
+.tbl tbody th{font-weight:600;color:#0B0B0A;width:22%}
+.tbl td{color:#2A2926}
+.th-b{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;min-height:96px;padding:22px 18px;background:transparent;border:0;color:#0B0B0A;text-align:left}
+.th-b .serif{font-size:30px;line-height:1}
+.th-b span:last-child{font-size:12px;color:#5E5A53}
+.tbl .no{color:#77736B}
+.tbl-note{margin-top:18px;font-size:13px;color:#5E5A53}
+
+/* III — simulateur */
+.sim{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:0;margin-top:80px;border:1px solid rgba(243,239,231,.16)}
+.sim-l{padding:48px;border-right:1px solid rgba(243,239,231,.16)}
+.sim-r{padding:48px;display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:32px;align-items:end;background:linear-gradient(180deg,#131312,#0B0B0A)}
+.f-opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.f-opt{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-height:84px;padding:16px;background:transparent;border:1px solid rgba(243,239,231,.18);color:#D6D1C7;text-align:left;transition:border-color .4s,background .4s,color .4s}
+.f-opt:hover{border-color:rgba(243,239,231,.5)}
+.f-opt .serif{font-size:24px;line-height:1;color:#F3EFE7}
+.f-opt span:last-child{font-size:12px}
+.dur{margin-top:40px}
+.dur label{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:#D6D1C7}
+.dur label strong{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:34px;color:#F3EFE7}
+.dur input{width:100%;height:44px;margin-top:10px;accent-color:var(--acc);cursor:pointer}
+.dur-scale{display:flex;justify-content:space-between;font-size:12px;color:#ADA89E}
+.minnote{margin-top:18px;font-size:13px;color:#ADA89E}
+.out + .out{margin-top:26px;padding-top:26px;border-top:1px solid rgba(243,239,231,.12)}
+.out-v{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(40px,4.4vw,64px);line-height:1;margin-top:8px;color:#F3EFE7}
+.out-s{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:28px;line-height:1.1;margin-top:6px;color:#F3EFE7}
+.est{margin-top:28px;font-size:12.5px;color:#ADA89E}
+.pillar{position:relative;height:360px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.pillar-b{width:64px;background:linear-gradient(100deg,#2A2926,#0B0B0A 50%,#2A2926);border:1px solid rgba(243,239,231,.3);transition:height .9s cubic-bezier(.2,.7,.2,1)}
+.pillar-l{width:100px;height:1px;background:var(--acc);margin-top:0}
+.pillar .lbl{margin-top:12px;text-align:center;font-size:10px}
+@media(max-width:980px){.sim{grid-template-columns:1fr}.sim-l{border-right:0;border-bottom:1px solid rgba(243,239,231,.16);padding:28px 20px}.sim-r{padding:28px 20px;grid-template-columns:1fr 80px}.f-opts{grid-template-columns:1fr}.pillar{height:280px}}
+
+/* IV — FAQ index */
+.faq{margin-top:80px;border-top:1px solid #0B0B0A}
+.fq-h{display:flex;align-items:baseline;gap:18px;width:100%;min-height:84px;padding:24px 0;background:transparent;border:0;border-bottom:1px solid rgba(11,11,10,.14);color:#0B0B0A;text-align:left}
+.fq-n{font-size:12px;font-weight:700;letter-spacing:.14em;color:#5E5A53;min-width:56px}
+.fq-q{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(22px,2.2vw,30px);line-height:1.2;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.fq-h:hover .fq-q{transform:translateX(8px)}
+.fq-dots{flex:1;min-width:30px;border-bottom:1px dotted rgba(11,11,10,.35);transform:translateY(-6px)}
+.fq-c{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#5E5A53}
+.fq-ic{width:36px;height:36px;flex:none;border-radius:50%;border:1px solid rgba(11,11,10,.3);display:flex;align-items:center;justify-content:center;align-self:center;transition:transform .5s,background .4s,color .4s}
+.fq-a{display:grid;grid-template-columns:74px minmax(0,1fr);padding:26px 0 36px;border-bottom:1px solid rgba(11,11,10,.14);animation:panel .5s cubic-bezier(.2,.7,.2,1) both}
+.fq-a p{margin:0;font-size:17px;line-height:1.75;max-width:760px}
+@media(max-width:800px){.fq-dots,.fq-c{display:none}.fq-a{grid-template-columns:1fr}.fq-n{min-width:40px}}
+
+.cta{text-align:center;padding:160px 0}
+.cta .h2{font-size:clamp(44px,6vw,96px)}
+.cta .ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:48px}
+</style>
+</helmet>
+<div class="m-root" style="{{ rootStyle }}">
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="Monolithe-Accueil.dc.html" aria-label="Baquelis — accueil">
+      <svg width="16" height="30" viewBox="0 0 16 30" aria-hidden="true"><rect x="3" y="1" width="10" height="24" fill="#F3EFE7"></rect><rect x="3" y="1" width="3" height="24" fill="#BDB7AC"></rect><rect x="0" y="28" width="16" height="1" class="acc-fill"></rect></svg>
+      <span class="logo-w">Baquelis</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="Monolithe-Expertises.dc.html">Expertises</a>
+      <a href="Monolithe-IA.dc.html">IA</a>
+      <a href="Monolithe-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a href="Monolithe-Offres.dc.html" aria-current="page">Offres</a>
+      <a href="Monolithe-Contact.dc.html">Contact</a>
+    </nav>
+    <a class="btn btn-light hdr-cta" href="Monolithe-Contact.dc.html">Réserver un appel</a>
+    <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="{{ menuExp }}" onClick="{{ toggleMenu }}"><svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 1h20M0 11h20"></path></svg></button>
+  </div>
+  <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+    <nav class="mnav wrap" aria-label="Navigation mobile">
+      <a class="ml" href="Monolithe-Expertises.dc.html">Expertises <span class="lbl">I</span></a>
+      <a class="ml" href="Monolithe-IA.dc.html">Intelligence artificielle <span class="lbl">II</span></a>
+      <a class="ml" href="Monolithe-Jeux.dc.html">Jeux &amp; Web3 <span class="lbl">III</span></a>
+      <a class="ml" href="Monolithe-Offres.dc.html">Offres <span class="lbl">IV</span></a>
+      <a class="ml" href="Monolithe-Contact.dc.html">Contact <span class="lbl">V</span></a>
+      <a class="btn btn-light" href="Monolithe-Contact.dc.html">Commencer</a>
+    </nav>
+  </sc-if>
+</header>
+
+<!-- HERO -->
+<section class="hero ink">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="chap rise d1"><span class="chap-l"></span><span class="lbl">Formules mensuelles — prix publiés</span></div>
+      <h1 class="h1 rise d2">Trois maisons. <em>Une même exigence.</em></h1>
+      <p class="lead rise d3" style="margin-top:36px">Un profil dédié, un profil senior flexible ou une équipe complète de cinq experts. Pas de coûts cachés : tout est écrit, ici.</p>
+    </div>
+    <div class="rise d3">
+      <div class="trio" role="group" aria-label="Choisir une formule">
+        <sc-for list="{{ formules }}" as="f" hint-placeholder-count="3">
+          <button class="tr" type="button" aria-pressed="{{ f.pressed }}" style="{{ f.txt }}" onClick="{{ f.pick }}">
+            <span class="tr-b" style="{{ f.slab }}"></span>
+            <span class="tr-base" style="{{ f.base }}"></span>
+            <span class="serif">{{ f.n }}</span>
+            <span class="tr-t">{{ f.t }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- I — MAISONS -->
+<section class="sec ink" style="padding-top:60px">
+  <div class="wrap">
+    <div class="chap rv"><span class="chap-n">I</span><span class="chap-l"></span><span class="lbl">Les maisons</span></div>
+    <h2 class="h2 rv">Choisissez votre <em>niveau d’engagement.</em></h2>
+    <div class="toolbar rv">
+      <div class="seg" role="group" aria-label="Affichage des montants">
+        <button type="button" aria-pressed="{{ vuePrixAria }}" style="{{ vuePrixStyle }}" onClick="{{ showPrix }}">Prix mensuel</button>
+        <button type="button" aria-pressed="{{ vueEcoAria }}" style="{{ vueEcoStyle }}" onClick="{{ showEco }}">Économie vs recrutement</button>
+      </div>
+      <p class="muted" style="margin:0;font-size:14px">Montants hors taxes, par mois.</p>
+    </div>
+    <div class="mai-grid">
+      <article class="mai paper rv">
+        <span class="mai-n">Maison I</span>
+        <h3 class="mai-t">Intégration</h3>
+        <p class="mai-for">Idéal pour startups et PME avec des besoins techniques spécifiques.</p>
+        <div class="mai-price">
+          <sc-if value="{{ vuePrix }}" hint-placeholder-val="{{ true }}"><span class="p">4&nbsp;500&nbsp;€</span><span class="u">par mois</span></sc-if>
+          <sc-if value="{{ vueEco }}" hint-placeholder-val="{{ false }}"><span class="p">1&nbsp;500&nbsp;€</span><span class="u">économisés chaque mois vs recrutement</span></sc-if>
+        </div>
+        <div class="mai-li">1 profil technique dédié</div>
+        <div class="mai-li">Changement de profil sous 30 jours</div>
+        <div class="mai-li">Rapports mensuels</div>
+        <div class="mai-li">Heures standard (40 h/semaine)</div>
+        <div class="mai-li">Support e-mail et chat</div>
+        <div class="mai-li">Engagement minimum 12 mois</div>
+        <div class="mai-foot">
+          <a class="btn btn-dark" href="Monolithe-Contact.dc.html">Choisir Intégration</a>
+          <button class="mai-sim" type="button" onClick="{{ sim0 }}">Simuler mes économies</button>
+        </div>
+      </article>
+      <article class="mai mai-flex paper rv">
+        <svg class="seal" viewBox="0 0 100 100" aria-hidden="true"><defs><path id="sealB" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"></path></defs><circle cx="50" cy="50" r="48" fill="none" stroke="#0B0B0A" stroke-width=".6"></circle><g class="seal-rot"><text font-size="8.4" letter-spacing="2.6" fill="#0B0B0A" font-family="Manrope" font-weight="600"><textPath href="#sealB">PLUS POPULAIRE · MAISON FLEX · </textPath></text></g><circle cx="50" cy="50" r="3" class="acc-fill"></circle></svg>
+        <span class="mai-n">Maison II · plus populaire</span>
+        <h3 class="mai-t">Flex</h3>
+        <p class="mai-for">Idéal pour entreprises avec projets évolutifs. Flexibilité maximale.</p>
+        <div class="mai-price">
+          <sc-if value="{{ vuePrix }}" hint-placeholder-val="{{ true }}"><span class="p">6&nbsp;200&nbsp;€</span><span class="u">par mois</span></sc-if>
+          <sc-if value="{{ vueEco }}" hint-placeholder-val="{{ false }}"><span class="p">2&nbsp;300&nbsp;€</span><span class="u">économisés chaque mois vs recrutement</span></sc-if>
+        </div>
+        <div class="mai-li">1 profil technique senior avec changement rapide</div>
+        <div class="mai-li">Changement de profil sous 15 jours</div>
+        <div class="mai-li">Rapports détaillés hebdomadaires</div>
+        <div class="mai-li">Heures étendues (50 h/semaine)</div>
+        <div class="mai-li">Support e-mail et chat prioritaire</div>
+        <div class="mai-li">Documentation et passation renforcées</div>
+        <div class="mai-li">Engagement minimum 6 mois</div>
+        <div class="mai-foot">
+          <a class="btn btn-dark" href="Monolithe-Contact.dc.html">Choisir Flex</a>
+          <button class="mai-sim" type="button" onClick="{{ sim1 }}">Simuler mes économies</button>
+        </div>
+      </article>
+      <article class="mai paper rv">
+        <span class="mai-n">Maison III</span>
+        <h3 class="mai-t">Performance</h3>
+        <p class="mai-for">Idéal pour grandes entreprises et projets stratégiques complexes.</p>
+        <div class="mai-price">
+          <sc-if value="{{ vuePrix }}" hint-placeholder-val="{{ true }}"><span class="p">18&nbsp;900&nbsp;€</span><span class="u">par mois</span></sc-if>
+          <sc-if value="{{ vueEco }}" hint-placeholder-val="{{ false }}"><span class="p">12&nbsp;000&nbsp;€</span><span class="u">économisés chaque mois vs recrutement</span></sc-if>
+        </div>
+        <div class="mai-li">Équipe de 5 experts seniors dédiés</div>
+        <div class="mai-li">Lead tech + Product Owner inclus</div>
+        <div class="mai-li">Gestion de projet agile complète</div>
+        <div class="mai-li">Rapports quotidiens personnalisés et tableaux de bord</div>
+        <div class="mai-li">Support prioritaire 24/7, hotline, couverture 24/7</div>
+        <div class="mai-li">Espace Slack dédié</div>
+        <div class="mai-li">Engagement minimum 2 mois</div>
+        <div class="mai-foot">
+          <a class="btn btn-dark" href="Monolithe-Contact.dc.html">Choisir Performance</a>
+          <button class="mai-sim" type="button" onClick="{{ sim2 }}">Simuler mes économies</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- II — COMPARATIF -->
+<section class="sec ivory">
+  <div class="wrap">
+    <div class="head-split rv">
+      <div>
+        <div class="chap"><span class="chap-n">II</span><span class="chap-l"></span><span class="lbl">Comparatif détaillé</span></div>
+        <h2 class="h2">Tout, <em>ligne par ligne.</em></h2>
+      </div>
+      <p class="lead">Sélectionnez une formule dans l’en-tête pour la mettre en lumière.</p>
+    </div>
+    <div class="tbl-wrap rv">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th scope="col" style="width:22%"><span class="th-b"><span class="lbl">Critère</span></span></th>
+            <th scope="col" style="{{ c0 }}"><button class="th-b" type="button" aria-pressed="{{ p0 }}" onClick="{{ sel0 }}"><span class="serif">Intégration</span><span>4&nbsp;500&nbsp;€/mois</span></button></th>
+            <th scope="col" style="{{ c1 }}"><button class="th-b" type="button" aria-pressed="{{ p1 }}" onClick="{{ sel1 }}"><span class="serif">Flex</span><span>6&nbsp;200&nbsp;€/mois · plus populaire</span></button></th>
+            <th scope="col" style="{{ c2 }}"><button class="th-b" type="button" aria-pressed="{{ p2 }}" onClick="{{ sel2 }}"><span class="serif">Performance</span><span>18&nbsp;900&nbsp;€/mois</span></button></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Idéal pour</th><td style="{{ c0 }}">Startups et PME aux besoins techniques spécifiques</td><td style="{{ c1 }}">Entreprises avec projets évolutifs</td><td style="{{ c2 }}">Grandes entreprises, projets stratégiques complexes</td></tr>
+          <tr><th scope="row">Ressources</th><td style="{{ c0 }}">1 profil technique dédié</td><td style="{{ c1 }}">1 profil technique senior, changement rapide</td><td style="{{ c2 }}">Équipe de 5 experts seniors dédiés</td></tr>
+          <tr><th scope="row">Lead tech + Product Owner</th><td style="{{ c0 }}" class="no">—</td><td style="{{ c1 }}" class="no">—</td><td style="{{ c2 }}">Inclus</td></tr>
+          <tr><th scope="row">Engagement minimum</th><td style="{{ c0 }}">12 mois</td><td style="{{ c1 }}">6 mois</td><td style="{{ c2 }}">2 mois</td></tr>
+          <tr><th scope="row">Changement de profil</th><td style="{{ c0 }}">Sous 30 jours</td><td style="{{ c1 }}">Sous 15 jours</td><td style="{{ c2 }}" class="no">Équipe dédiée</td></tr>
+          <tr><th scope="row">Heures couvertes</th><td style="{{ c0 }}">Standard — 40 h/semaine</td><td style="{{ c1 }}">Étendues — 50 h/semaine</td><td style="{{ c2 }}">Couverture 24/7</td></tr>
+          <tr><th scope="row">Support</th><td style="{{ c0 }}">E-mail et chat</td><td style="{{ c1 }}">E-mail et chat prioritaire</td><td style="{{ c2 }}">Prioritaire 24/7 et hotline</td></tr>
+          <tr><th scope="row">Rapports</th><td style="{{ c0 }}">Mensuels</td><td style="{{ c1 }}">Détaillés hebdomadaires</td><td style="{{ c2 }}">Quotidiens personnalisés et tableaux de bord</td></tr>
+          <tr><th scope="row">Gestion &amp; documentation</th><td style="{{ c0 }}" class="no">—</td><td style="{{ c1 }}">Documentation et passation renforcées</td><td style="{{ c2 }}">Gestion de projet agile complète</td></tr>
+          <tr><th scope="row">Espace Slack dédié</th><td style="{{ c0 }}" class="no">—</td><td style="{{ c1 }}" class="no">—</td><td style="{{ c2 }}">Inclus</td></tr>
+          <tr><th scope="row">Économie vs recrutement</th><td style="{{ c0 }}"><strong>1&nbsp;500&nbsp;€/mois</strong></td><td style="{{ c1 }}"><strong>2&nbsp;300&nbsp;€/mois</strong></td><td style="{{ c2 }}"><strong>12&nbsp;000&nbsp;€/mois</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">« — » : non inclus dans la formule. Tableau défilable horizontalement sur petit écran.</p>
+  </div>
+</section>
+
+<!-- III — SIMULATEUR -->
+<section class="sec ink">
+  <div class="wrap">
+    <div class="head-split rv">
+      <div>
+        <div class="chap"><span class="chap-n">III</span><span class="chap-l"></span><span class="lbl">Simulateur d’économies</span></div>
+        <h2 class="h2">Ce que vous gardez, <em>mois après mois.</em></h2>
+      </div>
+      <p class="lead">Choisissez une formule et une durée : le monolithe s’élève avec vos économies cumulées.</p>
+    </div>
+    <div class="sim rv">
+      <div class="sim-l">
+        <p class="lbl">Formule</p>
+        <div class="f-opts" role="radiogroup" aria-label="Formule simulée">
+          <sc-for list="{{ formules }}" as="f" hint-placeholder-count="3">
+            <button class="f-opt" type="button" role="radio" aria-checked="{{ f.pressed }}" style="{{ f.opt }}" onClick="{{ f.pick }}"><span class="serif">{{ f.t }}</span><span>{{ f.prixLabel }} / mois</span></button>
+          </sc-for>
+        </div>
+        <div class="dur">
+          <label for="dur-r"><span>Durée de collaboration</span><strong>{{ moisLabel }}</strong></label>
+          <input id="dur-r" type="range" min="1" max="36" step="1" value="{{ mois }}" onInput="{{ setMois }}">
+          <div class="dur-scale"><span>1 mois</span><span>36 mois</span></div>
+        </div>
+        <p class="minnote">{{ minNote }}</p>
+      </div>
+      <div class="sim-r" aria-live="polite">
+        <div>
+          <div class="out"><p class="lbl">Économie mensuelle</p><div class="out-s">{{ ecoMois }}</div></div>
+          <div class="out"><p class="lbl">Économie cumulée</p><div class="out-v">{{ ecoCumul }}</div></div>
+          <div class="out"><p class="lbl">Investissement sur la période</p><div class="out-s">{{ invest }}</div></div>
+          <p class="est">Estimation basée sur les chiffres Baquelis (économie « vs recrutement » communiquée pour chaque formule).</p>
+        </div>
+        <div class="pillar" aria-hidden="true">
+          <span class="pillar-b" style="{{ pillarStyle }}"></span>
+          <span class="pillar-l"></span>
+          <span class="lbl">{{ pctLabel }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IV — FAQ -->
+<section class="sec ivory">
+  <div class="wrap">
+    <div class="head-split rv">
+      <div>
+        <div class="chap"><span class="chap-n">IV</span><span class="chap-l"></span><span class="lbl">Questions fréquentes</span></div>
+        <h2 class="h2">L’index <em>des réponses.</em></h2>
+      </div>
+      <p class="lead">Tout ce que l’on nous demande avant de commencer, classé comme dans un ouvrage de référence.</p>
+    </div>
+    <div class="faq">
+      <sc-for list="{{ faq }}" as="q" hint-placeholder-count="9">
+        <div>
+          <button class="fq-h" type="button" aria-expanded="{{ q.exp }}" onClick="{{ q.toggle }}">
+            <span class="fq-n">N° {{ q.n }}</span>
+            <span class="fq-q">{{ q.q }}</span>
+            <span class="fq-dots" aria-hidden="true"></span>
+            <span class="fq-c">{{ q.c }}</span>
+            <span class="fq-ic" style="{{ q.ic }}"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M6 0v12M0 6h12"></path></svg></span>
+          </button>
+          <sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}">
+            <div class="fq-a"><span></span><p>{{ q.a }}</p></div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta ink">
+  <div class="wrap">
+    <p class="lbl rv" style="margin-bottom:28px">Commencer aujourd’hui</p>
+    <h2 class="h2 rv">Prêt à transformer <em>votre entreprise&nbsp;?</em></h2>
+    <div class="ctas rv">
+      <a class="btn btn-light" href="Monolithe-Contact.dc.html">Réserver un appel <svg class="arr" width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h16M12 1l4 4-4 4"></path></svg></a>
+      <a class="btn btn-ghost" href="Monolithe-Expertises.dc.html">En savoir plus</a>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr ink">
+  <div class="wrap">
+    <div class="ftr-top">
+      <div class="ftr-col">
+        <p class="ftr-tag">La technologie, <em>tenue comme une maison.</em></p>
+        <p class="lbl" style="margin-top:22px">Flexibilité · Continuité · Performance</p>
+      </div>
+      <div class="ftr-col"><p class="lbl ftr-h">La maison</p><a href="Monolithe-Expertises.dc.html">Expertises</a><a href="Monolithe-IA.dc.html">Intelligence artificielle</a><a href="Monolithe-Jeux.dc.html">Jeux &amp; Web3</a><a href="Monolithe-Contact.dc.html">Contact</a></div>
+      <div class="ftr-col"><p class="lbl ftr-h">Formules</p><a href="Monolithe-Offres.dc.html">Intégration — 4&nbsp;500&nbsp;€/mois</a><a href="Monolithe-Offres.dc.html">Flex — 6&nbsp;200&nbsp;€/mois</a><a href="Monolithe-Offres.dc.html">Performance — 18&nbsp;900&nbsp;€/mois</a></div>
+      <div class="ftr-col"><p class="lbl ftr-h">Siège</p><address class="ftr-addr">31 B avenue Maréchal Foch<br>06000 Nice, France</address><a href="Monolithe-Contact.dc.html">[contact@domaine-baquelis]</a></div>
+    </div>
+    <div class="ftr-giant" aria-hidden="true">Baquelis<i></i></div>
+    <div class="ftr-bot"><span>© 2026 Baquelis · [RAISON SOCIALE] · [N° TVA]</span><span>Proposition de refonte — concept</span><a href="Main.dc.html">Toutes les propositions →</a></div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6900},"accent":{"editor":"color","default":"#00AEEF","options":["#00AEEF","#7C5CFF","#F5B700"]}}'>
+class Component extends DCLogic {
+  constructor(props){ super(props); this.state = { menu: false, maison: 1, vue: 'prix', mois: 12, faq: 0 }; }
+  renderVals() {
+    var self = this, s = this.state;
+    var acc = (this.props && this.props.accent) || '#00AEEF';
+    function eur(n) { return n.toLocaleString('fr-FR') + ' €'; }
+    var F = [
+      { n: 'I', t: 'Intégration', prix: 4500, eco: 1500, min: 12, h: 150 },
+      { n: 'II', t: 'Flex', prix: 6200, eco: 2300, min: 6, h: 220 },
+      { n: 'III', t: 'Performance', prix: 18900, eco: 12000, min: 2, h: 300 }
+    ];
+    function choose(i) {
+      var m = Math.max(self.state.mois, F[i].min);
+      self.setState({ maison: i, mois: m });
+    }
+    var f = F[s.maison];
+    var mois = Math.max(s.mois, f.min);
+    var formules = F.map(function (x, i) {
+      var on = s.maison === i;
+      return {
+        n: x.n, t: x.t, prixLabel: eur(x.prix), pressed: on ? 'true' : 'false',
+        slab: 'height:' + x.h + 'px;' + (on ? 'border-color:rgba(243,239,231,.7);transform:translateY(-12px)' : ''),
+        base: on ? ('background:' + acc) : '',
+        txt: on ? 'color:#F3EFE7' : '',
+        opt: on ? ('border-color:' + acc + ';background:rgba(243,239,231,.05);color:#F3EFE7') : '',
+        pick: function () { choose(i); }
+      };
+    });
+    var hi = 'background:rgba(0,0,0,.045);';
+    function col(i) { return s.maison === i ? (hi + 'box-shadow:inset 0 2px 0 ' + (i === s.maison ? acc : 'transparent')) : ''; }
+    var cumul = f.eco * mois;
+    var maxC = 12000 * 36;
+    var ratio = cumul / maxC;
+    var FAQ = [
+      { c: 'Formules', q: 'Quel est l’engagement minimum ?', a: 'Il dépend de la formule : 12 mois pour Intégration, 6 mois pour Flex et 2 mois pour Performance.' },
+      { c: 'Formules', q: 'Puis-je changer de profil en cours de collaboration ?', a: 'Oui. Le changement de profil intervient sous 30 jours avec Intégration et sous 15 jours avec Flex, qui prévoit un changement rapide. Performance s’appuie sur une équipe dédiée de 5 experts seniors, avec Lead tech et Product Owner.' },
+      { c: 'Formules', q: 'Quels horaires sont couverts ?', a: 'Heures standard (40 h/semaine) pour Intégration, heures étendues (50 h/semaine) pour Flex, et couverture 24/7 pour Performance.' },
+      { c: 'Support', q: 'Quel support est inclus ?', a: 'Support e-mail et chat pour Intégration, e-mail et chat prioritaire pour Flex, support prioritaire 24/7 avec hotline et espace Slack dédié pour Performance.' },
+      { c: 'Suivi', q: 'À quelle fréquence recevrai-je des rapports ?', a: 'Rapports mensuels avec Intégration, rapports détaillés hebdomadaires avec Flex, rapports quotidiens personnalisés et tableaux de bord avec Performance. Dans tous les cas, le suivi des progrès est visible en temps réel.' },
+      { c: 'IA', q: 'Quelle différence entre un modèle affiné et le RAG ?', a: 'Un modèle affiné est entraîné sur vos données et vos cas d’usage : il offre une précision supérieure, des réponses plus rapides et une intelligence spécifique à votre domaine. Le RAG interroge vos documents à chaque requête, ce qui est utile quand l’information change très souvent. Les deux approches peuvent se combiner.' },
+      { c: 'Jeux', q: 'Pourquoi mettre en avant les jeux vidéo ?', a: 'Parce que les jeux sont les applications les plus difficiles : performance temps réel, architecture complexe, multijoueur évolutif, sécurité et anti-triche. Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique.' },
+      { c: 'Formules', q: 'Comment sont calculées les économies ?', a: 'À partir des montants communiqués par Baquelis pour chaque formule, comparée à un recrutement : 1 500 €/mois pour Intégration, 2 300 €/mois pour Flex, 12 000 €/mois pour Performance. Le simulateur multiplie simplement ce montant par la durée choisie.' },
+      { c: 'Démarrage', q: 'Comment démarrer ?', a: 'Par un appel découverte, suivi du cadrage et du choix de formule, de la sélection du profil ou de l’équipe, puis de l’intégration à vos outils et rituels. Le suivi temps réel commence dès le premier jour.' }
+    ];
+    var faq = FAQ.map(function (q, i) {
+      var on = s.faq === i;
+      return {
+        n: (i < 9 ? '0' : '') + (i + 1), c: q.c, q: q.q, a: q.a, open: on, exp: on ? 'true' : 'false',
+        ic: on ? 'transform:rotate(45deg);background:#0B0B0A;color:#F3EFE7;border-color:#0B0B0A' : '',
+        toggle: function () { self.setState({ faq: on ? -1 : i }); }
+      };
+    });
+    var segOn = 'background:#F3EFE7;color:#0B0B0A';
+    return {
+      rootStyle: '--acc:' + acc,
+      menu: s.menu, menuExp: s.menu ? 'true' : 'false',
+      toggleMenu: function () { self.setState({ menu: !s.menu }); },
+      formules: formules,
+      vuePrix: s.vue === 'prix', vueEco: s.vue === 'eco',
+      vuePrixAria: s.vue === 'prix' ? 'true' : 'false', vueEcoAria: s.vue === 'eco' ? 'true' : 'false',
+      vuePrixStyle: s.vue === 'prix' ? segOn : '', vueEcoStyle: s.vue === 'eco' ? segOn : '',
+      showPrix: function () { self.setState({ vue: 'prix' }); },
+      showEco: function () { self.setState({ vue: 'eco' }); },
+      sim0: function () { choose(0); }, sim1: function () { choose(1); }, sim2: function () { choose(2); },
+      c0: col(0), c1: col(1), c2: col(2),
+      p0: s.maison === 0 ? 'true' : 'false', p1: s.maison === 1 ? 'true' : 'false', p2: s.maison === 2 ? 'true' : 'false',
+      sel0: function () { choose(0); }, sel1: function () { choose(1); }, sel2: function () { choose(2); },
+      mois: mois, moisLabel: mois + (mois > 1 ? ' mois' : ' mois'),
+      setMois: function (e) { var v = parseInt(e.target.value, 10) || 1; self.setState({ mois: Math.max(v, F[self.state.maison].min) }); },
+      minNote: 'Engagement minimum pour ' + f.t + ' : ' + f.min + ' mois — la durée ne peut descendre en dessous.',
+      ecoMois: eur(f.eco),
+      ecoCumul: eur(cumul),
+      invest: eur(f.prix * mois),
+      pillarStyle: 'height:' + Math.round(24 + ratio * 300) + 'px',
+      pctLabel: mois + ' mois',
+      faq: faq
+    };
+  }
+}
+</script>
+</body>
+</html>

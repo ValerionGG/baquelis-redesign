@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Système — Expertises</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&amp;family=DM+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#F2F1EC}
+sc-for,sc-if{display:contents}
+.pp,.pp *{box-sizing:border-box}
+.pp{font-family:'Schibsted Grotesk',system-ui,sans-serif;color:#111;background-color:#F2F1EC;background-image:linear-gradient(rgba(17,17,17,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.045) 1px,transparent 1px),linear-gradient(rgba(17,17,17,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.06) 1px,transparent 1px);background-size:8px 8px,8px 8px,64px 64px,64px 64px;overflow-x:clip;-webkit-font-smoothing:antialiased}
+.pp a{color:inherit}
+.mono{font-family:'DM Mono',ui-monospace,monospace}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.lbl{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#C2410C}
+.sub{color:#5A5852}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:var(--acc,#FF5B1F);color:#111;border:1.5px solid #111;font:600 15px/1 'Schibsted Grotesk',sans-serif;text-decoration:none;box-shadow:4px 4px 0 #111;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #111}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #111}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:transparent;color:#111;border:1.5px solid #111;font:600 15px/1 'Schibsted Grotesk',sans-serif;text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
+.btn2:hover{background:#111;color:#F2F1EC}
+.btn2:disabled{opacity:.35;cursor:not-allowed;background:transparent;color:#111}
+.tl{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+.tl:hover{color:#C2410C;border-color:#C2410C}
+.hd{position:sticky;top:0;z-index:20;background:rgba(242,241,236,.94);backdrop-filter:blur(6px);border-bottom:1.5px solid #111}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:23px;letter-spacing:-.035em;min-height:44px}
+.logo svg{transition:transform .6s cubic-bezier(.7,0,.2,1)}
+.logo:hover svg{transform:rotate(90deg)}
+.dnav{display:flex;gap:2px}
+.dnav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;font-weight:500;font-size:15px;position:relative}
+.dnav a::after{content:"";position:absolute;left:14px;right:14px;bottom:9px;height:2px;background:var(--acc,#FF5B1F);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.dnav a:hover::after,.dnav a.on::after{transform:scaleX(1)}
+.burger{display:none;width:48px;height:48px;align-items:center;justify-content:center;border:1.5px solid #111;background:transparent;cursor:pointer;color:#111}
+.mnav a{display:flex;align-items:center;justify-content:space-between;min-height:54px;border-bottom:1px solid rgba(17,17,17,.15);text-decoration:none;font-weight:600;font-size:18px}
+.tk{background:linear-gradient(#111,#111) 0 0/14px 2px no-repeat,linear-gradient(#111,#111) 0 0/2px 14px no-repeat,linear-gradient(#111,#111) 100% 0/14px 2px no-repeat,linear-gradient(#111,#111) 100% 0/2px 14px no-repeat,linear-gradient(#111,#111) 0 100%/14px 2px no-repeat,linear-gradient(#111,#111) 0 100%/2px 14px no-repeat,linear-gradient(#111,#111) 100% 100%/14px 2px no-repeat,linear-gradient(#111,#111) 100% 100%/2px 14px no-repeat}
+.sheet{background:#FBFAF6;border:1.5px solid #111}
+.fl{display:flex;align-items:center;min-height:44px;text-decoration:none;color:#3A3934;transition:color .2s,padding .2s}
+.fl:hover{color:#C2410C;padding-left:6px}
+.cart{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:1.5px;background:#111;border:1.5px solid #111;margin-top:48px}
+.cart div{background:#ECEBE4;padding:12px 14px;min-height:64px}
+.cart b{display:block;font:500 10px 'DM Mono',monospace;letter-spacing:.1em;color:#5A5852;margin-bottom:6px}
+:focus-visible{outline:2px solid #0089BF;outline-offset:3px}
+@keyframes rv{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.rv{animation:rv .9s cubic-bezier(.2,.7,.2,1) both}
+@supports (animation-timeline:view()){.sr{animation:rv linear both;animation-timeline:view();animation-range:entry 5% cover 25%}}
+@keyframes lift1{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes lift2{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes lift3{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@keyframes stamp{from{opacity:0;transform:rotate(-8deg) scale(1.6)}to{opacity:1;transform:rotate(-8deg) scale(1)}}
+.tab{min-height:56px;padding:0 20px;border:0;border-right:1.5px solid #111;font:600 15px 'Schibsted Grotesk',sans-serif;cursor:pointer;display:flex;align-items:center;gap:10px;flex:1;min-width:200px;transition:background .3s,color .3s}
+.tab:hover{background:#ECEBE4}
+.acc{width:100%;background:transparent;border:0;font:inherit;color:#111;text-align:left;cursor:pointer;min-height:60px;display:grid;grid-template-columns:40px 1fr 28px;align-items:center;gap:10px;padding:0 4px;transition:padding .3s}
+.acc:hover{padding-left:12px}
+.mod{text-align:left;font:inherit;cursor:pointer;padding:22px;min-height:168px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;transition:background .3s,color .3s,transform .3s}
+.mod:hover{transform:translateY(-3px)}
+.ms{width:100%;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;text-align:left;font:inherit;cursor:pointer;min-height:64px;padding:8px 14px;border:0;border-bottom:1px solid rgba(17,17,17,.15);transition:background .3s,color .3s}
+.cl{padding:30px 28px;background:#FBFAF6;display:flex;flex-direction:column;gap:16px;transition:background .3s}
+.cl:hover{background:#FFFFFF}
+.par{align-self:flex-start;min-height:44px;padding:0 16px;font:600 13px 'DM Mono',monospace;cursor:pointer;border:1.5px solid #111;display:inline-flex;align-items:center;gap:8px;transition:background .3s,color .3s}
+@media(max-width:960px){.dnav{display:none}.burger{display:inline-flex}.hide-sm{display:none}}
+@media(max-width:700px){.wrap{padding:0 16px}.tab{min-width:100%;border-right:0;border-bottom:1.5px solid #111}}
+@media (prefers-reduced-motion:reduce){.pp *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="pp" style="{{ rootStyle }}">
+
+<div class="mono" style="border-bottom:1px solid rgba(17,17,17,.15);font-size:12px;color:#5A5852">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;min-height:36px;gap:16px;flex-wrap:wrap">
+    <span>DOC BQL-SYS-02 · FEUILLE 02/06 · RÉV. C</span>
+    <a class="tl" href="Main.dc.html" style="display:inline-flex;align-items:center;min-height:36px">← Toutes les propositions</a>
+  </div>
+</div>
+
+<header class="hd">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;min-height:72px;gap:24px">
+    <a href="Systeme-Accueil.dc.html" class="logo" aria-label="Baquelis, accueil">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" fill="none" stroke="#111" stroke-width="2"></rect><path d="M8 8H22M8 8V22M8 15H18" stroke="#111" stroke-width="1.5" fill="none"></path><circle cx="8" cy="8" r="2.6" fill="#111"></circle><circle cx="22" cy="8" r="2.2" fill="#111"></circle><rect x="17" y="17" width="8" height="8" style="fill:var(--acc,#FF5B1F)"></rect></svg>
+      <span>Baquelis</span>
+    </a>
+    <nav class="dnav" aria-label="Navigation principale">
+      <a class="on" href="Systeme-Expertises.dc.html" aria-current="page">Expertises</a>
+      <a href="Systeme-IA.dc.html">IA</a>
+      <a href="Systeme-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a href="Systeme-Offres.dc.html">Offres</a>
+      <a href="Systeme-Contact.dc.html">Contact</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <a class="btn hide-sm" href="Systeme-Contact.dc.html">Réserver un appel</a>
+      <button class="burger" aria-label="Ouvrir ou fermer le menu" onClick="{{ toggleMenu }}"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M2 6H20M2 11H20M2 16H14" stroke="#111" stroke-width="1.8" fill="none"></path></svg></button>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="wrap mnav" style="padding-bottom:20px">
+      <a href="Systeme-Expertises.dc.html">Expertises <span class="mono sub" style="font-size:12px">02</span></a>
+      <a href="Systeme-IA.dc.html">IA <span class="mono sub" style="font-size:12px">03</span></a>
+      <a href="Systeme-Jeux.dc.html">Jeux &amp; Web3 <span class="mono sub" style="font-size:12px">04</span></a>
+      <a href="Systeme-Offres.dc.html">Offres <span class="mono sub" style="font-size:12px">05</span></a>
+      <a href="Systeme-Contact.dc.html">Contact <span class="mono sub" style="font-size:12px">06</span></a>
+      <a class="btn" href="Systeme-Contact.dc.html" style="margin-top:18px;justify-content:center">Commencer</a>
+    </div>
+  </sc-if>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="wrap" style="padding-top:80px;padding-bottom:96px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:56px;align-items:center">
+    <div class="rv">
+      <div class="lbl" style="margin-bottom:22px">Spécification BQL-SPEC-02 · Expertises</div>
+      <h1 style="margin:0 0 24px;font-weight:800;font-size:clamp(40px,5.8vw,88px);line-height:.95;letter-spacing:-.045em;overflow-wrap:anywhere">Des systèmes qui grandissent avec vous<span style="color:var(--acc,#FF5B1F)">.</span></h1>
+      <p class="sub" style="margin:0 0 30px;font-size:18px;line-height:1.6;max-width:540px">Quatre piliers, cinq domaines, une méthode en cinq étapes et quatre engagements. Tout ce que nous faisons est spécifié, versionné et vérifiable.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a class="btn" href="Systeme-Contact.dc.html">Réserver un appel</a>
+        <a class="btn2" href="Systeme-Offres.dc.html">Voir les formules</a>
+      </div>
+    </div>
+    <div class="rv sheet tk" style="animation-delay:.2s;padding:18px">
+      <div class="mono sub" style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px"><span>FIG. 02 — VUE ÉCLATÉE</span><span>4 COUCHES</span></div>
+      <svg viewBox="0 0 520 410" width="100%" role="img" aria-label="Vue éclatée des quatre piliers empilés">
+        <g style="animation:lift1 5s ease-in-out infinite"><path d="M260 40L460 110L260 180L60 110Z" fill="#FBFAF6" stroke="#111" stroke-width="1.5"></path><text x="260" y="116" text-anchor="middle" style="font:500 12px 'DM Mono',monospace;fill:#111">P-04 · TRANSPARENCE</text></g>
+        <g style="animation:lift2 5s ease-in-out infinite"><path d="M260 110L460 180L260 250L60 180Z" fill="#ECEBE4" stroke="#111" stroke-width="1.5"></path><text x="260" y="186" text-anchor="middle" style="font:500 12px 'DM Mono',monospace;fill:#111">P-03 · RAPIDITÉ</text></g>
+        <g><path d="M260 180L460 250L260 320L60 250Z" fill="#FBFAF6" stroke="#111" stroke-width="1.5"></path><text x="260" y="256" text-anchor="middle" style="font:500 12px 'DM Mono',monospace;fill:#111">P-02 · PARTENARIAT</text></g>
+        <g style="animation:lift3 5s ease-in-out infinite"><path d="M260 250L460 320L260 390L60 320Z" style="fill:var(--acc,#FF5B1F)" stroke="#111" stroke-width="1.5"></path><text x="260" y="326" text-anchor="middle" style="font:500 12px 'DM Mono',monospace;fill:#111">P-01 · SOLUTIONS ÉPROUVÉES</text></g>
+        <path d="M480 110V320M474 110H486M474 320H486" stroke="#0089BF" stroke-width="1.3" fill="none"></path>
+        <text x="492" y="220" style="font:500 11px 'DM Mono',monospace;fill:#006E99">∑</text>
+        <path d="M40 110V320" stroke="#5A5852" stroke-width="1" stroke-dasharray="3 4"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PILIERS DÉTAIL -->
+<section style="border-top:1.5px solid #111;padding-top:96px;padding-bottom:104px">
+  <div class="wrap">
+    <div class="sr" style="margin-bottom:36px">
+      <div class="lbl" style="margin-bottom:14px">§ 01 — Les 4 piliers en détail</div>
+      <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:820px">Chaque pilier a sa fiche, sa révision, ses critères.</h2>
+    </div>
+    <div class="sheet tk sr">
+      <div role="tablist" aria-label="Piliers" style="display:flex;flex-wrap:wrap;border-bottom:1.5px solid #111">
+        <sc-for list="{{ pil.tabs }}" as="t" hint-placeholder-count="4">
+          <button class="tab" role="tab" style="{{ t.style }}" aria-selected="{{ t.on }}" onClick="{{ t.pick }}"><span class="mono" style="font-size:12px">{{ t.code }}</span>{{ t.title }}</button>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:0">
+        <div style="padding:36px 34px;border-right:1.5px solid #111;min-width:0">
+          <div class="mono sub" style="font-size:11px;margin-bottom:18px">RÉF. {{ pil.cur.code }} · RÉV. {{ pil.cur.rev }} · STATUT EN SERVICE</div>
+          <h3 style="margin:0 0 16px;font-size:clamp(28px,3vw,42px);letter-spacing:-.03em;line-height:1.02">{{ pil.cur.title }}</h3>
+          <p style="margin:0 0 30px;font-size:18px;line-height:1.55;font-weight:500">{{ pil.cur.lead }}</p>
+          <div class="mono" style="font-size:11px;letter-spacing:.06em;color:#5A5852;margin-bottom:10px">HISTORIQUE DES RÉVISIONS</div>
+          <div class="mono" style="font-size:12.5px;border-top:1.5px solid #111">
+            <sc-for list="{{ pil.cur.hist }}" as="h" hint-placeholder-count="3">
+              <div style="display:grid;grid-template-columns:64px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid rgba(17,17,17,.15)"><span style="color:#C2410C">{{ h.r }}</span><span>{{ h.t }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="padding:22px 30px 30px;min-width:0">
+          <sc-for list="{{ pil.cur.items }}" as="it" hint-placeholder-count="4">
+            <div style="border-bottom:1px solid rgba(17,17,17,.18)">
+              <button class="acc" aria-expanded="{{ it.open }}" onClick="{{ it.pick }}">
+                <span class="mono" style="font-size:12px;color:#C2410C">{{ it.n }}</span>
+                <span style="font-weight:700;font-size:18px;letter-spacing:-.01em">{{ it.t }}</span>
+                <span style="{{ it.icon }}"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 3V15M3 9H15" stroke="#111" stroke-width="1.8"></path></svg></span>
+              </button>
+              <sc-if value="{{ it.open }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:0 4px 20px 54px">
+                  <p class="sub" style="margin:0 0 12px;line-height:1.6;font-size:15.5px">{{ it.d }}</p>
+                  <div class="mono" style="font-size:11.5px;color:#006E99;display:flex;gap:8px;align-items:start"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="margin-top:2px;flex:none"><path d="M2 6L5 9L10 3" stroke="#006E99" stroke-width="1.8" fill="none"></path></svg>CRITÈRE : {{ it.c }}</div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINES -->
+<section style="background:#ECEBE4;border-top:1.5px solid #111;padding-top:96px;padding-bottom:104px">
+  <div class="wrap">
+    <div class="sr" style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px">
+      <div>
+        <div class="lbl" style="margin-bottom:14px">§ 02 — Domaines d’intervention · 5 modules</div>
+        <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:760px">Une carte de nos terrains d’intervention.</h2>
+      </div>
+      <p class="sub" style="margin:0;max-width:340px;line-height:1.55">Sélectionnez un module pour lire ses interfaces. Liste des technologies : [STACK À CONFIRMER].</p>
+    </div>
+    <div class="sr" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:1.5px;background:#111;border:1.5px solid #111">
+      <sc-for list="{{ dom.list }}" as="m" hint-placeholder-count="5">
+        <button class="mod" style="{{ m.style }}" aria-pressed="{{ m.on }}" onClick="{{ m.pick }}">
+          <span class="mono" style="font-size:12px;display:flex;justify-content:space-between;width:100%"><span>{{ m.code }}</span><span>{{ m.mark }}</span></span>
+          <span style="font-weight:700;font-size:20px;letter-spacing:-.02em;line-height:1.15">{{ m.t }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <div class="sheet sr" style="border-top:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:0">
+      <div style="padding:30px;border-right:1.5px solid #111;min-width:0">
+        <div class="mono" style="font-size:12px;color:#C2410C;margin-bottom:10px">MODULE {{ dom.cur.code }} · SÉLECTIONNÉ</div>
+        <h3 style="margin:0 0 12px;font-size:30px;letter-spacing:-.025em">{{ dom.cur.t }}</h3>
+        <p class="sub" style="margin:0;line-height:1.6;font-size:16px">{{ dom.cur.d }}</p>
+      </div>
+      <div style="padding:30px;min-width:0">
+        <div class="mono sub" style="font-size:11px;letter-spacing:.06em;margin-bottom:12px">INTERFACES</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:10px">
+          <sc-for list="{{ dom.cur.pts }}" as="p" hint-placeholder-count="4">
+            <div class="mono" style="font-size:13px;border:1px solid #111;padding:12px 14px;display:flex;align-items:center;gap:10px;background:#F2F1EC"><span style="width:8px;height:8px;background:#0089BF;flex:none"></span>{{ p }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTHODE -->
+<section style="border-top:1.5px solid #111;padding-top:96px;padding-bottom:104px">
+  <div class="wrap">
+    <div class="sr" style="margin-bottom:36px">
+      <div class="lbl" style="margin-bottom:14px">§ 03 — Méthode · séquence en 5 étapes</div>
+      <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:820px">Un protocole d’intégration, pas une improvisation.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:28px;align-items:start">
+      <div class="sheet sr">
+        <sc-for list="{{ met.list }}" as="s" hint-placeholder-count="5">
+          <button class="ms" style="{{ s.style }}" aria-pressed="{{ s.on }}" onClick="{{ s.pick }}">
+            <span class="mono" style="{{ s.dot }}">{{ s.n }}</span>
+            <span style="font-weight:600;font-size:16px">{{ s.t }}</span>
+          </button>
+        </sc-for>
+        <div style="padding:14px"><div style="height:6px;background:#ECEBE4;border:1px solid #111"><div style="{{ met.bar }}"></div></div></div>
+      </div>
+      <div class="sheet tk sr" style="grid-column:span 2;min-width:0;padding:34px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:22px">
+          <span class="mono" style="font-size:12px;color:#C2410C">ÉTAPE {{ met.curN }} / 05</span>
+          <div style="display:flex;gap:10px">
+            <button class="btn2" style="min-height:44px;padding:0 14px" aria-label="Étape précédente" onClick="{{ met.prev }}"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M14 8H3M7 4L3 8L7 12" stroke="currentColor" stroke-width="1.8" fill="none"></path></svg></button>
+            <button class="btn2" style="min-height:44px;padding:0 14px" aria-label="Étape suivante" onClick="{{ met.next }}"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.8" fill="none"></path></svg></button>
+          </div>
+        </div>
+        <h3 style="margin:0 0 14px;font-size:clamp(28px,3vw,40px);letter-spacing:-.03em;line-height:1.05">{{ met.cur.t }}</h3>
+        <p class="sub" style="margin:0 0 28px;font-size:17px;line-height:1.6;max-width:640px">{{ met.cur.d }}</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:1.5px;background:#111;border:1.5px solid #111">
+          <div style="background:#F2F1EC;padding:16px 18px"><div class="mono sub" style="font-size:11px;margin-bottom:8px">ENTRÉE</div><div style="font-weight:600;line-height:1.4">{{ met.cur.in }}</div></div>
+          <div style="background:#F2F1EC;padding:16px 18px"><div class="mono sub" style="font-size:11px;margin-bottom:8px">SORTIE</div><div style="font-weight:600;line-height:1.4">{{ met.cur.out }}</div></div>
+          <div style="background:#F2F1EC;padding:16px 18px"><div class="mono sub" style="font-size:11px;margin-bottom:8px">DÉLAI</div><div class="mono" style="font-size:13px;line-height:1.5">{{ met.cur.delai }}</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENTS -->
+<section style="background:#111;color:#F2F1EC;padding-top:96px;padding-bottom:104px">
+  <div class="wrap">
+    <div class="sr" style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px">
+      <div>
+        <div class="mono" style="font-size:12px;letter-spacing:.08em;color:var(--acc,#FF5B1F);margin-bottom:14px">§ 04 — ENGAGEMENTS · MANIFESTE</div>
+        <h2 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:1;letter-spacing:-.035em;font-weight:800;max-width:760px">Quatre clauses que nous signons avec vous.</h2>
+      </div>
+      <div class="mono" style="font-size:13px;color:#C9C7BF">PARAPHÉES : {{ eng.count }} / 4</div>
+    </div>
+    <div class="sr" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:1.5px;background:#111;border:1.5px solid #F2F1EC;color:#111">
+      <sc-for list="{{ eng.list }}" as="c" hint-placeholder-count="4">
+        <div class="cl">
+          <span class="mono" style="font-size:13px;color:#C2410C">{{ c.n }}</span>
+          <h3 style="margin:0;font-size:22px;letter-spacing:-.02em">{{ c.t }}</h3>
+          <p class="sub" style="margin:0;line-height:1.6;font-size:15px;flex:1">{{ c.d }}</p>
+          <button class="par" style="{{ c.style }}" aria-pressed="{{ c.on }}" onClick="{{ c.pick }}"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.4"></rect><path d="M3.5 7L6 9.5L10.5 4" stroke="currentColor" stroke-width="1.8" fill="none" style="{{ c.ck }}"></path></svg>{{ c.label }}</button>
+        </div>
+      </sc-for>
+      <sc-if value="{{ eng.all }}" hint-placeholder-val="{{ false }}">
+        <div aria-live="polite" style="position:absolute;right:24px;top:-34px;border:3px solid var(--acc,#FF5B1F);color:var(--acc,#FF5B1F);background:#111;padding:10px 16px;font:700 14px 'DM Mono',monospace;letter-spacing:.08em;animation:stamp .5s cubic-bezier(.2,.7,.2,1) both;transform:rotate(-8deg)">CONTRESIGNÉ · BAQUELIS</div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-top:104px;padding-bottom:112px">
+  <div class="wrap sr" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:40px;align-items:end">
+    <h2 style="margin:0;font-size:clamp(36px,5vw,72px);line-height:.98;letter-spacing:-.045em;font-weight:800">Prêt à transformer votre entreprise<span style="color:var(--acc,#FF5B1F)"> ?</span></h2>
+    <div>
+      <p class="sub" style="margin:0 0 24px;font-size:17px;line-height:1.6">Un appel découverte suffit pour cadrer le besoin et choisir la formule adaptée.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap"><a class="btn" href="Systeme-Contact.dc.html">Commencer aujourd’hui</a><a class="btn2" href="Systeme-Offres.dc.html">Voir les formules</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="border-top:1.5px solid #111;background:#ECEBE4">
+  <div class="wrap" style="padding-top:64px;padding-bottom:32px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:40px">
+      <div>
+        <a href="Systeme-Accueil.dc.html" class="logo" aria-label="Baquelis, accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" fill="none" stroke="#111" stroke-width="2"></rect><path d="M8 8H22M8 8V22M8 15H18" stroke="#111" stroke-width="1.5" fill="none"></path><circle cx="8" cy="8" r="2.6" fill="#111"></circle><circle cx="22" cy="8" r="2.2" fill="#111"></circle><rect x="17" y="17" width="8" height="8" style="fill:var(--acc,#FF5B1F)"></rect></svg><span>Baquelis</span></a>
+        <p style="margin:16px 0 6px;font-weight:600">Flexibilité. Continuité. Performance.</p>
+        <p class="sub" style="margin:0;font-size:14px;line-height:1.6">Construit sur la confiance. Guidé par les résultats.</p>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Navigation</div>
+        <a class="fl" href="Systeme-Expertises.dc.html">Expertises</a><a class="fl" href="Systeme-IA.dc.html">Intelligence artificielle</a><a class="fl" href="Systeme-Jeux.dc.html">Jeux &amp; Web3</a><a class="fl" href="Systeme-Contact.dc.html">Contact</a>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Formules</div>
+        <a class="fl" href="Systeme-Offres.dc.html">Intégration — 4 500 €/mois</a><a class="fl" href="Systeme-Offres.dc.html">Flex — 6 200 €/mois</a><a class="fl" href="Systeme-Offres.dc.html">Performance — 18 900 €/mois</a>
+      </div>
+      <div>
+        <div class="lbl" style="color:#5A5852;margin-bottom:8px">Société</div>
+        <p style="margin:12px 0;font-size:15px;line-height:1.6">Siège : 31 B avenue Maréchal Foch, 06000 Nice</p>
+        <p class="sub" style="margin:0 0 8px;font-size:14px">[RAISON SOCIALE] · [N° TVA]</p>
+        <p class="mono" style="margin:0;font-size:13px">[contact@domaine-baquelis]</p>
+      </div>
+    </div>
+    <div class="cart mono">
+      <div><b>PROJET</b>Baquelis</div>
+      <div><b>DOCUMENT</b>Système — Expertises</div>
+      <div><b>FEUILLE</b>02 / 06</div>
+      <div><b>RÉVISION</b>C</div>
+      <div><b>ÉCHELLE</b>1:1</div>
+      <div><b>DROITS</b>© 2026 Baquelis</div>
+    </div>
+    <div class="mono sub" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;padding-top:18px">
+      <span>Proposition de refonte — concept · Direction 07 « Système »</span>
+      <a class="tl" href="Main.dc.html" style="display:inline-flex;align-items:center;min-height:44px">Toutes les propositions</a>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5600},"accent":{"editor":"color","default":"#FF5B1F","options":["#FF5B1F","#0089BF","#111111"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu:false, pilier:0, item:0, dom:0, etape:0, par:[false,false,false,false] };
+  }
+  renderVals(){
+    const acc = (this.props && this.props.accent) || "#FF5B1F";
+    const PIL = [
+      { code:"P-01", rev:"3.2", title:"Solutions éprouvées", lead:"Nous ne livrons pas seulement du code — nous construisons des systèmes évolutifs qui grandissent avec votre entreprise.",
+        hist:[["3.2","Observabilité intégrée par défaut"],["3.0","Approche cloud-native généralisée"],["1.0","Principe : architecture évolutive"]],
+        items:[["Architecture évolutive","Des composants découplés, dimensionnés pour la charge d’aujourd’hui et prêts pour celle de demain.","chaque composant peut évoluer sans réécrire le reste."],
+               ["Pile technologique moderne","Des outils choisis pour leur maturité et leur maintenabilité, documentés pour votre équipe. [STACK À CONFIRMER]","la pile est documentée et transmissible."],
+               ["Solutions cloud-native","Conçues pour le cloud dès le départ : déploiement automatisé, résilience, coûts maîtrisés.","déploiement reproductible et automatisé."],
+               ["Optimisation des performances","Mesurer, profiler, corriger : chaque gain est vérifié, pas supposé.","toute optimisation est mesurée avant et après."]] },
+      { code:"P-02", rev:"2.6", title:"Partenariat, pas d’externalisation", lead:"Nos experts deviennent une extension de votre équipe.",
+        hist:[["2.6","Passation et documentation renforcées (Flex)"],["2.0","Espace Slack dédié (Performance)"],["1.0","Principe : équipe intégrée"]],
+        items:[["Intégration d’équipe dédiée","Vos profils Baquelis rejoignent vos outils, vos rituels et votre backlog.","l’équipe travaille dans votre environnement."],
+               ["Engagement à long terme","Des formules mensuelles pensées pour la continuité, pas pour la mission ponctuelle.","une continuité garantie sur la durée d’engagement."],
+               ["Alignement culturel","Mêmes standards, même vocabulaire, mêmes objectifs : l’équipe étendue parle votre langue.","vos conventions sont appliquées."],
+               ["Communication fluide","Canaux partagés, points réguliers, décisions écrites : personne ne cherche l’information.","chaque décision est tracée."]] },
+      { code:"P-03", rev:"4.1", title:"Rapidité avec précision", lead:"Du concept à la livraison, vite et sans compromis sur la qualité.",
+        hist:[["4.1","Critères d’acceptation définis en amont"],["3.0","Intégration continue systématique"],["1.0","Principe : itérations courtes"]],
+        items:[["Prototypage rapide","Valider une idée sur un prototype fonctionnel avant d’engager la construction.","l’hypothèse est testée avant d’être construite."],
+               ["Méthodologie agile","Itérations courtes, priorités revues avec vous, livraisons incrémentales.","chaque itération livre un incrément utilisable."],
+               ["Assurance qualité","Tests, revues de code et critères d’acceptation définis avant le développement.","aucune livraison sans revue."],
+               ["Intégration continue","Chaque modification est construite, testée et intégrée automatiquement.","la branche principale reste livrable."]] },
+      { code:"P-04", rev:"1.9", title:"Transparence radicale", lead:"Pas de coûts cachés ni de mises à jour vagues : des progrès visibles en temps réel.",
+        hist:[["1.9","Tableaux de bord personnalisés (Performance)"],["1.5","Rapports hebdomadaires détaillés (Flex)"],["1.0","Principe : prix publié"]],
+        items:[["Suivi des progrès en temps réel","L’avancement est visible à tout moment, sans attendre la fin d’une itération.","l’état d’avancement est consultable à tout moment."],
+               ["Tarification transparente","Un prix mensuel fixe par formule, publié, sans frais cachés.","le prix affiché est le prix payé."],
+               ["Rapports réguliers","Mensuels, hebdomadaires ou quotidiens selon votre formule.","la cadence de rapport est contractuelle."],
+               ["Communication ouverte","Les risques sont signalés tôt, les blocages nommés, les arbitrages partagés.","tout risque identifié est remonté."]] }
+    ];
+    const pi = this.state.pilier, ii = this.state.item;
+    const P = PIL[pi];
+    const pil = {
+      tabs: PIL.map((p,i) => ({ code:p.code, title:p.title, on:i === pi ? "true" : "false",
+        style:i === pi ? "background:#111;color:#F2F1EC" : "background:transparent;color:#111",
+        pick:() => this.setState({ pilier:i, item:0 }) })),
+      cur: { code:P.code, rev:P.rev, title:P.title, lead:P.lead,
+        hist:P.hist.map(h => ({ r:"RÉV. " + h[0], t:h[1] })),
+        items:P.items.map((it,j) => ({ n:"0" + (j + 1), t:it[0], d:it[1], c:it[2], open:j === ii,
+          icon:"display:inline-flex;transition:transform .35s;transform:rotate(" + (j === ii ? 45 : 0) + "deg)",
+          pick:() => this.setState({ item:j === ii ? -1 : j }) })) }
+    };
+
+    const DOM = [
+      { code:"D-01", t:"Applications web & mobiles", d:"Produits clients, back-offices et applications métier, conçus pour évoluer avec vos usages.", pts:["Interfaces web","Applications mobiles","Back-offices","API"] },
+      { code:"D-02", t:"Plateformes temps réel", d:"Synchronisation d’état, flux d’événements et tableaux de bord vivants.", pts:["Synchronisation d’état","Flux d’événements","Tableaux de bord","Notifications"] },
+      { code:"D-03", t:"Jeux & Web3", d:"Le terrain le plus exigeant, devenu notre banc d’essai : temps réel, multijoueur, anti-triche.", pts:["Performance temps réel","Multijoueur évolutif","Anti-triche","Plateforme Web3"] },
+      { code:"D-04", t:"IA appliquée", d:"Modèles affinés et agents autonomes intégrés à vos processus existants.", pts:["Modèles affinés","Agents autonomes","Intégration métier","Analytique prédictive"] },
+      { code:"D-05", t:"Cloud & performance", d:"Infrastructures cloud-native, montée en charge et optimisation mesurée.", pts:["Cloud-native","Montée en charge","Optimisation","Observabilité"] }
+    ];
+    const di = this.state.dom;
+    const dom = {
+      list: DOM.map((m,i) => ({ code:m.code, t:m.t, on:i === di ? "true" : "false", mark:i === di ? "● ACTIF" : "○",
+        style:"border:0;" + (i === di ? "background:" + acc + ";color:#111" : "background:#F2F1EC;color:#111"),
+        pick:() => this.setState({ dom:i }) })),
+      cur: DOM[di]
+    };
+
+    const MET = [
+      { t:"Appel découverte", d:"Nous écoutons votre contexte, vos objectifs et vos contraintes techniques, sans engagement.", in:"Vos objectifs et votre contexte", out:"Un besoin qualifié, partagé", delai:"[DÉLAI]" },
+      { t:"Cadrage & choix de formule", d:"Intégration, Flex ou Performance : nous dimensionnons l’engagement, les heures et le reporting avec vous.", in:"Le besoin qualifié", out:"Formule et périmètre validés", delai:"[DÉLAI]" },
+      { t:"Sélection du profil ou de l’équipe", d:"Un profil technique dédié, un profil senior ou une équipe de 5 experts seniors avec Lead tech et Product Owner.", in:"Compétences attendues", out:"Profil ou équipe confirmés", delai:"Changement de profil : 30 j (Intégration) · 15 j (Flex)" },
+      { t:"Intégration à vos outils et rituels", d:"Accès, canaux, cérémonies agiles : l’équipe s’installe dans votre quotidien et adopte vos conventions.", in:"Accès et rituels existants", out:"Équipe opérationnelle chez vous", delai:"[DÉLAI]" },
+      { t:"Suivi temps réel & ajustements", d:"Rapports, tableaux de bord et ajustements continus du dispositif selon vos priorités.", in:"Objectifs suivis", out:"Rapports et ajustements", delai:"Rapports mensuels (Intégration) · hebdomadaires (Flex) · quotidiens (Performance)" }
+    ];
+    const ei = this.state.etape;
+    const met = {
+      curN:"0" + (ei + 1), cur:MET[ei],
+      isFirst:ei === 0, isLast:ei === 4,
+      prev:() => this.setState({ etape:Math.max(0, ei - 1) }),
+      next:() => this.setState({ etape:Math.min(4, ei + 1) }),
+      bar:"height:4px;background:" + acc + ";transition:width .5s cubic-bezier(.7,0,.2,1);width:" + ((ei + 1) * 20) + "%",
+      list: MET.map((m,i) => ({ n:"0" + (i + 1), t:m.t, on:i === ei ? "true" : "false",
+        style:i === ei ? "background:#111;color:#F2F1EC" : "background:transparent;color:#111",
+        dot:"width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:13px;border:1.5px solid " + (i === ei ? "#F2F1EC" : "#111") + ";" + (i < ei ? "background:#111;color:#F2F1EC" : (i === ei ? "background:" + acc + ";color:#111" : "")),
+        pick:() => this.setState({ etape:i }) }))
+    };
+
+    const ENG = [
+      { n:"§ 1", t:"Transparence", d:"Prix publiés, rapports réguliers, progrès visibles en temps réel. Pas de coûts cachés, pas de mises à jour vagues." },
+      { n:"§ 2", t:"Continuité", d:"Changement de profil encadré (30 j ou 15 j selon la formule), documentation et passation : votre projet ne s’arrête pas." },
+      { n:"§ 3", t:"Sécurité & confidentialité", d:"Vos données restent les vôtres. Confidentialité et sécurité sont intégrées dès l’entraînement des modèles." },
+      { n:"§ 4", t:"Qualité", d:"Assurance qualité, revues et intégration continue : la rapidité ne se fait jamais au détriment de la précision." }
+    ];
+    const par = this.state.par;
+    const count = par.filter(Boolean).length;
+    const eng = {
+      count, all:count === 4,
+      list: ENG.map((c,i) => ({ n:c.n, t:c.t, d:c.d, on:par[i] ? "true" : "false",
+        label:par[i] ? "PARAPHÉ" : "PARAPHER",
+        ck:"transition:opacity .3s;opacity:" + (par[i] ? 1 : 0),
+        style:par[i] ? "background:#111;color:#F2F1EC" : "background:transparent;color:#111",
+        pick:() => { const n = par.slice(); n[i] = !n[i]; this.setState({ par:n }); } }))
+    };
+
+    return {
+      rootStyle:"--acc:" + acc,
+      menuOpen:this.state.menu,
+      toggleMenu:() => this.setState({ menu:!this.state.menu }),
+      pil, dom, met, eng
+    };
+  }
+}
+</script>
+</body>
+</html>

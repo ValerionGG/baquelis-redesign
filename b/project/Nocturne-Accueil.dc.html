@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Nocturne — Accueil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#08080B}
+sc-for,sc-if{display:contents}
+.nx,.nx *{box-sizing:border-box}
+.nx{font-family:'Outfit',system-ui,sans-serif;color:#EFEDE8;background:#08080B;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.nx a{color:inherit;text-decoration:none}
+.nx h1,.nx h2,.nx h3,.nx h4,.nx p,.nx blockquote,.nx figure{margin:0}
+.nx button{font-family:inherit;cursor:pointer}
+.nx :focus-visible{outline:2px solid #F2B544;outline-offset:3px;border-radius:6px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+@media (max-width:720px){.wrap{padding:0 16px}}
+.amb{color:#F2B544}
+.muted{color:#9B988F}
+/* header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(8,8,11,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(239,237,232,.07)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+.logo{display:flex;align-items:center;gap:12px;min-height:44px}
+.logo-word{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:.2em;font-size:17px}
+.logo .ring{transform-origin:17px 17px;animation:spin 16s linear infinite}
+.nav{display:flex;gap:2px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font-size:14.5px;color:#C9C6BE;border-radius:999px;transition:color .3s,background .3s}
+.nav a:hover{color:#EFEDE8;background:rgba(239,237,232,.06)}
+.nav a[aria-current="page"]{color:#F2B544}
+.hdr-cta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid transparent;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,background .35s,color .35s,border-color .35s;white-space:nowrap}
+.btn-amber{background:#F2B544;color:#08080B}
+.btn-amber:hover{transform:translateY(-2px);box-shadow:0 14px 44px -10px rgba(242,181,68,.6)}
+.btn-ghost{border-color:rgba(239,237,232,.24);color:#EFEDE8;background:rgba(8,8,11,.35)}
+.btn-ghost:hover{border-color:#F2B544;color:#F2B544}
+.btn svg{transition:transform .35s}
+.btn:hover svg{transform:translateX(4px)}
+.burger{display:none;width:48px;height:48px;border-radius:999px;border:1px solid rgba(239,237,232,.2);background:transparent;color:#EFEDE8;align-items:center;justify-content:center}
+@media (max-width:1060px){.nav,.hdr-cta .btn-ghost{display:none}.burger{display:inline-flex}}
+@media (max-width:520px){.hdr-cta .btn-amber{display:none}}
+.mnav{display:grid;padding:6px 0 22px}
+.mnav a{display:flex;align-items:center;min-height:54px;font-family:'Syne',sans-serif;font-weight:700;font-size:22px;border-bottom:1px solid rgba(239,237,232,.08)}
+/* type */
+.eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#F2B544;font-weight:600}
+.scene{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#9B988F;font-weight:500}
+.scene b{color:#F2B544;font-weight:600}
+.scene i{display:block;width:56px;height:1px;background:linear-gradient(90deg,#F2B544,transparent)}
+.h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,4.8vw,66px);line-height:1.02;letter-spacing:-.02em;overflow-wrap:anywhere}
+.lead{font-size:clamp(17px,1.4vw,19px);color:#C9C6BE;max-width:620px}
+.sec{padding:140px 0;position:relative}
+@media (max-width:720px){.sec{padding:88px 0}}
+.sec-head{display:grid;gap:22px;margin-bottom:64px}
+/* hero */
+.hero{position:relative;height:880px;overflow:hidden;background:#08080B}
+@media (max-width:720px){.hero{height:780px}}
+.layer{position:absolute;top:-80px;left:-80px;right:-80px;bottom:-80px;transition:transform 1s cubic-bezier(.16,.84,.24,1);will-change:transform}
+.ly{position:absolute;top:0;left:0;right:0;bottom:0}
+.ly-sky{background:url(assets/city-neon-aerial.webp) center/cover;filter:sepia(1) saturate(2.3) hue-rotate(-8deg) brightness(.4) contrast(1.15);animation:drift 28s ease-in-out infinite alternate}
+.ly-tower{left:40%;background:url(assets/city-night-tower.webp) center/cover;filter:saturate(.85) brightness(.72);opacity:.9;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 34%,#000 82%,transparent);mask-image:linear-gradient(90deg,transparent 0,#000 34%,#000 82%,transparent);animation:drift2 20s ease-in-out infinite alternate}
+.ly-fog{background:radial-gradient(55% 38% at 28% 72%,rgba(242,181,68,.30),transparent 70%),radial-gradient(34% 28% at 72% 32%,rgba(0,174,239,.16),transparent 70%),radial-gradient(80% 45% at 50% 108%,rgba(242,181,68,.24),transparent 70%);animation:fog 13s ease-in-out infinite alternate}
+.ly-cubes{position:absolute;right:-40px;bottom:10px;width:660px;height:460px;background:url(assets/cubes-gold.webp) center/cover;-webkit-mask-image:radial-gradient(closest-side,#000 52%,transparent);mask-image:radial-gradient(closest-side,#000 52%,transparent);filter:blur(1.2px) brightness(.95);animation:float 9s ease-in-out infinite alternate}
+@media (max-width:720px){.ly-cubes{width:380px;height:280px;right:-60px;bottom:40px;opacity:.7}}
+.beams{position:absolute;top:0;left:0;right:0;bottom:0;z-index:2;background:conic-gradient(from 196deg at 86% -8%,transparent 0deg,rgba(242,181,68,.11) 7deg,transparent 15deg,rgba(242,181,68,.06) 23deg,transparent 33deg,rgba(0,174,239,.05) 40deg,transparent 48deg);mix-blend-mode:screen;transform-origin:86% 0;animation:beam 11s ease-in-out infinite alternate;pointer-events:none}
+.vign{position:absolute;top:0;left:0;right:0;bottom:0;z-index:3;background:linear-gradient(90deg,rgba(8,8,11,.88),rgba(8,8,11,.35) 55%,transparent),radial-gradient(120% 90% at 50% 40%,transparent 45%,rgba(8,8,11,.8)),linear-gradient(180deg,transparent 60%,#08080B);pointer-events:none}
+.grain{position:absolute;top:-40px;left:-40px;right:-40px;bottom:-40px;pointer-events:none;z-index:7;opacity:.1;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");animation:grain .9s steps(5) infinite}
+.tc{position:absolute;top:0;left:0;right:0;bottom:0;z-index:5;display:flex;align-items:center}
+.tc-pres{position:absolute;left:0;right:0;top:50%;margin-top:-16px;text-align:center;text-transform:uppercase;font-family:'Syne',sans-serif;font-weight:600;font-size:clamp(13px,1.5vw,19px);letter-spacing:.55em;color:#EFEDE8;opacity:0;animation:pres 3s cubic-bezier(.4,0,.2,1) .8s both}
+.tc-line{position:absolute;left:50%;top:50%;width:420px;margin-left:-210px;margin-top:26px;height:1px;background:linear-gradient(90deg,transparent,#F2B544,transparent);transform:scaleX(0);animation:sweep 2.6s cubic-bezier(.6,0,.2,1) 1.1s both}
+.hero-main{width:100%;padding-top:20px}
+.hero-h1{font-family:'Syne',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(34px,8vw,116px);line-height:.94;letter-spacing:-.01em;margin:20px 0 28px;overflow-wrap:anywhere}
+.hero-h1 em{font-style:normal;color:#F2B544}
+.ln{display:block;overflow:hidden;padding-bottom:.05em}
+.ln-in{display:inline-block;animation:lnUp 1.15s cubic-bezier(.2,.8,.1,1) both}
+.hero-sub{max-width:560px;font-size:clamp(16px,1.35vw,19px);color:#D3D0C8}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.fade{animation:fadeUp 1s cubic-bezier(.2,.8,.2,1) both}
+.lb{position:absolute;left:0;right:0;height:0;background:#000;z-index:8;overflow:hidden;animation:lb 1.5s cubic-bezier(.7,0,.2,1) .15s forwards}
+.lb.t{top:0}.lb.b{bottom:0}
+.lb-row{height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:#9B988F;animation:fadeIn 1s ease 1.4s both}
+.rec{display:inline-flex;align-items:center;gap:10px;font-variant-numeric:tabular-nums}
+.rec i{width:8px;height:8px;border-radius:50%;background:#F2B544;animation:blink 1.2s steps(2) infinite}
+.replay{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid rgba(239,237,232,.18);background:transparent;color:#EFEDE8;font-size:11px;letter-spacing:.22em;text-transform:uppercase;transition:border-color .3s,color .3s}
+.replay:hover{border-color:#F2B544;color:#F2B544}
+@media (max-width:720px){.lb-hint{display:none}}
+@keyframes lb{to{height:56px}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drift{from{transform:scale(1.04) translate(0,0)}to{transform:scale(1.13) translate(-26px,-12px)}}
+@keyframes drift2{from{transform:scale(1.02) translate(0,0)}to{transform:scale(1.08) translate(18px,-8px)}}
+@keyframes fog{from{transform:translate(-20px,0) scale(1)}to{transform:translate(30px,-16px) scale(1.08)}}
+@keyframes float{from{transform:translateY(0) rotate(0)}to{transform:translateY(-18px) rotate(1.5deg)}}
+@keyframes beam{from{transform:rotate(-3deg);opacity:.7}to{transform:rotate(4deg);opacity:1}}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-12px,8px)}40%{transform:translate(10px,-14px)}60%{transform:translate(-6px,12px)}80%{transform:translate(14px,4px)}100%{transform:translate(0,0)}}
+@keyframes pres{0%{opacity:0;filter:blur(10px);letter-spacing:.25em}24%{opacity:1;filter:blur(0);letter-spacing:.55em}72%{opacity:1;filter:blur(0)}100%{opacity:0;filter:blur(8px);letter-spacing:.72em}}
+@keyframes sweep{0%{transform:scaleX(0);opacity:1}55%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@keyframes lnUp{from{transform:translateY(108%)}to{transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes blink{50%{opacity:.15}}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-14px,-8px)}}
+@keyframes type{from{width:0}to{width:100%}}
+@keyframes caret{50%{border-color:transparent}}
+/* benefits */
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:18px}
+.ben{position:relative;padding:34px 28px 32px;background:#121218;border:1px solid rgba(239,237,232,.07);border-radius:14px;overflow:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .5s,background .5s;animation:fadeUp .9s cubic-bezier(.2,.8,.2,1) both}
+.ben::before{content:"";position:absolute;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,#F2B544,rgba(242,181,68,0));transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.ben:hover{transform:translateY(-6px);border-color:rgba(242,181,68,.3);background:#16161D}
+.ben:hover::before{width:100%}
+.ben-ic{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(242,181,68,.08);color:#F2B544;margin-bottom:26px;transition:transform .5s}
+.ben:hover .ben-ic{transform:rotate(-8deg) scale(1.08)}
+.ben h3{font-family:'Syne',sans-serif;font-weight:700;font-size:21px;line-height:1.2;margin-bottom:10px}
+.ben p{color:#9B988F;font-size:15.5px}
+.ben-n{position:absolute;top:26px;right:26px;font-family:'Syne',sans-serif;font-size:13px;color:#5F5D57;letter-spacing:.1em}
+/* pillars */
+.pil-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:stretch}
+@media (max-width:980px){.pil-grid{grid-template-columns:1fr}}
+.pil-list{display:grid;gap:10px;align-content:start}
+.pil-btn{position:relative;display:grid;grid-template-columns:56px 1fr;align-items:center;gap:8px;text-align:left;min-height:88px;padding:18px 22px;border-radius:12px;border:1px solid rgba(239,237,232,.08);background:transparent;color:#EFEDE8;overflow:hidden;transition:background .4s,border-color .4s,transform .4s}
+.pil-btn:hover{background:rgba(239,237,232,.04);transform:translateX(4px)}
+.pil-btn .num{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:#5F5D57;transition:color .4s}
+.pil-btn .t{font-family:'Syne',sans-serif;font-weight:700;font-size:19px;line-height:1.2}
+.pil-btn .bar{position:absolute;left:0;bottom:0;height:2px;background:#F2B544;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.pil-stage{position:relative;min-height:540px;border-radius:16px;overflow:hidden;background:#121218;border:1px solid rgba(239,237,232,.08)}
+.pil-img{position:absolute;top:0;left:0;width:100%;height:540px;object-fit:cover;transition:opacity 1s ease;animation:kb 16s ease-in-out infinite alternate}
+.pil-shade{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(8,8,11,.25),rgba(8,8,11,.55) 45%,rgba(8,8,11,.96))}
+.pil-body{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;min-height:540px;padding:40px}
+@media (max-width:720px){.pil-body{padding:26px}}
+.pil-big{position:absolute;top:18px;right:30px;font-family:'Syne',sans-serif;font-weight:800;font-size:140px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(242,181,68,.35);animation:fadeIn .8s ease both}
+.pil-q{font-family:'Syne',sans-serif;font-weight:600;font-size:clamp(21px,2.1vw,28px);line-height:1.25;max-width:620px;margin:14px 0 26px;animation:fadeUp .7s cubic-bezier(.2,.8,.2,1) both}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(242,181,68,.35);background:rgba(8,8,11,.55);font-size:14px;color:#EFEDE8;transition:background .3s,color .3s}
+.chip:hover{background:#F2B544;color:#08080B}
+/* IA preview */
+.ia-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:center}
+@media (max-width:980px){.ia-grid{grid-template-columns:1fr}}
+.frame{position:relative;height:560px;border-radius:16px;overflow:hidden;border:1px solid rgba(239,237,232,.08)}
+.frame img{position:absolute;top:0;left:0;width:100%;height:560px;object-fit:cover;filter:brightness(.6) saturate(.9);animation:kb 18s ease-in-out infinite alternate}
+.frame .glow{position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(50% 50% at 50% 60%,rgba(0,174,239,.18),transparent 70%),linear-gradient(180deg,transparent 40%,rgba(8,8,11,.9))}
+.term{position:absolute;left:28px;right:28px;bottom:28px;max-width:460px;background:rgba(10,10,14,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(242,181,68,.25);border-radius:12px;padding:18px 20px;font-family:ui-monospace,'SFMono-Regular',Menlo,monospace;font-size:13px;color:#C9C6BE}
+.term-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#9B988F}
+.term-line{display:block;overflow:hidden;white-space:nowrap;width:0;animation:type 1.6s steps(40) both}
+.term-line.cy{color:#5FD3FF}
+.term-line.am{color:#F2B544;border-right:2px solid #F2B544;animation:type 1.6s steps(40) both,caret .8s steps(2) infinite}
+.caps{display:grid;gap:12px;margin:30px 0}
+.cap{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-top:1px solid rgba(239,237,232,.08)}
+.cap b{font-family:'Syne',sans-serif;font-size:17px;display:block;margin-bottom:2px}
+.cap span{color:#9B988F;font-size:15px}
+.cap-ic{flex:0 0 40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,174,239,.35);color:#5FD3FF}
+.promise{display:inline-flex;align-items:baseline;gap:14px;padding:16px 22px;border-radius:12px;background:rgba(242,181,68,.07);border:1px solid rgba(242,181,68,.25);margin-bottom:28px}
+.promise strong{font-family:'Syne',sans-serif;font-weight:800;font-size:40px;color:#F2B544;line-height:1}
+.link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-weight:600;color:#F2B544;border-bottom:1px solid rgba(242,181,68,.35);transition:gap .3s,border-color .3s}
+.link:hover{gap:16px;border-color:#F2B544}
+/* jeux */
+.wide{position:relative;height:640px;overflow:hidden;display:flex;align-items:flex-end}
+.wide-bg{position:absolute;top:-30px;left:-30px;right:-30px;bottom:-30px;background:url(assets/gaming-den-neon.webp) center/cover;filter:brightness(.5) saturate(.9);animation:kb 22s ease-in-out infinite alternate}
+.wide-shade{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,#08080B 0,rgba(8,8,11,.3) 30%,rgba(8,8,11,.55) 60%,#08080B 100%),linear-gradient(90deg,rgba(8,8,11,.85),transparent 70%)}
+.wide-in{position:relative;z-index:2;width:100%;padding-bottom:70px}
+.quote-xl{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,5.4vw,78px);line-height:1;letter-spacing:-.02em;max-width:980px;margin:22px 0 40px;overflow-wrap:anywhere}
+.req{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:1px;background:rgba(239,237,232,.1);border:1px solid rgba(239,237,232,.1);border-radius:12px;overflow:hidden}
+.req-i{background:rgba(8,8,11,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:22px 22px 24px;transition:background .4s}
+.req-i:hover{background:rgba(242,181,68,.12)}
+.req-i b{display:block;font-family:'Syne',sans-serif;font-size:17px;margin-bottom:6px}
+.req-i span{display:block;color:#B4B1A9;font-size:14.5px}
+.req-i em{font-style:normal;font-size:11px;letter-spacing:.24em;color:#F2B544;display:block;margin-bottom:12px}
+/* method */
+.tl{position:relative;margin-top:10px}
+.tl-track{position:relative;height:2px;background:rgba(239,237,232,.1);margin:0 0 0;border-radius:2px}
+.tl-fill{position:absolute;left:0;top:0;height:2px;background:linear-gradient(90deg,rgba(242,181,68,.4),#F2B544);transition:width .8s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 18px rgba(242,181,68,.6)}
+.tl-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:-23px}
+@media (max-width:820px){.tl-steps{grid-template-columns:1fr;margin-top:24px}.tl-track{display:none}}
+.tl-step{display:grid;justify-items:start;gap:12px;text-align:left;background:transparent;border:0;color:#EFEDE8;padding:0;min-height:44px}
+.tl-dot{width:44px;height:44px;border-radius:50%;border:1px solid rgba(239,237,232,.2);background:#08080B;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;transition:all .4s}
+.tl-step:hover .tl-dot{border-color:#F2B544;transform:scale(1.08)}
+.tl-code{font-size:11px;letter-spacing:.24em;color:#9B988F;font-variant-numeric:tabular-nums}
+.tl-name{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;line-height:1.2}
+.tl-panel{margin-top:44px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:end;padding:34px 36px;border-radius:14px;background:#121218;border:1px solid rgba(239,237,232,.08)}
+@media (max-width:720px){.tl-panel{grid-template-columns:1fr;padding:26px}}
+.tl-panel h3{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(24px,2.6vw,34px);margin:8px 0 10px;animation:fadeUp .6s both}
+.tl-panel p{color:#B4B1A9;max-width:640px;animation:fadeUp .6s .08s both}
+.tl-delay{margin-top:14px;font-size:14px;color:#F2B544}
+/* posters */
+.posters{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:22px}
+.poster{position:relative;height:540px;border-radius:8px;overflow:hidden;background:#121218;border:1px solid rgba(239,237,232,.08);display:flex;flex-direction:column;justify-content:flex-end;transition:transform .7s cubic-bezier(.2,.8,.2,1),box-shadow .7s,border-color .7s}
+.poster:hover{transform:translateY(-10px);box-shadow:0 44px 90px -34px rgba(242,181,68,.4);border-color:rgba(242,181,68,.5)}
+.poster img{position:absolute;top:0;left:0;width:100%;height:540px;object-fit:cover;filter:brightness(.5) saturate(.85);transition:transform 1.6s cubic-bezier(.2,.8,.2,1),filter 1s}
+.poster:hover img{transform:scale(1.08);filter:brightness(.62) saturate(1)}
+.poster .shade{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(8,8,11,.15),rgba(8,8,11,.05) 35%,rgba(8,8,11,.97) 86%)}
+.poster-top{position:absolute;top:22px;left:24px;right:24px;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#C9C6BE;z-index:2}
+.poster-body{position:relative;z-index:2;padding:28px}
+.poster-title{font-family:'Syne',sans-serif;font-weight:800;font-size:40px;line-height:1;text-transform:uppercase;letter-spacing:.02em}
+.poster-price{margin-top:12px;font-size:15px;color:#C9C6BE}
+.poster-price b{font-family:'Syne',sans-serif;font-size:26px;color:#F2B544;margin-right:4px}
+.poster-credits{margin-top:18px;padding-top:14px;border-top:1px solid rgba(239,237,232,.14);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9B988F;line-height:1.8}
+.badge{display:inline-flex;align-items:center;min-height:28px;padding:0 12px;border-radius:999px;background:#F2B544;color:#08080B;font-size:10.5px;letter-spacing:.2em;font-weight:700}
+/* testimonial */
+.testi{position:relative;text-align:center;padding:150px 0;overflow:hidden}
+.testi::before{content:"";position:absolute;left:50%;top:50%;width:900px;height:500px;margin:-250px 0 0 -450px;background:radial-gradient(closest-side,rgba(242,181,68,.10),transparent);pointer-events:none}
+.testi blockquote{position:relative;font-family:'Syne',sans-serif;font-weight:600;font-size:clamp(22px,2.6vw,36px);line-height:1.3;max-width:960px;margin:0 auto}
+.testi blockquote span{background:linear-gradient(transparent 62%,rgba(242,181,68,.22) 62%)}
+.testi figcaption{margin-top:34px;font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:#9B988F}
+.testi figcaption b{color:#EFEDE8;font-weight:600}
+/* cta */
+.cta{position:relative;padding:170px 0;overflow:hidden;text-align:center}
+.cta-bg{position:absolute;top:-40px;left:-40px;right:-40px;bottom:-40px;background:url(assets/cubes-gold.webp) center/cover;filter:brightness(.35);animation:kb 20s ease-in-out infinite alternate}
+.cta-shade{position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(70% 70% at 50% 50%,rgba(8,8,11,.35),#08080B)}
+.cta-in{position:relative;z-index:2}
+.cta h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(34px,6vw,88px);line-height:1;letter-spacing:-.02em;margin:22px auto 26px;max-width:1000px;overflow-wrap:anywhere}
+/* footer */
+.ftr{background:#050507;border-top:1px solid rgba(239,237,232,.07);padding:90px 0 36px}
+.ftr-word{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(46px,13vw,184px);line-height:.9;letter-spacing:.04em;color:transparent;-webkit-text-stroke:1px rgba(242,181,68,.4);transition:color .8s;margin-bottom:60px;overflow-wrap:anywhere}
+.ftr-word:hover{color:rgba(242,181,68,.12)}
+.ftr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:36px}
+.ftr h4{font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:#9B988F;font-weight:600;margin-bottom:16px}
+.ftr-grid a,.ftr-grid p{display:flex;align-items:center;min-height:36px;color:#D3D0C8;font-size:15px;transition:color .3s}
+.ftr-grid a:hover{color:#F2B544}
+.ftr-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:60px;padding-top:26px;border-top:1px solid rgba(239,237,232,.07);font-size:13px;color:#9B988F}
+.ftr-bottom a{min-height:44px;display:inline-flex;align-items:center}
+.ftr-bottom a:hover{color:#F2B544}
+</style>
+</helmet>
+<div class="nx">
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="Nocturne-Accueil.dc.html" aria-label="Baquelis, retour à l’accueil">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle class="ring" cx="17" cy="17" r="15.5" fill="none" stroke="#F2B544" stroke-width="1.4" stroke-dasharray="70 28"></circle><path d="M12.5 9.5h5.6a3.9 3.9 0 0 1 0 7.8h-5.6zM12.5 17.3h6.6a4.6 4.6 0 0 1 0 9.2h-6.6z" fill="none" stroke="#EFEDE8" stroke-width="1.8"></path><circle cx="26" cy="8" r="2" fill="#F2B544"></circle></svg>
+      <span class="logo-word">BAQUELIS</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="Nocturne-Expertises.dc.html">Expertises</a>
+      <a href="Nocturne-IA.dc.html">IA</a>
+      <a href="Nocturne-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a href="Nocturne-Offres.dc.html">Offres</a>
+      <a href="Nocturne-Contact.dc.html">Contact</a>
+    </nav>
+    <div class="hdr-cta">
+      <a class="btn btn-ghost" href="Nocturne-Contact.dc.html">Réserver un appel</a>
+      <a class="btn btn-amber" href="Nocturne-Offres.dc.html">Commencer</a>
+      <button class="burger" type="button" aria-label="{{ menuLabel }}" aria-expanded="{{ menuExp }}" onClick="{{ toggleMenu }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"></path></svg></button>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="wrap">
+      <nav class="mnav" aria-label="Navigation mobile">
+        <a href="Nocturne-Expertises.dc.html">Expertises</a>
+        <a href="Nocturne-IA.dc.html">IA</a>
+        <a href="Nocturne-Jeux.dc.html">Jeux &amp; Web3</a>
+        <a href="Nocturne-Offres.dc.html">Offres</a>
+        <a href="Nocturne-Contact.dc.html">Contact</a>
+        <a class="btn btn-amber" href="Nocturne-Contact.dc.html" style="margin-top:18px;font-family:'Outfit',sans-serif;font-size:15px;border:0">Réserver un appel</a>
+      </nav>
+    </div>
+  </sc-if>
+</header>
+
+<main>
+<!-- HERO : scène parallaxe + générique -->
+<section class="hero" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" aria-label="Ouverture : Baquelis présente">
+  <div class="layer" style="{{ L0 }}"><div class="ly ly-sky"></div></div>
+  <div class="layer" style="{{ L1 }}"><div class="ly ly-tower"></div></div>
+  <div class="beams" aria-hidden="true"></div>
+  <div class="layer" style="{{ L2 }}"><div class="ly ly-fog"></div></div>
+  <div class="layer" style="{{ L3 }}"><div class="ly-cubes"></div></div>
+  <div class="vign" aria-hidden="true"></div>
+  <sc-if value="{{ grainOn }}" hint-placeholder-val="{{ true }}"><div class="grain" aria-hidden="true"></div></sc-if>
+
+  <sc-if value="{{ takeA }}" hint-placeholder-val="{{ true }}">
+    <div class="tc">
+      <div class="tc-pres" aria-hidden="true">Baquelis présente…</div>
+      <div class="tc-line" aria-hidden="true"></div>
+      <div class="wrap hero-main">
+        <div class="eyebrow fade" style="animation-delay:3.3s">Excellence IA · Partenaire technologique</div>
+        <h1 class="hero-h1">
+          <span class="ln"><span class="ln-in" style="animation-delay:3.5s">Flexibilité<em>.</em></span></span>
+          <span class="ln"><span class="ln-in" style="animation-delay:3.8s">Continuité<em>.</em></span></span>
+          <span class="ln"><span class="ln-in" style="animation-delay:4.1s">Performance<em>.</em></span></span>
+        </h1>
+        <p class="hero-sub fade" style="animation-delay:4.6s">Améliorez les performances avec des équipes flexibles, un suivi en temps réel et une continuité garantie. Du code à la continuité, nous sécurisons chaque étape de votre parcours technologique.</p>
+        <div class="hero-ctas fade" style="animation-delay:4.9s">
+          <a class="btn btn-amber" href="Nocturne-Offres.dc.html">Commencer aujourd’hui <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a class="btn btn-ghost" href="Nocturne-Contact.dc.html">Réserver un appel</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ takeB }}" hint-placeholder-val="{{ false }}">
+    <div class="tc">
+      <div class="tc-pres" aria-hidden="true">Baquelis présente…</div>
+      <div class="tc-line" aria-hidden="true"></div>
+      <div class="wrap hero-main">
+        <div class="eyebrow fade" style="animation-delay:3.3s">Excellence IA · Partenaire technologique</div>
+        <h1 class="hero-h1">
+          <span class="ln"><span class="ln-in" style="animation-delay:3.5s">Flexibilité<em>.</em></span></span>
+          <span class="ln"><span class="ln-in" style="animation-delay:3.8s">Continuité<em>.</em></span></span>
+          <span class="ln"><span class="ln-in" style="animation-delay:4.1s">Performance<em>.</em></span></span>
+        </h1>
+        <p class="hero-sub fade" style="animation-delay:4.6s">Améliorez les performances avec des équipes flexibles, un suivi en temps réel et une continuité garantie. Du code à la continuité, nous sécurisons chaque étape de votre parcours technologique.</p>
+        <div class="hero-ctas fade" style="animation-delay:4.9s">
+          <a class="btn btn-amber" href="Nocturne-Offres.dc.html">Commencer aujourd’hui <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          <a class="btn btn-ghost" href="Nocturne-Contact.dc.html">Réserver un appel</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ lbOn }}" hint-placeholder-val="{{ true }}">
+    <div class="lb t"><div class="wrap lb-row"><span>Scène 01 · L’ouverture</span><span class="lb-hint">Bougez la souris : la ville suit votre regard</span></div></div>
+    <div class="lb b"><div class="wrap lb-row">
+      <span class="rec"><i></i>{{ tcode }}</span>
+      <button class="replay" type="button" onClick="{{ replay }}" aria-label="Rejouer la séquence d’ouverture"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg>Rejouer</button>
+    </div></div>
+  </sc-if>
+</section>
+
+<!-- SCÈNE 01 : bénéfices -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="scene"><b>Scène 01</b><i></i>Ce que vous gagnez</div>
+      <h2 class="h2">Moins de friction.<br><span class="amb">Plus de valeur.</span></h2>
+      <p class="lead">Nous prenons en charge l’exécution technique — vous gardez le cap. Concentrez-vous sur la valeur métier, nous nous occupons du reste.</p>
+    </div>
+    <div class="grid4">
+      <article class="ben" style="animation-delay:.05s"><span class="ben-n">01</span><div class="ben-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1"></path></svg></div><h3>Automatiser les tâches fastidieuses</h3><p>Rationalisez les opérations grâce à l’automatisation intelligente.</p></article>
+      <article class="ben" style="animation-delay:.15s"><span class="ben-n">02</span><div class="ben-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.2"></circle></svg></div><h3>Se concentrer sur l’essentiel</h3><p>La valeur métier pour vous ; l’exécution technique pour nous.</p></article>
+      <article class="ben" style="animation-delay:.25s"><span class="ben-n">03</span><div class="ben-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="3"></circle><circle cx="16.5" cy="9" r="3"></circle><path d="M2.5 19c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5M13 15.2c1-.5 2.1-.7 3.5-.7 2.5 0 4.7 1.5 5.5 4.5"></path></svg></div><h3>Outils collaboratifs</h3><p>Un travail d’équipe renforcé, dans vos outils et vos rituels.</p></article>
+      <article class="ben" style="animation-delay:.35s"><span class="ben-n">04</span><div class="ben-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"></path><path d="M15 7h6v6"></path></svg></div><h3>Transformer les opérations</h3><p>Des processus repensés pour une efficacité maximale.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- SCÈNE 02 : piliers -->
+<section class="sec" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="scene"><b>Scène 02</b><i></i>Solutions éprouvées</div>
+      <h2 class="h2">Quatre piliers.<br>Un seul plan-séquence.</h2>
+    </div>
+    <div class="pil-grid">
+      <div class="pil-list" role="tablist" aria-label="Les quatre piliers">
+        <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+          <button class="pil-btn" type="button" role="tab" aria-selected="{{ p.pressed }}" onClick="{{ p.pick }}" style="{{ p.style }}">
+            <span class="num" style="{{ p.numStyle }}">{{ p.n }}</span>
+            <span class="t">{{ p.t }}</span>
+            <span class="bar" style="{{ p.barStyle }}"></span>
+          </button>
+        </sc-for>
+      </div>
+      <div class="pil-stage" role="tabpanel" aria-live="polite">
+        <sc-for list="{{ pilImgs }}" as="im" hint-placeholder-count="4">
+          <img class="pil-img" src="{{ im.src }}" alt="{{ im.alt }}" style="{{ im.style }}">
+        </sc-for>
+        <div class="pil-shade"></div>
+        <div class="pil-big" aria-hidden="true">{{ pil.n }}</div>
+        <div class="pil-body">
+          <div class="eyebrow">Pilier {{ pil.n }} · {{ pil.t }}</div>
+          <p class="pil-q">« {{ pil.q }} »</p>
+          <div class="chips">
+            <sc-for list="{{ pil.items }}" as="it" hint-placeholder-count="4">
+              <span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg>{{ it }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCÈNE 03 : IA -->
+<section class="sec" style="padding-top:40px">
+  <div class="wrap ia-grid">
+    <div class="frame">
+      <img src="assets/datacenter-corridor.webp" alt="Couloir de serveurs plongé dans la pénombre">
+      <div class="glow"></div>
+      <div class="term" aria-label="Aperçu de l’agent ATOM, démonstration scénarisée">
+        <div class="term-top"><span>ATOM · agent IA</span><span>Démonstration</span></div>
+        <span class="term-line" style="animation-delay:.4s">› atom.tâche(« trier les demandes du support »)</span>
+        <span class="term-line cy" style="animation-delay:2.1s">· lecture et classification des demandes… ok</span>
+        <span class="term-line cy" style="animation-delay:3.8s">· réponses rédigées selon votre base… ok</span>
+        <span class="term-line am" style="animation-delay:5.5s">✓ prêt pour validation humaine</span>
+      </div>
+    </div>
+    <div>
+      <div class="scene"><b>Scène 03</b><i></i>L’intelligence</div>
+      <h2 class="h2" style="margin:22px 0 22px;font-size:clamp(30px,3.6vw,52px)">Transformez la productivité avec les agents IA.</h2>
+      <p class="lead">Des modèles affinés sur vos données et des agents autonomes qui exécutent, décident et s’adaptent — intégrés à vos processus existants.</p>
+      <div class="caps">
+        <div class="cap"><span class="cap-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h6"></path></svg></span><div><b>Affinage de modèles</b><span>Entraînés sur vos données et vos cas d’usage.</span></div></div>
+        <div class="cap"><span class="cap-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="6" cy="6" r="2.5"></circle><circle cx="18" cy="6" r="2.5"></circle><circle cx="12" cy="18" r="2.5"></circle><path d="M8 7.5l3 8.5M16 7.5l-3 8.5M8.5 6h7"></path></svg></span><div><b>Agents autonomes</b><span>Tâches complexes, décisions, coordination multi-agents.</span></div></div>
+        <div class="cap"><span class="cap-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M7 14l3-3 2 2 5-5"></path></svg></span><div><b>Intégration métier</b><span>L’IA dans vos flux, vos données, vos tableaux de bord.</span></div></div>
+      </div>
+      <div class="promise"><strong>×10</strong><span class="muted">la productivité que peuvent viser modèles personnalisés et agents autonomes — notre promesse</span></div>
+      <div><a class="link" href="Nocturne-IA.dc.html">Explorer l’IA et la démo ATOM <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCÈNE 04 : Jeux -->
+<section class="wide" aria-label="Jeux et Web3">
+  <div class="wide-bg" aria-hidden="true"></div>
+  <div class="wide-shade" aria-hidden="true"></div>
+  <div class="wrap wide-in">
+    <div class="scene"><b>Scène 04</b><i></i>Le terrain d’épreuve</div>
+    <p class="quote-xl">Les jeux sont les applications <span class="amb">les plus difficiles.</span></p>
+    <div class="req">
+      <div class="req-i"><em>I</em><b>Performance temps réel</b><span>Réponse sub-milliseconde, synchronisation parfaite.</span></div>
+      <div class="req-i"><em>II</em><b>Architecture complexe</b><span>Graphismes, physique, réseau et saisie simultanés.</span></div>
+      <div class="req-i"><em>III</em><b>Multijoueur évolutif</b><span>Des milliers d’utilisateurs, une cohérence d’état.</span></div>
+      <div class="req-i"><em>IV</em><b>Sécurité &amp; anti-triche</b><span>Protection avancée, expérience intacte.</span></div>
+    </div>
+    <div style="margin-top:30px"><a class="link" href="Nocturne-Jeux.dc.html">Si nous maîtrisons le jeu, nous maîtrisons votre défi <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+  </div>
+</section>
+
+<!-- SCÈNE 05 : méthode -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="scene"><b>Scène 05</b><i></i>La méthode</div>
+      <h2 class="h2">Du premier appel<br>au <span class="amb">plan final.</span></h2>
+    </div>
+    <div class="tl">
+      <div class="tl-track"><div class="tl-fill" style="{{ fillStyle }}"></div></div>
+      <div class="tl-steps">
+        <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
+          <button class="tl-step" type="button" onClick="{{ st.pick }}" aria-pressed="{{ st.pressed }}">
+            <span class="tl-dot" style="{{ st.dot }}">{{ st.n }}</span>
+            <span class="tl-code">{{ st.code }}</span>
+            <span class="tl-name">{{ st.t }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div class="tl-panel" aria-live="polite">
+        <div>
+          <div class="eyebrow">Étape {{ cur.n }} sur 5</div>
+          <h3>{{ cur.t }}</h3>
+          <p>{{ cur.d }}</p>
+          <div class="tl-delay">{{ cur.delay }}</div>
+        </div>
+        <button class="btn btn-ghost" type="button" onClick="{{ nextStep }}">{{ nextLabel }} <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCÈNE 06 : formules -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head" style="grid-template-columns:minmax(0,1fr) auto;align-items:end">
+      <div style="display:grid;gap:22px">
+        <div class="scene"><b>Scène 06</b><i></i>À l’affiche</div>
+        <h2 class="h2">Trois formules.<br>Un engagement clair.</h2>
+      </div>
+      <a class="link" href="Nocturne-Offres.dc.html">Comparer les formules <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+    <div class="posters">
+      <a class="poster" href="Nocturne-Offres.dc.html">
+        <img src="assets/city-night-tower.webp" alt="Tour illuminée dans la nuit">
+        <div class="shade"></div>
+        <div class="poster-top"><span>Formule I</span><span>Startups &amp; PME</span></div>
+        <div class="poster-body">
+          <div class="poster-title">Intégration</div>
+          <div class="poster-price"><b>4 500 €</b>/ mois</div>
+          <div class="poster-credits">1 profil technique dédié · 40 h / semaine · rapports mensuels · engagement 12 mois</div>
+        </div>
+      </a>
+      <a class="poster" href="Nocturne-Offres.dc.html" style="border-color:rgba(242,181,68,.45)">
+        <img src="assets/city-neon-aerial.webp" alt="Vue aérienne d’une ville néon">
+        <div class="shade"></div>
+        <div class="poster-top"><span>Formule II</span><span class="badge">Plus populaire</span></div>
+        <div class="poster-body">
+          <div class="poster-title amb">Flex</div>
+          <div class="poster-price"><b>6 200 €</b>/ mois</div>
+          <div class="poster-credits">1 profil senior · changement sous 15 jours · 50 h / semaine · engagement 6 mois</div>
+        </div>
+      </a>
+      <a class="poster" href="Nocturne-Offres.dc.html">
+        <img src="assets/cubes-gold.webp" alt="Cubes et sphères dorés sur fond sombre">
+        <div class="shade"></div>
+        <div class="poster-top"><span>Formule III</span><span>Grands comptes</span></div>
+        <div class="poster-body">
+          <div class="poster-title">Performance</div>
+          <div class="poster-price"><b>18 900 €</b>/ mois</div>
+          <div class="poster-credits">5 experts seniors · lead tech + product owner · couverture 24/7 · engagement 2 mois</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Témoignage -->
+<figure class="testi">
+  <div class="wrap">
+    <div class="scene" style="justify-content:center;margin-bottom:34px"><b>Plan rapproché</b><i></i>Ils en parlent</div>
+    <blockquote>« Cette plateforme a transformé la façon dont nous gérons nos projets. Son design intuitif et ses fonctionnalités puissantes ont rationalisé notre flux de travail et amélioré la collaboration d’équipe. <span>C’est vraiment un game-changer pour nos opérations.</span> »</blockquote>
+    <figcaption><b>Laura S.</b> — Responsable des Opérations</figcaption>
+  </div>
+</figure>
+
+<!-- CTA final -->
+<section class="cta">
+  <div class="cta-bg" aria-hidden="true"></div>
+  <div class="cta-shade" aria-hidden="true"></div>
+  <div class="wrap cta-in">
+    <div class="eyebrow">Construit sur la confiance · Guidé par les résultats</div>
+    <h2>Prêt à transformer votre entreprise ?</h2>
+    <p class="lead" style="margin:0 auto 36px">Transformer l’ambition en réalité : des solutions pour les besoins d’aujourd’hui, qui préparent aux défis de demain.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+      <a class="btn btn-amber" href="Nocturne-Contact.dc.html">Commencer aujourd’hui <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="btn btn-ghost" href="Nocturne-Expertises.dc.html">En savoir plus</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-word" aria-hidden="true">BAQUELIS</div>
+    <div class="ftr-grid">
+      <div><h4>Baquelis</h4><p>Flexibilité. Continuité. Performance.</p><p class="muted">Excellence IA par la technologie.</p></div>
+      <div><h4>Explorer</h4><a href="Nocturne-Expertises.dc.html">Expertises</a><a href="Nocturne-IA.dc.html">Intelligence artificielle</a><a href="Nocturne-Jeux.dc.html">Jeux &amp; Web3</a><a href="Nocturne-Contact.dc.html">Contact</a></div>
+      <div><h4>Formules</h4><a href="Nocturne-Offres.dc.html">Intégration · 4 500 €/mois</a><a href="Nocturne-Offres.dc.html">Flex · 6 200 €/mois</a><a href="Nocturne-Offres.dc.html">Performance · 18 900 €/mois</a></div>
+      <div><h4>Siège</h4><p>31 B avenue Maréchal Foch</p><p>06000 Nice</p><p>[contact@domaine-baquelis]</p></div>
+    </div>
+    <div class="ftr-bottom">
+      <span>© 2026 Baquelis · [RAISON SOCIALE] · [N° TVA]</span>
+      <a href="Main.dc.html">Toutes les propositions</a>
+      <span>Proposition de refonte — concept</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7800},"letterbox":{"editor":"boolean","default":true},"grain":{"editor":"boolean","default":true}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu:false, mx:0, my:0, take:0, pilier:0, step:0, sec:0 };
+  }
+  componentDidMount(){
+    this.tick = setInterval(() => this.setState({ sec: (this.state.sec + 1) % 3600 }), 1000);
+  }
+  componentWillUnmount(){
+    if (this.tick) clearInterval(this.tick);
+  }
+  pad(n){ return n > 9 ? String(n) : '0' + n; }
+  move(e){
+    const t = e && e.currentTarget;
+    if (!t || !t.getBoundingClientRect) return;
+    const r = t.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    this.setState({ mx: (e.clientX - r.left) / r.width - 0.5, my: (e.clientY - r.top) / r.height - 0.5 });
+  }
+  renderVals(){
+    const s = this.state, pr = this.props || {};
+    const tr = (k) => 'transform:translate3d(' + (s.mx * -k).toFixed(1) + 'px,' + (s.my * -k * 0.6).toFixed(1) + 'px,0)';
+
+    const PIL = [
+      { n:'I', t:'Solutions éprouvées', q:'Nous ne livrons pas seulement du code — nous construisons des systèmes évolutifs qui grandissent avec votre entreprise.', items:['Architecture évolutive','Pile technologique moderne','Solutions cloud-native','Optimisation des performances'], img:'assets/server-aisle.webp', alt:'Allée de serveurs' },
+      { n:'II', t:'Partenariat, pas d’externalisation', q:'Nos experts deviennent une extension de votre équipe.', items:['Intégration d’équipe dédiée','Engagement à long terme','Alignement culturel','Communication fluide'], img:'assets/team-office.webp', alt:'Équipe au travail dans un bureau' },
+      { n:'III', t:'Rapidité avec précision', q:'Du concept à la livraison, vite — sans compromis sur la qualité.', items:['Prototypage rapide','Méthodologie agile','Assurance qualité','Intégration continue'], img:'assets/laptop-code.webp', alt:'Ordinateur portable affichant du code' },
+      { n:'IV', t:'Transparence radicale', q:'Pas de coûts cachés ni de mises à jour vagues : des progrès visibles en temps réel.', items:['Suivi des progrès en temps réel','Tarification transparente','Rapports réguliers','Communication ouverte'], img:'assets/office-glass-night.webp', alt:'Bureaux vitrés éclairés le soir' }
+    ];
+    const pillars = PIL.map((p, i) => {
+      const on = s.pilier === i;
+      return {
+        n: p.n, t: p.t,
+        pressed: on ? 'true' : 'false',
+        style: on ? 'background:#121218;border-color:rgba(242,181,68,.4)' : '',
+        numStyle: on ? 'color:#F2B544' : '',
+        barStyle: on ? 'width:100%' : 'width:0',
+        pick: () => this.setState({ pilier: i })
+      };
+    });
+    const pilImgs = PIL.map((p, i) => ({ src: p.img, alt: p.alt, style: 'opacity:' + (s.pilier === i ? '1' : '0') }));
+
+    const ST = [
+      { t:'Appel découverte', d:'Vous exposez vos enjeux et vos contraintes ; nous écoutons, posons les bonnes questions et vérifions que nous sommes le bon partenaire.', delay:'Délai : [DÉLAI]' },
+      { t:'Cadrage & choix de formule', d:'Périmètre, priorités, rythme et niveau de couverture : nous choisissons ensemble entre Intégration, Flex et Performance.', delay:'Délai : [DÉLAI]' },
+      { t:'Sélection du profil ou de l’équipe', d:'Nous proposons le profil technique — ou l’équipe de 5 experts seniors — aligné sur votre culture et vos objectifs.', delay:'Délai : [DÉLAI]' },
+      { t:'Intégration à vos outils et rituels', d:'Vos dépôts, votre messagerie, vos cérémonies agiles : nos experts deviennent une extension de votre équipe.', delay:'Délai : [DÉLAI]' },
+      { t:'Suivi temps réel & ajustements', d:'Rapports mensuels, hebdomadaires ou quotidiens selon la formule ; le profil évolue avec vos besoins.', delay:'Changement de profil : sous 30 jours (Intégration) · sous 15 jours (Flex)' }
+    ];
+    const steps = ST.map((x, i) => ({
+      n: this.pad(i + 1), t: x.t, code: '00:0' + (i + 1) + ':00',
+      pressed: s.step === i ? 'true' : 'false',
+      dot: s.step === i ? 'background:#F2B544;color:#08080B;border-color:#F2B544;box-shadow:0 0 24px rgba(242,181,68,.55)' : (i < s.step ? 'border-color:#F2B544;color:#F2B544' : ''),
+      pick: () => this.setState({ step: i })
+    }));
+    const c = ST[s.step];
+
+    return {
+      menuOpen: s.menu,
+      menuLabel: s.menu ? 'Fermer le menu' : 'Ouvrir le menu',
+      menuExp: s.menu ? 'true' : 'false',
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      onMove: (e) => this.move(e),
+      onLeave: () => this.setState({ mx: 0, my: 0 }),
+      L0: tr(14), L1: tr(32), L2: tr(56), L3: tr(96),
+      grainOn: pr.grain !== false,
+      lbOn: pr.letterbox !== false,
+      takeA: s.take === 0,
+      takeB: s.take === 1,
+      replay: () => this.setState({ take: s.take === 0 ? 1 : 0, sec: 0 }),
+      tcode: 'REC  00:' + this.pad(Math.floor(s.sec / 60)) + ':' + this.pad(s.sec % 60),
+      pillars: pillars,
+      pilImgs: pilImgs,
+      pil: PIL[s.pilier],
+      steps: steps,
+      cur: { n: this.pad(s.step + 1), t: c.t, d: c.d, delay: c.delay },
+      fillStyle: 'width:' + (s.step * 25) + '%',
+      nextLabel: s.step < 4 ? 'Étape suivante' : 'Revoir depuis le début',
+      nextStep: () => this.setState({ step: s.step < 4 ? s.step + 1 : 0 })
+    };
+  }
+}
+</script>
+</body>
+</html>

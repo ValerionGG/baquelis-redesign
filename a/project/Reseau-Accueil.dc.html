@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Réseau — Accueil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+sc-for,sc-if{display:contents}
+*{box-sizing:border-box}
+.rx{background:#060B18;color:#E6ECF7;font-family:'Space Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+.rx a{color:inherit}
+.rx p{margin:0}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px);position:relative}
+.gridbg{background-image:linear-gradient(rgba(23,34,61,.55) 1px,transparent 1px),linear-gradient(90deg,rgba(23,34,61,.55) 1px,transparent 1px);background-size:56px 56px}
+.strip{border-bottom:1px solid #17223D;font-size:12px;color:#8E9BB5;background:#050915}
+.strip-in{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:36px;flex-wrap:wrap}
+.strip a{color:#00AEEF;text-decoration:none;padding:8px 0}
+.strip a:hover{text-decoration:underline}
+.hdr{position:sticky;top:0;z-index:50;background:rgba(6,11,24,.88);backdrop-filter:blur(14px);border-bottom:1px solid #17223D}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:22px;letter-spacing:-.02em;min-height:44px}
+.logo-pulse{animation:pulse 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.nav{display:flex;gap:2px}
+.nav a{padding:12px 14px;border-radius:8px;text-decoration:none;color:#8E9BB5;font-size:15px;font-weight:500;transition:color .2s,background .2s}
+.nav a:hover,.nav a.on{color:#E6ECF7;background:#0C1428}
+.nav a.on{box-shadow:inset 0 -2px 0 #3DFFA2}
+.hdr-cta{display:flex;align-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:10px;background:#3DFFA2;color:#060B18;font-weight:600;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:inherit;font-size:16px;transition:transform .2s,box-shadow .25s,border-color .2s,background .2s}
+.rx a.btn{color:#060B18}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 4px rgba(61,255,162,.16),0 14px 34px -12px rgba(61,255,162,.6)}
+.btn-ghost,.rx a.btn-ghost{background:transparent;color:#E6ECF7;border:1px solid #2A3A60}
+.btn-ghost:hover{border-color:#00AEEF;box-shadow:0 0 0 4px rgba(0,174,239,.14)}
+.btn-sm{min-height:44px;padding:0 16px;font-size:15px}
+.menu-btn{display:none;width:44px;height:44px;border-radius:10px;border:1px solid #2A3A60;background:#0C1428;color:#E6ECF7;cursor:pointer;align-items:center;justify-content:center}
+.mnav{display:flex;flex-direction:column;padding:6px clamp(16px,4vw,40px) 16px;border-top:1px solid #17223D}
+.mnav a{padding:14px 4px;border-bottom:1px solid #17223D;text-decoration:none;font-weight:500}
+@media(max-width:900px){.nav{display:none}.menu-btn{display:inline-flex}.hdr-cta .btn{display:none}}
+@media(min-width:901px){.mnav{display:none}}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:#8E9BB5}
+.dot{width:8px;height:8px;border-radius:50%;background:#3DFFA2;animation:ping 1.8s infinite;flex:none}
+.h2{font-size:clamp(32px,4.2vw,56px);line-height:1.04;letter-spacing:-.03em;font-weight:600;margin:16px 0 0;overflow-wrap:anywhere}
+.lead{color:#8E9BB5;font-size:clamp(17px,1.4vw,19px);max-width:640px;margin-top:18px}
+.sec{padding:clamp(72px,9vw,128px) 0;position:relative}
+.card{background:#0C1428;border:1px solid #17223D;border-radius:16px;transition:border-color .25s,transform .25s,box-shadow .25s}
+.lift:hover{transform:translateY(-4px);border-color:#00AEEF;box-shadow:0 22px 50px -26px rgba(0,174,239,.6)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:20px}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.06em;padding:4px 10px;border-radius:999px;border:1px solid #2A3A60;color:#8E9BB5;white-space:nowrap}
+.illu{color:#FFB020;border-color:rgba(255,176,32,.45)}
+.ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#060B18;border:1px solid #17223D;color:#00AEEF}
+.ftr{border-top:1px solid #17223D;background:#050915;padding:72px 0 28px;font-size:15px}
+.ftr-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:40px}
+.ftr h4{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8E9BB5;font-weight:500;margin:0 0 12px}
+.ftr-l a{display:flex;align-items:center;min-height:40px;color:#E6ECF7;text-decoration:none;transition:color .2s}
+.ftr-l a:hover{color:#3DFFA2}
+.ftr-b{margin-top:56px;padding-top:22px;border-top:1px solid #17223D;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#8E9BB5;font-size:13px}
+.rv{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.08s}.d2{animation-delay:.18s}.d3{animation-delay:.28s}.d4{animation-delay:.4s}.d5{animation-delay:.55s}
+:focus-visible{outline:2px solid #00AEEF;outline-offset:3px}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(61,255,162,.55)}70%{box-shadow:0 0 0 10px rgba(61,255,162,0)}100%{box-shadow:0 0 0 0 rgba(61,255,162,0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes pk{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes halo{0%{transform:scale(.85);opacity:.9}100%{transform:scale(1.75);opacity:0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes feedA{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+@keyframes feedB{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+@keyframes scan{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+@keyframes blink{50%{opacity:0}}
+@keyframes lineIn{0%,8%{opacity:0;transform:translateY(6px)}14%,88%{opacity:1;transform:none}100%{opacity:0}}
+/* page */
+.hero{padding:clamp(48px,7vw,96px) 0 56px}
+.hero-g{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,4vw,56px);align-items:center}
+@media(max-width:1020px){.hero-g{grid-template-columns:minmax(0,1fr)}}
+.h1{font-size:clamp(42px,5.4vw,78px);line-height:.98;letter-spacing:-.045em;font-weight:700;margin:22px 0 0;overflow-wrap:anywhere}
+.h1 span{display:block}
+.hstats{display:flex;gap:28px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:1px solid #17223D}
+.hstats div{display:flex;flex-direction:column;gap:2px;font-size:14px;color:#8E9BB5}
+.hs-n{font-size:28px;color:#E6ECF7;font-weight:500}
+.graph{position:relative;border:1px solid #17223D;border-radius:22px;background:radial-gradient(circle at 50% 42%,rgba(0,174,239,.10),rgba(12,20,40,.6) 60%),#0A1122;padding:18px;overflow:hidden}
+.g-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{min-height:44px;padding:0 14px;border-radius:10px;border:1px solid #17223D;background:#060B18;color:#E6ECF7;font-size:12.5px;letter-spacing:.06em;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+.chip:hover{border-color:#00AEEF}
+.net{width:100%;height:auto;display:block;margin-top:6px}
+.node{cursor:pointer;transition:opacity .35s}
+.node:focus{outline:none}
+.node:focus-visible .core{stroke-width:4}
+.core{transition:fill .3s,stroke .3s;stroke-width:2}
+.halo{fill:none;stroke-width:2;animation:halo 2.6s ease-out infinite;transform-box:fill-box;transform-origin:center}
+.eb{stroke-width:1.6;transition:stroke .3s,opacity .3s}
+.pk{fill:none;stroke-width:4.5;stroke-linecap:round;stroke-dasharray:3 97;animation:pk 2.6s linear infinite}
+.pk2{animation-delay:-1.3s}
+.spin{animation:spin 80s linear infinite;transform-box:fill-box;transform-origin:center}
+.nl{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.1em;font-weight:500;transition:fill .3s}
+.npanel{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px;margin-top:8px;padding:20px;border-radius:14px;background:#060B18;border:1px solid #17223D}
+@media(max-width:640px){.npanel{grid-template-columns:minmax(0,1fr)}}
+.np-k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8E9BB5}
+.np-t{font-size:26px;font-weight:600;letter-spacing:-.02em;margin-top:4px}
+.np-d{color:#8E9BB5;font-size:15px;margin-top:6px}
+.np-a{display:inline-flex;align-items:center;min-height:44px;color:#00AEEF;text-decoration:none;font-weight:600;font-size:15px}
+.rx a.np-a{color:#00AEEF}
+.np-a:hover{text-decoration:underline}
+.np-list{display:flex;flex-direction:column;gap:8px;justify-content:center}
+.np-i{display:flex;align-items:center;gap:10px;font-size:14.5px;padding:8px 12px;border-radius:8px;background:#0C1428;border:1px solid #17223D}
+.dot-s{width:6px;height:6px;border-radius:50%;background:#3DFFA2;flex:none;box-shadow:0 0 8px #3DFFA2}
+.trace{border-top:1px solid #17223D;border-bottom:1px solid #17223D;background:#050915;padding:28px 0 22px}
+.trace svg{width:100%;height:auto;display:block}
+.tr-base{fill:none;stroke:#17223D;stroke-width:2}
+.tr-scan{fill:none;stroke:#00AEEF;stroke-width:2;stroke-dasharray:180 820;animation:scan 6s linear infinite}
+.tr-pk{fill:none;stroke-width:5;stroke-linecap:round;stroke-dasharray:1.2 98.8;animation:pk 6s linear infinite}
+.tr-lbl{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:10px}
+.tr-lbl div{font-size:13px;color:#8E9BB5}
+.tr-lbl b{display:block;color:#E6ECF7;font-weight:600;font-size:15px}
+@media(max-width:700px){.tr-lbl{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.marq{overflow:hidden;border-bottom:1px solid #17223D;padding:18px 0;white-space:nowrap}
+.marq-in{display:inline-flex;gap:48px;animation:marq 38s linear infinite;padding-left:48px}
+.marq-in span{display:inline-flex;align-items:center;gap:14px;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#8E9BB5}
+.marq-in i{width:6px;height:6px;border-radius:50%;background:#00AEEF;display:inline-block}
+.ben{padding:28px;display:flex;flex-direction:column;gap:14px;min-height:250px}
+.ben h3{font-size:21px;margin:8px 0 0;letter-spacing:-.01em;font-weight:600}
+.ben p{color:#8E9BB5;font-size:15.5px}
+.ben-n{font-size:12px;color:#8E9BB5;letter-spacing:.1em}
+.pil-g{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:24px;margin-top:48px}
+@media(max-width:900px){.pil-g{grid-template-columns:minmax(0,1fr)}}
+.tabs{display:flex;flex-direction:column;gap:10px}
+.tab{text-align:left;min-height:76px;padding:16px 20px;border-radius:14px;border:1px solid #17223D;background:transparent;color:#E6ECF7;font-family:inherit;font-size:18px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:16px;transition:border-color .25s,background .25s,transform .25s}
+.tab:hover{transform:translateX(4px);border-color:#2A3A60}
+.tab .mono{font-size:12px;color:#8E9BB5;font-weight:500}
+.pp{padding:clamp(24px,3vw,40px);position:relative;overflow:hidden}
+.pp-q{font-size:clamp(22px,2.2vw,30px);line-height:1.25;letter-spacing:-.02em;font-weight:500;margin-top:18px;max-width:640px}
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:10px;margin-top:30px}
+.svc-r{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-radius:10px;background:#060B18;border:1px solid #17223D;font-size:15px;animation:up .5s both}
+.sig{display:flex;align-items:flex-end;gap:2px;height:14px}
+.sig i{width:3px;background:#3DFFA2;border-radius:1px;display:block}
+.board{border-radius:22px;border:1px solid #17223D;background:#0A1122;overflow:hidden;margin-top:48px;box-shadow:0 40px 120px -60px rgba(0,174,239,.35)}
+.b-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 18px;border-bottom:1px solid #17223D;background:#0C1428}
+.b-g{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr)}
+@media(max-width:900px){.b-g{grid-template-columns:minmax(0,1fr)}}
+.feed{padding:16px 18px;border-right:1px solid #17223D;min-height:430px}
+.feed-row{display:grid;grid-template-columns:74px 104px minmax(0,1fr);gap:12px;align-items:center;padding:12px 10px;border-bottom:1px solid #17223D;font-size:14.5px;border-radius:8px}
+.feed-row .who{grid-column:3;font-size:11.5px;color:#8E9BB5;margin-top:-6px}
+@media(max-width:640px){.feed-row{grid-template-columns:minmax(0,1fr)}.feed-row .who{grid-column:1}}
+.ft{font-size:12px;color:#8E9BB5}
+.badge{display:inline-flex;justify-content:center;font-size:10.5px;letter-spacing:.08em;padding:4px 8px;border-radius:6px;border:1px solid;width:max-content}
+.kpis{padding:18px;display:flex;flex-direction:column;gap:14px}
+.kpi{padding:16px;border-radius:12px;background:#060B18;border:1px solid #17223D}
+.kpi-l{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#8E9BB5}
+.kpi-v{font-size:30px;font-weight:500;margin-top:4px}
+.bar{height:8px;border-radius:99px;background:#17223D;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:8px;border-radius:99px;transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.vel{display:flex;align-items:flex-end;gap:5px;height:72px;margin-top:10px}
+.vel i{flex:1;border-radius:3px 3px 0 0;display:block;transition:height .8s cubic-bezier(.2,.7,.2,1)}
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:24px;margin-top:48px}
+.term{background:#050915;border:1px solid #17223D;border-radius:12px;padding:18px;font-size:13.5px;line-height:1.9;min-height:200px}
+.term div{animation:lineIn 9s infinite both}
+.term .l2{animation-delay:.9s}.term .l3{animation-delay:1.8s}.term .l4{animation-delay:2.7s}.term .l5{animation-delay:3.6s}
+.cur{display:inline-block;width:8px;height:15px;background:#3DFFA2;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+.media{position:relative;border-radius:12px;overflow:hidden;border:1px solid #17223D}
+.media img{width:100%;height:300px;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.media:hover img{transform:scale(1.05)}
+.hud{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.hud span{background:rgba(6,11,24,.82);border:1px solid #2A3A60;border-radius:8px;padding:6px 10px;font-size:12px;color:#E6ECF7}
+.req{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.req div{padding:12px 14px;border:1px solid #17223D;border-radius:10px;font-size:14.5px;background:#060B18}
+.req b{display:block;font-size:11px;letter-spacing:.1em;color:#8E9BB5;font-weight:500;font-family:'JetBrains Mono',monospace}
+.lnk{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:#00AEEF;text-decoration:none;font-weight:600;margin-top:12px}
+.rx a.lnk{color:#00AEEF}
+.lnk:hover{gap:12px}
+.steps{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:56px}
+@media(max-width:800px){.steps{grid-template-columns:minmax(0,1fr)}.st-line{display:none}}
+.st-line{position:absolute;left:10%;right:10%;top:27px;height:2px;background:#17223D}
+.st-line i{display:block;height:2px;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.st{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;background:none;border:0;color:#E6ECF7;font-family:inherit;cursor:pointer;padding:0 6px 10px;text-align:center}
+.st-n{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:15px;border:2px solid;transition:all .3s;position:relative;z-index:1}
+.st:hover .st-n{transform:scale(1.08)}
+.st-t{font-size:15.5px;font-weight:600;line-height:1.3}
+.st-d{margin-top:28px;padding:28px;display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:24px;align-items:center}
+@media(max-width:800px){.st-d{grid-template-columns:minmax(0,1fr)}}
+.price{padding:30px;display:flex;flex-direction:column;gap:14px;position:relative}
+.price h3{margin:0;font-size:24px;font-weight:600}
+.amt{font-size:44px;font-weight:600;letter-spacing:-.03em;line-height:1}
+.amt small{font-size:15px;color:#8E9BB5;font-weight:400;letter-spacing:0}
+.save{font-size:13px;color:#3DFFA2}
+.pop{position:absolute;top:-13px;left:28px;background:#3DFFA2;color:#060B18;font-size:11px;letter-spacing:.1em;font-weight:700;padding:5px 10px;border-radius:6px}
+.pl{display:flex;flex-direction:column;gap:8px;font-size:15px;color:#8E9BB5}
+.pl div{display:flex;gap:10px;align-items:flex-start}
+.pl svg{flex:none;margin-top:4px}
+.quote{font-size:clamp(24px,2.8vw,38px);line-height:1.3;letter-spacing:-.02em;font-weight:500;max-width:980px;margin:28px 0 0}
+.cta-bg{background:linear-gradient(90deg,rgba(6,11,24,.97) 35%,rgba(6,11,24,.55)),url(assets/datacenter-corridor.webp) center/cover;border-radius:24px;border:1px solid #17223D;padding:clamp(40px,6vw,88px);overflow:hidden}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="rx">
+<div class="strip mono"><div class="wrap strip-in"><span>BAQUELIS · FLEXIBILITÉ. CONTINUITÉ. PERFORMANCE.</span><a href="Main.dc.html">Toutes les propositions →</a></div></div>
+<header class="hdr">
+<div class="wrap hdr-in">
+<a href="Reseau-Accueil.dc.html" class="logo" aria-label="Baquelis — accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M7 8 L23 6 L15 23 Z" fill="none" stroke="#2A3A60" stroke-width="1.6"></path><circle cx="7" cy="8" r="3.4" fill="#00AEEF"></circle><circle cx="23" cy="6" r="3.4" fill="#E6ECF7"></circle><circle class="logo-pulse" cx="15" cy="23" r="3.8" fill="#3DFFA2"></circle></svg><span>Baquelis</span></a>
+<nav class="nav" aria-label="Navigation principale"><a href="Reseau-Expertises.dc.html">Expertises</a><a href="Reseau-IA.dc.html">IA</a><a href="Reseau-Jeux.dc.html">Jeux &amp; Web3</a><a href="Reseau-Offres.dc.html">Offres</a><a href="Reseau-Contact.dc.html">Contact</a></nav>
+<div class="hdr-cta"><a class="btn btn-sm" href="Reseau-Contact.dc.html">Réserver un appel</a><button class="menu-btn" aria-label="Ouvrir ou fermer le menu" onClick="{{ toggleMenu }}"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h9"></path></svg></button></div>
+</div>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><nav class="mnav" aria-label="Navigation mobile"><a href="Reseau-Expertises.dc.html">Expertises</a><a href="Reseau-IA.dc.html">IA</a><a href="Reseau-Jeux.dc.html">Jeux &amp; Web3</a><a href="Reseau-Offres.dc.html">Offres</a><a href="Reseau-Contact.dc.html">Contact — Réserver un appel</a></nav></sc-if>
+</header>
+
+<main>
+<section class="hero gridbg">
+<div class="wrap hero-g">
+<div>
+<div class="eyebrow rv"><span class="dot" style="{{ ui.dotBg }}"></span>Excellence IA · réseau en ligne</div>
+<h1 class="h1"><span class="rv d1">Flexibilité.</span><span class="rv d2">Continuité.</span><span class="rv d3" style="{{ ui.accentText }}">Performance.</span></h1>
+<p class="lead rv d4">Améliorez les performances avec des équipes flexibles, un suivi en temps réel et une continuité garantie. Du code à la continuité, nous sécurisons chaque étape de votre parcours technologique.</p>
+<div class="rv d5" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px"><a class="btn" href="Reseau-Contact.dc.html" style="{{ ui.ctaBg }}">Commencer aujourd’hui <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></a><a class="btn btn-ghost" href="Reseau-Offres.dc.html">Voir les formules</a></div>
+<div class="hstats rv d5"><div><span class="mono hs-n">03</span><span>formules mensuelles</span></div><div><span class="mono hs-n">04</span><span>piliers d’engagement</span></div><div><span class="mono hs-n">06</span><span>cas d’usage IA</span></div></div>
+</div>
+
+<div class="graph rv d2">
+<div class="g-top"><span class="tag"><span class="dot" style="{{ ui.dotBg }}"></span>TOPOLOGIE · {{ panel.links }}</span>
+<div class="chips" role="group" aria-label="Choisir un nœud du réseau"><sc-for list="{{ chips }}" as="c" hint-placeholder-count="5"><button class="chip mono" style="{{ c.st }}" onClick="{{ c.pick }}" aria-pressed="{{ c.pr }}">{{ c.l }}</button></sc-for></div></div>
+<svg class="net" viewBox="0 0 640 520" role="img" aria-label="Graphe du réseau Baquelis : Vous au centre, relié aux nœuds Équipe, IA, Jeux et Cloud">
+<defs><radialGradient id="rglow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#00AEEF" stop-opacity=".16"></stop><stop offset="1" stop-color="#00AEEF" stop-opacity="0"></stop></radialGradient></defs>
+<circle cx="320" cy="265" r="240" fill="url(#rglow)"></circle>
+<circle cx="320" cy="265" r="150" fill="none" stroke="#17223D" stroke-dasharray="2 6"></circle>
+<circle class="spin" cx="320" cy="265" r="236" fill="none" stroke="#1E2C4D" stroke-dasharray="1 9"></circle>
+<g stroke="#17223D" stroke-width="1.2">
+<line x1="118" y1="118" x2="222" y2="44"></line><line x1="222" y1="44" x2="410" y2="40"></line><line x1="410" y1="40" x2="526" y2="104"></line><line x1="118" y1="118" x2="28" y2="262"></line><line x1="28" y1="262" x2="112" y2="410"></line><line x1="526" y1="104" x2="612" y2="250"></line><line x1="612" y1="250" x2="534" y2="404"></line><line x1="112" y1="410" x2="240" y2="490"></line><line x1="240" y1="490" x2="420" y2="488"></line><line x1="420" y1="488" x2="534" y2="404"></line><line x1="222" y1="44" x2="320" y2="265"></line><line x1="420" y1="488" x2="320" y2="265"></line>
+</g>
+<g fill="#2A3A60"><circle cx="222" cy="44" r="4"></circle><circle cx="410" cy="40" r="4"></circle><circle cx="28" cy="262" r="4"></circle><circle cx="612" cy="250" r="4"></circle><circle cx="240" cy="490" r="4"></circle><circle cx="420" cy="488" r="4"></circle></g>
+<line class="eb" x1="320" y1="265" x2="118" y2="118" style="{{ edge.e1.b }}"></line>
+<line class="eb" x1="320" y1="265" x2="526" y2="104" style="{{ edge.e2.b }}"></line>
+<line class="eb" x1="320" y1="265" x2="112" y2="410" style="{{ edge.e3.b }}"></line>
+<line class="eb" x1="320" y1="265" x2="534" y2="404" style="{{ edge.e4.b }}"></line>
+<line class="eb" x1="118" y1="118" x2="526" y2="104" style="{{ edge.e5.b }}"></line>
+<line class="eb" x1="526" y1="104" x2="534" y2="404" style="{{ edge.e6.b }}"></line>
+<line class="eb" x1="534" y1="404" x2="112" y2="410" style="{{ edge.e7.b }}"></line>
+<line class="eb" x1="112" y1="410" x2="118" y2="118" style="{{ edge.e8.b }}"></line>
+<line class="pk" pathLength="100" x1="320" y1="265" x2="118" y2="118" style="{{ edge.e1.p }}"></line>
+<line class="pk pk2" pathLength="100" x1="118" y1="118" x2="320" y2="265" style="{{ edge.e1.p }}"></line>
+<line class="pk" pathLength="100" x1="320" y1="265" x2="526" y2="104" style="{{ edge.e2.p }}"></line>
+<line class="pk pk2" pathLength="100" x1="526" y1="104" x2="320" y2="265" style="{{ edge.e2.p }}"></line>
+<line class="pk" pathLength="100" x1="320" y1="265" x2="112" y2="410" style="{{ edge.e3.p }}"></line>
+<line class="pk pk2" pathLength="100" x1="112" y1="410" x2="320" y2="265" style="{{ edge.e3.p }}"></line>
+<line class="pk" pathLength="100" x1="320" y1="265" x2="534" y2="404" style="{{ edge.e4.p }}"></line>
+<line class="pk pk2" pathLength="100" x1="534" y1="404" x2="320" y2="265" style="{{ edge.e4.p }}"></line>
+<line class="pk" pathLength="100" x1="118" y1="118" x2="526" y2="104" style="{{ edge.e5.p }}"></line>
+<line class="pk" pathLength="100" x1="526" y1="104" x2="534" y2="404" style="{{ edge.e6.p }}"></line>
+<line class="pk" pathLength="100" x1="534" y1="404" x2="112" y2="410" style="{{ edge.e7.p }}"></line>
+<line class="pk" pathLength="100" x1="112" y1="410" x2="118" y2="118" style="{{ edge.e8.p }}"></line>
+
+<g class="node" style="{{ nd.equipe.g }}" onClick="{{ nd.equipe.pick }}" onMouseEnter="{{ nd.equipe.pick }}" tabindex="0" role="button" aria-label="Nœud Équipe">
+<circle class="halo" cx="118" cy="118" r="27" style="{{ nd.equipe.halo }}"></circle>
+<circle class="core" cx="118" cy="118" r="24" style="{{ nd.equipe.core }}"></circle>
+<g transform="translate(109 109)" fill="none" stroke-width="1.6" stroke-linecap="round" style="{{ nd.equipe.ic }}"><circle cx="6" cy="6" r="3"></circle><circle cx="13" cy="7" r="2.4"></circle><path d="M1 16c0-3 2.4-5 5-5s5 2 5 5M11.5 16c0-2.2 1.3-4 3.2-4s2.8 1.6 2.8 4"></path></g>
+<text x="118" y="168" text-anchor="middle" class="nl" style="{{ nd.equipe.lbl }}">ÉQUIPE</text>
+</g>
+<g class="node" style="{{ nd.ia.g }}" onClick="{{ nd.ia.pick }}" onMouseEnter="{{ nd.ia.pick }}" tabindex="0" role="button" aria-label="Nœud IA">
+<circle class="halo" cx="526" cy="104" r="27" style="{{ nd.ia.halo }}"></circle>
+<circle class="core" cx="526" cy="104" r="24" style="{{ nd.ia.core }}"></circle>
+<g transform="translate(517 95)" fill="none" stroke-width="1.6" stroke-linecap="round" style="{{ nd.ia.ic }}"><rect x="4" y="4" width="10" height="10" rx="2"></rect><path d="M9 1v3M9 14v3M1 9h3M14 9h3M7 9h4"></path></g>
+<text x="526" y="154" text-anchor="middle" class="nl" style="{{ nd.ia.lbl }}">IA</text>
+</g>
+<g class="node" style="{{ nd.jeux.g }}" onClick="{{ nd.jeux.pick }}" onMouseEnter="{{ nd.jeux.pick }}" tabindex="0" role="button" aria-label="Nœud Jeux">
+<circle class="halo" cx="112" cy="410" r="27" style="{{ nd.jeux.halo }}"></circle>
+<circle class="core" cx="112" cy="410" r="24" style="{{ nd.jeux.core }}"></circle>
+<g transform="translate(103 401)" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="{{ nd.jeux.ic }}"><path d="M4 5h10a3 3 0 0 1 3 3v2.5a2.8 2.8 0 0 1-4.8 2L11 11H7l-1.2 1.5A2.8 2.8 0 0 1 1 10.5V8a3 3 0 0 1 3-3z"></path><path d="M5 7.5v2.5M3.8 8.7h2.5M12.5 8.2h.1M14 9.6h.1"></path></g>
+<text x="112" y="460" text-anchor="middle" class="nl" style="{{ nd.jeux.lbl }}">JEUX</text>
+</g>
+<g class="node" style="{{ nd.cloud.g }}" onClick="{{ nd.cloud.pick }}" onMouseEnter="{{ nd.cloud.pick }}" tabindex="0" role="button" aria-label="Nœud Cloud">
+<circle class="halo" cx="534" cy="404" r="27" style="{{ nd.cloud.halo }}"></circle>
+<circle class="core" cx="534" cy="404" r="24" style="{{ nd.cloud.core }}"></circle>
+<g transform="translate(525 395)" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="{{ nd.cloud.ic }}"><path d="M5 14h8.2a3.4 3.4 0 0 0 .4-6.8A5 5 0 0 0 4 8.2 2.9 2.9 0 0 0 5 14z"></path></g>
+<text x="534" y="454" text-anchor="middle" class="nl" style="{{ nd.cloud.lbl }}">CLOUD</text>
+</g>
+<g class="node" style="{{ nd.vous.g }}" onClick="{{ nd.vous.pick }}" onMouseEnter="{{ nd.vous.pick }}" tabindex="0" role="button" aria-label="Nœud Vous">
+<circle class="halo" cx="320" cy="265" r="38" style="{{ nd.vous.halo }}"></circle>
+<circle class="core" cx="320" cy="265" r="34" style="{{ nd.vous.core }}"></circle>
+<g transform="translate(307 252)" fill="none" stroke-width="1.8" stroke-linecap="round" style="{{ nd.vous.ic }}"><circle cx="13" cy="13" r="11"></circle><circle cx="13" cy="13" r="5"></circle><path d="M13 0v4M13 22v4M0 13h4M22 13h4"></path></g>
+<text x="320" y="326" text-anchor="middle" class="nl" style="{{ nd.vous.lbl }}">VOUS</text>
+</g>
+<text x="16" y="512" class="nl" fill="#8E9BB5" style="font-size:11px">FLUX TEMPS RÉEL · REPRÉSENTATION ILLUSTRATIVE</text>
+</svg>
+<div class="npanel">
+<div><div class="mono np-k">{{ panel.k }}</div><div class="np-t">{{ panel.t }}</div><p class="np-d">{{ panel.d }}</p><a class="np-a" href="{{ panel.h }}">{{ panel.l }} →</a></div>
+<div class="np-list"><sc-for list="{{ panel.items }}" as="it" hint-placeholder-count="4"><div class="np-i"><span class="dot-s"></span>{{ it }}</div></sc-for></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="trace" aria-label="Du code à la continuité">
+<div class="wrap">
+<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><span class="eyebrow">Du code à la continuité · trace du parcours</span><span class="tag illu">TRACE ILLUSTRATIVE</span></div>
+<svg viewBox="0 0 1200 130" aria-hidden="true" style="margin-top:14px">
+<polyline class="tr-base" points="0,100 80,98 120,64 170,88 240,56 300,76 360,36 420,82 480,60 540,94 600,48 660,72 720,28 780,66 840,54 900,88 960,42 1020,62 1080,34 1140,58 1200,48"></polyline>
+<polyline class="tr-scan" pathLength="1000" points="0,100 80,98 120,64 170,88 240,56 300,76 360,36 420,82 480,60 540,94 600,48 660,72 720,28 780,66 840,54 900,88 960,42 1020,62 1080,34 1140,58 1200,48"></polyline>
+<polyline class="tr-pk" pathLength="100" style="{{ ui.stroke }}" points="0,100 80,98 120,64 170,88 240,56 300,76 360,36 420,82 480,60 540,94 600,48 660,72 720,28 780,66 840,54 900,88 960,42 1020,62 1080,34 1140,58 1200,48"></polyline>
+<g fill="#060B18" stroke="#00AEEF" stroke-width="2"><circle cx="120" cy="64" r="7"></circle><circle cx="360" cy="36" r="7"></circle><circle cx="600" cy="48" r="7"></circle><circle cx="840" cy="54" r="7"></circle><circle cx="1080" cy="34" r="7"></circle></g>
+</svg>
+<div class="tr-lbl mono"><div><b>Code</b>architecture évolutive</div><div><b>Intégration</b>continue</div><div><b>Qualité</b>assurance &amp; revue</div><div><b>Production</b>cloud-native</div><div><b>Continuité</b>garantie</div></div>
+</div>
+</section>
+
+<div class="marq" aria-hidden="true"><div class="marq-in mono">
+<span><i></i>Équipes dédiées</span><span><i></i>Modèles affinés</span><span><i></i>Agents autonomes</span><span><i></i>Jeux &amp; Web3</span><span><i></i>Cloud-native</span><span><i></i>Suivi en temps réel</span><span><i></i>Transparence radicale</span>
+<span><i></i>Équipes dédiées</span><span><i></i>Modèles affinés</span><span><i></i>Agents autonomes</span><span><i></i>Jeux &amp; Web3</span><span><i></i>Cloud-native</span><span><i></i>Suivi en temps réel</span><span><i></i>Transparence radicale</span>
+</div></div>
+
+<section class="sec">
+<div class="wrap">
+<div class="eyebrow">Ce que le réseau vous apporte</div>
+<h2 class="h2">Concentrez-vous sur l’essentiel.<br>Nous faisons circuler le reste.</h2>
+<div class="grid" style="margin-top:48px">
+<article class="card lift ben"><div style="display:flex;justify-content:space-between;align-items:center"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M3 12h3M18 12h3"></path><circle cx="12" cy="12" r="4"></circle></svg></div><span class="mono ben-n">01</span></div><h3>Automatiser les tâches fastidieuses</h3><p>Rationalisez vos opérations grâce à l’automatisation intelligente.</p></article>
+<article class="card lift ben"><div style="display:flex;justify-content:space-between;align-items:center"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.2"></circle></svg></div><span class="mono ben-n">02</span></div><h3>Se concentrer sur l’essentiel</h3><p>Gardez le cap sur la valeur métier : nous nous occupons du reste.</p></article>
+<article class="card lift ben"><div style="display:flex;justify-content:space-between;align-items:center"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="6" cy="7" r="3"></circle><circle cx="18" cy="7" r="3"></circle><circle cx="12" cy="18" r="3"></circle><path d="M8.5 8.8l2.2 6.6M15.5 8.8l-2.2 6.6M9 7h6"></path></svg></div><span class="mono ben-n">03</span></div><h3>Outils collaboratifs</h3><p>Un travail d’équipe renforcé, vos experts branchés sur vos canaux.</p></article>
+<article class="card lift ben"><div style="display:flex;justify-content:space-between;align-items:center"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 3 6-8"></path><path d="M14 6h4v4"></path></svg></div><span class="mono ben-n">04</span></div><h3>Transformer les opérations</h3><p>Visez l’efficacité maximale, de la première ligne de code à la production.</p></article>
+</div>
+</div>
+</section>
+
+<section class="sec gridbg" style="border-top:1px solid #17223D;border-bottom:1px solid #17223D">
+<div class="wrap">
+<div class="eyebrow">Solutions éprouvées · 4 piliers</div>
+<h2 class="h2">Quatre piliers, un seul réseau.</h2>
+<p class="lead">Sélectionnez un pilier pour afficher ses services actifs.</p>
+<div class="pil-g">
+<div class="tabs" role="tablist" aria-label="Les 4 piliers"><sc-for list="{{ piliers }}" as="p" hint-placeholder-count="4"><button class="tab" role="tab" style="{{ p.st }}" onClick="{{ p.pick }}" aria-selected="{{ p.sel }}"><span class="mono">{{ p.n }}</span><span>{{ p.t }}</span></button></sc-for></div>
+<div class="card pp">
+<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><span class="tag"><span class="dot" style="{{ ui.dotBg }}"></span>PILIER {{ pil.n }} · ACTIF</span><span class="mono" style="font-size:12px;color:#8E9BB5">4 services en ligne</span></div>
+<div class="h2" style="font-size:clamp(28px,3vw,40px);margin-top:22px">{{ pil.t }}</div>
+<p class="pp-q" style="color:#8E9BB5">« {{ pil.q }} »</p>
+<div class="svc"><sc-for list="{{ pil.items }}" as="it" hint-placeholder-count="4"><div class="svc-r" style="{{ it.st }}"><span>{{ it.l }}</span><span class="sig" aria-hidden="true"><i style="height:5px"></i><i style="height:8px"></i><i style="height:11px"></i><i style="height:14px"></i></span></div></sc-for></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec">
+<div class="wrap">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+<div><div class="eyebrow">Transparence radicale</div><h2 class="h2">Vos progrès, visibles<br>en temps réel.</h2><p class="lead">Pas de coûts cachés ni de mises à jour vagues : tickets, commits et rapports remontent en continu dans votre tableau de bord.</p></div>
+<span class="tag illu">FLUX ILLUSTRATIF — DONNÉES FICTIVES</span>
+</div>
+<div class="board">
+<div class="b-bar"><div style="display:flex;gap:12px;align-items:center"><span style="display:flex;gap:6px"><i style="width:10px;height:10px;border-radius:50%;background:#2A3A60;display:block"></i><i style="width:10px;height:10px;border-radius:50%;background:#2A3A60;display:block"></i><i style="width:10px;height:10px;border-radius:50%;background:#2A3A60;display:block"></i></span><span class="mono" style="font-size:13px">projet-client / tableau-de-bord</span></div>
+<div style="display:flex;gap:10px;align-items:center"><span class="tag" style="{{ board.stTag }}"><span class="dot" style="{{ board.dot }}"></span>{{ board.status }}</span><button class="btn btn-ghost btn-sm mono" onClick="{{ toggleLive }}" aria-label="Mettre en pause ou reprendre le flux" style="font-size:13px">{{ board.btn }}</button></div></div>
+<div class="b-g">
+<div class="feed" aria-live="polite">
+<div class="mono" style="display:flex;justify-content:space-between;font-size:11.5px;color:#8E9BB5;letter-spacing:.08em;padding:0 10px 10px"><span>HEURE · TYPE · ÉVÉNEMENT</span><span>{{ board.count }}</span></div>
+<sc-for list="{{ feed }}" as="f" hint-placeholder-count="6"><div class="feed-row" style="{{ f.row }}"><span class="mono ft">{{ f.time }}</span><span class="mono badge" style="{{ f.bs }}">{{ f.type }}</span><span>{{ f.msg }}</span><span class="mono who">{{ f.who }}</span></div></sc-for>
+</div>
+<div class="kpis">
+<div class="kpi"><div class="mono kpi-l">Sprint en cours · avancement</div><div class="mono kpi-v">{{ board.prog }}</div><div class="bar"><i style="{{ board.progBar }}"></i></div></div>
+<div class="kpi"><div class="mono kpi-l">Tickets fermés · cette semaine</div><div class="mono kpi-v">{{ board.closed }}</div></div>
+<div class="kpi"><div class="mono kpi-l">Vélocité · 12 derniers jours</div><div class="vel"><sc-for list="{{ vel }}" as="v" hint-placeholder-count="12"><i style="{{ v }}"></i></sc-for></div></div>
+<div class="kpi"><div class="mono kpi-l">Prochain rapport</div><div style="font-size:16px;margin-top:6px">Mensuel, hebdomadaire ou quotidien selon votre formule</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec" style="padding-top:0">
+<div class="wrap">
+<div class="eyebrow">Deux nœuds à haute intensité</div>
+<h2 class="h2">IA appliquée &amp; jeux temps réel.</h2>
+<div class="duo">
+<article class="card lift" style="padding:28px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span class="tag">INTELLIGENCE ARTIFICIELLE</span><span class="tag illu">DÉMONSTRATION</span></div>
+<h3 style="font-size:28px;margin:18px 0 8px;letter-spacing:-.02em;font-weight:600">Transformez la productivité avec les agents IA</h3>
+<p style="color:#8E9BB5">Modèles affinés sur vos données, agents autonomes, intégration à vos processus. Notre promesse : une productivité qui peut être multipliée par 10.</p>
+<div class="term mono" style="margin-top:20px">
+<div><span style="color:#8E9BB5">atom@baquelis</span> <span style="color:#00AEEF">›</span> trier les demandes du support</div>
+<div class="l2"><span style="color:#00AEEF">↳</span> lecture de la file et du contexte client</div>
+<div class="l3"><span style="color:#00AEEF">↳</span> classification par intention et urgence</div>
+<div class="l4"><span style="color:#00AEEF">↳</span> rédaction des réponses proposées</div>
+<div class="l5"><span style="color:#3DFFA2">✓</span> prêtes pour validation humaine <span class="cur"></span></div>
+</div>
+<a class="lnk" href="Reseau-IA.dc.html">Explorer l’IA et la démo ATOM →</a>
+</article>
+<article class="card lift" style="padding:28px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span class="tag">JEUX &amp; WEB3</span><span class="tag">PREUVE D’EXCELLENCE</span></div>
+<h3 style="font-size:28px;margin:18px 0 8px;letter-spacing:-.02em;font-weight:600">Les jeux sont les applications les plus difficiles</h3>
+<p style="color:#8E9BB5">Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique.</p>
+<div class="media" style="margin-top:20px"><img src="assets/controller-neon.webp" alt="Manette de jeu éclairée en violet et cyan"><div class="hud mono"><span>TEMPS RÉEL</span><span>ÉTAT SYNCHRONISÉ</span><span>ANTI-TRICHE</span></div></div>
+<div class="req"><div><b>01</b>Performance temps réel</div><div><b>02</b>Architecture complexe</div><div><b>03</b>Multijoueur évolutif</div><div><b>04</b>Sécurité &amp; anti-triche</div></div>
+<a class="lnk" href="Reseau-Jeux.dc.html">Voir l’expertise Jeux &amp; Web3 →</a>
+</article>
+</div>
+</div>
+</section>
+
+<section class="sec gridbg" style="border-top:1px solid #17223D;border-bottom:1px solid #17223D">
+<div class="wrap">
+<div class="eyebrow">Méthode · 5 étapes</div>
+<h2 class="h2">Connecté en cinq sauts.</h2>
+<div class="steps">
+<div class="st-line" aria-hidden="true"><i style="{{ method.line }}"></i></div>
+<sc-for list="{{ steps }}" as="s" hint-placeholder-count="5"><button class="st" onClick="{{ s.pick }}" aria-pressed="{{ s.pr }}"><span class="st-n" style="{{ s.st }}">{{ s.n }}</span><span class="st-t">{{ s.t }}</span></button></sc-for>
+</div>
+<div class="card st-d">
+<div><div class="mono" style="font-size:12px;color:#8E9BB5;letter-spacing:.1em">ÉTAPE {{ method.n }} / 05</div><div style="font-size:26px;font-weight:600;margin-top:6px;letter-spacing:-.02em">{{ method.t }}</div><p style="color:#8E9BB5;margin-top:8px">{{ method.d }}</p></div>
+<div class="kpi"><div class="mono kpi-l">Délai</div><div style="font-size:18px;margin-top:6px">{{ method.delai }}</div></div>
+</div>
+</div>
+</section>
+
+<section class="sec">
+<div class="wrap">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap"><div><div class="eyebrow">Formules mensuelles</div><h2 class="h2">Choisissez votre bande passante.</h2></div><a class="btn btn-ghost" href="Reseau-Offres.dc.html">Comparer les offres</a></div>
+<div class="grid" style="margin-top:56px;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))">
+<article class="card lift price"><span class="mono" style="font-size:12px;color:#8E9BB5;letter-spacing:.1em">STARTUPS &amp; PME</span><h3>Intégration</h3><div class="amt">4&nbsp;500&nbsp;€<small> /mois</small></div><div class="save mono">Économisez 1&nbsp;500&nbsp;€/mois vs recrutement</div><div class="pl"><div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3DFFA2" stroke-width="2"><path d="M2 7l3 3 7-7"></path></svg>1 profil technique dédié</div><div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3DFFA2" stroke-width="2"><path d="M2 7l3 3 7-7"></path></svg>40 h/semaine · rapports mensuels</div><div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3DFFA2" stroke-width="2"><path d="M2 7l3 3 7-7"></path></svg>Engagement minimum 12 mois</div></div></article>
+<article class="card lift price" style="border-color:#3DFFA2;box-shadow:0 30px 80px -40px rgba(61,255,162,.45)"><span class="pop mono">PLUS POPULAIRE</span><span class="mono" style="font-size:12px;color:#8E9BB5;letter-spacing:.1em">PROJETS ÉVOLUTIFS</span><h3>Flex</h3><div class="amt">6&nbsp;200&nbsp;€<small> /mois</small></div><div class="save mono">Économisez 2&nbsp;300&nbsp;€/mois vs recrutement</div><div class="pl"><div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3DFFA2" stroke-width="2"><path d="M2 7l3 3 7-7"></path></svg>1 profil senior, changement rapide</div><div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3DFFA2" stroke-width="2"><path d="M2 7l3 3 7-7"></path></svg>50 h/semaine · rapports hebdomadaires</div><div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3DFFA2" stroke-width="2"><path d="M2 7l3 3 7-7"></path></svg>Engagement minimum 6 mois</div></div></article>
+<article class="card lift price"><span class="mono" style="font-size:12px;color:#8E9BB5;letter-spacing:.1em">GRANDES ENTREPRISES</span><h3>Performance</h3><div class="amt">18&nbsp;900&nbsp;€<small> /mois</small></div><div class="save mono">Économisez 12&nbsp;000&nbsp;€/mois vs recrutement</div><div class="pl"><div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3DFFA2" stroke-width="2"><path d="M2 7l3 3 7-7"></path></svg>Équipe de 5 experts seniors</div><div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3DFFA2" stroke-width="2"><path d="M2 7l3 3 7-7"></path></svg>Couverture 24/7 · rapports quotidiens</div><div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3DFFA2" stroke-width="2"><path d="M2 7l3 3 7-7"></path></svg>Engagement minimum 2 mois</div></div></article>
+</div>
+</div>
+</section>
+
+<section class="sec gridbg" style="border-top:1px solid #17223D">
+<div class="wrap">
+<div class="eyebrow">Témoignage · signal reçu</div>
+<blockquote class="quote">« Cette plateforme a transformé la façon dont nous gérons nos projets. Son design intuitif et ses fonctionnalités puissantes ont rationalisé notre flux de travail et amélioré la collaboration d’équipe. C’est vraiment un game-changer pour nos opérations. »</blockquote>
+<div style="display:flex;align-items:center;gap:14px;margin-top:32px"><span style="width:48px;height:48px;border-radius:50%;background:#0C1428;border:1px solid #2A3A60;display:flex;align-items:center;justify-content:center;font-weight:600">LS</span><div><div style="font-weight:600">Laura S.</div><div style="color:#8E9BB5;font-size:15px">Responsable des Opérations</div></div></div>
+</div>
+</section>
+
+<section class="sec" style="padding-top:0">
+<div class="wrap">
+<div class="cta-bg">
+<div class="eyebrow"><span class="dot" style="{{ ui.dotBg }}"></span>Prêt à vous connecter</div>
+<h2 class="h2" style="max-width:720px">Prêt à transformer votre entreprise ?</h2>
+<p class="lead">Un appel découverte suffit pour cadrer votre besoin et choisir la formule adaptée.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px"><a class="btn" href="Reseau-Contact.dc.html" style="{{ ui.ctaBg }}">Commencer aujourd’hui</a><a class="btn btn-ghost" href="Reseau-Contact.dc.html">Nous contacter</a></div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="ftr">
+<div class="wrap">
+<div class="ftr-g">
+<div><a href="Reseau-Accueil.dc.html" class="logo" aria-label="Baquelis — accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M7 8 L23 6 L15 23 Z" fill="none" stroke="#2A3A60" stroke-width="1.6"></path><circle cx="7" cy="8" r="3.4" fill="#00AEEF"></circle><circle cx="23" cy="6" r="3.4" fill="#E6ECF7"></circle><circle cx="15" cy="23" r="3.8" fill="#3DFFA2"></circle></svg><span>Baquelis</span></a><p style="color:#8E9BB5;margin-top:12px;max-width:280px">Flexibilité. Continuité. Performance. Excellence IA par la technologie.</p><p style="margin-top:16px;font-size:14px;color:#8E9BB5">31 B avenue Maréchal Foch<br>06000 Nice</p><p class="mono" style="margin-top:8px;font-size:13px">[contact@domaine-baquelis]</p></div>
+<div><h4>Navigation</h4><div class="ftr-l"><a href="Reseau-Expertises.dc.html">Expertises</a><a href="Reseau-IA.dc.html">Intelligence artificielle</a><a href="Reseau-Jeux.dc.html">Jeux &amp; Web3</a><a href="Reseau-Offres.dc.html">Offres</a><a href="Reseau-Contact.dc.html">Contact</a></div></div>
+<div><h4>Offres</h4><div class="ftr-l"><a href="Reseau-Offres.dc.html">Intégration — 4&nbsp;500&nbsp;€/mois</a><a href="Reseau-Offres.dc.html">Flex — 6&nbsp;200&nbsp;€/mois</a><a href="Reseau-Offres.dc.html">Performance — 18&nbsp;900&nbsp;€/mois</a></div></div>
+<div><h4>Société</h4><div class="ftr-l" style="color:#8E9BB5;font-size:14px"><span style="display:block;padding:9px 0">[RAISON SOCIALE]</span><span style="display:block;padding:9px 0">TVA : [N° TVA]</span><a href="Main.dc.html">Toutes les propositions</a></div></div>
+</div>
+<div class="ftr-b mono"><span>© 2026 Baquelis</span><span>Proposition de refonte — concept · Direction 4 · Réseau</span></div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":8200},"accent":{"editor":"color","default":"#3DFFA2","options":["#3DFFA2","#00AEEF","#FFB020"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu: false, node: 'vous', pilier: 0, etape: 0, tick: 0, live: true };
+  }
+  componentDidMount(){
+    this.timer = setInterval(() => { if (this.state.live) this.setState({ tick: this.state.tick + 1 }); }, 2200);
+  }
+  componentWillUnmount(){ clearInterval(this.timer); }
+  renderVals(){
+    const s = this.state;
+    const A = (this.props && this.props.accent) || '#3DFFA2';
+    const NODES = {
+      vous: { k: 'Nœud central', t: 'Vous', d: 'Votre entreprise reste au centre du réseau : chaque équipe, chaque modèle, chaque déploiement vous renvoie un signal clair.', i: ['Suivi des progrès en temps réel', 'Rapports réguliers', 'Tarification transparente', 'Communication ouverte'], h: 'Reseau-Offres.dc.html', l: 'Voir les formules' },
+      equipe: { k: 'Équipes dédiées', t: 'Équipe', d: 'Partenariat, pas d’externalisation : nos experts deviennent une extension de votre équipe.', i: ['Intégration d’équipe dédiée', 'Engagement à long terme', 'Alignement culturel', 'Communication fluide'], h: 'Reseau-Expertises.dc.html', l: 'Nos expertises' },
+      ia: { k: 'Intelligence artificielle', t: 'IA', d: 'Des modèles affinés sur vos données et des agents autonomes qui exécutent, décident et s’adaptent.', i: ['Affinage de modèles', 'Agents autonomes', 'Intégration métier', 'Démo ATOM'], h: 'Reseau-IA.dc.html', l: 'Explorer l’IA' },
+      jeux: { k: 'Jeux & Web3', t: 'Jeux', d: 'Les jeux sont les applications les plus difficiles : les maîtriser prouve que nous pouvons relever n’importe quel défi technique.', i: ['Performance temps réel', 'Architecture complexe', 'Multijoueur évolutif', 'Sécurité & anti-triche'], h: 'Reseau-Jeux.dc.html', l: 'Jeux & Web3' },
+      cloud: { k: 'Cloud & performance', t: 'Cloud', d: 'Nous ne livrons pas seulement du code : nous construisons des systèmes évolutifs qui grandissent avec votre entreprise.', i: ['Architecture évolutive', 'Solutions cloud-native', 'Pile technologique moderne', 'Optimisation des performances'], h: 'Reseau-Expertises.dc.html', l: 'Solutions éprouvées' }
+    };
+    const NB = { vous: ['equipe', 'ia', 'jeux', 'cloud'], equipe: ['vous', 'ia', 'jeux'], ia: ['vous', 'equipe', 'cloud'], jeux: ['vous', 'equipe', 'cloud'], cloud: ['vous', 'ia', 'jeux'] };
+    const E = { e1: ['vous', 'equipe'], e2: ['vous', 'ia'], e3: ['vous', 'jeux'], e4: ['vous', 'cloud'], e5: ['equipe', 'ia'], e6: ['ia', 'cloud'], e7: ['cloud', 'jeux'], e8: ['jeux', 'equipe'] };
+    const edge = {};
+    Object.keys(E).forEach(k => {
+      const on = E[k].indexOf(s.node) > -1;
+      edge[k] = {
+        b: on ? 'stroke:' + A + ';opacity:.9' : 'stroke:#22325A;opacity:.9',
+        p: on ? 'stroke:' + A + ';animation-duration:1.3s' : 'stroke:#00AEEF;opacity:.4'
+      };
+    });
+    const nd = {};
+    Object.keys(NODES).forEach(k => {
+      const act = k === s.node;
+      const near = act || NB[s.node].indexOf(k) > -1;
+      nd[k] = {
+        g: 'opacity:' + (near ? 1 : 0.35),
+        core: act ? 'fill:' + A + ';stroke:' + A : 'fill:#0C1428;stroke:#00AEEF',
+        halo: act ? 'stroke:' + A : 'stroke:#00AEEF',
+        ic: act ? 'stroke:#060B18' : 'stroke:#E6ECF7',
+        lbl: act ? 'fill:' + A : 'fill:#E6ECF7',
+        pick: () => this.setState({ node: k })
+      };
+    });
+    const order = ['vous', 'equipe', 'ia', 'jeux', 'cloud'];
+    const chips = order.map(k => ({
+      l: NODES[k].t.toUpperCase(),
+      pr: k === s.node ? 'true' : 'false',
+      st: k === s.node ? 'border-color:' + A + ';color:' + A + ';background:#0C1428' : '',
+      pick: () => this.setState({ node: k })
+    }));
+    const N = NODES[s.node];
+    const panel = { k: N.k, t: N.t, d: N.d, h: N.h, l: N.l, items: N.i, links: NB[s.node].length + ' CONNEXIONS ACTIVES' };
+
+    const P = [
+      { n: '01', t: 'Solutions éprouvées', q: 'Nous ne livrons pas seulement du code — nous construisons des systèmes évolutifs qui grandissent avec votre entreprise.', i: ['Architecture évolutive', 'Pile technologique moderne', 'Solutions cloud-native', 'Optimisation des performances'] },
+      { n: '02', t: 'Partenariat, pas d’externalisation', q: 'Nos experts deviennent une extension de votre équipe.', i: ['Intégration d’équipe dédiée', 'Engagement à long terme', 'Alignement culturel', 'Communication fluide'] },
+      { n: '03', t: 'Rapidité avec précision', q: 'Du concept à la livraison, vite et sans compromis sur la qualité.', i: ['Prototypage rapide', 'Méthodologie agile', 'Assurance qualité', 'Intégration continue'] },
+      { n: '04', t: 'Transparence radicale', q: 'Pas de coûts cachés ni de mises à jour vagues : des progrès visibles en temps réel.', i: ['Suivi des progrès en temps réel', 'Tarification transparente', 'Rapports réguliers', 'Communication ouverte'] }
+    ];
+    const piliers = P.map((p, i) => ({
+      n: p.n, t: p.t, sel: i === s.pilier ? 'true' : 'false',
+      st: i === s.pilier ? 'background:#0C1428;border-color:' + A + ';box-shadow:inset 3px 0 0 ' + A : '',
+      pick: () => this.setState({ pilier: i })
+    }));
+    const cp = P[s.pilier];
+    const pil = { n: cp.n, t: cp.t, q: cp.q, items: cp.i.map((l, j) => ({ l: l, st: 'animation-delay:' + (j * 0.08) + 's' })) };
+
+    const POOL = [
+      ['COMMIT', 'feat(paiement) : validation des montants côté serveur', 'profil senior · Flex'],
+      ['TICKET', '#214 Accélérer le chargement du tableau de bord → en revue', 'équipe produit'],
+      ['DÉPLOI', 'Pré-production mise à jour — build vert', 'intégration continue'],
+      ['ALERTE', 'Temps de réponse API au-dessus du seuil — analyse en cours', 'supervision'],
+      ['REVUE', 'Revue de code approuvée par le Lead tech', 'Lead tech · Performance'],
+      ['TICKET', '#219 Agent IA : réponses support bilingues → terminé', 'équipe IA'],
+      ['COMMIT', 'fix(sync) : cohérence d’état entre clients connectés', 'profil senior · Flex'],
+      ['RAPPORT', 'Rapport hebdomadaire publié dans votre espace', 'Product Owner'],
+      ['ALERTE', 'Résolu — temps de réponse API revenu sous le seuil', 'supervision'],
+      ['TICKET', '#223 Ingestion des nouveaux formats de données → en cours', 'équipe data'],
+      ['COMMIT', 'perf(cache) : suppression des requêtes redondantes', 'profil dédié · Intégration'],
+      ['RAPPORT', 'Point quotidien partagé sur l’espace Slack dédié', 'Lead tech · Performance']
+    ];
+    const COL = { COMMIT: A, TICKET: '#00AEEF', 'DÉPLOI': A, ALERTE: '#FFB020', REVUE: '#00AEEF', RAPPORT: '#E6ECF7' };
+    const pad = x => (x < 10 ? '0' : '') + x;
+    const clock = t => { const sec = 9 * 3600 + 41 * 60 + t * 37; return pad(Math.floor(sec / 3600) % 24) + ':' + pad(Math.floor(sec / 60) % 60) + ':' + pad(sec % 60); };
+    const feed = [];
+    for (let k = 0; k < 6; k++) {
+      const t = s.tick - k;
+      const ev = POOL[((t % POOL.length) + POOL.length) % POOL.length];
+      const c = COL[ev[0]];
+      feed.push({
+        time: clock(t + 20), type: ev[0], msg: ev[1], who: ev[2],
+        bs: 'color:' + c + ';border-color:' + c,
+        row: k === 0 ? 'animation:' + (s.tick % 2 ? 'feedA' : 'feedB') + ' .7s ease both;background:rgba(61,255,162,.05)' : 'opacity:' + (1 - k * 0.11)
+      });
+    }
+    const prog = 38 + (s.tick * 3) % 58;
+    const vel = [];
+    for (let i = 0; i < 12; i++) {
+      const h = 18 + Math.round(50 * (0.5 + 0.5 * Math.sin((i + s.tick) * 0.85)));
+      vel.push('height:' + h + 'px;background:' + (i === 11 ? A : '#00AEEF') + ';opacity:' + (0.45 + i * 0.045));
+    }
+    const board = {
+      prog: prog + ' %',
+      progBar: 'width:' + prog + '%;background:linear-gradient(90deg,#00AEEF,' + A + ')',
+      closed: String(12 + Math.floor(s.tick / 2)),
+      count: (124 + s.tick) + ' événements',
+      status: s.live ? 'EN DIRECT' : 'EN PAUSE',
+      dot: s.live ? 'background:' + A : 'background:#FFB020;animation:none',
+      stTag: s.live ? '' : 'color:#FFB020;border-color:rgba(255,176,32,.5)',
+      btn: s.live ? 'Pause' : 'Reprendre'
+    };
+
+    const S = [
+      { t: 'Appel découverte', d: 'Nous écoutons vos objectifs, vos contraintes et votre contexte technique pour comprendre où le réseau doit se brancher.', delai: '[DÉLAI]' },
+      { t: 'Cadrage & choix de formule', d: 'Intégration, Flex ou Performance : nous choisissons ensemble le niveau d’engagement adapté à votre projet.', delai: '[DÉLAI]' },
+      { t: 'Sélection du profil ou de l’équipe', d: 'Un profil dédié, un profil senior ou une équipe de 5 experts seniors avec Lead tech et Product Owner.', delai: '[DÉLAI]' },
+      { t: 'Intégration à vos outils et rituels', d: 'Vos canaux, votre gestion de projet, vos cérémonies agiles : nos experts deviennent une extension de votre équipe.', delai: '[DÉLAI]' },
+      { t: 'Suivi temps réel & ajustements', d: 'Rapports réguliers, communication ouverte et changement de profil si nécessaire.', delai: 'Changement de profil sous 30 j (Intégration) ou 15 j (Flex)' }
+    ];
+    const steps = S.map((x, i) => ({
+      n: '0' + (i + 1), t: x.t, pr: i === s.etape ? 'true' : 'false',
+      st: i < s.etape ? 'border-color:' + A + ';background:#0C1428;color:' + A : (i === s.etape ? 'border-color:' + A + ';background:' + A + ';color:#060B18;box-shadow:0 0 0 6px rgba(61,255,162,.15)' : 'border-color:#2A3A60;background:#060B18;color:#8E9BB5'),
+      pick: () => this.setState({ etape: i })
+    }));
+    const cs = S[s.etape];
+    const method = { n: '0' + (s.etape + 1), t: cs.t, d: cs.d, delai: cs.delai, line: 'width:' + (s.etape * 25) + '%;background:' + A };
+
+    return {
+      menuOpen: s.menu,
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      toggleLive: () => this.setState({ live: !s.live }),
+      ui: { dotBg: 'background:' + A, accentText: 'color:' + A, ctaBg: 'background:' + A, stroke: 'stroke:' + A },
+      edge: edge, nd: nd, chips: chips, panel: panel,
+      piliers: piliers, pil: pil,
+      feed: feed, vel: vel, board: board,
+      steps: steps, method: method
+    };
+  }
+}
+</script>
+</body>
+</html>

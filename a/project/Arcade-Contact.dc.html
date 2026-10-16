@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Arcade — Contact</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;family=Silkscreen&amp;display=swap">
+<style>
+body{margin:0;background:#0D0A1A}
+sc-for,sc-if{display:contents}
+.ar{position:relative;overflow:hidden;background:#0D0A1A;color:#EDE8FF;font-family:'Chakra Petch',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.ar *,.ar *::before,.ar *::after{box-sizing:border-box}
+.ar h1,.ar h2,.ar h3,.ar h4,.ar p,.ar figure{margin:0}
+.ar a{color:inherit}
+.ar button,.ar input,.ar textarea{font-family:inherit}
+.ar img{display:block;max-width:100%}
+.ar :focus-visible{outline:2px solid #00E5FF;outline-offset:3px}
+.wrap{position:relative;max-width:1240px;margin:0 auto;padding:0 40px}
+.px{font-family:'Silkscreen',monospace;font-size:11px;line-height:1.5;letter-spacing:.1em;text-transform:uppercase}
+.mut{color:#9C93C4}.cy{color:#00E5FF}.mg{color:#FF3EA5}.gd{color:#FFD166}
+.scan{position:absolute;inset:0;z-index:80;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.22) 3px,rgba(0,0,0,0) 4px)}
+.hdr{position:relative;z-index:30;background:rgba(13,10,26,.92);border-bottom:1px solid rgba(156,147,196,.16)}
+.hdr-in{display:flex;align-items:center;gap:28px;min-height:76px}
+.logo{display:inline-flex;align-items:center;gap:12px;min-height:44px;text-decoration:none}
+.logo-t{font-weight:700;font-size:19px;letter-spacing:.24em}
+.nav{display:flex;gap:2px;margin-left:auto}
+.nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font-size:14px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:#9C93C4;transition:color .2s}
+.nav a::after{content:"";position:absolute;left:14px;right:14px;bottom:6px;height:2px;background:#00E5FF;box-shadow:0 0 10px #00E5FF;transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav a:hover,.nav a[aria-current="page"]{color:#EDE8FF}
+.nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1)}
+.hdr-cta{display:flex;align-items:center;gap:18px}
+.burger{display:none;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1px solid rgba(156,147,196,.35);color:#EDE8FF;cursor:pointer}
+.mnav{display:none}
+@media(max-width:1000px){.nav,.hud-p1{display:none}.burger{display:inline-flex}.hdr-cta{margin-left:auto}.mnav{display:grid;gap:2px;padding:8px 16px 20px;border-top:1px solid rgba(156,147,196,.16)}.mnav a{display:flex;align-items:center;min-height:48px;padding:0 8px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(156,147,196,.1)}}
+@media(max-width:480px){.hdr-cta .btn{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border:1px solid transparent;font:600 14px/1 'Chakra Petch',sans-serif;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s,color .2s,border-color .2s}
+.btn-p{background:#FF3EA5;color:#0D0A1A;box-shadow:4px 4px 0 #00E5FF}
+.btn-p:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #00E5FF,0 0 32px rgba(255,62,165,.45)}
+.btn-p:active{transform:translate(4px,4px);box-shadow:0 0 0 #00E5FF}
+.btn-g{background:transparent;color:#EDE8FF;border-color:rgba(237,232,255,.32)}
+.btn-g:hover{border-color:#00E5FF;color:#00E5FF;box-shadow:inset 0 0 24px rgba(0,229,255,.18)}
+.btn-sm{min-height:44px;padding:0 18px;font-size:13px}
+.fr{position:relative;background:#171230;border:1px solid rgba(156,147,196,.2)}
+.fr::before,.fr::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none;transition:width .25s,height .25s}
+.fr::before{top:-1px;left:-1px;border-top:2px solid #00E5FF;border-left:2px solid #00E5FF}
+.fr::after{bottom:-1px;right:-1px;border-bottom:2px solid #FF3EA5;border-right:2px solid #FF3EA5}
+.kick{display:inline-flex;align-items:center;gap:10px;color:#00E5FF}
+.kick::before{content:"";width:8px;height:8px;background:currentColor;box-shadow:0 0 12px currentColor}
+.lead{margin-top:20px;max-width:640px;font-size:19px;color:#9C93C4}
+.bar{position:relative;height:10px;overflow:hidden;background:rgba(156,147,196,.14)}
+.bar>i{position:absolute;left:0;top:0;bottom:0;background:repeating-linear-gradient(90deg,#00E5FF 0,#00E5FF 8px,rgba(0,0,0,0) 8px,rgba(0,0,0,0) 10px);box-shadow:0 0 12px rgba(0,229,255,.45);transition:width .6s cubic-bezier(.2,.7,.2,1)}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes blink{50%{opacity:0}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+.in{animation:up .8s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.35s}.d4{animation-delay:.5s}
+.blink{animation:blink 1.1s steps(1) infinite}
+.ftr{position:relative;padding:72px 0 32px;background:#0A0815;border-top:1px solid rgba(156,147,196,.16)}
+.ftr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:40px}
+.ftr-h{margin-bottom:14px;color:#9C93C4}
+.ftr-l{display:grid}
+.ftr-l a{display:inline-flex;align-items:center;min-height:44px;font-size:15px;text-decoration:none;transition:color .2s}
+.ftr-l a:hover{color:#00E5FF}
+.ftr-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:56px;padding-top:24px;border-top:1px solid rgba(156,147,196,.14)}
+.ftr-bot a{text-decoration:underline;text-underline-offset:4px}
+/* ===== page : contact ===== */
+.ph{position:relative;padding:80px 0 56px}
+.h1{margin-top:20px;font-size:clamp(36px,5.4vw,76px);line-height:1;font-weight:700;text-transform:uppercase;overflow-wrap:anywhere}
+.h1 em{font-style:normal;color:#FF3EA5;text-shadow:-2px 0 #00E5FF,0 0 26px rgba(255,62,165,.4)}
+.main{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:28px;align-items:start;padding-bottom:120px}
+@media(max-width:980px){.main{grid-template-columns:1fr}}
+.game{padding:40px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.steps span{padding:8px 6px;border-top:3px solid rgba(156,147,196,.25);text-align:left;transition:border-color .3s,color .3s}
+.q{margin-top:32px;font-size:clamp(24px,2.6vw,34px);line-height:1.15;font-weight:700;text-transform:uppercase}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:12px;margin-top:22px}
+.opt{display:flex;align-items:center;gap:16px;min-height:84px;padding:14px 18px;background:#0F0B22;border:1px solid rgba(156,147,196,.3);color:#EDE8FF;font:inherit;text-align:left;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;animation:up .4s both}
+.opt:hover{transform:translateY(-3px);border-color:rgba(0,229,255,.55)}
+.opt-k{display:grid;place-items:center;flex:none;width:38px;height:38px;border:1px solid rgba(156,147,196,.45);font-family:'Silkscreen',monospace;font-size:12px}
+.opt b{display:block;font-size:17px;line-height:1.25}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:16px;margin-top:22px}
+.fld{display:grid;gap:8px;animation:up .4s both}
+.fld.full{grid-column:1/-1}
+.inp{width:100%;min-height:52px;padding:12px 14px;background:#0F0B22;border:1px solid rgba(156,147,196,.35);color:#EDE8FF;font:16px/1.4 'Chakra Petch',sans-serif;transition:border-color .2s,box-shadow .2s}
+.inp:focus{outline:none;border-color:#00E5FF;box-shadow:0 0 0 3px rgba(0,229,255,.18)}
+.inp::placeholder{color:#857CAD}
+textarea.inp{min-height:120px;resize:vertical}
+.err{color:#FF6FBD;font-size:14px}
+.chk{display:flex;align-items:center;gap:14px;min-height:48px;margin-top:18px;cursor:pointer}
+.chk input{flex:none;width:22px;height:22px;accent-color:#FF3EA5;cursor:pointer}
+.nav-f{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:32px;padding-top:24px;border-top:1px dashed rgba(156,147,196,.25)}
+.stepErr{margin-top:16px;padding:12px 14px;border:1px solid rgba(255,62,165,.5);background:rgba(255,62,165,.07);color:#FF6FBD;font-size:15px;animation:up .3s both}
+.win{text-align:center;padding:24px 0;animation:up .5s both}
+.win-t{font-size:clamp(34px,5vw,64px);line-height:1;font-weight:700;color:#FFD166;text-shadow:0 0 30px rgba(255,209,102,.5);animation:pop .7s both}
+.recap{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:10px;margin:28px 0;text-align:left}
+.recap div{padding:14px 16px;border:1px solid rgba(156,147,196,.2)}
+.proto{display:inline-block;margin-top:6px;padding:10px 14px;border:1px dashed rgba(255,209,102,.55);color:#FFD166}
+.side{display:grid;gap:20px}
+.card{padding:30px}
+.info{display:grid;gap:16px;margin-top:18px}
+.info div{display:flex;gap:14px;align-items:flex-start}
+.info svg{flex:none;margin-top:3px;color:#00E5FF}
+.pmap{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;margin-top:22px}
+.pmap i{display:block;height:14px;background:rgba(156,147,196,.12)}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:16px}
+.days button,.slots button{min-height:48px;padding:6px;background:transparent;border:1px solid rgba(156,147,196,.35);color:#EDE8FF;font:600 15px 'Chakra Petch',sans-serif;cursor:pointer;transition:all .2s}
+.days button:hover,.slots button:hover{border-color:#00E5FF}
+.slots{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
+.rdv-ok{margin-top:16px;padding:14px 16px;border:1px solid rgba(0,229,255,.5);background:rgba(0,229,255,.06);font-size:15px;animation:up .3s both}
+@media(max-width:640px){.game,.card{padding:24px}.ph{padding:56px 0 40px}.steps span{font-size:9px}}
+@media (prefers-reduced-motion:reduce){.ar *,.ar *::before,.ar *::after{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="ar">
+<sc-if value="{{ scan }}" hint-placeholder-val="{{ true }}"><div class="scan" aria-hidden="true"></div></sc-if>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="Arcade-Accueil.dc.html" aria-label="Baquelis — accueil">
+      <svg width="28" height="28" viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="0" width="1" height="7" fill="#EDE8FF"></rect><rect x="2" y="1" width="1" height="5" fill="#FF3EA5"></rect><rect x="1" y="2" width="1" height="3" fill="#FF3EA5"></rect><rect x="0" y="3" width="1" height="1" fill="#FF3EA5"></rect><rect x="4" y="1" width="1" height="5" fill="#00E5FF"></rect><rect x="5" y="2" width="1" height="3" fill="#00E5FF"></rect><rect x="6" y="3" width="1" height="1" fill="#00E5FF"></rect><rect x="3" y="3" width="1" height="1" fill="#0D0A1A"></rect></svg>
+      <span class="logo-t">BAQUELIS</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="Arcade-Expertises.dc.html">Expertises</a>
+      <a href="Arcade-IA.dc.html">IA</a>
+      <a href="Arcade-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a href="Arcade-Offres.dc.html">Offres</a>
+      <a href="Arcade-Contact.dc.html" aria-current="page">Contact</a>
+    </nav>
+    <div class="hdr-cta">
+      <span class="px mut hud-p1">P1 · Prêt</span>
+      <a class="btn btn-p btn-sm" href="#partie">Réserver un appel</a>
+    </div>
+    <button class="burger" type="button" aria-label="Ouvrir le menu" onClick="{{ toggleMenu }}"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16"></path></svg></button>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="mnav">
+      <a href="Arcade-Expertises.dc.html">Expertises</a>
+      <a href="Arcade-IA.dc.html">IA</a>
+      <a href="Arcade-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a href="Arcade-Offres.dc.html">Offres</a>
+      <a href="Arcade-Contact.dc.html">Contact</a>
+    </div>
+  </sc-if>
+</header>
+
+<section class="ph">
+  <div class="wrap">
+    <p class="px kick in">Nouvelle partie — contact</p>
+    <h1 class="h1 in d1">Prêt à transformer votre <em>entreprise&nbsp;?</em></h1>
+    <p class="lead in d2">Quatre questions, moins d'une minute. Nous revenons vers vous pour un appel découverte, avec la formule et le profil adaptés.</p>
+  </div>
+</section>
+
+<section aria-label="Formulaire et informations">
+  <div class="wrap main">
+    <div class="game fr" id="partie">
+      <sc-if value="{{ playing }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submit }}" aria-label="Formulaire de contact en quatre étapes">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="px gd">Étape {{ stepNum }} / 4</span><span class="px mut">Sauvegarde auto · prototype</span></div>
+          <div class="bar" style="margin-top:12px"><i style="{{ progStyle }}"></i></div>
+          <div class="steps" aria-hidden="true">
+            <span class="px" style="{{ sl0 }}">Besoin</span><span class="px" style="{{ sl1 }}">Formule</span><span class="px" style="{{ sl2 }}">Entreprise</span><span class="px" style="{{ sl3 }}">Coordonnées</span>
+          </div>
+
+          <sc-if value="{{ st0 }}" hint-placeholder-val="{{ true }}">
+            <p class="q">Quel est votre besoin&nbsp;?</p>
+            <div class="opts" role="group" aria-label="Votre besoin">
+              <sc-for list="{{ besoins }}" as="o" hint-placeholder-count="4">
+                <button class="opt" type="button" onClick="{{ o.pick }}" style="{{ o.style }}" aria-pressed="{{ o.aria }}"><span class="opt-k" style="{{ o.kStyle }}">{{ o.k }}</span><span><b>{{ o.t }}</b><span class="mut" style="font-size:15px">{{ o.s }}</span></span></button>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ st1 }}" hint-placeholder-val="{{ false }}">
+            <p class="q">Quelle formule envisagez-vous&nbsp;?</p>
+            <div class="opts" role="group" aria-label="Formule envisagée">
+              <sc-for list="{{ formules }}" as="o" hint-placeholder-count="4">
+                <button class="opt" type="button" onClick="{{ o.pick }}" style="{{ o.style }}" aria-pressed="{{ o.aria }}"><span class="opt-k" style="{{ o.kStyle }}">{{ o.k }}</span><span><b>{{ o.t }}</b><span class="mut" style="font-size:15px">{{ o.s }}</span></span></button>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ st2 }}" hint-placeholder-val="{{ false }}">
+            <p class="q">Quelle est la taille de votre entreprise&nbsp;?</p>
+            <div class="opts" role="group" aria-label="Taille de l'entreprise">
+              <sc-for list="{{ tailles }}" as="o" hint-placeholder-count="4">
+                <button class="opt" type="button" onClick="{{ o.pick }}" style="{{ o.style }}" aria-pressed="{{ o.aria }}"><span class="opt-k" style="{{ o.kStyle }}">{{ o.k }}</span><span><b>{{ o.t }}</b><span class="mut" style="font-size:15px">{{ o.s }}</span></span></button>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ st3 }}" hint-placeholder-val="{{ false }}">
+            <p class="q">Vos coordonnées</p>
+            <div class="fields">
+              <div class="fld">
+                <label class="px mut" for="c-nom">Nom complet *</label>
+                <input class="inp" id="c-nom" type="text" autocomplete="name" placeholder="Prénom Nom" value="{{ nom }}" onInput="{{ setNom }}" style="{{ nomStyle }}">
+                <sc-if value="{{ errNom }}" hint-placeholder-val="{{ false }}"><span class="err">Indiquez votre nom (2 caractères minimum).</span></sc-if>
+              </div>
+              <div class="fld">
+                <label class="px mut" for="c-mail">E-mail professionnel *</label>
+                <input class="inp" id="c-mail" type="email" autocomplete="email" placeholder="vous@entreprise.fr" value="{{ email }}" onInput="{{ setEmail }}" style="{{ emailStyle }}">
+                <sc-if value="{{ errEmail }}" hint-placeholder-val="{{ false }}"><span class="err">Adresse e-mail invalide.</span></sc-if>
+              </div>
+              <div class="fld full">
+                <label class="px mut" for="c-soc">Entreprise</label>
+                <input class="inp" id="c-soc" type="text" autocomplete="organization" placeholder="Nom de votre entreprise" value="{{ societe }}" onInput="{{ setSociete }}">
+              </div>
+              <div class="fld full">
+                <label class="px mut" for="c-msg">Votre projet en quelques mots</label>
+                <textarea class="inp" id="c-msg" placeholder="Contexte, objectifs, échéances…" value="{{ message }}" onInput="{{ setMessage }}"></textarea>
+              </div>
+            </div>
+            <label class="chk"><input type="checkbox" checked="{{ consent }}" onChange="{{ setConsent }}"><span style="font-size:15px">J'accepte d'être recontacté au sujet de ma demande. *</span></label>
+            <sc-if value="{{ errConsent }}" hint-placeholder-val="{{ false }}"><span class="err">Cochez la case pour valider.</span></sc-if>
+          </sc-if>
+
+          <sc-if value="{{ stepErr }}" hint-placeholder-val="{{ false }}"><p class="stepErr" role="alert">Choisissez une option pour continuer.</p></sc-if>
+
+          <div class="nav-f">
+            <sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}"><button class="btn btn-g btn-sm" type="button" onClick="{{ back }}">Retour</button></sc-if>
+            <sc-if value="{{ noBack }}" hint-placeholder-val="{{ true }}"><span></span></sc-if>
+            <sc-if value="{{ notLast }}" hint-placeholder-val="{{ true }}"><button class="btn btn-p" type="button" onClick="{{ next }}">Continuer</button></sc-if>
+            <sc-if value="{{ isLast }}" hint-placeholder-val="{{ false }}"><button class="btn btn-p" type="submit">Sauvegarder la partie</button></sc-if>
+          </div>
+        </form>
+      </sc-if>
+      <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+        <div class="win" role="status">
+          <p class="px cy">Niveau terminé</p>
+          <p class="win-t" style="margin-top:14px">Partie sauvegardée&nbsp;!</p>
+          <p style="margin-top:16px;font-size:18px">Merci {{ nom }}. Voici le récapitulatif de votre demande.</p>
+          <div class="recap">
+            <div><p class="px mut">Besoin</p><p>{{ rBesoin }}</p></div>
+            <div><p class="px mut">Formule</p><p>{{ rFormule }}</p></div>
+            <div><p class="px mut">Entreprise</p><p>{{ rTaille }}</p></div>
+            <div><p class="px mut">E-mail</p><p style="overflow-wrap:anywhere">{{ email }}</p></div>
+          </div>
+          <p class="px proto">Prototype — rien n'est envoyé</p>
+          <div style="margin-top:28px"><button class="btn btn-g" type="button" onClick="{{ restart }}">Nouvelle partie</button></div>
+        </div>
+      </sc-if>
+    </div>
+
+    <aside class="side">
+      <div class="card fr">
+        <p class="px kick">Base · siège</p>
+        <div class="info">
+          <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg><p>31 B avenue Maréchal Foch<br>06000 Nice</p></div>
+          <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14"></rect><path d="m3 7 9 6 9-6"></path></svg><p>[contact@domaine-baquelis]</p></div>
+          <div><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 21V5h10v16M14 9h6v12M8 9h2M8 13h2M8 17h2"></path></svg><p class="mut">[RAISON SOCIALE]<br>[N° TVA]</p></div>
+        </div>
+        <div class="pmap" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i style="background:#FF3EA5;box-shadow:0 0 10px #FF3EA5" class="blink"></i><i></i><i></i><i></i><i></i>
+          <i style="background:rgba(0,229,255,.35)"></i><i style="background:rgba(0,229,255,.35)"></i><i style="background:rgba(0,229,255,.35)"></i><i style="background:rgba(0,229,255,.35)"></i><i style="background:rgba(0,229,255,.35)"></i><i style="background:rgba(0,229,255,.35)"></i><i style="background:rgba(0,229,255,.35)"></i><i style="background:rgba(0,229,255,.35)"></i><i style="background:rgba(0,229,255,.35)"></i><i style="background:rgba(0,229,255,.35)"></i><i style="background:rgba(0,229,255,.35)"></i><i style="background:rgba(0,229,255,.35)"></i>
+        </div>
+        <p class="px mut" style="margin-top:8px">Nice · bord de mer</p>
+      </div>
+
+      <div class="card fr">
+        <p class="px kick">Prise de rendez-vous</p>
+        <p style="margin-top:12px;font-size:20px;font-weight:700;text-transform:uppercase">Réserver un appel découverte</p>
+        <p class="px gd" style="margin-top:6px">Illustratif — [CRÉNEAUX]</p>
+        <div class="days" role="group" aria-label="Jour">
+          <sc-for list="{{ days }}" as="d" hint-placeholder-count="5"><button type="button" onClick="{{ d.pick }}" style="{{ d.style }}" aria-pressed="{{ d.aria }}">{{ d.t }}</button></sc-for>
+        </div>
+        <div class="slots" role="group" aria-label="Créneau">
+          <sc-for list="{{ slots }}" as="sl" hint-placeholder-count="4"><button type="button" onClick="{{ sl.pick }}" style="{{ sl.style }}" aria-pressed="{{ sl.aria }}">{{ sl.t }}</button></sc-for>
+        </div>
+        <sc-if value="{{ hasSlot }}" hint-placeholder-val="{{ false }}"><p class="rdv-ok" role="status">Créneau retenu (démo) : <b>{{ slotLabel }}</b>. Rien n'est réservé — agenda à connecter.</p></sc-if>
+        <sc-if value="{{ noSlot }}" hint-placeholder-val="{{ true }}"><p class="mut" style="margin-top:16px;font-size:15px">Choisissez un jour puis un créneau. Horaires d'exemple, à remplacer par les disponibilités réelles.</p></sc-if>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <a class="logo" href="Arcade-Accueil.dc.html" aria-label="Baquelis — accueil">
+          <svg width="24" height="24" viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="0" width="1" height="7" fill="#EDE8FF"></rect><rect x="2" y="1" width="1" height="5" fill="#FF3EA5"></rect><rect x="1" y="2" width="1" height="3" fill="#FF3EA5"></rect><rect x="0" y="3" width="1" height="1" fill="#FF3EA5"></rect><rect x="4" y="1" width="1" height="5" fill="#00E5FF"></rect><rect x="5" y="2" width="1" height="3" fill="#00E5FF"></rect><rect x="6" y="3" width="1" height="1" fill="#00E5FF"></rect><rect x="3" y="3" width="1" height="1" fill="#0D0A1A"></rect></svg>
+          <span class="logo-t">BAQUELIS</span>
+        </a>
+        <p class="mut" style="margin-top:14px;font-size:15px">Flexibilité. Continuité. Performance.<br>31 B avenue Maréchal Foch<br>06000 Nice</p>
+      </div>
+      <div><p class="px ftr-h">Navigation</p><div class="ftr-l"><a href="Arcade-Accueil.dc.html">Accueil</a><a href="Arcade-Expertises.dc.html">Expertises</a><a href="Arcade-IA.dc.html">Intelligence artificielle</a><a href="Arcade-Jeux.dc.html">Jeux &amp; Web3</a></div></div>
+      <div><p class="px ftr-h">Offres</p><div class="ftr-l"><a href="Arcade-Offres.dc.html">Intégration — 4&nbsp;500&nbsp;€/mois</a><a href="Arcade-Offres.dc.html">Flex — 6&nbsp;200&nbsp;€/mois</a><a href="Arcade-Offres.dc.html">Performance — 18&nbsp;900&nbsp;€/mois</a></div></div>
+      <div><p class="px ftr-h">Contact</p><div class="ftr-l"><a href="Arcade-Contact.dc.html">[contact@domaine-baquelis]</a><a href="Arcade-Contact.dc.html">Réserver un appel</a></div></div>
+    </div>
+    <div class="ftr-bot">
+      <span class="mut" style="font-size:14px">© 2026 Baquelis · [RAISON SOCIALE] · [N° TVA]</span>
+      <span class="px mut">Proposition de refonte — concept · Direction 5 · Arcade · <a href="Main.dc.html">Toutes les propositions</a></span>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2600},"scanlines":{"editor":"boolean","default":true},"neon":{"editor":"color","default":"#FF3EA5","options":["#FF3EA5","#00E5FF","#FFD166"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menuOpen:false, step:0, done:false, besoin:-1, formule:-1, taille:-1, nom:'', email:'', societe:'', message:'', consent:false, stepErr:false, errNom:false, errEmail:false, errConsent:false, day:2, slot:-1 };
+    this.BES = [ {t:'Équipe technique dédiée', s:'Renforcer ou constituer une équipe'}, {t:'Intelligence artificielle', s:'Modèles affinés, agents, intégration'}, {t:'Jeux & Web3', s:'Temps réel, multijoueur, plateforme'}, {t:'Autre', s:'Un autre défi technique'} ];
+    this.FOR = [ {t:'Intégration', s:'4 500 €/mois · 1 profil dédié'}, {t:'Flex', s:'6 200 €/mois · plus populaire'}, {t:'Performance', s:'18 900 €/mois · équipe de 5'}, {t:'Je ne sais pas encore', s:'Nous vous conseillerons'} ];
+    this.TAI = [ {t:'Startup', s:'En phase de lancement ou de croissance'}, {t:'PME', s:'Petite ou moyenne entreprise'}, {t:'ETI', s:'Entreprise de taille intermédiaire'}, {t:'Grande entreprise', s:'Groupe, projets stratégiques'} ];
+    this.DAYS = ['Lun','Mar','Mer','Jeu','Ven'];
+    this.SLOTS = ['09:30','11:00','14:30','16:00'];
+  }
+  validEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(e).trim()); }
+  renderVals(){
+    var s = this.state, p = this.props || {}, self = this;
+    var neon = p.neon || '#FF3EA5';
+    var scan = !(p.scanlines === false || p.scanlines === 'false');
+    var keys = ['A','B','C','D'];
+    var mk = function(list, field){
+      return list.map(function(o, i){
+        var on = s[field] === i;
+        return { t:o.t, s:o.s, k:keys[i], aria: on ? 'true' : 'false',
+          style: on ? 'border-color:' + neon + ';box-shadow:0 0 0 1px ' + neon + ',0 14px 36px -18px ' + neon + ';background:#1A1438' : '',
+          kStyle: on ? 'background:' + neon + ';border-color:' + neon + ';color:#0D0A1A' : '',
+          pick: function(){ var o2 = { stepErr:false }; o2[field] = i; self.setState(o2); } };
+      });
+    };
+    var fieldOf = ['besoin','formule','taille'];
+    var v = {
+      scan: scan,
+      menuOpen: s.menuOpen,
+      toggleMenu: function(){ self.setState({ menuOpen: !self.state.menuOpen }); },
+      playing: !s.done,
+      done: s.done,
+      stepNum: String(s.step + 1),
+      progStyle: 'width:' + ((s.step + 1) * 25) + '%',
+      st0: s.step === 0, st1: s.step === 1, st2: s.step === 2, st3: s.step === 3,
+      besoins: mk(this.BES, 'besoin'),
+      formules: mk(this.FOR, 'formule'),
+      tailles: mk(this.TAI, 'taille'),
+      nom: s.nom, email: s.email, societe: s.societe, message: s.message, consent: s.consent,
+      setNom: function(e){ self.setState({ nom: e.target.value, errNom:false }); },
+      setEmail: function(e){ self.setState({ email: e.target.value, errEmail:false }); },
+      setSociete: function(e){ self.setState({ societe: e.target.value }); },
+      setMessage: function(e){ self.setState({ message: e.target.value }); },
+      setConsent: function(e){ self.setState({ consent: !!e.target.checked, errConsent:false }); },
+      errNom: s.errNom, errEmail: s.errEmail, errConsent: s.errConsent,
+      nomStyle: s.errNom ? 'border-color:#FF3EA5' : '',
+      emailStyle: s.errEmail ? 'border-color:#FF3EA5' : '',
+      stepErr: s.stepErr,
+      canBack: s.step > 0, noBack: s.step === 0,
+      notLast: s.step < 3, isLast: s.step === 3,
+      back: function(){ self.setState({ step: Math.max(0, self.state.step - 1), stepErr:false }); },
+      next: function(){
+        var st = self.state;
+        if (st.step < 3 && st[fieldOf[st.step]] < 0) { self.setState({ stepErr:true }); return; }
+        self.setState({ step: Math.min(3, st.step + 1), stepErr:false });
+      },
+      submit: function(e){
+        if (e && e.preventDefault) e.preventDefault();
+        var st = self.state;
+        var eN = st.nom.trim().length < 2, eE = !self.validEmail(st.email), eC = !st.consent;
+        if (eN || eE || eC) { self.setState({ errNom:eN, errEmail:eE, errConsent:eC }); return; }
+        self.setState({ done:true });
+      },
+      restart: function(){ self.setState({ step:0, done:false, besoin:-1, formule:-1, taille:-1, nom:'', email:'', societe:'', message:'', consent:false, stepErr:false, errNom:false, errEmail:false, errConsent:false }); },
+      rBesoin: s.besoin >= 0 ? this.BES[s.besoin].t : '—',
+      rFormule: s.formule >= 0 ? this.FOR[s.formule].t : '—',
+      rTaille: s.taille >= 0 ? this.TAI[s.taille].t : '—',
+      days: this.DAYS.map(function(t, i){
+        var on = s.day === i;
+        return { t:t, aria: on ? 'true' : 'false', style: on ? 'border-color:#00E5FF;background:rgba(0,229,255,.12);color:#00E5FF' : '',
+          pick: function(){ self.setState({ day: i, slot: -1 }); } };
+      }),
+      slots: this.SLOTS.map(function(t, i){
+        var on = s.slot === i;
+        return { t:t, aria: on ? 'true' : 'false', style: on ? 'border-color:' + neon + ';background:' + neon + ';color:#0D0A1A' : '',
+          pick: function(){ self.setState({ slot: i }); } };
+      }),
+      hasSlot: s.slot >= 0,
+      noSlot: s.slot < 0,
+      slotLabel: s.slot >= 0 ? this.DAYS[s.day] + ' · ' + this.SLOTS[s.slot] : ''
+    };
+    [0,1,2,3].forEach(function(i){
+      v['sl' + i] = i < s.step ? 'border-color:#00E5FF;color:#00E5FF' : (i === s.step ? 'border-color:' + neon + ';color:#EDE8FF' : 'color:#9C93C4');
+    });
+    return v;
+  }
+}
+</script>
+</body>
+</html>

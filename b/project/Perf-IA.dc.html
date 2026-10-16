@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Performance — IA</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Barlow:wght@400;500;600;700&amp;family=Barlow+Condensed:wght@500;600;700;800&amp;display=swap">
+<style>
+body{margin:0;background:#0A0A0A}
+sc-for,sc-if{display:contents}
+.pf{background:#0A0A0A;color:#F5F5F5;font-family:'Barlow',system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden;position:relative}
+.pf *{box-sizing:border-box}
+.pf a{color:inherit;text-decoration:none}
+.pf img{display:block;max-width:100%}
+.pf button,.pf input,.pf select,.pf textarea{font-family:inherit}
+.pf h1,.pf h2,.pf h3,.pf h4,.pf p{margin:0}
+.pf :focus-visible{outline:2px solid var(--v);outline-offset:3px}
+.an{font-family:'Anton',Impact,'Arial Narrow',sans-serif;font-weight:400;text-transform:uppercase;line-height:.92;letter-spacing:.005em;overflow-wrap:anywhere}
+.bc{font-family:'Barlow Condensed',sans-serif}
+.tn{font-variant-numeric:tabular-nums}
+.wrap{max-width:1440px;margin:0 auto;padding:0 40px}
+.mut{color:#9A9A9A}
+.vc{color:var(--v)}
+.eb{display:inline-flex;align-items:center;gap:12px;font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--v)}
+.eb::before{content:"";width:24px;height:9px;background:var(--v);clip-path:polygon(35% 0,100% 0,65% 100%,0 100%)}
+.live{display:inline-flex;align-items:center;gap:8px;font:700 12px/1 'Barlow Condensed',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#FF3B30}
+.live i,.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#FF3B30;animation:blink 1.1s steps(2) infinite}
+@keyframes blink{50%{opacity:.15}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:0 32px;background:var(--v);color:#0A0A0A;border:0;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s}
+.pf a.btn{color:#0A0A0A}
+.btn:hover{transform:translateX(5px);background:#F5F5F5}
+.btn svg{transition:transform .3s}
+.btn:hover svg{transform:translateX(5px)}
+.btn-sm{min-height:46px;padding:0 24px;font-size:14px}
+.btn-o,.pf a.btn-o{background:transparent;color:#F5F5F5;clip-path:none;border:2px solid #3A3A3A}
+.btn-o:hover,.pf a.btn-o:hover{background:transparent;border-color:var(--v);color:var(--v)}
+.btn-k,.pf a.btn-k{background:#0A0A0A;color:var(--v)}
+.btn-k:hover,.pf a.btn-k:hover{background:#262626}
+.btn-ko,.pf a.btn-ko{background:transparent;color:#0A0A0A;clip-path:none;border:2px solid #0A0A0A}
+.btn-ko:hover,.pf a.btn-ko:hover{background:#0A0A0A;color:var(--v)}
+.tk{height:40px;background:var(--v);color:#0A0A0A;overflow:hidden;display:flex;align-items:center}
+.tk span{display:inline-flex;align-items:center;gap:12px;padding:0 26px;font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.tk span::after{content:"";width:16px;height:12px;margin-left:26px;background:#0A0A0A;clip-path:polygon(40% 0,100% 0,60% 100%,0 100%)}
+.mq{display:flex;width:max-content;animation:mq 40s linear infinite;animation-play-state:var(--play)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.hd{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.94);backdrop-filter:blur(12px);border-bottom:1px solid #222}
+.hd-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:76px}
+.logo{display:inline-flex;align-items:center;gap:12px;min-height:44px}
+.logo .an{font-size:30px;letter-spacing:.05em}
+.logo svg{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.logo:hover svg{transform:skewX(-14deg) translateX(4px)}
+.nav{display:flex;gap:4px}
+.nl{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font:600 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#CFCFCF;transition:color .25s}
+.nl::after{content:"";position:absolute;left:14px;right:14px;bottom:7px;height:3px;background:var(--v);transform:scaleX(0) skewX(-30deg);transform-origin:left;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.nl:hover,.nl[aria-current="page"]{color:#F5F5F5}
+.nl:hover::after,.nl[aria-current="page"]::after{transform:scaleX(1) skewX(-30deg)}
+.hd-r{display:flex;align-items:center;gap:18px}
+.burger{display:none;width:48px;height:48px;align-items:center;justify-content:center;background:#161616;border:1px solid #2A2A2A;color:#F5F5F5;cursor:pointer}
+.mnav{border-top:1px solid #222;background:#0A0A0A;padding:8px 16px 24px;animation:rise .4s both}
+.mnav a{display:flex;align-items:center;justify-content:space-between;min-height:58px;border-bottom:1px solid #222;font-size:34px}
+.mnav a.btn{margin-top:18px;font-size:15px;border:0}
+.sec{padding:120px 0;position:relative}
+.sh{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:56px}
+.h2{font-size:clamp(44px,6.4vw,98px);margin-top:18px}
+.lead{font-size:19px;color:#CFCFCF;max-width:520px}
+.chip{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;background:transparent;border:1px solid #363636;color:#F5F5F5;font:700 14px/1 'Barlow Condensed',sans-serif;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.chip:hover{border-color:var(--v);color:var(--v);transform:translateY(-2px)}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes slideL{from{opacity:0;transform:translateX(-90px) skewX(-10deg)}to{opacity:1;transform:none}}
+@keyframes slideR{from{opacity:0;transform:translateX(90px) skewX(-10deg)}to{opacity:1;transform:none}}
+@keyframes cutDiag{from{clip-path:polygon(100% 0,100% 0,100% 100%,100% 100%)}to{clip-path:polygon(30% 0,100% 0,100% 100%,0 100%)}}
+@keyframes pop{0%{opacity:0;transform:scale(.4) rotate(-12deg)}70%{transform:scale(1.08) rotate(2deg)}100%{opacity:1;transform:none}}
+.rv{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.35s}.d4{animation-delay:.5s}.d5{animation-delay:.65s}.d6{animation-delay:.8s}
+.ft{border-top:1px solid #222;padding:96px 0 32px;background:#0A0A0A}
+.ft-big{font-size:clamp(40px,8.6vw,136px);line-height:.88}
+.ft-big span{display:block}
+.ft-big .o{color:transparent;-webkit-text-stroke:1.5px #F5F5F5}
+.ft-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:40px;padding:64px 0 48px;margin-top:64px;border-top:1px solid #222;border-bottom:1px solid #222}
+.ft h4{font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--v);margin-bottom:14px}
+.fl{display:flex;align-items:center;min-height:44px;color:#C8C8C8;transition:color .2s,transform .2s}
+.fl:hover{color:var(--v);transform:translateX(6px)}
+.ft-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;padding-top:28px;font-size:14px;color:#9A9A9A}
+.ft-bot a{text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px}
+.cta{background:var(--v);color:#0A0A0A;clip-path:polygon(0 90px,100% 0,100% 100%,0 100%);padding:190px 0 130px}
+.cta h2{font-size:clamp(50px,9vw,152px);max-width:1240px}
+.cta .eb{color:#0A0A0A}
+.cta .eb::before{background:#0A0A0A}
+.ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.note{font-size:14px;color:#9A9A9A;margin-top:14px}
+@media(max-width:1080px){.nav{display:none}.burger{display:inline-flex}.hide-m{display:none}}
+@media(max-width:720px){.wrap{padding:0 16px}.sec{padding:84px 0}.hd-r .btn{display:none}.hide-s{display:none}}
+
+/* — IA — */
+.sv{stroke:var(--v)}
+.fv{fill:var(--v)}
+.flow{stroke-dasharray:6 7;animation:dash 1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-13}}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+.ph{position:relative;min-height:760px;padding:72px 0 80px;border-bottom:1px solid #222}
+.ph-img,.ph-stripe{position:absolute;top:0;bottom:0;right:0;width:46%;clip-path:polygon(30% 0,100% 0,100% 100%,0 100%)}
+.ph-stripe{background:var(--v);transform:translateX(-28px);animation:cutDiag .9s cubic-bezier(.77,0,.18,1) .05s both}
+.ph-img{background:#161616 url(assets/wafer.webp) center/cover no-repeat;filter:grayscale(.85) contrast(1.15) brightness(.6);animation:cutDiag 1.1s cubic-bezier(.77,0,.18,1) .3s both}
+.ph-in{position:relative;z-index:2}
+.ph-t{font-size:clamp(46px,12vw,196px);line-height:.86;margin-top:30px}
+.kl{display:block;animation:slideL 1s cubic-bezier(.2,.8,.2,1) both}
+.k1{animation-delay:.15s}.k2{animation-name:slideR;animation-delay:.3s;color:transparent;-webkit-text-stroke:2px #F5F5F5;padding-left:clamp(0px,8vw,130px)}.k3{animation-delay:.45s;color:var(--v)}
+.ph-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;margin-top:40px}
+.ph .lead{max-width:600px;font-size:21px}
+.prom{display:inline-flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(22,22,22,.94);border:1px dashed #3A3A3A;font:600 14px/1.35 'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;max-width:420px}
+.prom b{font-family:'Anton',sans-serif;font-weight:400;font-size:40px;color:var(--v);letter-spacing:0;line-height:1}
+.caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.cap{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-height:150px;padding:24px 26px;background:#161616;border:1px solid #262626;color:#F5F5F5;text-align:left;cursor:pointer;transition:background .3s,border-color .3s,transform .3s;clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,0 100%)}
+.cap:hover{transform:translateY(-5px);border-color:#4A4A4A}
+.cap-i{font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.22em;text-transform:uppercase}
+.cap-t{font-family:'Anton',sans-serif;font-size:clamp(28px,2.6vw,40px);text-transform:uppercase;line-height:.95}
+.cap-s{font-size:15px}
+.cpan{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:16px}
+.cpan-t{background:#161616;border:1px solid #262626;padding:44px}
+.cpan-t h3{font-size:clamp(38px,3.8vw,60px);margin-top:18px}
+.cpan-t p{font-size:20px;color:#D6D6D6;margin-top:18px}
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:10px;margin-top:32px}
+.feat{display:flex;align-items:center;gap:12px;padding:16px;background:#0A0A0A;border:1px solid #262626;font:600 16px/1.2 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase;transition:border-color .25s,transform .25s}
+.feat:hover{border-color:var(--v);transform:translateY(-3px)}
+.feat svg{color:var(--v);flex:none}
+.cviz{background:#0F0F0F;border:1px solid #262626;padding:28px;display:flex;flex-direction:column;justify-content:space-between;min-height:440px;background-image:linear-gradient(#1A1A1A 1px,transparent 1px),linear-gradient(90deg,#1A1A1A 1px,transparent 1px);background-size:40px 40px}
+.cviz svg{width:100%;height:auto;display:block}
+.cviz-h{display:flex;justify-content:space-between;align-items:center;font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#9A9A9A}
+.uc{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:16px}
+.uc-list{display:grid;gap:8px}
+.ucb{display:grid;grid-template-columns:64px minmax(0,1fr) 24px;align-items:center;gap:14px;min-height:76px;padding:0 22px;background:#161616;border:1px solid #262626;color:#F5F5F5;text-align:left;cursor:pointer;transition:background .25s,border-color .25s,transform .25s}
+.ucb:hover{transform:translateX(8px);border-color:#4A4A4A}
+.ucb-n{font-family:'Anton',sans-serif;font-size:34px;color:#858585}
+.ucb-t{font:700 19px/1.15 'Barlow Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase}
+.uc-d{background:#161616;border:1px solid #262626;padding:48px;position:relative;overflow:hidden;min-height:540px}
+.uc-big{position:absolute;right:-10px;top:-30px;font-size:300px;line-height:1;color:transparent;-webkit-text-stroke:2px #2A2A2A}
+.uc-d h3{font-size:clamp(38px,3.8vw,60px);margin-top:20px;position:relative;max-width:620px}
+.uc-d p{font-size:20px;color:#D6D6D6;margin-top:18px;position:relative;max-width:640px}
+.uc-pts{display:grid;gap:10px;margin-top:32px;position:relative}
+.uc-pt{display:flex;gap:14px;align-items:center;padding:16px 18px;background:#0A0A0A;border:1px solid #262626;font-size:17px}
+.uc-pt b{font:700 14px/1 'Barlow Condensed',sans-serif;letter-spacing:.18em;color:var(--v);min-width:38px}
+.claim{display:flex;gap:12px;align-items:flex-start;margin-top:22px;padding:16px 18px;border:1px dashed #3A3A3A;font-size:15px;color:#C8C8C8;position:relative}
+.claim b{font-family:'Anton',sans-serif;font-weight:400;font-size:30px;color:var(--v);line-height:1}
+.cmp{background:#121212;border:1px solid #262626;padding:44px}
+.cmp-top{display:grid;grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr);align-items:center;gap:12px}
+.cmp-side h3{font-size:clamp(32px,3.4vw,56px)}
+.cmp-side p{margin-top:10px;color:#BDBDBD;font-size:16px}
+.cmp-r{text-align:right}
+.cmp-vs{font-size:96px;color:var(--v);text-align:center;animation:pop .8s .3s both}
+.tug{position:relative;height:56px;margin-top:40px;background:#0A0A0A;border:1px solid #2A2A2A;overflow:hidden}
+.tug-l{position:absolute;top:0;bottom:0;left:0;background:var(--v);transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.tug-mid{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#0A0A0A;opacity:.5}
+.tug-lab{position:absolute;top:0;bottom:0;display:flex;align-items:center;padding:0 18px;font:700 14px/1 'Barlow Condensed',sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.verdict{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-top:20px}
+.verdict b{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(28px,3vw,44px);text-transform:uppercase;line-height:1}
+.prios{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:10px;margin-top:36px}
+.prio{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:60px;padding:0 18px;background:#161616;border:1px solid #2A2A2A;color:#F5F5F5;cursor:pointer;text-align:left;font-size:16px;transition:border-color .25s,background .25s,transform .25s}
+.prio:hover{border-color:var(--v);transform:translateY(-2px)}
+.prio-s{font:700 12px/1 'Barlow Condensed',sans-serif;letter-spacing:.18em;text-transform:uppercase;padding:6px 8px;border:1px solid #3A3A3A;white-space:nowrap}
+.atom{display:grid;grid-template-columns:340px minmax(0,1fr);border:1px solid #2A2A2A;background:#121212;box-shadow:18px 18px 0 var(--v)}
+.atom-l{border-right:1px solid #2A2A2A;padding:28px;display:flex;flex-direction:column;gap:10px}
+.atom-tag{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;padding:8px 12px;background:#FF3B30;color:#0A0A0A;font:700 12px/1 'Barlow Condensed',sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.task{display:flex;flex-direction:column;gap:6px;padding:18px;background:#0A0A0A;border:1px solid #2A2A2A;color:#F5F5F5;text-align:left;cursor:pointer;transition:border-color .25s,transform .25s}
+.task:hover{border-color:#4A4A4A;transform:translateX(5px)}
+.task b{font:700 18px/1.15 'Barlow Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase}
+.task span{font-size:14px;color:#9A9A9A}
+.atom-r{display:flex;flex-direction:column;min-height:560px}
+.atom-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 26px;border-bottom:1px solid #2A2A2A}
+.atom-log{padding:26px;display:grid;gap:10px;align-content:start;flex:1}
+.lg{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 16px;background:#0A0A0A;border:1px solid #232323;font:500 18px/1.25 'Barlow Condensed',sans-serif;letter-spacing:.03em;animation:rise .45s both}
+.lg-n{font:700 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.18em;color:#9A9A9A}
+.lg-s{font:700 12px/1 'Barlow Condensed',sans-serif;letter-spacing:.18em;text-transform:uppercase;padding:6px 8px;display:inline-flex;align-items:center;gap:6px}
+.atom-bar{height:6px;background:#262626;margin:0 26px}
+.atom-bar i{display:block;height:6px;background:var(--v);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.atom-res{margin:20px 26px 26px;padding:22px;background:var(--v);color:#0A0A0A;animation:pop .6s both}
+.atom-res b{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:28px;text-transform:uppercase;line-height:1}
+.atom-res p{margin-top:8px;font-size:16px}
+.atom-idle{margin:auto;text-align:center;padding:40px;color:#9A9A9A;font:600 16px/1.4 'Barlow Condensed',sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.atom-idle .an{display:block;font-size:84px;color:#2E2E2E;margin-bottom:10px;letter-spacing:.02em}
+@media(max-width:960px){.ph-img,.ph-stripe{width:100%;opacity:.3}.caps{grid-template-columns:1fr}.cpan,.uc{grid-template-columns:1fr}.cmp-top{grid-template-columns:1fr}.cmp-r{text-align:left}.cmp-vs{text-align:left;font-size:64px}.atom{grid-template-columns:1fr}.atom-l{border-right:0;border-bottom:1px solid #2A2A2A}}
+@media(max-width:720px){.cpan-t,.uc-d,.cmp{padding:26px}.cviz{min-height:0}.uc-big{font-size:180px}.lg{grid-template-columns:36px minmax(0,1fr);}.lg-s{grid-column:2}.atom{box-shadow:8px 8px 0 var(--v)}}
+</style>
+</helmet>
+<div class="pf" style="{{ rootStyle }}">
+
+<div class="tk" aria-hidden="true">
+  <div class="mq">
+    <span>Suivi temps réel</span><span>Intégration · 4 500 €/mois</span><span>Flex · 6 200 €/mois · Plus populaire</span><span>Performance · 18 900 €/mois</span><span>Changement de profil sous 15 jours</span><span>Excellence IA</span>
+    <span>Suivi temps réel</span><span>Intégration · 4 500 €/mois</span><span>Flex · 6 200 €/mois · Plus populaire</span><span>Performance · 18 900 €/mois</span><span>Changement de profil sous 15 jours</span><span>Excellence IA</span>
+  </div>
+</div>
+
+<header class="hd">
+  <div class="wrap hd-in">
+    <a href="Perf-Accueil.dc.html" class="logo" aria-label="Baquelis — accueil">
+      <svg width="36" height="30" viewBox="0 0 36 30" aria-hidden="true"><path d="M9 0h27l-9 30H0z" style="fill:var(--v)"></path><path d="M15 7h10l-1.7 6H13.3zM12.6 16h10l-1.8 6h-10z" fill="#0A0A0A"></path></svg>
+      <span class="an">Baquelis</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="nl" href="Perf-Expertises.dc.html">Expertises</a>
+      <a class="nl" href="Perf-IA.dc.html" aria-current="page">IA</a>
+      <a class="nl" href="Perf-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a class="nl" href="Perf-Offres.dc.html">Offres</a>
+      <a class="nl" href="Perf-Contact.dc.html">Contact</a>
+    </nav>
+    <div class="hd-r">
+      <a class="nl hide-m" href="Perf-Contact.dc.html">Réserver un appel</a>
+      <a class="btn btn-sm" href="Perf-Contact.dc.html">Commencer</a>
+      <button class="burger" type="button" aria-label="Ouvrir ou fermer le menu" aria-expanded="{{ menuExp }}" onClick="{{ toggleMenu }}">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h11"></path></svg>
+      </button>
+    </div>
+  </div>
+  <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+    <nav class="mnav" aria-label="Navigation mobile">
+      <a class="an" href="Perf-Expertises.dc.html">Expertises</a>
+      <a class="an" href="Perf-IA.dc.html">IA</a>
+      <a class="an" href="Perf-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a class="an" href="Perf-Offres.dc.html">Offres</a>
+      <a class="an" href="Perf-Contact.dc.html">Contact</a>
+      <a class="btn" href="Perf-Contact.dc.html">Commencer</a>
+    </nav>
+  </sc-if>
+</header>
+
+<main>
+<section class="ph" aria-labelledby="ph-t">
+  <div class="ph-stripe" aria-hidden="true"></div>
+  <div class="ph-img" aria-hidden="true"></div>
+  <div class="wrap ph-in">
+    <span class="eb rv">Excellence IA par la technologie</span>
+    <h1 class="an ph-t" id="ph-t"><span class="kl k1">Vos données.</span><span class="kl k2">Vos agents.</span><span class="kl k3">Votre avance.</span></h1>
+    <div class="ph-row">
+      <p class="lead rv d4">Transformez la productivité avec les agents IA : des modèles affinés sur votre métier et des agents autonomes intégrés à vos processus existants.</p>
+      <div class="prom rv d5"><b>×10</b><span>Notre promesse : multiplier votre productivité par 10. Une ambition, pas une statistique.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPACITÉS -->
+<section class="sec" aria-labelledby="cap-t">
+  <div class="wrap">
+    <div class="sh">
+      <div><span class="eb">01 · Capacités</span><h2 class="an h2" id="cap-t">Choisissez<br>votre arme</h2></div>
+      <p class="lead">Trois capacités complémentaires. Sélectionnez-en une pour voir ce qu’elle change concrètement.</p>
+    </div>
+    <div class="caps" role="tablist" aria-label="Capacités IA">
+      <sc-for list="{{ caps }}" as="c" hint-placeholder-count="3">
+        <button class="cap" type="button" role="tab" aria-selected="{{ c.sel }}" style="{{ c.style }}" onClick="{{ c.pick }}">
+          <span class="cap-i">C / {{ c.n }}</span>
+          <span class="cap-t">{{ c.t }}</span>
+          <span class="cap-s" style="{{ c.sStyle }}">{{ c.s }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <sc-for list="{{ caps }}" as="c" hint-placeholder-count="3">
+      <sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}">
+        <div class="cpan" role="tabpanel">
+          <div class="cpan-t rv">
+            <span class="eb">Capacité {{ c.n }} / 03</span>
+            <h3 class="an">{{ c.t }}</h3>
+            <p>{{ c.d }}</p>
+            <div class="feats">
+              <sc-for list="{{ c.f }}" as="f" hint-placeholder-count="4">
+                <div class="feat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" aria-hidden="true"><path d="M4 12l5 5L20 6"></path></svg>{{ f }}</div>
+              </sc-for>
+            </div>
+          </div>
+          <div class="cviz rv d2" aria-hidden="true">
+            <div class="cviz-h"><span>Schéma · {{ c.t }}</span><span class="vc">Illustratif</span></div>
+            <sc-if value="{{ c.v1 }}" hint-placeholder-val="{{ false }}">
+              <svg viewBox="0 0 520 300" fill="none">
+                <g stroke="#3A3A3A" stroke-width="2"><rect x="20" y="40" width="110" height="40"></rect><rect x="20" y="130" width="110" height="40"></rect><rect x="20" y="220" width="110" height="40"></rect></g>
+                <g fill="#9A9A9A" font-family="Barlow Condensed" font-size="15" font-weight="700" letter-spacing="2"><text x="34" y="66">VOS DONNÉES</text><text x="34" y="156">CAS D’USAGE</text><text x="34" y="246">RETOURS</text></g>
+                <g class="sv flow" stroke-width="2.5"><path d="M130 60 C 200 60, 200 150, 250 150"></path><path d="M130 150 H 250"></path><path d="M130 240 C 200 240, 200 150, 250 150"></path></g>
+                <rect x="250" y="95" width="130" height="110" class="sv" stroke-width="3"></rect>
+                <rect x="262" y="107" width="106" height="86" class="fv pulse"></rect>
+                <text x="276" y="156" fill="#0A0A0A" font-family="Anton" font-size="22">MODÈLE</text>
+                <text x="276" y="180" fill="#0A0A0A" font-family="Barlow Condensed" font-size="15" font-weight="700" letter-spacing="2">AFFINÉ</text>
+                <path d="M380 150 H 470" class="sv flow" stroke-width="2.5"></path>
+                <path d="M462 140 l12 10 -12 10" class="sv" stroke-width="2.5"></path>
+                <text x="392" y="132" fill="#F5F5F5" font-family="Barlow Condensed" font-size="15" font-weight="700" letter-spacing="2">PRÉCIS</text>
+              </svg>
+            </sc-if>
+            <sc-if value="{{ c.v2 }}" hint-placeholder-val="{{ false }}">
+              <svg viewBox="0 0 520 300" fill="none">
+                <g class="sv flow" stroke-width="2"><path d="M260 150 L110 60"></path><path d="M260 150 L410 60"></path><path d="M260 150 L110 240"></path><path d="M260 150 L410 240"></path><path d="M110 60 L110 240"></path><path d="M410 60 L410 240"></path></g>
+                <g stroke="#3A3A3A" stroke-width="2" fill="#0A0A0A"><circle cx="110" cy="60" r="30"></circle><circle cx="410" cy="60" r="30"></circle><circle cx="110" cy="240" r="30"></circle><circle cx="410" cy="240" r="30"></circle></g>
+                <g fill="#C8C8C8" font-family="Barlow Condensed" font-size="13" font-weight="700" letter-spacing="1.5" text-anchor="middle"><text x="110" y="65">TRI</text><text x="410" y="65">ANALYSE</text><text x="110" y="245">ACTION</text><text x="410" y="245">CONTRÔLE</text></g>
+                <circle cx="260" cy="150" r="48" class="fv"></circle>
+                <circle cx="260" cy="150" r="62" class="sv pulse" stroke-width="2"></circle>
+                <text x="260" y="158" fill="#0A0A0A" font-family="Anton" font-size="24" text-anchor="middle">ATOM</text>
+              </svg>
+            </sc-if>
+            <sc-if value="{{ c.v3 }}" hint-placeholder-val="{{ false }}">
+              <svg viewBox="0 0 520 300" fill="none">
+                <g stroke="#3A3A3A" stroke-width="2" fill="#0A0A0A"><rect x="10" y="120" width="104" height="60"></rect><rect x="146" y="120" width="104" height="60"></rect><rect x="282" y="120" width="104" height="60"></rect></g>
+                <rect x="418" y="120" width="96" height="60" class="fv"></rect>
+                <g fill="#C8C8C8" font-family="Barlow Condensed" font-size="14" font-weight="700" letter-spacing="1.5" text-anchor="middle"><text x="62" y="155">FLUX</text><text x="198" y="155">DONNÉES</text><text x="334" y="155">PRÉDICTION</text></g>
+                <text x="466" y="155" fill="#0A0A0A" font-family="Barlow Condensed" font-size="14" font-weight="700" letter-spacing="1.5" text-anchor="middle">INSIGHT</text>
+                <g class="sv flow" stroke-width="2.5"><path d="M114 150 H146"></path><path d="M250 150 H282"></path><path d="M386 150 H418"></path></g>
+                <path d="M62 120 V60 H466 V120" stroke="#3A3A3A" stroke-width="2" stroke-dasharray="4 6"></path>
+                <text x="264" y="50" fill="#9A9A9A" font-family="Barlow Condensed" font-size="13" font-weight="700" letter-spacing="2" text-anchor="middle">VOS PROCESSUS EXISTANTS</text>
+                <g class="fv pulse"><rect x="10" y="230" width="60" height="10"></rect><rect x="80" y="230" width="120" height="10"></rect><rect x="210" y="230" width="80" height="10"></rect></g>
+                <text x="10" y="270" fill="#9A9A9A" font-family="Barlow Condensed" font-size="13" font-weight="700" letter-spacing="2">INSIGHTS TEMPS RÉEL</text>
+              </svg>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+    </sc-for>
+  </div>
+</section>
+
+<!-- CAS D'USAGE -->
+<section class="sec" style="padding-top:20px" aria-labelledby="uc-t">
+  <div class="wrap">
+    <div class="sh">
+      <div><span class="eb">02 · Six cas d’usage</span><h2 class="an h2" id="uc-t">Le programme<br>des matchs</h2></div>
+      <p class="lead">Six terrains où l’IA produit un impact concret. Sélectionnez un cas pour afficher la fiche.</p>
+    </div>
+    <div class="uc">
+      <div class="uc-list" role="tablist" aria-label="Cas d’usage">
+        <sc-for list="{{ cases }}" as="u" hint-placeholder-count="6">
+          <button class="ucb" type="button" role="tab" aria-selected="{{ u.sel }}" style="{{ u.style }}" onClick="{{ u.pick }}">
+            <span class="ucb-n" style="{{ u.nStyle }}">{{ u.n }}</span>
+            <span class="ucb-t">{{ u.t }}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+          </button>
+        </sc-for>
+      </div>
+      <sc-for list="{{ cases }}" as="u" hint-placeholder-count="6">
+        <sc-if value="{{ u.on }}" hint-placeholder-val="{{ false }}">
+          <div class="uc-d rv" role="tabpanel">
+            <span class="an uc-big" aria-hidden="true">{{ u.n }}</span>
+            <span class="eb">Cas {{ u.n }} / 06</span>
+            <h3 class="an">{{ u.t }}</h3>
+            <p>{{ u.d }}</p>
+            <div class="uc-pts">
+              <sc-for list="{{ u.pts }}" as="pt" hint-placeholder-count="3">
+                <div class="uc-pt"><b>{{ pt.i }}</b>{{ pt.t }}</div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ u.hasClaim }}" hint-placeholder-val="{{ false }}">
+              <div class="claim"><b>90 %</b><span>des demandes traitées par des agents, avec une qualité de réponse de niveau humain : affirmation Baquelis, présentée comme un objectif.</span></div>
+            </sc-if>
+          </div>
+        </sc-if>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATEUR -->
+<section class="sec" style="padding-top:20px" aria-labelledby="cmp-t">
+  <div class="wrap">
+    <div class="sh">
+      <div><span class="eb">03 · Comparateur</span><h2 class="an h2" id="cmp-t">Modèle affiné<br><span class="vc">vs</span> RAG</h2></div>
+      <p class="lead">Cochez vos priorités : la barre penche vers l’approche la plus adaptée. Un outil d’orientation, à affiner lors de l’appel découverte.</p>
+    </div>
+    <div class="cmp">
+      <div class="cmp-top">
+        <div class="cmp-side"><span class="eb">Côté gauche</span><h3 class="an" style="margin-top:14px">Modèle affiné</h3><p>Entraîné sur vos données : précision supérieure, réponses plus rapides, intelligence spécifique à votre domaine.</p></div>
+        <div class="cmp-vs an" aria-hidden="true">VS</div>
+        <div class="cmp-side cmp-r"><span class="eb">Côté droit</span><h3 class="an" style="margin-top:14px">RAG</h3><p>Le modèle va chercher l’information dans vos documents au moment de la question.</p></div>
+      </div>
+      <div class="tug" role="img" aria-label="{{ tugAria }}">
+        <div class="tug-l" style="{{ tugStyle }}"></div>
+        <div class="tug-mid"></div>
+        <span class="tug-lab" style="left:0;color:#0A0A0A">Affiné</span>
+        <span class="tug-lab" style="right:0;color:#F5F5F5">RAG</span>
+      </div>
+      <div class="verdict" aria-live="polite">
+        <div><span class="bc mut" style="font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:13px">Verdict</span><br><b style="{{ verdictStyle }}">{{ verdict }}</b></div>
+        <span class="bc tn" style="font-weight:700;font-size:20px;letter-spacing:.1em">AFFINÉ <span class="vc">{{ ftScore }}</span> — <span>{{ ragScore }}</span> RAG</span>
+      </div>
+      <div class="prios" role="group" aria-label="Vos priorités">
+        <sc-for list="{{ prios }}" as="p" hint-placeholder-count="6">
+          <button class="prio" type="button" aria-pressed="{{ p.pressed }}" style="{{ p.style }}" onClick="{{ p.pick }}">
+            <span>{{ p.k }}</span><span class="prio-s" style="{{ p.sStyle }}">{{ p.side }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATOM -->
+<section class="sec" style="padding-top:20px" aria-labelledby="atom-t">
+  <div class="wrap">
+    <div class="sh">
+      <div><span class="eb">04 · Démo ATOM</span><h2 class="an h2" id="atom-t">ATOM entre<br>en jeu</h2></div>
+      <p class="lead">ATOM est l’agent IA de Baquelis. Choisissez une mission et regardez-le dérouler ses étapes. Démonstration scénarisée : aucune donnée réelle n’est traitée.</p>
+    </div>
+    <div class="atom">
+      <div class="atom-l">
+        <span class="atom-tag">Démonstration scénarisée</span>
+        <span class="bc mut" style="font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:13px;margin-top:10px">1 · Choisir une mission</span>
+        <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="3">
+          <button class="task" type="button" aria-pressed="{{ t.pressed }}" style="{{ t.style }}" onClick="{{ t.pick }}"><b>{{ t.t }}</b><span>{{ t.s }}</span></button>
+        </sc-for>
+        <span class="bc mut" style="font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:13px;margin-top:10px">2 · Lancer</span>
+        <button class="btn" type="button" onClick="{{ run }}" style="width:100%">{{ runLabel }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4l14 8-14 8z"></path></svg></button>
+      </div>
+      <div class="atom-r">
+        <div class="atom-h">
+          <span class="an" style="font-size:26px">ATOM <span class="bc mut" style="font-size:15px;letter-spacing:.14em">· {{ taskName }}</span></span>
+          <sc-if value="{{ running }}" hint-placeholder-val="{{ false }}"><span class="live"><i></i>En cours</span></sc-if>
+          <sc-if value="{{ finished }}" hint-placeholder-val="{{ false }}"><span class="live" style="color:var(--v)">Terminé</span></sc-if>
+          <sc-if value="{{ idle }}" hint-placeholder-val="{{ true }}"><span class="live" style="color:#9A9A9A">En attente</span></sc-if>
+        </div>
+        <sc-if value="{{ idle }}" hint-placeholder-val="{{ true }}">
+          <div class="atom-idle"><span class="an">Prêt</span>Choisissez une mission puis lancez ATOM</div>
+        </sc-if>
+        <div class="atom-log" aria-live="polite">
+          <sc-for list="{{ log }}" as="l" hint-placeholder-count="0">
+            <sc-if value="{{ l.show }}" hint-placeholder-val="{{ false }}">
+              <div class="lg">
+                <span class="lg-n">{{ l.n }}</span>
+                <span>{{ l.t }}</span>
+                <span class="lg-s" style="{{ l.sStyle }}"><sc-if value="{{ l.live }}" hint-placeholder-val="{{ false }}"><i class="dot"></i></sc-if>{{ l.st }}</span>
+              </div>
+            </sc-if>
+          </sc-for>
+        </div>
+        <div class="atom-bar" aria-hidden="true"><i style="{{ barStyle }}"></i></div>
+        <sc-if value="{{ finished }}" hint-placeholder-val="{{ false }}">
+          <div class="atom-res"><b>Mission accomplie</b><p>{{ result }}</p></div>
+        </sc-if>
+        <sc-if value="{{ notFinished }}" hint-placeholder-val="{{ true }}"><div style="height:26px"></div></sc-if>
+      </div>
+    </div>
+    <p class="note">Interface illustrative. Les étapes et le résultat sont scénarisés pour montrer le fonctionnement d’un agent autonome.</p>
+  </div>
+</section>
+
+<section class="cta" aria-labelledby="cta-t">
+  <div class="wrap">
+    <span class="eb">Coup d’envoi</span>
+    <h2 class="an" id="cta-t" style="margin-top:22px">Prêt à transformer votre entreprise ?</h2>
+    <div class="ctas" style="margin-top:44px">
+      <a class="btn btn-k" href="Perf-Contact.dc.html">Parler de votre projet IA
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="btn btn-ko" href="Perf-Offres.dc.html">Voir les formules</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-big an" aria-hidden="true"><span>Flexibilité.</span><span class="o">Continuité.</span><span class="vc">Performance.</span></div>
+    <div class="ft-grid">
+      <div>
+        <a href="Perf-Accueil.dc.html" class="logo" aria-label="Baquelis — accueil">
+          <svg width="36" height="30" viewBox="0 0 36 30" aria-hidden="true"><path d="M9 0h27l-9 30H0z" style="fill:var(--v)"></path><path d="M15 7h10l-1.7 6H13.3zM12.6 16h10l-1.8 6h-10z" fill="#0A0A0A"></path></svg>
+          <span class="an">Baquelis</span>
+        </a>
+        <p class="mut" style="margin-top:18px;font-size:15px">Partenaire technologique : équipes dédiées, IA appliquée, expertise jeux &amp; Web3.</p>
+        <p style="margin-top:18px;font-size:15px">31 B avenue Maréchal Foch<br>06000 Nice</p>
+      </div>
+      <div><h4>Explorer</h4>
+        <a class="fl" href="Perf-Expertises.dc.html">Expertises</a><a class="fl" href="Perf-IA.dc.html">Intelligence artificielle</a><a class="fl" href="Perf-Jeux.dc.html">Jeux &amp; Web3</a><a class="fl" href="Perf-Contact.dc.html">Contact</a>
+      </div>
+      <div><h4>Formules</h4>
+        <a class="fl" href="Perf-Offres.dc.html">Intégration · 4 500 €</a><a class="fl" href="Perf-Offres.dc.html">Flex · 6 200 €</a><a class="fl" href="Perf-Offres.dc.html">Performance · 18 900 €</a>
+      </div>
+      <div><h4>Contact</h4>
+        <a class="fl" href="Perf-Contact.dc.html">[contact@domaine-baquelis]</a><a class="fl" href="Perf-Contact.dc.html">Réserver un appel</a>
+        <p class="mut" style="font-size:14px;margin-top:10px">[RAISON SOCIALE] · TVA [N° TVA]</p>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>© 2026 Baquelis. Tous droits réservés.</span>
+      <span>Proposition de refonte — concept · <a href="Main.dc.html">Toutes les propositions</a></span>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6100},"accent":{"editor":"color","default":"#E6FF2E","options":["#E6FF2E","#00AEEF","#FF7A1A"]},"motion":{"editor":"boolean","default":true}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu:false, cap:1, uc:0, prio:[true,false,true,false,false,false], task:0, k:-1, phase:'idle' };
+  }
+  componentWillUnmount(){ clearInterval(this.iv); }
+  pad(n){ return n < 10 ? '0' + n : String(n); }
+  tasks(){
+    return [
+      { t:'Trier la boîte support', s:'Demandes entrantes, réponses, escalade', steps:['Lecture des demandes entrantes','Classification par intention','Rédaction des réponses au ton de la marque','Escalade des cas sensibles à l’équipe','Rapport publié dans votre espace'], res:'Demandes triées et réponses proposées, prêtes à être validées par votre équipe.' },
+      { t:'Préparer le rapport hebdo', s:'Indicateurs, écarts, synthèse', steps:['Collecte des indicateurs de la semaine','Détection des écarts et tendances','Rédaction de la synthèse','Mise à jour du tableau de bord','Envoi pour relecture'], res:'Synthèse hebdomadaire rédigée et tableau de bord à jour, en attente de relecture.' },
+      { t:'Qualifier une demande entrante', s:'Contexte, priorité, suite à donner', steps:['Lecture de la demande','Enrichissement du contexte','Évaluation de la priorité','Proposition de la prochaine action','Mise à jour de votre outil de suivi'], res:'Demande qualifiée, priorisée et routée vers la bonne personne.' }
+    ];
+  }
+  run(){
+    const n = this.tasks()[this.state.task].steps.length;
+    clearInterval(this.iv);
+    this.setState({ phase:'run', k:0 });
+    this.iv = setInterval(() => {
+      const k = this.state.k + 1;
+      if (k >= n) { clearInterval(this.iv); this.setState({ phase:'done', k:n }); }
+      else this.setState({ k });
+    }, 950);
+  }
+  renderVals(){
+    const s = this.state;
+    const acc = this.props.accent || '#E6FF2E';
+    const ON = 'background:var(--v);color:#0A0A0A;border-color:var(--v)';
+
+    const C = [
+      { t:'Affinage de modèles', s:'Entraînés sur vos données', d:'Des modèles entraînés sur vos données et vos cas d’usage, pour des réponses précises et spécifiques à votre domaine.', f:['Formation spécifique au domaine','Optimisation des performances','Apprentissage continu','Confidentialité & sécurité'] },
+      { t:'Agents autonomes', s:'Ils exécutent, décident, s’adaptent', d:'Des agents qui accomplissent des tâches complexes, prennent des décisions et s’adaptent, en coordination avec vos équipes.', f:['Automatisation de tâches','Prise de décision','Coordination multi-agents','Apprentissage & adaptation'] },
+      { t:'Intégration métier', s:'Dans vos processus existants', d:'L’IA insérée dans vos processus existants, sans tout reconstruire : vos flux gagnent en vitesse et en visibilité.', f:['Automatisation des flux','Traitement de données','Analytique prédictive','Insights temps réel'] }
+    ];
+    const caps = C.map((c, i) => Object.assign(c, {
+      n: this.pad(i + 1), on: s.cap === i, sel: s.cap === i ? 'true' : 'false',
+      style: s.cap === i ? ON : '', sStyle: s.cap === i ? 'color:#0A0A0A' : 'color:#9A9A9A',
+      v1: i === 0, v2: i === 1, v3: i === 2,
+      pick: () => this.setState({ cap:i })
+    }));
+
+    const U = [
+      { t:'Automatisation du support client', d:'Des agents prennent en charge les demandes entrantes, répondent avec une qualité de niveau humain et transmettent les cas sensibles à vos équipes.', pts:['Tri et classification des demandes','Réponses contextualisées, au ton de la marque','Escalade maîtrisée vers l’humain'], claim:true },
+      { t:'Pipeline de génération de contenu', d:'Produire, adapter et valider des contenus à votre ton, à grande échelle, avec une relecture humaine à chaque étape clé.', pts:['Du brief à la validation','Ton de marque appris','Déclinaisons multiformats'] },
+      { t:'Intelligence métier prédictive', d:'Anticiper plutôt que constater : l’analytique prédictive appliquée à vos données pour éclairer vos décisions.', pts:['Signaux faibles détectés','Prévisions exploitables','Insights en temps réel'] },
+      { t:'Optimisation des processus', d:'Repérer les goulots d’étranglement, automatiser les flux répétitifs et mesurer le gain en continu.', pts:['Cartographie des flux','Automatisation ciblée','Mesure continue'] },
+      { t:'Modèles affinés vs RAG', d:'Un modèle affiné sur votre domaine offre une précision supérieure, des réponses plus rapides et une intelligence spécifique. Comparez les deux approches plus bas.', pts:['Précision supérieure','Réponses plus rapides','Intelligence spécifique'] },
+      { t:'Automatisation métier agentique', d:'Des agents coordonnés exécutent des processus de bout en bout, prennent des décisions et apprennent, sous supervision humaine.', pts:['Coordination multi-agents','Prise de décision','Apprentissage & adaptation'] }
+    ];
+    const cases = U.map((u, i) => ({
+      n: this.pad(i + 1), t: u.t, d: u.d, on: s.uc === i, sel: s.uc === i ? 'true' : 'false', hasClaim: !!u.claim,
+      pts: u.pts.map((t, j) => ({ i: this.pad(j + 1), t })),
+      style: s.uc === i ? 'border-color:var(--v);background:#1C1C1C' : '',
+      nStyle: s.uc === i ? 'color:var(--v)' : '',
+      pick: () => this.setState({ uc:i })
+    }));
+
+    const PR = [
+      { k:'Précision sur votre domaine', ft:true },
+      { k:'Rapidité des réponses', ft:true },
+      { k:'Intelligence spécifique au métier', ft:true },
+      { k:'Documents mis à jour très souvent', ft:false },
+      { k:'Citer les sources consultées', ft:false },
+      { k:'Démarrer sans phase d’entraînement', ft:false }
+    ];
+    let ft = 0, rag = 0;
+    PR.forEach((p, i) => { if (s.prio[i]) { if (p.ft) ft++; else rag++; } });
+    const prios = PR.map((p, i) => ({
+      k: p.k, side: p.ft ? 'Affiné' : 'RAG',
+      pressed: s.prio[i] ? 'true' : 'false',
+      style: s.prio[i] ? 'border-color:var(--v);background:#1E1E1E' : '',
+      sStyle: s.prio[i] ? ON : '',
+      pick: () => { const a = s.prio.slice(); a[i] = !a[i]; this.setState({ prio:a }); }
+    }));
+    const pos = Math.max(8, Math.min(92, 50 + (ft - rag) * 12));
+    const verdict = ft === 0 && rag === 0 ? 'Cochez vos priorités' : (ft > rag ? 'Modèle affiné recommandé' : (rag > ft ? 'RAG recommandé' : 'Approche hybride à étudier'));
+
+    const T = this.tasks(), cur = T[s.task];
+    const tasks = T.map((t, i) => ({
+      t: t.t, s: t.s, pressed: s.task === i ? 'true' : 'false',
+      style: s.task === i ? 'border-color:var(--v);background:#1A1A1A' : '',
+      pick: () => { clearInterval(this.iv); this.setState({ task:i, phase:'idle', k:-1 }); }
+    }));
+    const log = cur.steps.map((t, i) => {
+      const done = i < s.k, on = i === s.k && s.phase === 'run';
+      return {
+        n: this.pad(i + 1), t, show: s.phase !== 'idle' && i <= s.k, live: on,
+        st: done ? 'OK' : 'En cours',
+        sStyle: done ? ON : 'color:#FF3B30;border:1px solid #FF3B30'
+      };
+    });
+    const n = cur.steps.length;
+    const pct = s.phase === 'idle' ? 0 : Math.round(Math.min(s.k, n) / n * 100);
+
+    return {
+      rootStyle: '--v:' + acc + ';--play:' + (this.props.motion === false ? 'paused' : 'running'),
+      menu: s.menu, menuExp: s.menu ? 'true' : 'false', toggleMenu: () => this.setState({ menu: !s.menu }),
+      caps, cases, prios,
+      tugStyle: 'width:' + pos + '%', tugAria: 'Balance : ' + verdict,
+      verdict, verdictStyle: ft > rag ? 'color:var(--v)' : '',
+      ftScore: String(ft), ragScore: String(rag),
+      tasks, log, taskName: cur.t, result: cur.res,
+      run: () => this.run(),
+      runLabel: s.phase === 'run' ? 'Relancer la mission' : (s.phase === 'done' ? 'Rejouer' : 'Lancer ATOM'),
+      running: s.phase === 'run', finished: s.phase === 'done', notFinished: s.phase !== 'done', idle: s.phase === 'idle',
+      barStyle: 'width:' + pct + '%'
+    };
+  }
+}
+</script>
+</body>
+</html>

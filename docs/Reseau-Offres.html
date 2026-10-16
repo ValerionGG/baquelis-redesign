@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Réseau — Offres</title>
+<script src="vendor/preact.min.js"></script>
+<script src="dc.js"></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<script type="text/x-dc-template" id="dc-template">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+sc-for,sc-if{display:contents}
+*{box-sizing:border-box}
+.rx{background:#060B18;color:#E6ECF7;font-family:'Space Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+.rx a{color:inherit}
+.rx p{margin:0}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px);position:relative}
+.gridbg{background-image:linear-gradient(rgba(23,34,61,.55) 1px,transparent 1px),linear-gradient(90deg,rgba(23,34,61,.55) 1px,transparent 1px);background-size:56px 56px}
+.strip{border-bottom:1px solid #17223D;font-size:12px;color:#8E9BB5;background:#050915}
+.strip-in{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:36px;flex-wrap:wrap}
+.strip a{color:#00AEEF;text-decoration:none;padding:8px 0}
+.strip a:hover{text-decoration:underline}
+.hdr{position:sticky;top:0;z-index:50;background:rgba(6,11,24,.88);backdrop-filter:blur(14px);border-bottom:1px solid #17223D}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:22px;letter-spacing:-.02em;min-height:44px}
+.logo-pulse{animation:pulse 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.nav{display:flex;gap:2px}
+.nav a{padding:12px 14px;border-radius:8px;text-decoration:none;color:#8E9BB5;font-size:15px;font-weight:500;transition:color .2s,background .2s}
+.nav a:hover,.nav a.on{color:#E6ECF7;background:#0C1428}
+.nav a.on{box-shadow:inset 0 -2px 0 #3DFFA2}
+.hdr-cta{display:flex;align-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:10px;background:#3DFFA2;color:#060B18;font-weight:600;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:inherit;font-size:16px;transition:transform .2s,box-shadow .25s,border-color .2s,background .2s}
+.rx a.btn{color:#060B18}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 0 4px rgba(61,255,162,.16),0 14px 34px -12px rgba(61,255,162,.6)}
+.btn-ghost,.rx a.btn-ghost{background:transparent;color:#E6ECF7;border:1px solid #2A3A60}
+.btn-ghost:hover{border-color:#00AEEF;box-shadow:0 0 0 4px rgba(0,174,239,.14)}
+.btn-sm{min-height:44px;padding:0 16px;font-size:15px}
+.menu-btn{display:none;width:44px;height:44px;border-radius:10px;border:1px solid #2A3A60;background:#0C1428;color:#E6ECF7;cursor:pointer;align-items:center;justify-content:center}
+.mnav{display:flex;flex-direction:column;padding:6px clamp(16px,4vw,40px) 16px;border-top:1px solid #17223D}
+.mnav a{padding:14px 4px;border-bottom:1px solid #17223D;text-decoration:none;font-weight:500}
+@media(max-width:900px){.nav{display:none}.menu-btn{display:inline-flex}.hdr-cta .btn{display:none}}
+@media(min-width:901px){.mnav{display:none}}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:#8E9BB5}
+.dot{width:8px;height:8px;border-radius:50%;background:#3DFFA2;animation:ping 1.8s infinite;flex:none}
+.h1{font-size:clamp(40px,5.4vw,78px);line-height:1;letter-spacing:-.045em;font-weight:700;margin:22px 0 0;overflow-wrap:anywhere}
+.h2{font-size:clamp(32px,4.2vw,56px);line-height:1.04;letter-spacing:-.03em;font-weight:600;margin:16px 0 0;overflow-wrap:anywhere}
+.lead{color:#8E9BB5;font-size:clamp(17px,1.4vw,19px);max-width:640px;margin-top:18px}
+.sec{padding:clamp(72px,9vw,128px) 0;position:relative}
+.card{background:#0C1428;border:1px solid #17223D;border-radius:16px;transition:border-color .25s,transform .25s,box-shadow .25s}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.06em;padding:4px 10px;border-radius:999px;border:1px solid #2A3A60;color:#8E9BB5;white-space:nowrap}
+.illu{color:#FFB020;border-color:rgba(255,176,32,.45)}
+.kpi{padding:16px;border-radius:12px;background:#060B18;border:1px solid #17223D}
+.kpi-l{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#8E9BB5;font-family:'JetBrains Mono',monospace}
+.ftr{border-top:1px solid #17223D;background:#050915;padding:72px 0 28px;font-size:15px}
+.ftr-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:40px}
+.ftr h4{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8E9BB5;font-weight:500;margin:0 0 12px}
+.ftr-l a{display:flex;align-items:center;min-height:40px;color:#E6ECF7;text-decoration:none;transition:color .2s}
+.ftr-l a:hover{color:#3DFFA2}
+.ftr-b{margin-top:56px;padding-top:22px;border-top:1px solid #17223D;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#8E9BB5;font-size:13px}
+.rv{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.08s}.d2{animation-delay:.18s}.d3{animation-delay:.28s}.d4{animation-delay:.4s}
+:focus-visible{outline:2px solid #00AEEF;outline-offset:3px}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(61,255,162,.55)}70%{box-shadow:0 0 0 10px rgba(61,255,162,0)}100%{box-shadow:0 0 0 0 rgba(61,255,162,0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes flashA{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes flashB{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+/* page */
+.hero{padding:clamp(48px,7vw,96px) 0 24px}
+.seg{display:inline-flex;padding:4px;border-radius:12px;border:1px solid #17223D;background:#060B18;gap:4px;flex-wrap:wrap;margin-top:32px}
+.seg button{min-height:44px;padding:0 16px;border-radius:9px;border:0;background:transparent;color:#8E9BB5;font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;transition:background .2s,color .2s}
+.prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:20px;margin-top:56px;align-items:stretch}
+.price{padding:32px 28px;display:flex;flex-direction:column;gap:16px;position:relative;cursor:pointer}
+.price:hover{transform:translateY(-4px)}
+.price h3{margin:0;font-size:26px;font-weight:600;letter-spacing:-.02em}
+.amt{font-size:clamp(40px,3.6vw,52px);font-weight:600;letter-spacing:-.035em;line-height:1}
+.amt small{font-size:15px;color:#8E9BB5;font-weight:400;letter-spacing:0}
+.pop{position:absolute;top:-13px;left:26px;color:#060B18;font-size:11px;letter-spacing:.1em;font-weight:700;padding:5px 10px;border-radius:6px}
+.pl{display:flex;flex-direction:column;gap:9px;font-size:15px;color:#B4BFD4;padding-top:16px;border-top:1px solid #17223D}
+.pl div{display:flex;gap:10px;align-items:flex-start}
+.pl svg{flex:none;margin-top:5px}
+.sel-r{display:flex;align-items:center;gap:10px;font-size:13px;min-height:44px;background:none;border:0;color:#E6ECF7;cursor:pointer;padding:0;font-family:'JetBrains Mono',monospace}
+.radio{width:20px;height:20px;border-radius:50%;border:2px solid;display:flex;align-items:center;justify-content:center;flex:none}
+.radio i{width:8px;height:8px;border-radius:50%;display:block}
+.tblw{margin-top:48px;overflow-x:auto;border-radius:16px;border:1px solid #17223D;background:#0A1122}
+.tbl{width:100%;min-width:780px;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{padding:16px 18px;border-bottom:1px solid #17223D;text-align:left;vertical-align:top}
+.tbl thead th{font-size:20px;font-weight:600;padding-top:22px;padding-bottom:18px}
+.tbl thead th span{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;color:#8E9BB5;font-weight:500;margin-top:2px}
+.tbl tbody th{font-weight:500;color:#8E9BB5;font-size:14px;width:24%}
+.tbl tbody tr:hover td,.tbl tbody tr:hover th{background:rgba(23,34,61,.35)}
+.tbl col{transition:background .3s}
+.no{color:#8E9BB5}
+.tbc{font-family:'JetBrains Mono',monospace;font-size:13px;color:#FFB020}
+.sim-g{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;margin-top:48px}
+@media(max-width:960px){.sim-g{grid-template-columns:minmax(0,1fr)}}
+.sim-c{padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:20px}
+.pbtns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pbtns button{min-height:56px;border-radius:12px;border:1px solid #17223D;background:#060B18;color:#E6ECF7;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:border-color .2s,color .2s}
+.pbtns button:hover{border-color:#00AEEF}
+.rng{width:100%;height:44px;accent-color:#3DFFA2;cursor:pointer}
+.out{padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:20px}
+.out-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:12px}
+.ov{font-family:'JetBrains Mono',monospace;font-size:clamp(26px,2.6vw,36px);font-weight:500;margin-top:4px;line-height:1.1}
+.chart{display:flex;align-items:flex-end;gap:3px;height:180px;padding:12px;border-radius:12px;background:#060B18;border:1px solid #17223D;position:relative}
+.chart i{flex:1;display:block;border-radius:3px 3px 0 0;transform-origin:bottom;animation:grow .6s cubic-bezier(.2,.7,.2,1) both;transition:height .4s,background .3s}
+.faq{display:flex;flex-direction:column;gap:10px;margin-top:48px;max-width:960px}
+.fq{width:100%;display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:16px;align-items:center;min-height:72px;padding:14px 22px;background:transparent;border:0;color:#E6ECF7;font-family:inherit;font-size:clamp(17px,1.5vw,19px);font-weight:600;text-align:left;cursor:pointer}
+.fq-i{width:40px;height:40px;border-radius:50%;border:1px solid #2A3A60;display:flex;align-items:center;justify-content:center;transition:transform .3s,border-color .3s,color .3s}
+.fa{padding:0 22px 22px;color:#B4BFD4;animation:fadeIn .4s both;max-width:780px}
+.cta-bg{background:linear-gradient(90deg,rgba(6,11,24,.97) 35%,rgba(6,11,24,.55)),url(assets/city-night-tower.webp) center/cover;border-radius:24px;border:1px solid #17223D;padding:clamp(40px,6vw,88px)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="rx">
+<div class="strip mono"><div class="wrap strip-in"><span>BAQUELIS · OFFRES</span><a href="index.html">Toutes les propositions →</a></div></div>
+<header class="hdr">
+<div class="wrap hdr-in">
+<a href="Reseau-Accueil.html" class="logo" aria-label="Baquelis — accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M7 8 L23 6 L15 23 Z" fill="none" stroke="#2A3A60" stroke-width="1.6"></path><circle cx="7" cy="8" r="3.4" fill="#00AEEF"></circle><circle cx="23" cy="6" r="3.4" fill="#E6ECF7"></circle><circle class="logo-pulse" cx="15" cy="23" r="3.8" fill="#3DFFA2"></circle></svg><span>Baquelis</span></a>
+<nav class="nav" aria-label="Navigation principale"><a href="Reseau-Expertises.html">Expertises</a><a href="Reseau-IA.html">IA</a><a href="Reseau-Jeux.html">Jeux &amp; Web3</a><a href="Reseau-Offres.html" class="on" aria-current="page">Offres</a><a href="Reseau-Contact.html">Contact</a></nav>
+<div class="hdr-cta"><a class="btn btn-sm" href="Reseau-Contact.html">Réserver un appel</a><button class="menu-btn" aria-label="Ouvrir ou fermer le menu" onClick="{{ toggleMenu }}"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h9"></path></svg></button></div>
+</div>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><nav class="mnav" aria-label="Navigation mobile"><a href="Reseau-Expertises.html">Expertises</a><a href="Reseau-IA.html">IA</a><a href="Reseau-Jeux.html">Jeux &amp; Web3</a><a href="Reseau-Offres.html">Offres</a><a href="Reseau-Contact.html">Contact — Réserver un appel</a></nav></sc-if>
+</header>
+
+<main>
+<section class="hero gridbg">
+<div class="wrap">
+<div class="eyebrow rv"><span class="dot" style="{{ ui.dotBg }}"></span>Formules mensuelles · tarification transparente</div>
+<h1 class="h1 rv d1">Choisissez votre <span style="{{ ui.accentText }}">bande passante.</span></h1>
+<p class="lead rv d2">Trois formules, des prix publiés, aucun coût caché. Un profil dédié, un profil senior ou une équipe complète : vous ajustez le débit selon votre projet.</p>
+<div class="seg rv d3" role="group" aria-label="Affichage des montants"><sc-for list="{{ views }}" as="v" hint-placeholder-count="2"><button style="{{ v.st }}" onClick="{{ v.pick }}" aria-pressed="{{ v.pr }}">{{ v.l }}</button></sc-for></div>
+
+<div class="prices">
+<sc-for list="{{ plans }}" as="p" hint-placeholder-count="3">
+<div class="card price" style="{{ p.card }}" onClick="{{ p.pick }}">
+<sc-if value="{{ p.popular }}" hint-placeholder-val="{{ false }}"><span class="pop mono" style="{{ ui.ctaBg }}">PLUS POPULAIRE</span></sc-if>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span class="mono" style="font-size:12px;color:#8E9BB5;letter-spacing:.1em">{{ p.k }}</span><button class="sel-r mono" onClick="{{ p.pick }}" aria-pressed="{{ p.pr }}" aria-label="{{ p.aria }}"><span class="radio" style="{{ p.rb }}"><i style="{{ p.ri }}"></i></span>{{ p.selTxt }}</button></div>
+<h3>{{ p.t }}</h3>
+<p style="color:#8E9BB5;font-size:15px">{{ p.ideal }}</p>
+<div class="amt" style="{{ p.amtSt }}">{{ p.amt }}<small> {{ p.unit }}</small></div>
+<div class="mono" style="font-size:13px;color:#8E9BB5">{{ p.sub }}</div>
+<div class="pl"><sc-for list="{{ p.f }}" as="f" hint-placeholder-count="7"><div><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3DFFA2" stroke-width="2"><path d="M2 7l3 3 7-7"></path></svg>{{ f }}</div></sc-for></div>
+<a class="btn" href="Reseau-Contact.html" style="{{ p.btn }}">Commencer avec {{ p.t }}</a>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section class="sec">
+<div class="wrap">
+<div class="eyebrow">Comparatif détaillé</div>
+<h2 class="h2">Toutes les caractéristiques, côte à côte.</h2>
+<p class="lead">La colonne surlignée suit la formule sélectionnée plus haut.</p>
+<div class="tblw">
+<table class="tbl">
+<colgroup><col><col style="{{ cmp.c0 }}"><col style="{{ cmp.c1 }}"><col style="{{ cmp.c2 }}"></colgroup>
+<thead><tr><th class="mono" style="font-size:12px;color:#8E9BB5;font-weight:500;vertical-align:bottom">CARACTÉRISTIQUE</th><th style="{{ cmp.h0 }}">Intégration<span>4&nbsp;500&nbsp;€/mois</span></th><th style="{{ cmp.h1 }}">Flex<span>6&nbsp;200&nbsp;€/mois · plus populaire</span></th><th style="{{ cmp.h2 }}">Performance<span>18&nbsp;900&nbsp;€/mois</span></th></tr></thead>
+<tbody>
+<tr><th>Idéal pour</th><td>Startups et PME avec des besoins techniques spécifiques</td><td>Entreprises avec projets évolutifs</td><td>Grandes entreprises et projets stratégiques complexes</td></tr>
+<tr><th>Profils</th><td>1 profil technique dédié</td><td>1 profil technique senior, changement rapide</td><td>Équipe de 5 experts seniors dédiés</td></tr>
+<tr><th>Changement de profil</th><td>Sous 30 jours</td><td>Sous 15 jours</td><td class="tbc">[À CONFIRMER]</td></tr>
+<tr><th>Engagement minimum</th><td>12 mois</td><td>6 mois</td><td>2 mois</td></tr>
+<tr><th>Heures couvertes</th><td>Standard · 40 h/semaine</td><td>Étendues · 50 h/semaine</td><td>Couverture 24/7</td></tr>
+<tr><th>Support</th><td>E-mail et chat</td><td>E-mail et chat prioritaire</td><td>Support prioritaire 24/7 et hotline</td></tr>
+<tr><th>Rapports</th><td>Mensuels</td><td>Hebdomadaires détaillés</td><td>Quotidiens personnalisés et tableaux de bord</td></tr>
+<tr><th>Documentation &amp; passation</th><td class="no">—</td><td>Renforcées</td><td class="tbc">[À CONFIRMER]</td></tr>
+<tr><th>Lead tech + Product Owner</th><td class="no">—</td><td class="no">—</td><td>Inclus</td></tr>
+<tr><th>Gestion de projet agile complète</th><td class="no">—</td><td class="no">—</td><td>Incluse</td></tr>
+<tr><th>Espace Slack dédié</th><td class="no">—</td><td class="no">—</td><td>Inclus</td></tr>
+<tr><th>Économie vs recrutement</th><td style="color:#3DFFA2" class="mono">1&nbsp;500&nbsp;€/mois</td><td style="color:#3DFFA2" class="mono">2&nbsp;300&nbsp;€/mois</td><td style="color:#3DFFA2" class="mono">12&nbsp;000&nbsp;€/mois</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
+<section class="sec gridbg" style="border-top:1px solid #17223D;border-bottom:1px solid #17223D">
+<div class="wrap">
+<div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end"><div><div class="eyebrow">Simulateur d’économies</div><h2 class="h2">Combien économisez-vous ?</h2><p class="lead">Choisissez une formule et une durée : l’économie se cumule mois après mois.</p></div><span class="tag illu">ESTIMATION BASÉE SUR LES CHIFFRES BAQUELIS</span></div>
+<div class="sim-g">
+<div class="card sim-c">
+<div><div class="kpi-l" style="margin-bottom:10px">1 · Formule</div><div class="pbtns" role="group" aria-label="Formule"><sc-for list="{{ simPlans }}" as="b" hint-placeholder-count="3"><button style="{{ b.st }}" onClick="{{ b.pick }}" aria-pressed="{{ b.pr }}">{{ b.t }}</button></sc-for></div></div>
+<div><div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px"><span class="kpi-l">2 · Durée</span><span class="mono" style="font-size:22px">{{ sim.mois }}</span></div>
+<input class="rng" type="range" min="{{ sim.min }}" max="36" step="1" value="{{ sim.m }}" onInput="{{ setMois }}" aria-label="Durée en mois">
+<div class="mono" style="display:flex;justify-content:space-between;font-size:12px;color:#8E9BB5"><span>{{ sim.minTxt }}</span><span>36 mois</span></div></div>
+<div class="kpi"><div class="kpi-l">Engagement minimum</div><p style="margin-top:6px">{{ sim.eng }}</p></div>
+</div>
+<div class="card out">
+<div class="out-g">
+<div class="kpi"><div class="kpi-l">Économie mensuelle</div><div class="ov" style="{{ sim.fa }}">{{ sim.monthly }}</div></div>
+<div class="kpi" style="border-color:#2A3A60"><div class="kpi-l">Économie cumulée</div><div class="ov" style="{{ sim.fb }}">{{ sim.total }}</div></div>
+<div class="kpi"><div class="kpi-l">Investissement formule</div><div class="ov" style="font-size:clamp(20px,2vw,26px);color:#B4BFD4">{{ sim.cost }}</div></div>
+</div>
+<div><div class="kpi-l" style="margin-bottom:8px">Économie cumulée, mois par mois</div><div class="chart" aria-hidden="true"><sc-for list="{{ sim.bars }}" as="b" hint-placeholder-count="12"><i style="{{ b }}"></i></sc-for></div></div>
+<p class="mono" style="font-size:12px;color:#8E9BB5">Estimation basée sur les chiffres Baquelis : économie mensuelle « vs recrutement » de 1&nbsp;500&nbsp;€ (Intégration), 2&nbsp;300&nbsp;€ (Flex) et 12&nbsp;000&nbsp;€ (Performance).</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec">
+<div class="wrap">
+<div class="eyebrow">Questions fréquentes</div>
+<h2 class="h2">Tout ce qu’il faut savoir avant de se connecter.</h2>
+<div class="faq">
+<sc-for list="{{ faqs }}" as="q" hint-placeholder-count="8">
+<div class="card" style="{{ q.card }}">
+<button class="fq" onClick="{{ q.toggle }}" aria-expanded="{{ q.exp }}"><span>{{ q.q }}</span><span class="fq-i" style="{{ q.icon }}"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 2v10M2 7h10"></path></svg></span></button>
+<sc-if value="{{ q.open }}" hint-placeholder-val="{{ false }}"><p class="fa">{{ q.a }}</p></sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section class="sec" style="padding-top:0">
+<div class="wrap">
+<div class="cta-bg">
+<div class="eyebrow"><span class="dot" style="{{ ui.dotBg }}"></span>Formule {{ chosen }} sélectionnée</div>
+<h2 class="h2" style="max-width:760px">Prêt à transformer votre entreprise ?</h2>
+<p class="lead">Réservez un appel découverte : nous validons ensemble la formule et le profil qui vous conviennent.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px"><a class="btn" href="Reseau-Contact.html" style="{{ ui.ctaBg }}">Commencer aujourd’hui</a><a class="btn btn-ghost" href="Reseau-Contact.html">Nous contacter</a></div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="ftr">
+<div class="wrap">
+<div class="ftr-g">
+<div><a href="Reseau-Accueil.html" class="logo" aria-label="Baquelis — accueil"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M7 8 L23 6 L15 23 Z" fill="none" stroke="#2A3A60" stroke-width="1.6"></path><circle cx="7" cy="8" r="3.4" fill="#00AEEF"></circle><circle cx="23" cy="6" r="3.4" fill="#E6ECF7"></circle><circle cx="15" cy="23" r="3.8" fill="#3DFFA2"></circle></svg><span>Baquelis</span></a><p style="color:#8E9BB5;margin-top:12px;max-width:280px">Flexibilité. Continuité. Performance. Excellence IA par la technologie.</p><p style="margin-top:16px;font-size:14px;color:#8E9BB5">31 B avenue Maréchal Foch<br>06000 Nice</p><p class="mono" style="margin-top:8px;font-size:13px">[contact@domaine-baquelis]</p></div>
+<div><h4>Navigation</h4><div class="ftr-l"><a href="Reseau-Expertises.html">Expertises</a><a href="Reseau-IA.html">Intelligence artificielle</a><a href="Reseau-Jeux.html">Jeux &amp; Web3</a><a href="Reseau-Offres.html">Offres</a><a href="Reseau-Contact.html">Contact</a></div></div>
+<div><h4>Offres</h4><div class="ftr-l"><a href="Reseau-Offres.html">Intégration — 4&nbsp;500&nbsp;€/mois</a><a href="Reseau-Offres.html">Flex — 6&nbsp;200&nbsp;€/mois</a><a href="Reseau-Offres.html">Performance — 18&nbsp;900&nbsp;€/mois</a></div></div>
+<div><h4>Société</h4><div class="ftr-l" style="color:#8E9BB5;font-size:14px"><span style="display:block;padding:9px 0">[RAISON SOCIALE]</span><span style="display:block;padding:9px 0">TVA : [N° TVA]</span><a href="index.html">Toutes les propositions</a></div></div>
+</div>
+<div class="ftr-b mono"><span>© 2026 Baquelis</span><span>Proposition de refonte — concept · Direction 4 · Réseau</span></div>
+</div>
+</footer>
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6700},"accent":{"editor":"color","default":"#3DFFA2","options":["#3DFFA2","#00AEEF","#FFB020"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu: false, view: 0, plan: 1, mois: 12, faq: 0 };
+  }
+  renderVals(){
+    const s = this.state;
+    const A = (this.props && this.props.accent) || '#3DFFA2';
+    const fmt = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' €';
+
+    const P = [
+      { t: 'Intégration', k: 'STARTUPS & PME', ideal: 'Idéal pour les startups et PME avec des besoins techniques spécifiques.', price: 4500, save: 1500, min: 12,
+        f: ['1 profil technique dédié', 'Changement de profil sous 30 jours', 'Rapports mensuels', 'Heures standard (40 h/semaine)', 'Support e-mail et chat', 'Engagement minimum 12 mois'] },
+      { t: 'Flex', k: 'PROJETS ÉVOLUTIFS', ideal: 'Idéal pour les entreprises avec des projets évolutifs : flexibilité maximale.', price: 6200, save: 2300, min: 6, popular: true,
+        f: ['1 profil technique senior avec changement rapide', 'Changement de profil sous 15 jours', 'Rapports détaillés hebdomadaires', 'Heures étendues (50 h/semaine)', 'Support e-mail et chat prioritaire', 'Documentation et passation renforcées', 'Engagement minimum 6 mois'] },
+      { t: 'Performance', k: 'GRANDES ENTREPRISES', ideal: 'Idéal pour les grandes entreprises et les projets stratégiques complexes.', price: 18900, save: 12000, min: 2,
+        f: ['Équipe de 5 experts seniors dédiés', 'Lead tech + Product Owner inclus', 'Gestion de projet agile complète', 'Rapports quotidiens personnalisés et tableaux de bord', 'Support prioritaire 24/7 et hotline', 'Couverture 24/7 · espace Slack dédié', 'Engagement minimum 2 mois'] }
+    ];
+    const pickPlan = i => this.setState({ plan: i, mois: Math.max(this.state.mois, P[i].min) });
+    const VL = ['Prix mensuel', 'Économie vs recrutement'];
+    const views = VL.map((l, i) => ({ l: l, pr: i === s.view ? 'true' : 'false', st: i === s.view ? 'background:#0C1428;color:#E6ECF7;box-shadow:inset 0 0 0 1px ' + A : '', pick: () => this.setState({ view: i }) }));
+    const plans = P.map((p, i) => {
+      const on = i === s.plan;
+      return {
+        t: p.t, k: p.k, ideal: p.ideal, f: p.f, popular: !!p.popular,
+        amt: fmt(s.view === 0 ? p.price : p.save), unit: s.view === 0 ? '/mois' : 'économisés /mois',
+        sub: s.view === 0 ? 'Économisez ' + fmt(p.save) + '/mois vs recrutement' : 'Pour ' + fmt(p.price) + '/mois de formule',
+        amtSt: s.view === 1 ? 'color:' + A + ';animation:fadeIn .4s both' : 'animation:up .4s both',
+        card: on ? 'border-color:' + A + ';box-shadow:0 30px 80px -40px ' + A : '',
+        rb: on ? 'border-color:' + A : 'border-color:#2A3A60',
+        ri: on ? 'background:' + A : 'background:transparent',
+        selTxt: on ? 'SÉLECTIONNÉE' : 'SÉLECTIONNER', pr: on ? 'true' : 'false', aria: 'Sélectionner la formule ' + p.t,
+        btn: on ? 'background:' + A + ';margin-top:auto' : 'background:transparent;color:#E6ECF7;border-color:#2A3A60;margin-top:auto',
+        pick: () => pickPlan(i)
+      };
+    });
+    const colOn = 'background:rgba(61,255,162,.06)';
+    const cmp = {
+      c0: s.plan === 0 ? colOn : '', c1: s.plan === 1 ? colOn : '', c2: s.plan === 2 ? colOn : '',
+      h0: s.plan === 0 ? 'color:' + A + ';box-shadow:inset 0 3px 0 ' + A : '',
+      h1: s.plan === 1 ? 'color:' + A + ';box-shadow:inset 0 3px 0 ' + A : '',
+      h2: s.plan === 2 ? 'color:' + A + ';box-shadow:inset 0 3px 0 ' + A : ''
+    };
+
+    const cp = P[s.plan];
+    const m = Math.max(cp.min, Math.min(36, s.mois));
+    const simPlans = P.map((p, i) => ({ t: p.t, pr: i === s.plan ? 'true' : 'false', st: i === s.plan ? 'border-color:' + A + ';color:' + A + ';background:#0C1428' : '', pick: () => pickPlan(i) }));
+    const maxTot = cp.save * 36;
+    const bars = [];
+    for (let k = 1; k <= 36; k++) {
+      const on = k <= m;
+      bars.push('height:' + Math.max(3, Math.round((cp.save * k / maxTot) * 154)) + 'px;background:' + (on ? (k === m ? A : '#00AEEF') : '#17223D') + ';opacity:' + (on ? (k === m ? 1 : 0.65) : 1) + ';animation-delay:' + (k * 0.012) + 's');
+    }
+    const flip = (s.plan + m) % 2 ? 'flashA' : 'flashB';
+    const sim = {
+      m: m, min: cp.min, mois: m + ' mois', minTxt: cp.min + ' mois (minimum)',
+      eng: cp.t + ' : ' + cp.min + ' mois minimum. Le curseur démarre à cette durée.',
+      monthly: fmt(cp.save), total: fmt(cp.save * m), cost: fmt(cp.price * m) + ' sur ' + m + ' mois',
+      fa: 'animation:' + flip + ' .4s both', fb: 'color:' + A + ';animation:' + flip + ' .4s both',
+      bars: bars
+    };
+
+    const F = [
+      ['Quel est l’engagement minimum ?', '12 mois pour la formule Intégration, 6 mois pour Flex et 2 mois pour Performance.'],
+      ['Puis-je changer de profil en cours de route ?', 'Oui : sous 30 jours avec Intégration et sous 15 jours avec Flex, qui prévoit un changement rapide. La formule Performance s’appuie sur une équipe de 5 experts seniors avec Lead tech et Product Owner.'],
+      ['Quels horaires sont couverts ?', 'Heures standard (40 h/semaine) pour Intégration, heures étendues (50 h/semaine) pour Flex et couverture 24/7 pour Performance.'],
+      ['Quel support est inclus ?', 'Support e-mail et chat pour Intégration, e-mail et chat prioritaire pour Flex, support prioritaire 24/7 avec hotline et espace Slack dédié pour Performance.'],
+      ['À quelle fréquence recevrai-je des rapports ?', 'Rapports mensuels (Intégration), rapports détaillés hebdomadaires (Flex) ou rapports quotidiens personnalisés avec tableaux de bord (Performance). Dans tous les cas, vos progrès sont visibles en temps réel.'],
+      ['Comment est calculée l’économie vs recrutement ?', 'Elle reprend les chiffres Baquelis : 1 500 €/mois pour Intégration, 2 300 €/mois pour Flex et 12 000 €/mois pour Performance, comparés à un recrutement équivalent. Le simulateur cumule ce montant sur la durée choisie.'],
+      ['Quelle différence entre un modèle affiné et un RAG ?', 'Un modèle affiné est entraîné sur vos données et vos cas d’usage : précision supérieure, réponses plus rapides, intelligence spécifique. Un RAG va chercher l’information dans vos documents à chaque requête. Nous vous aidons à choisir lors du cadrage.'],
+      ['Pourquoi parlez-vous autant de jeux vidéo ?', 'Parce que les jeux sont les applications les plus difficiles : temps réel, gestion d’état complexe, multijoueur, anti-triche. Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique — le vôtre compris.']
+    ];
+    const faqs = F.map((x, i) => {
+      const open = s.faq === i;
+      return {
+        q: x[0], a: x[1], open: open, exp: open ? 'true' : 'false',
+        card: open ? 'border-color:#2A3A60' : '',
+        icon: open ? 'transform:rotate(45deg);border-color:' + A + ';color:' + A : '',
+        toggle: () => this.setState({ faq: open ? -1 : i })
+      };
+    });
+
+    return {
+      menuOpen: s.menu,
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      ui: { dotBg: 'background:' + A, accentText: 'color:' + A, ctaBg: 'background:' + A },
+      views: views, plans: plans, cmp: cmp,
+      simPlans: simPlans, sim: sim,
+      setMois: e => this.setState({ mois: Number(e.target.value) }),
+      faqs: faqs, chosen: cp.t
+    };
+  }
+}
+</script>
+</body>
+</html>

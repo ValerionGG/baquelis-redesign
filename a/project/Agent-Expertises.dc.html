@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Agent — Expertises</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+sc-for,sc-if{display:contents}
+*{box-sizing:border-box}
+.bq{background:#F6F7F4;color:#15181C;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.bq a{color:inherit}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.sec{padding:112px 0}
+.hdr{position:sticky;top:0;z-index:20;background:rgba(246,247,244,.88);backdrop-filter:blur(14px);border-bottom:1px solid #E4E7E2}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:21px;letter-spacing:-.025em;min-height:44px}
+.nav{display:flex;gap:2px;align-items:center}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:10px;text-decoration:none;font-size:15px;color:#3B4148;transition:background .2s,color .2s}
+.nav a:hover{background:#ECEEEA;color:#15181C}
+.nav a.on{color:#15181C;background:#fff;box-shadow:0 0 0 1px #E4E7E2}
+.hdr-cta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:12px;font:500 15px/1.1 'IBM Plex Sans',sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s,color .2s}
+.btn-cta{color:#15181C;box-shadow:0 1px 0 rgba(21,24,28,.08),0 10px 24px -12px rgba(255,122,69,.8)}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(21,24,28,.08),0 16px 30px -12px rgba(255,122,69,.9)}
+.btn-ink{background:#15181C;color:#fff}
+.btn-ink:hover{background:#2A2F35;transform:translateY(-2px)}
+.btn-line{background:#fff;color:#15181C;box-shadow:inset 0 0 0 1px #D6DAD3}
+.btn-line:hover{box-shadow:inset 0 0 0 1px #0091C7;color:#00739E}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid #D6DAD3;background:#fff;align-items:center;justify-content:center;cursor:pointer}
+.mnav{display:none;border-top:1px solid #E4E7E2}
+.mnav a{display:flex;align-items:center;min-height:48px;padding:0 12px;border-radius:12px;text-decoration:none;font-size:17px}
+.mnav a:hover{background:#ECEEEA}
+@media (max-width:960px){.nav,.hdr-cta{display:none}.burger{display:inline-flex}.mnav{display:block}}
+.eyebrow{font:500 12px/1.2 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#00739E}
+.h1{font-weight:500;font-size:clamp(38px,5vw,72px);line-height:1.04;letter-spacing:-.04em;margin:0;overflow-wrap:anywhere}
+.h2{font-weight:500;font-size:clamp(30px,3.6vw,50px);line-height:1.08;letter-spacing:-.03em;margin:0;overflow-wrap:anywhere}
+.lead{font-size:clamp(17px,1.5vw,20px);color:#5C636B;line-height:1.55;margin:0}
+.muted{color:#5C636B}
+.ask{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid #E4E7E2;border-radius:18px 18px 18px 6px;padding:6px 16px 6px 6px;font-size:15px;color:#3B4148;margin:0 0 22px;max-width:100%}
+.ask b{font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;background:#F1F2EF;color:#5C636B;padding:7px 9px;border-radius:999px;flex:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:20px}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:56px;align-items:center}
+.card{background:#fff;border:1px solid #E4E7E2;border-radius:22px;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s,border-color .3s}
+.card-h:hover{transform:translateY(-4px);box-shadow:0 24px 48px -28px rgba(21,24,28,.28);border-color:#CFD5CD}
+.ok{width:22px;height:22px;border-radius:50%;background:#C8F0E2;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.av{width:36px;height:36px;border-radius:50%;background:#15181C;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.tag{font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;padding:7px 10px;border-radius:999px;background:#EAF5FA;color:#00739E}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:#fff;border:1px solid #D6DAD3;color:#15181C;font:400 14.5px/1.2 'IBM Plex Sans',sans-serif;cursor:pointer;text-align:left;transition:border-color .2s,background .2s,transform .2s,color .2s}
+.chip:hover{border-color:#0091C7;background:#F0F8FB;transform:translateY(-1px)}
+.msg-a{align-self:flex-start;max-width:94%;background:#F3F5F1;border-radius:6px 18px 18px 18px;padding:14px 16px;font-size:15px;line-height:1.6}
+.msg-u{align-self:flex-end;max-width:85%;background:#15181C;color:#fff;border-radius:18px 18px 6px 18px;padding:12px 16px;font-size:15px}
+.trace-h{display:flex;justify-content:space-between;align-items:center;gap:10px;font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#5C636B}
+.tool{border:1px solid #E4E7E2;border-radius:14px;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.5}
+.tool-h{padding:10px 12px;color:#3B4148;overflow-wrap:anywhere}
+.tool-h b{color:#00739E;font-weight:500}
+.tool-r{padding:9px 12px;border-top:1px dashed #DDE2DA;color:#0B5D43;background:#F1FBF6;border-radius:0 0 14px 14px;overflow-wrap:anywhere}
+.ghost-row{height:14px;border-radius:7px;background:repeating-linear-gradient(90deg,#ECEEEA 0 10px,#F4F5F2 10px 20px)}
+.typing{display:inline-flex;gap:4px;align-items:center}
+.typing span{width:6px;height:6px;border-radius:50%;background:#0091C7;display:inline-block;animation:blink 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+.live{width:8px;height:8px;border-radius:50%;background:#0091C7;display:inline-block;animation:pulse 1.8s infinite;flex:none}
+.spin{width:15px;height:15px;border-radius:50%;border:2px solid #CFE7F1;border-top-color:#0091C7;animation:spin .8s linear infinite;display:inline-block}
+.rise{animation:rise .55s cubic-bezier(.2,.7,.2,1) both}
+.acc{border-top:1px solid #E4E7E2}
+.acc-b{display:flex;align-items:center;gap:20px;width:100%;min-height:96px;padding:22px 4px;border:0;background:transparent;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.acc-b:hover .acc-t{color:#00739E}
+.acc-t{font-size:clamp(22px,2.4vw,32px);font-weight:500;letter-spacing:-.025em;line-height:1.15;transition:color .2s}
+.acc-x{width:44px;height:44px;border-radius:50%;border:1px solid #D6DAD3;display:inline-flex;align-items:center;justify-content:center;flex:none;transition:transform .35s cubic-bezier(.2,.7,.2,1),background .25s}
+.dom{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:64px;padding:16px 18px;border-radius:16px;border:1px solid #E4E7E2;background:#fff;cursor:pointer;text-align:left;font:500 16px/1.3 'IBM Plex Sans',sans-serif;color:#15181C;transition:border-color .2s,transform .2s,background .2s}
+.dom:hover{border-color:#0091C7;transform:translateX(4px)}
+.vstep{display:flex;gap:18px;align-items:flex-start;width:100%;padding:14px 0;border:0;background:transparent;cursor:pointer;text-align:left;font:inherit;color:inherit;min-height:44px}
+.vdot{width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font:500 13px/1 'IBM Plex Mono',monospace;flex:none;transition:background .3s,color .3s,box-shadow .3s}
+.vstep:hover .vdot{box-shadow:0 0 0 6px rgba(0,145,199,.12)}
+.eng{display:flex;flex-direction:column;gap:14px;padding:28px;border-radius:22px;border:1px solid #E4E7E2;background:#fff;transition:border-color .3s,box-shadow .3s,transform .3s}
+.eng:hover{transform:translateY(-3px);box-shadow:0 24px 48px -28px rgba(21,24,28,.28)}
+.mark{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:12px;border:1px solid #D6DAD3;background:#fff;cursor:pointer;font:500 14px/1 'IBM Plex Sans',sans-serif;color:#15181C;transition:background .2s,border-color .2s,color .2s}
+.mark:hover{border-color:#0091C7}
+.bar{height:6px;background:#EDEFEB;border-radius:6px;overflow:hidden}
+.bar i{display:block;height:6px;background:#0091C7;border-radius:6px;transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.hud{position:absolute;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border:1px solid #E4E7E2;border-radius:16px;padding:14px 16px;font-size:13.5px;box-shadow:0 14px 30px -18px rgba(21,24,28,.4)}
+.askp{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));background:#fff;border:1px solid #E4E7E2;border-radius:28px;overflow:hidden}
+.askp-l{padding:32px;border-right:1px solid #EDEFEB}
+.askp-r{padding:32px;background:#FAFBF9;display:flex;flex-direction:column;gap:12px;min-height:320px}
+.chips-col{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.ft-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:40px}
+.ft-t{font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#5C636B;margin-bottom:12px}
+.ft-l a{display:flex;align-items:center;min-height:44px;text-decoration:none;color:#3B4148;font-size:15px;transition:color .2s}
+.ft-l a:hover{color:#00739E}
+:focus-visible{outline:2px solid #0091C7;outline-offset:3px}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,145,199,.45)}100%{box-shadow:0 0 0 10px rgba(0,145,199,0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.float{animation:floaty 5s ease-in-out infinite}
+@media (max-width:640px){.wrap{padding:0 20px}.sec{padding:80px 0}.askp-l,.askp-r{padding:24px}.hud{display:none}.acc-b{gap:12px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="bq">
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="Agent-Accueil.dc.html" aria-label="Baquelis, accueil">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="9" fill="#15181C"></rect><circle cx="9.5" cy="15" r="2.4" fill="#FFFFFF"></circle><circle cx="15" cy="15" r="2.4" fill="#FFFFFF" opacity=".55"></circle><circle cx="20.5" cy="15" r="2.4" fill="#0091C7"></circle></svg>
+      <span>Baquelis</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="on" href="Agent-Expertises.dc.html" aria-current="page">Expertises</a>
+      <a href="Agent-IA.dc.html">IA</a>
+      <a href="Agent-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a href="Agent-Offres.dc.html">Offres</a>
+      <a href="Agent-Contact.dc.html">Contact</a>
+    </nav>
+    <div class="hdr-cta">
+      <a class="btn btn-line" href="Agent-Contact.dc.html">Réserver un appel</a>
+      <a class="btn btn-cta" style="{{ cta }}" href="Agent-Contact.dc.html">Commencer</a>
+    </div>
+    <button class="burger" type="button" aria-label="Ouvrir ou fermer le menu" aria-expanded="{{ menuExpanded }}" onClick="{{ toggleMenu }}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#15181C" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>
+    </button>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="mnav">
+      <div class="wrap" style="display:grid;gap:2px;padding-top:10px;padding-bottom:20px">
+        <a href="Agent-Expertises.dc.html">Expertises</a>
+        <a href="Agent-IA.dc.html">IA</a>
+        <a href="Agent-Jeux.dc.html">Jeux &amp; Web3</a>
+        <a href="Agent-Offres.dc.html">Offres</a>
+        <a href="Agent-Contact.dc.html">Contact</a>
+        <a class="btn btn-cta" style="{{ cta }}" href="Agent-Contact.dc.html">Commencer</a>
+      </div>
+    </div>
+  </sc-if>
+</header>
+
+<main>
+<!-- HERO -->
+<section style="padding:80px 0 96px">
+  <div class="wrap split">
+    <div>
+      <p class="ask rise"><b>Vous</b>Qu’est-ce que Baquelis fait, exactement ?</p>
+      <h1 class="h1 rise" style="animation-delay:.08s">Du code à la continuité, chaque étape sécurisée.</h1>
+      <p class="lead rise" style="margin-top:24px;animation-delay:.16s">Nous ne livrons pas seulement du code : nous construisons des systèmes évolutifs qui grandissent avec votre entreprise, avec des experts qui deviennent une extension de votre équipe.</p>
+      <div class="rise" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;animation-delay:.24s">
+        <a class="btn btn-cta" style="{{ cta }}" href="Agent-Contact.dc.html">Réserver un appel découverte</a>
+        <a class="btn btn-line" href="#methode">Voir la méthode</a>
+      </div>
+    </div>
+    <div style="position:relative" class="rise">
+      <img src="assets/meeting-room.webp" alt="Salle de réunion lumineuse" style="display:block;width:100%;height:500px;object-fit:cover;border-radius:32px;border:1px solid #E4E7E2">
+      <div class="hud float" style="right:24px;top:24px;width:270px">
+        <div class="trace-h" style="margin-bottom:10px"><span>Mission en cours</span><span class="live"></span></div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:8px;align-items:center"><span class="ok" style="width:18px;height:18px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0B5D43" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Intégré à vos rituels</div>
+          <div style="display:flex;gap:8px;align-items:center"><span class="ok" style="width:18px;height:18px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0B5D43" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Rapport de la semaine publié</div>
+          <div style="display:flex;gap:8px;align-items:center"><span class="spin"></span>Livraison en intégration continue</div>
+        </div>
+      </div>
+      <div class="hud float" style="left:24px;bottom:24px;animation-delay:1.4s">
+        <div class="mono" style="font-size:11.5px;color:#5C636B">tableau de bord partagé</div>
+        <div style="font-weight:600">Progrès visibles en temps réel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILIERS ACCORDEON -->
+<section class="sec" style="background:#FFFFFF;border-top:1px solid #E4E7E2;border-bottom:1px solid #E4E7E2">
+  <div class="wrap">
+    <p class="ask"><b>Vous</b>Sur quoi repose votre façon de travailler ?</p>
+    <div class="split" style="align-items:end;margin-bottom:40px">
+      <h2 class="h2">Quatre piliers. Des solutions éprouvées.</h2>
+      <p class="lead" style="font-size:17px">Ouvrez un pilier : ATOM détaille ce qu’il change concrètement pour votre équipe.</p>
+    </div>
+    <div style="border-bottom:1px solid #E4E7E2">
+      <sc-for list="{{ piliers }}" as="p" hint-placeholder-count="4">
+        <div class="acc">
+          <button class="acc-b" type="button" onClick="{{ p.toggle }}" aria-expanded="{{ p.expanded }}">
+            <span class="mono" style="font-size:13px;color:#00739E;flex:none;width:32px">{{ p.n }}</span>
+            <span style="flex:1;min-width:0"><span class="acc-t" style="display:block">{{ p.title }}</span><span class="muted" style="display:block;font-size:15px;margin-top:6px">{{ p.short }}</span></span>
+            <span class="acc-x" style="{{ p.xStyle }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>
+          </button>
+          <sc-if value="{{ p.open }}" hint-placeholder-val="{{ false }}">
+            <div class="rise" style="padding:0 4px 36px 52px">
+              <p style="font-size:18px;color:#3B4148;margin:0 0 24px;max-width:760px">« {{ p.quote }} »</p>
+              <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:12px">
+                <sc-for list="{{ p.points }}" as="pt" hint-placeholder-count="4">
+                  <div class="card card-h" style="padding:20px;background:#F6F7F4">
+                    <div style="display:flex;align-items:center;gap:10px"><span class="ok"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0B5D43" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span style="font-weight:600">{{ pt.t }}</span></div>
+                    <p class="muted" style="font-size:14.5px;margin:10px 0 0">{{ pt.d }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINES -->
+<section class="sec">
+  <div class="wrap">
+    <p class="ask"><b>Vous</b>Sur quels types de projets intervenez-vous ?</p>
+    <h2 class="h2" style="max-width:800px">Cinq domaines d’intervention, une même exigence.</h2>
+    <div class="split" style="margin-top:48px;align-items:start;gap:32px">
+      <div style="display:flex;flex-direction:column;gap:10px" role="group" aria-label="Choisir un domaine">
+        <sc-for list="{{ domaines }}" as="d" hint-placeholder-count="5">
+          <button class="dom" type="button" onClick="{{ d.pick }}" aria-pressed="{{ d.pressed }}" style="{{ d.style }}">
+            <span style="display:flex;align-items:center;gap:14px"><span class="mono" style="{{ d.numStyle }}">{{ d.n }}</span>{{ d.title }}</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+          </button>
+        </sc-for>
+        <p class="mono" style="font-size:12px;color:#5C636B;margin:8px 0 0">Technologies : [STACK À CONFIRMER]. Aucune référence client citée sans accord.</p>
+      </div>
+      <div class="card" style="overflow:hidden">
+        <img src="{{ dom.img }}" alt="{{ dom.alt }}" style="display:block;width:100%;height:240px;object-fit:cover">
+        <div style="padding:28px">
+          <span class="tag">{{ dom.tag }}</span>
+          <h3 style="font-size:26px;font-weight:500;letter-spacing:-.02em;margin:16px 0 10px">{{ dom.title }}</h3>
+          <p class="muted" style="margin:0 0 20px;font-size:16px">{{ dom.text }}</p>
+          <div class="trace-h" style="margin-bottom:10px"><span>Exemples de missions</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ dom.missions }}" as="m" hint-placeholder-count="3">
+              <span class="rise" style="display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:10px;background:#F6F7F4;border:1px solid #E4E7E2;font-size:14px">{{ m.t }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODE -->
+<section class="sec" id="methode" style="background:#FFFFFF;border-top:1px solid #E4E7E2;border-bottom:1px solid #E4E7E2">
+  <div class="wrap">
+    <p class="ask"><b>Vous</b>Comment se passe le démarrage ?</p>
+    <div class="split" style="align-items:end;margin-bottom:44px">
+      <h2 class="h2">La méthode en cinq étapes.</h2>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <button class="btn btn-ink" type="button" onClick="{{ playMethod }}">
+          <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z" fill="currentColor"></path></svg>{{ playLabel }}</button>
+        <span class="mono" style="font-size:12.5px;color:#5C636B">ATOM déroule le parcours · démonstration</span>
+      </div>
+    </div>
+    <div class="split" style="align-items:start;gap:40px">
+      <div style="position:relative">
+        <div style="position:absolute;left:19px;top:34px;bottom:34px;width:2px;background:#E4E7E2" aria-hidden="true"></div>
+        <sc-for list="{{ etapes }}" as="e" hint-placeholder-count="5">
+          <button class="vstep" type="button" onClick="{{ e.pick }}" aria-pressed="{{ e.pressed }}" style="position:relative">
+            <span class="vdot" style="{{ e.dot }}">{{ e.n }}</span>
+            <span style="padding-top:8px"><span style="{{ e.titleStyle }}">{{ e.title }}</span><span class="mono" style="display:block;font-size:12px;color:#5C636B;margin-top:4px">{{ e.state }}</span></span>
+          </button>
+        </sc-for>
+      </div>
+      <div class="card rise" style="padding:32px;background:#F6F7F4;position:sticky;top:96px">
+        <div class="trace-h"><span>Étape {{ et.n }} / 05</span><span class="tag">délai : {{ et.delai }}</span></div>
+        <h3 style="font-size:28px;font-weight:500;letter-spacing:-.025em;margin:18px 0 10px">{{ et.title }}</h3>
+        <p style="font-size:16.5px;color:#3B4148;margin:0 0 22px">{{ et.text }}</p>
+        <div class="trace-h" style="margin-bottom:10px"><span>Livrables</span></div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ et.out }}" as="o" hint-placeholder-count="2">
+            <div class="tool rise"><div class="tool-r" style="border-top:0;border-radius:14px">→ {{ o.t }}</div></div>
+          </sc-for>
+        </div>
+        <div class="bar" style="margin-top:24px"><i style="{{ methodFill }}"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENTS -->
+<section class="sec">
+  <div class="wrap">
+    <p class="ask"><b>Vous</b>Qu’est-ce que vous me garantissez ?</p>
+    <div class="split" style="align-items:end;margin-bottom:40px">
+      <h2 class="h2">Construit sur la confiance. Guidé par les résultats.</h2>
+      <div>
+        <p class="lead" style="font-size:17px">Quatre engagements, inspirés de nos piliers. Parcourez-les : ATOM tient le compte.</p>
+        <div style="display:flex;align-items:center;gap:14px;margin-top:18px">
+          <div class="bar" style="flex:1"><i style="{{ engFill }}"></i></div>
+          <span class="mono" style="font-size:13px;color:#00739E;flex:none">{{ engCount }} / 4 consultés</span>
+        </div>
+      </div>
+    </div>
+    <div class="grid">
+      <sc-for list="{{ engagements }}" as="g" hint-placeholder-count="4">
+        <div class="eng" style="{{ g.box }}">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span class="mono" style="font-size:12px;color:#00739E">{{ g.n }}</span><sc-if value="{{ g.read }}" hint-placeholder-val="{{ false }}"><span class="ok rise"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0B5D43" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span></sc-if></div>
+          <div style="font-size:21px;font-weight:600;letter-spacing:-.015em">{{ g.title }}</div>
+          <p class="muted" style="margin:0;font-size:15px">{{ g.text }}</p>
+          <div style="display:flex;flex-direction:column;gap:6px;flex:1">
+            <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+              <div style="display:flex;gap:8px;font-size:14.5px"><span style="color:#0091C7">—</span><span>{{ it.t }}</span></div>
+            </sc-for>
+          </div>
+          <button class="mark" type="button" onClick="{{ g.toggle }}" aria-pressed="{{ g.pressed }}" style="{{ g.btn }}">{{ g.label }}</button>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- DEMANDER A ATOM -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="askp">
+      <div class="askp-l">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="av"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FD3F0" stroke-width="1.5" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="4"></ellipse><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"></ellipse><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"></ellipse><circle cx="12" cy="12" r="1.8" fill="#FFFFFF" stroke="none"></circle></svg></span>
+          <div><div style="font-weight:600;font-size:17px">Demander à ATOM</div><div class="mono" style="font-size:12px;color:#5C636B">démonstration scénarisée</div></div>
+        </div>
+        <p class="muted" style="margin:18px 0 22px;font-size:15.5px">Les questions les plus fréquentes sur notre façon de travailler.</p>
+        <div class="chips-col">
+          <sc-for list="{{ askChips }}" as="c" hint-placeholder-count="3">
+            <button class="chip" type="button" onClick="{{ c.pick }}" aria-pressed="{{ c.pressed }}" style="{{ c.style }}">{{ c.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div class="askp-r" aria-live="polite">
+        <sc-if value="{{ askIdle }}" hint-placeholder-val="{{ true }}">
+          <div style="margin:auto 0;display:flex;flex-direction:column;gap:12px">
+            <div class="ghost-row" style="width:60%"></div><div class="ghost-row" style="width:85%"></div><div class="ghost-row" style="width:40%"></div>
+            <p class="mono" style="font-size:12.5px;color:#5C636B;margin:8px 0 0">En attente d’une question…</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{ askOn }}" hint-placeholder-val="{{ false }}">
+          <div class="msg-u rise">{{ askA.q }}</div>
+          <sc-if value="{{ askThink }}" hint-placeholder-val="{{ true }}">
+            <div class="rise mono" style="font-size:12.5px;color:#5C636B;line-height:1.6">› {{ askA.think }}</div>
+          </sc-if>
+          <sc-if value="{{ askTool }}" hint-placeholder-val="{{ true }}">
+            <div class="tool rise">
+              <div class="tool-h" style="display:flex;gap:10px;align-items:center"><sc-if value="{{ askToolRun }}" hint-placeholder-val="{{ false }}"><span class="spin"></span></sc-if><span><b>{{ askA.tool }}</b>()</span></div>
+              <sc-if value="{{ askToolDone }}" hint-placeholder-val="{{ true }}"><div class="tool-r">→ {{ askA.result }}</div></sc-if>
+            </div>
+          </sc-if>
+          <sc-if value="{{ askTyping }}" hint-placeholder-val="{{ false }}">
+            <div class="msg-a" style="display:flex;align-items:center;gap:10px"><span class="typing"><span></span><span></span><span></span></span></div>
+          </sc-if>
+          <sc-if value="{{ askAnswer }}" hint-placeholder-val="{{ true }}">
+            <div class="msg-a rise" style="background:#fff;border:1px solid #E4E7E2">{{ askA.answer }}</div>
+          </sc-if>
+          <sc-if value="{{ askLink }}" hint-placeholder-val="{{ true }}">
+            <div class="rise"><a class="btn btn-ink" href="{{ askA.href }}">{{ askA.cta }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+          </sc-if>
+        </sc-if>
+      </div>
+    </div>
+    <div class="card" style="margin-top:24px;padding:32px;display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <div><div style="font-size:24px;font-weight:500;letter-spacing:-.02em">Prêt à transformer votre entreprise ?</div><div class="muted" style="margin-top:4px">Première étape : un appel découverte avec l’équipe.</div></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-cta" style="{{ cta }}" href="Agent-Contact.dc.html">Commencer aujourd’hui</a><a class="btn btn-line" href="Agent-Offres.dc.html">Voir les offres</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="background:#FFFFFF;border-top:1px solid #E4E7E2;padding:72px 0 28px">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <a class="logo" href="Agent-Accueil.dc.html" aria-label="Baquelis, accueil">
+          <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="9" fill="#15181C"></rect><circle cx="9.5" cy="15" r="2.4" fill="#FFFFFF"></circle><circle cx="15" cy="15" r="2.4" fill="#FFFFFF" opacity=".55"></circle><circle cx="20.5" cy="15" r="2.4" fill="#0091C7"></circle></svg>
+          <span>Baquelis</span>
+        </a>
+        <p class="muted" style="font-size:15px;margin:14px 0 0">Flexibilité. Continuité. Performance.<br>Partenaire technologique : équipes dédiées, IA appliquée, expertise jeux &amp; Web3.</p>
+      </div>
+      <div class="ft-l"><div class="ft-t">Navigation</div>
+        <a href="Agent-Accueil.dc.html">Accueil</a><a href="Agent-IA.dc.html">Intelligence artificielle</a><a href="Agent-Jeux.dc.html">Jeux &amp; Web3</a><a href="Agent-Contact.dc.html">Contact</a>
+      </div>
+      <div class="ft-l"><div class="ft-t">Offres</div>
+        <a href="Agent-Offres.dc.html">Intégration — 4&nbsp;500&nbsp;€/mois</a><a href="Agent-Offres.dc.html">Flex — 6&nbsp;200&nbsp;€/mois</a><a href="Agent-Offres.dc.html">Performance — 18&nbsp;900&nbsp;€/mois</a>
+      </div>
+      <div><div class="ft-t">Siège</div>
+        <p style="margin:0;font-size:15px;color:#3B4148;line-height:1.7">31 B avenue Maréchal Foch<br>06000 Nice<br>[contact@domaine-baquelis]<br><span class="muted" style="font-size:13.5px">[RAISON SOCIALE] · TVA [N° TVA]</span></p>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;margin-top:56px;padding-top:22px;border-top:1px solid #EDEFEB;font-size:13.5px;color:#5C636B">
+      <span>© 2026 Baquelis. Tous droits réservés.</span>
+      <span class="mono" style="font-size:12px">Proposition de refonte — concept · direction Agent</span>
+      <a href="Main.dc.html" style="display:inline-flex;align-items:center;min-height:44px;color:#00739E">Toutes les propositions</a>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6100},"accent":{"editor":"color","default":"#FF7A45","options":["#FF7A45","#FFB238","#7ADBB8"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menuOpen:false, open:0, dom:0, etape:0, playing:false, read:[false,false,false,false], askK:null, askS:0 };
+    this.timers = {};
+    this.D = {
+      piliers:[
+        { title:"Solutions éprouvées", short:"Des systèmes évolutifs, pas seulement du code.", quote:"Nous ne livrons pas seulement du code — nous construisons des systèmes évolutifs qui grandissent avec votre entreprise.",
+          points:[{t:"Architecture évolutive", d:"Des fondations pensées pour encaisser la croissance, sans tout réécrire."},{t:"Pile technologique moderne", d:"Des technologies actuelles et maintenues, choisies pour durer."},{t:"Solutions cloud-native", d:"Des systèmes conçus pour le cloud : élastiques, résilients, observables."},{t:"Optimisation des performances", d:"Mesurer, profiler, améliorer : la vitesse est une fonctionnalité."}] },
+        { title:"Partenariat, pas d’externalisation", short:"Nos experts deviennent une extension de votre équipe.", quote:"Nos experts deviennent une extension de votre équipe, pas un prestataire de plus.",
+          points:[{t:"Intégration d’équipe dédiée", d:"Vos experts Baquelis rejoignent vos outils, vos canaux et vos rituels."},{t:"Engagement à long terme", d:"Une relation pensée dans la durée, avec une continuité garantie."},{t:"Alignement culturel", d:"Vos méthodes, vos standards, votre façon de décider."},{t:"Communication fluide", d:"Des échanges directs, sans intermédiaire inutile."}] },
+        { title:"Rapidité avec précision", short:"Vite, sans compromis sur la qualité.", quote:"Du concept à la livraison, nous allons vite, sans compromis sur la qualité.",
+          points:[{t:"Prototypage rapide", d:"Valider une idée rapidement, avant d’investir lourdement."},{t:"Méthodologie agile", d:"Des cycles courts et des priorités revues avec vous."},{t:"Assurance qualité", d:"Tests et revues systématiques à chaque livraison."},{t:"Intégration continue", d:"Chaque modification est intégrée et vérifiée en continu."}] },
+        { title:"Transparence radicale", short:"Pas de coûts cachés, pas de mises à jour vagues.", quote:"Pas de coûts cachés ni de mises à jour vagues : vos progrès sont visibles en temps réel.",
+          points:[{t:"Suivi des progrès en temps réel", d:"Vous savez où en est le travail, à tout moment."},{t:"Tarification transparente", d:"Un prix mensuel clair, connu dès le départ."},{t:"Rapports réguliers", d:"Mensuels, hebdomadaires ou quotidiens selon votre formule."},{t:"Communication ouverte", d:"Les difficultés sont signalées tôt, avec des solutions."}] }
+      ],
+      domaines:[
+        { title:"Applications web & mobiles", tag:"produits numériques", img:"assets/laptop-code.webp", alt:"Ordinateur portable affichant du code", text:"Des produits numériques complets, du prototype à la mise en production, pensés pour évoluer avec vos usages.", missions:[{t:"Applications métier"},{t:"Portails clients"},{t:"Applications mobiles"}] },
+        { title:"Plateformes temps réel", tag:"synchronisation", img:"assets/server-lights.webp", alt:"Voyants verts de serveurs", text:"Des systèmes où chaque milliseconde compte : flux continus, forte concurrence, synchronisation parfaite entre systèmes.", missions:[{t:"Tableaux de bord temps réel"},{t:"Notifications et messagerie"},{t:"Collaboration simultanée"}] },
+        { title:"Jeux & Web3", tag:"excellence technique", img:"assets/controller-neon.webp", alt:"Manette de jeu aux reflets violet et cyan", text:"Notre terrain d’excellence : performance temps réel, état complexe, multijoueur et sécurité sans compromis.", missions:[{t:"Jeux multijoueurs"},{t:"Plateformes de gaming Web3"},{t:"Systèmes anti-triche"}] },
+        { title:"IA appliquée", tag:"modèles & agents", img:"assets/circuit-board.webp", alt:"Circuit imprimé en gros plan", text:"Modèles affinés sur vos données, agents autonomes et intégration de l’IA dans vos processus existants.", missions:[{t:"Agents de support"},{t:"Génération de contenu"},{t:"Analytique prédictive"}] },
+        { title:"Cloud & performance", tag:"cloud-native", img:"assets/datacenter-corridor.webp", alt:"Couloir de centre de données", text:"Infrastructures cloud-native, optimisation des performances et fiabilité, pour des systèmes qui tiennent la charge.", missions:[{t:"Migration vers le cloud"},{t:"Optimisation des temps de réponse"},{t:"Observabilité"}] }
+      ],
+      etapes:[
+        { title:"Appel découverte", text:"Nous écoutons vos objectifs, vos contraintes et votre contexte technique pour comprendre ce qui compte vraiment.", delai:"[DÉLAI]", out:[{t:"Compréhension partagée de vos objectifs"},{t:"Premières pistes de formule"}] },
+        { title:"Cadrage & choix de formule", text:"Le besoin devient un périmètre clair. Nous choisissons ensemble Intégration, Flex ou Performance.", delai:"[DÉLAI]", out:[{t:"Périmètre et priorités définis"},{t:"Formule choisie et engagement connu"}] },
+        { title:"Sélection du profil ou de l’équipe", text:"Profil technique dédié, profil senior ou équipe de 5 experts seniors : nous proposons les personnes adaptées.", delai:"30 j / 15 j", out:[{t:"Profil ou équipe proposé selon votre besoin"},{t:"Changement de profil sous 30 jours (Intégration) ou 15 jours (Flex)"}] },
+        { title:"Intégration à vos outils et rituels", text:"Vos outils, vos canaux, vos rituels : nos experts deviennent une extension de votre équipe.", delai:"[DÉLAI]", out:[{t:"Accès à vos outils et canaux de communication"},{t:"Participation à vos rituels d’équipe"}] },
+        { title:"Suivi temps réel & ajustements", text:"Progrès visibles en temps réel, rapports réguliers et ajustements continus tout au long de la collaboration.", delai:"en continu", out:[{t:"Rapports mensuels, hebdomadaires ou quotidiens selon la formule"},{t:"Ajustements de profil ou de périmètre si besoin"}] }
+      ],
+      engagements:[
+        { title:"Transparence", text:"Vous savez toujours ce qui est fait, par qui, et à quel coût.", items:[{t:"Tarification mensuelle claire, sans coûts cachés"},{t:"Progrès visibles en temps réel"},{t:"Rapports réguliers selon votre formule"}] },
+        { title:"Continuité", text:"Votre projet ne s’arrête pas quand une personne change.", items:[{t:"Changement de profil sous 30 ou 15 jours"},{t:"Documentation et passation renforcées"},{t:"Engagement à long terme"}] },
+        { title:"Sécurité & confidentialité", text:"Vos données restent les vôtres, à chaque étape.", items:[{t:"Confidentialité intégrée à l’affinage de modèles"},{t:"Accès limités au strict nécessaire"},{t:"Modalités définies dès le cadrage"}] },
+        { title:"Qualité", text:"La vitesse ne justifie jamais un compromis.", items:[{t:"Assurance qualité à chaque livraison"},{t:"Intégration continue"},{t:"Optimisation des performances"}] }
+      ],
+      askOrder:["integ","profil","transp"],
+      ask:{
+        integ:{q:"Comment se passe l’intégration ?", think:"L’intégration correspond à l’étape 4 de la méthode Baquelis.", tool:"lire_methode", result:"Étape 4 : intégration à vos outils et rituels", answer:"Vos experts rejoignent vos outils, vos canaux et vos rituels, comme des membres de votre équipe. Les délais précis sont fixés lors du cadrage.", cta:"Revoir la méthode", href:"#methode"},
+        profil:{q:"Et si le profil ne convient pas ?", think:"Je vérifie les délais de changement de profil prévus par les formules.", tool:"lire_offres", result:"Changement sous 30 j (Intégration) · 15 j (Flex)", answer:"Le changement de profil est prévu dans les formules : sous 30 jours avec Intégration, sous 15 jours avec Flex. La continuité de votre projet est garantie.", cta:"Comparer les formules", href:"Agent-Offres.dc.html"},
+        transp:{q:"Quelles garanties de transparence ?", think:"La transparence radicale est l’un des 4 piliers de Baquelis.", tool:"lire_pilier", result:"Suivi temps réel · tarification claire · rapports réguliers", answer:"Pas de coûts cachés ni de mises à jour vagues : un prix mensuel clair, des progrès visibles en temps réel et des rapports réguliers, jusqu’à quotidiens avec Performance.", cta:"Voir les engagements", href:"Agent-Expertises.dc.html"}
+      }
+    };
+  }
+  stop(k){ (this.timers[k] || []).forEach(function(id){ clearTimeout(id); }); this.timers[k] = []; }
+  componentWillUnmount(){ var self = this; Object.keys(this.timers).forEach(function(k){ self.stop(k); }); }
+  playMethod(){
+    this.stop("method");
+    var self = this;
+    this.setState({ etape:0, playing:true });
+    var ids = [1, 2, 3, 4].map(function(i){ return setTimeout(function(){ self.setState({ etape:i }); }, i * 1500); });
+    ids.push(setTimeout(function(){ self.setState({ playing:false }); }, 4 * 1500 + 300));
+    this.timers.method = ids;
+  }
+  ask(k){
+    this.stop("ask");
+    this.setState({ askK:k, askS:0 });
+    var self = this;
+    this.timers.ask = [500, 1400, 2400, 3000].map(function(ms, i){ return setTimeout(function(){ self.setState({ askS:i + 1 }); }, ms); });
+  }
+  renderVals(){
+    var s = this.state, D = this.D, self = this;
+    var accent = (this.props && this.props.accent) || "#FF7A45";
+    var on = "background:#15181C;color:#FFFFFF;border-color:#15181C";
+    var dom = D.domaines[s.dom];
+    var et = D.etapes[s.etape];
+    var nRead = s.read.filter(function(x){ return x; }).length;
+    var A = s.askK ? D.ask[s.askK] : null, as = s.askS;
+    return {
+      cta: "background:" + accent,
+      menuOpen: s.menuOpen,
+      menuExpanded: s.menuOpen ? "true" : "false",
+      toggleMenu: function(){ self.setState({ menuOpen:!self.state.menuOpen }); },
+      piliers: D.piliers.map(function(p, i){ var o = s.open === i; return { n:"0" + (i + 1), title:p.title, short:p.short, quote:p.quote, points:p.points, open:o,
+        expanded:o ? "true" : "false",
+        xStyle: o ? "transform:rotate(45deg);background:#15181C;color:#FFFFFF;border-color:#15181C" : "color:#15181C",
+        toggle:function(){ self.setState({ open: self.state.open === i ? -1 : i }); } }; }),
+      domaines: D.domaines.map(function(d, i){ var a = s.dom === i; return { n:"0" + (i + 1), title:d.title, pressed:a ? "true" : "false",
+        style: a ? "background:#15181C;color:#FFFFFF;border-color:#15181C" : "",
+        numStyle: a ? "font-size:12px;color:#7FD3F0" : "font-size:12px;color:#00739E",
+        pick:function(){ self.setState({ dom:i }); } }; }),
+      dom: dom,
+      playMethod: function(){ self.playMethod(); },
+      playLabel: s.playing ? "Parcours en cours…" : "Lancer le parcours",
+      etapes: D.etapes.map(function(e, i){ return { n:"0" + (i + 1), title:e.title, pressed:s.etape === i ? "true" : "false",
+        dot: i < s.etape ? "background:#C8F0E2;color:#0B5D43" : (i === s.etape ? "background:#15181C;color:#FFFFFF;box-shadow:0 0 0 6px rgba(0,145,199,.18)" : "background:#FFFFFF;color:#5C636B;box-shadow:inset 0 0 0 1px #D6DAD3"),
+        titleStyle: "display:block;font-size:18px;letter-spacing:-.01em;" + (i === s.etape ? "font-weight:600;color:#15181C" : "font-weight:500;color:#3B4148"),
+        state: i < s.etape ? "terminé" : (i === s.etape ? "en cours" : "à venir"),
+        pick:function(){ self.stop("method"); self.setState({ etape:i, playing:false }); } }; }),
+      et: { n:"0" + (s.etape + 1), title:et.title, text:et.text, delai:et.delai, out:et.out },
+      methodFill: "width:" + ((s.etape + 1) / 5 * 100) + "%",
+      engagements: D.engagements.map(function(g, i){ var r = s.read[i]; return { n:"0" + (i + 1), title:g.title, text:g.text, items:g.items, read:r,
+        pressed: r ? "true" : "false",
+        label: r ? "Engagement consulté" : "Marquer comme consulté",
+        btn: r ? "background:#C8F0E2;border-color:#BFE6D6;color:#0B5D43" : "",
+        box: r ? "border-color:#BFE6D6" : "",
+        toggle:function(){ var nr = self.state.read.slice(); nr[i] = !nr[i]; self.setState({ read:nr }); } }; }),
+      engCount: nRead,
+      engFill: "width:" + (nRead / 4 * 100) + "%",
+      askChips: D.askOrder.map(function(k){ return { label:D.ask[k].q, pick:function(){ self.ask(k); }, pressed:s.askK === k ? "true" : "false", style:s.askK === k ? on : "" }; }),
+      askIdle: !A,
+      askOn: !!A,
+      askA: A || { q:"", think:"", tool:"", result:"", answer:"", cta:"", href:"Agent-Contact.dc.html" },
+      askThink: !!A && as >= 1,
+      askTool: !!A && as >= 2,
+      askToolRun: !!A && as === 2,
+      askToolDone: !!A && as >= 3,
+      askTyping: !!A && as < 3,
+      askAnswer: !!A && as >= 3,
+      askLink: !!A && as >= 4
+    };
+  }
+}
+</script>
+</body>
+</html>

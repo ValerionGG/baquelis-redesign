@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Agent — Jeux &amp; Web3</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+sc-for,sc-if{display:contents}
+*{box-sizing:border-box}
+.bq{background:#F6F7F4;color:#15181C;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.bq a{color:inherit}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.sec{padding:112px 0}
+.hdr{position:sticky;top:0;z-index:20;background:rgba(246,247,244,.88);backdrop-filter:blur(14px);border-bottom:1px solid #E4E7E2}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:21px;letter-spacing:-.025em;min-height:44px}
+.nav{display:flex;gap:2px;align-items:center}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:10px;text-decoration:none;font-size:15px;color:#3B4148;transition:background .2s,color .2s}
+.nav a:hover{background:#ECEEEA;color:#15181C}
+.nav a.on{color:#15181C;background:#fff;box-shadow:0 0 0 1px #E4E7E2}
+.hdr-cta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:12px;font:500 15px/1.1 'IBM Plex Sans',sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s,color .2s}
+.btn-cta{color:#15181C;box-shadow:0 1px 0 rgba(21,24,28,.08),0 10px 24px -12px rgba(255,122,69,.8)}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(21,24,28,.08),0 16px 30px -12px rgba(255,122,69,.9)}
+.btn-ink{background:#15181C;color:#fff}
+.btn-ink:hover{background:#2A2F35;transform:translateY(-2px)}
+.btn-line{background:#fff;color:#15181C;box-shadow:inset 0 0 0 1px #D6DAD3}
+.btn-line:hover{box-shadow:inset 0 0 0 1px #0091C7;color:#00739E}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid #D6DAD3;background:#fff;align-items:center;justify-content:center;cursor:pointer}
+.mnav{display:none;border-top:1px solid #E4E7E2}
+.mnav a{display:flex;align-items:center;min-height:48px;padding:0 12px;border-radius:12px;text-decoration:none;font-size:17px}
+.mnav a:hover{background:#ECEEEA}
+@media (max-width:960px){.nav,.hdr-cta{display:none}.burger{display:inline-flex}.mnav{display:block}}
+.eyebrow{font:500 12px/1.2 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#00739E}
+.h1{font-weight:500;font-size:clamp(38px,5.4vw,78px);line-height:1.02;letter-spacing:-.04em;margin:0;overflow-wrap:anywhere}
+.h2{font-weight:500;font-size:clamp(30px,3.6vw,50px);line-height:1.08;letter-spacing:-.03em;margin:0;overflow-wrap:anywhere}
+.lead{font-size:clamp(17px,1.5vw,20px);color:#5C636B;line-height:1.55;margin:0}
+.muted{color:#5C636B}
+.ask{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid #E4E7E2;border-radius:18px 18px 18px 6px;padding:6px 16px 6px 6px;font-size:15px;color:#3B4148;margin:0 0 22px;max-width:100%}
+.ask b{font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;background:#F1F2EF;color:#5C636B;padding:7px 9px;border-radius:999px;flex:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:20px}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:56px;align-items:center}
+.card{background:#fff;border:1px solid #E4E7E2;border-radius:22px;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s,border-color .3s}
+.card-h:hover{transform:translateY(-4px);box-shadow:0 24px 48px -28px rgba(21,24,28,.28);border-color:#CFD5CD}
+.ok{width:22px;height:22px;border-radius:50%;background:#C8F0E2;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.av{width:36px;height:36px;border-radius:50%;background:#15181C;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.tag{font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;padding:7px 10px;border-radius:999px;background:#EAF5FA;color:#00739E}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:#fff;border:1px solid #D6DAD3;color:#15181C;font:400 14.5px/1.2 'IBM Plex Sans',sans-serif;cursor:pointer;text-align:left;transition:border-color .2s,background .2s,transform .2s,color .2s}
+.chip:hover{border-color:#0091C7;background:#F0F8FB;transform:translateY(-1px)}
+.msg-a{align-self:flex-start;max-width:94%;background:#F3F5F1;border-radius:6px 18px 18px 18px;padding:14px 16px;font-size:15px;line-height:1.6}
+.msg-u{align-self:flex-end;max-width:85%;background:#15181C;color:#fff;border-radius:18px 18px 6px 18px;padding:12px 16px;font-size:15px}
+.trace-h{display:flex;justify-content:space-between;align-items:center;gap:10px;font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#5C636B}
+.tool{border:1px solid #E4E7E2;border-radius:14px;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.5}
+.tool-h{padding:10px 12px;color:#3B4148;overflow-wrap:anywhere}
+.tool-h b{color:#00739E;font-weight:500}
+.tool-r{padding:9px 12px;border-top:1px dashed #DDE2DA;color:#0B5D43;background:#F1FBF6;border-radius:0 0 14px 14px;overflow-wrap:anywhere}
+.ghost-row{height:14px;border-radius:7px;background:repeating-linear-gradient(90deg,#ECEEEA 0 10px,#F4F5F2 10px 20px)}
+.typing{display:inline-flex;gap:4px;align-items:center}
+.typing span{width:6px;height:6px;border-radius:50%;background:#0091C7;display:inline-block;animation:blink 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+.live{width:8px;height:8px;border-radius:50%;background:#0091C7;display:inline-block;animation:pulse 1.8s infinite;flex:none}
+.spin{width:15px;height:15px;border-radius:50%;border:2px solid #CFE7F1;border-top-color:#0091C7;animation:spin .8s linear infinite;display:inline-block}
+.rise{animation:rise .55s cubic-bezier(.2,.7,.2,1) both}
+.req{display:flex;align-items:center;gap:14px;width:100%;min-height:68px;padding:14px 18px;border-radius:18px;border:1px solid #E4E7E2;background:#fff;cursor:pointer;text-align:left;font:500 16px/1.3 'IBM Plex Sans',sans-serif;color:#15181C;transition:border-color .2s,transform .2s,background .2s}
+.req:hover{border-color:#0091C7;transform:translateX(4px)}
+.lab{border-radius:26px;border:1px solid #E4E7E2;background:#fff;padding:28px;min-height:520px;display:flex;flex-direction:column;gap:20px}
+.range{width:100%;accent-color:#0091C7;height:44px;cursor:pointer}
+.sw{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;border-radius:12px;border:1px solid #D6DAD3;background:#fff;cursor:pointer;font:500 14.5px/1 'IBM Plex Sans',sans-serif;color:#15181C;transition:background .2s,border-color .2s,color .2s}
+.sw:hover{border-color:#0091C7}
+.knob{width:34px;height:20px;border-radius:999px;position:relative;transition:background .25s;flex:none}
+.knob i{position:absolute;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:left .25s}
+.pdots{display:grid;grid-template-columns:repeat(20,1fr);gap:6px}
+.pdots span{aspect-ratio:1;border-radius:50%;transition:background .3s}
+.seg4{display:flex;height:44px;border-radius:12px;overflow:hidden;gap:3px}
+.seg4 span{flex:1;display:flex;align-items:center;justify-content:center;font:500 12px/1 'IBM Plex Mono',monospace;transition:background .3s,color .3s}
+.log{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;border:1px solid #EDEFEB;font:400 13px/1.4 'IBM Plex Mono',monospace;flex-wrap:wrap}
+.map{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr);gap:16px;align-items:center;padding:22px 24px;border-radius:20px;border:1px solid #E4E7E2;background:#fff;transition:border-color .25s,transform .25s,box-shadow .25s}
+.map:hover{border-color:#0091C7;transform:translateY(-2px);box-shadow:0 20px 40px -28px rgba(0,115,158,.5)}
+@media (max-width:720px){.map{grid-template-columns:1fr}.map .arr{transform:rotate(90deg)}}
+.layer{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:64px;padding:16px 20px;border-radius:16px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);cursor:pointer;text-align:left;font:500 16px/1.3 'IBM Plex Sans',sans-serif;color:#FFFFFF;transition:background .25s,border-color .25s,transform .25s}
+.layer:hover{border-color:#7FD3F0;transform:translateX(4px)}
+.w3bg{position:absolute;top:0;right:0;bottom:0;left:0;background:url(assets/gaming-den-neon.webp) center/cover no-repeat;opacity:.28}
+.askp{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));background:#fff;border:1px solid #E4E7E2;border-radius:28px;overflow:hidden}
+.askp-l{padding:32px;border-right:1px solid #EDEFEB}
+.askp-r{padding:32px;background:#FAFBF9;display:flex;flex-direction:column;gap:12px;min-height:320px}
+.chips-col{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.hud{position:absolute;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border:1px solid #E4E7E2;border-radius:14px;padding:10px 14px;font-size:13px;box-shadow:0 14px 30px -18px rgba(21,24,28,.4)}
+.ft-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:40px}
+.ft-t{font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#5C636B;margin-bottom:12px}
+.ft-l a{display:flex;align-items:center;min-height:44px;text-decoration:none;color:#3B4148;font-size:15px;transition:color .2s}
+.ft-l a:hover{color:#00739E}
+:focus-visible{outline:2px solid #0091C7;outline-offset:3px}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,145,199,.45)}100%{box-shadow:0 0 0 10px rgba(0,145,199,0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.float{animation:floaty 5s ease-in-out infinite}
+@media (max-width:640px){.wrap{padding:0 20px}.sec{padding:80px 0}.askp-l,.askp-r{padding:24px}.hud{display:none}.lab{padding:20px}.pdots{gap:4px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="bq">
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="Agent-Accueil.dc.html" aria-label="Baquelis, accueil">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="9" fill="#15181C"></rect><circle cx="9.5" cy="15" r="2.4" fill="#FFFFFF"></circle><circle cx="15" cy="15" r="2.4" fill="#FFFFFF" opacity=".55"></circle><circle cx="20.5" cy="15" r="2.4" fill="#0091C7"></circle></svg>
+      <span>Baquelis</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="Agent-Expertises.dc.html">Expertises</a>
+      <a href="Agent-IA.dc.html">IA</a>
+      <a class="on" href="Agent-Jeux.dc.html" aria-current="page">Jeux &amp; Web3</a>
+      <a href="Agent-Offres.dc.html">Offres</a>
+      <a href="Agent-Contact.dc.html">Contact</a>
+    </nav>
+    <div class="hdr-cta">
+      <a class="btn btn-line" href="Agent-Contact.dc.html">Réserver un appel</a>
+      <a class="btn btn-cta" style="{{ cta }}" href="Agent-Contact.dc.html">Commencer</a>
+    </div>
+    <button class="burger" type="button" aria-label="Ouvrir ou fermer le menu" aria-expanded="{{ menuExpanded }}" onClick="{{ toggleMenu }}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#15181C" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>
+    </button>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="mnav">
+      <div class="wrap" style="display:grid;gap:2px;padding-top:10px;padding-bottom:20px">
+        <a href="Agent-Expertises.dc.html">Expertises</a>
+        <a href="Agent-IA.dc.html">IA</a>
+        <a href="Agent-Jeux.dc.html">Jeux &amp; Web3</a>
+        <a href="Agent-Offres.dc.html">Offres</a>
+        <a href="Agent-Contact.dc.html">Contact</a>
+        <a class="btn btn-cta" style="{{ cta }}" href="Agent-Contact.dc.html">Commencer</a>
+      </div>
+    </div>
+  </sc-if>
+</header>
+
+<main>
+<!-- HERO -->
+<section style="padding:80px 0 96px">
+  <div class="wrap split">
+    <div>
+      <p class="ask rise"><b>Vous</b>Pourquoi un partenaire tech parle-t-il de jeux vidéo ?</p>
+      <h1 class="h1 rise" style="animation-delay:.08s">Les jeux sont les applications les plus difficiles.</h1>
+      <p class="lead rise" style="margin-top:24px;animation-delay:.16s">Performances temps réel, gestion d’état complexe, expériences fluides. Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique.</p>
+      <div class="rise" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;animation-delay:.24s">
+        <a class="btn btn-cta" style="{{ cta }}" href="#exigences">Tester les 4 exigences</a>
+        <a class="btn btn-line" href="Agent-Contact.dc.html">Parler de votre projet</a>
+      </div>
+    </div>
+    <div style="position:relative" class="rise">
+      <img src="assets/controller-purple.webp" alt="Manette de jeu translucide sur fond clair" style="display:block;width:100%;height:520px;object-fit:cover;border-radius:32px;border:1px solid #E4E7E2">
+      <div class="hud float" style="left:24px;top:24px">
+        <div class="trace-h" style="margin-bottom:6px"><span>Raisonnement d’ATOM</span></div>
+        <div style="font-size:13.5px;max-width:240px">Temps réel + état partagé + sécurité = le test le plus exigeant d’une équipe technique.</div>
+      </div>
+      <div class="hud float" style="right:24px;bottom:24px;animation-delay:1.3s">
+        <div style="display:flex;gap:10px;align-items:center"><span class="ok" style="width:18px;height:18px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0B5D43" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span style="font-weight:600">Expertise jeux &amp; Web3</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 EXIGENCES -->
+<section class="sec" id="exigences" style="background:#FFFFFF;border-top:1px solid #E4E7E2;border-bottom:1px solid #E4E7E2">
+  <div class="wrap">
+    <p class="ask"><b>Vous</b>Qu’est-ce qui rend un jeu si exigeant ?</p>
+    <div class="split" style="align-items:end;margin-bottom:44px">
+      <h2 class="h2">Pourquoi les jeux définissent l’excellence.</h2>
+      <p class="lead" style="font-size:17px">Quatre exigences, quatre petits laboratoires. Manipulez-les : les valeurs affichées sont <strong style="color:#15181C;font-weight:500">illustratives</strong>, pas des mesures.</p>
+    </div>
+    <div class="split" style="align-items:start;gap:32px">
+      <div style="display:flex;flex-direction:column;gap:10px" role="group" aria-label="Choisir une exigence">
+        <sc-for list="{{ reqs }}" as="r" hint-placeholder-count="4">
+          <button class="req" type="button" onClick="{{ r.pick }}" aria-pressed="{{ r.pressed }}" style="{{ r.style }}">
+            <span class="mono" style="{{ r.numStyle }}">{{ r.n }}</span>
+            <span style="flex:1;min-width:0"><span style="display:block">{{ r.title }}</span><span style="{{ r.subStyle }}">{{ r.sub }}</span></span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div class="lab">
+        <div class="trace-h"><span>Laboratoire · {{ reqTitle }}</span><span class="tag">valeurs illustratives</span></div>
+
+        <sc-if value="{{ isLat }}" hint-placeholder-val="{{ true }}">
+          <div class="rise" style="display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;justify-content:center">
+              <svg width="260" height="150" viewBox="0 0 200 116" role="img" aria-label="Jauge de latence illustrative">
+                <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#EDEFEB" stroke-width="14" stroke-linecap="round"></path>
+                <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke-width="14" stroke-linecap="round" style="{{ gaugeDash }}"></path>
+                <text x="100" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="24" font-weight="500" fill="#15181C">{{ latLabel }}</text>
+                <text x="100" y="108" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="10" fill="#5C636B">latence simulée</text>
+              </svg>
+            </div>
+            <label style="display:block">
+              <span class="trace-h" style="margin-bottom:4px"><span>Ajuster la latence</span><span>{{ latLabel }}</span></span>
+              <input class="range" type="range" min="1" max="200" step="1" value="{{ lat }}" onInput="{{ setLat }}" aria-label="Latence simulée en millisecondes">
+            </label>
+            <div class="tool"><div class="tool-h">verdict : <b style="{{ latColor }}">{{ latVerdict }}</b></div><div class="tool-r" style="{{ latBox }}">→ {{ latText }}</div></div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isArch }}" hint-placeholder-val="{{ false }}">
+          <div class="rise" style="display:flex;flex-direction:column;gap:18px">
+            <p class="muted" style="margin:0;font-size:15.5px">Un jeu fait tourner graphismes, physique, réseau et saisie en même temps, à chaque image. Activez ou coupez un système :</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ systems }}" as="y" hint-placeholder-count="4">
+                <button class="sw" type="button" onClick="{{ y.toggle }}" aria-pressed="{{ y.pressed }}" style="{{ y.btn }}"><span class="knob" style="{{ y.track }}"><i style="{{ y.knob }}"></i></span>{{ y.label }}</button>
+              </sc-for>
+            </div>
+            <div>
+              <div class="trace-h" style="margin-bottom:8px"><span>Une image de jeu</span><span>{{ sysCount }} / 4 systèmes</span></div>
+              <div class="seg4">
+                <sc-for list="{{ systems }}" as="y" hint-placeholder-count="4"><span style="{{ y.seg }}">{{ y.short }}</span></sc-for>
+              </div>
+            </div>
+            <div class="tool"><div class="tool-h">synchronisation : <b>{{ sysVerdict }}</b></div><div class="tool-r">→ {{ sysText }}</div></div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isMulti }}" hint-placeholder-val="{{ false }}">
+          <div class="rise" style="display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap"><span style="font-size:44px;font-weight:500;letter-spacing:-.03em;line-height:1">{{ plLabel }}</span><span class="muted">joueurs simultanés (illustratif)</span></div>
+            <div class="pdots" aria-hidden="true">
+              <sc-for list="{{ pdots }}" as="d" hint-placeholder-count="100"><span style="{{ d.s }}"></span></sc-for>
+            </div>
+            <label style="display:block">
+              <span class="trace-h" style="margin-bottom:4px"><span>Faire monter la charge</span><span>{{ plLabel }}</span></span>
+              <input class="range" type="range" min="0" max="100" step="1" value="{{ pl }}" onInput="{{ setPl }}" aria-label="Nombre de joueurs simultanés, illustratif">
+            </label>
+            <div class="tool"><div class="tool-h">cohérence d’état : <b>maintenue</b></div><div class="tool-r">→ {{ plText }}</div></div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSec }}" hint-placeholder-val="{{ false }}">
+          <div class="rise" style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+              <p class="muted" style="margin:0;font-size:15.5px;flex:1;min-width:220px">Une protection avancée qui filtre la triche sans ralentir les joueurs honnêtes.</p>
+              <button class="sw" type="button" onClick="{{ toggleProt }}" aria-pressed="{{ protPressed }}" style="{{ protBtn }}"><span class="knob" style="{{ protTrack }}"><i style="{{ protKnob }}"></i></span>Protection {{ protLabel }}</button>
+            </div>
+            <div class="trace-h"><span>Journal d’événements (exemple)</span></div>
+            <sc-for list="{{ events }}" as="v" hint-placeholder-count="5">
+              <div class="log rise" style="{{ v.box }}"><span>{{ v.t }}</span><span style="{{ v.badge }}">{{ v.verdict }}</span></div>
+            </sc-for>
+            <div class="tool"><div class="tool-h">expérience joueur : <b>{{ protUx }}</b></div></div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI CA PROFITE A TOUS -->
+<section class="sec">
+  <div class="wrap">
+    <p class="ask"><b>Vous</b>Je ne fais pas de jeux. En quoi ça me concerne ?</p>
+    <div class="split" style="align-items:end;margin-bottom:44px">
+      <h2 class="h2">Ce que le jeu exige, votre projet en profite.</h2>
+      <p class="lead" style="font-size:17px">ATOM traduit chaque exigence du jeu vidéo en bénéfice concret pour une application métier.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ maps }}" as="m" hint-placeholder-count="4">
+        <div class="map">
+          <div><div class="mono" style="font-size:11.5px;color:#5C636B;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Dans un jeu</div><div style="font-weight:600;font-size:17px">{{ m.game }}</div></div>
+          <span class="arr" style="width:44px;height:44px;border-radius:50%;background:#EAF5FA;color:#00739E;display:inline-flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          <div><div class="mono" style="font-size:11.5px;color:#00739E;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Dans votre projet</div><div style="font-size:16px;color:#3B4148">{{ m.biz }}</div></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- WEB3 -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div style="position:relative;border-radius:32px;overflow:hidden;background:#15181C;color:#FFFFFF">
+      <div class="w3bg" aria-hidden="true"></div>
+      <div style="position:relative;padding:clamp(28px,5vw,64px)" class="split">
+        <div>
+          <span class="mono" style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7FD3F0">Plateforme Web3</span>
+          <h2 class="h2" style="margin-top:14px">Une plateforme de gaming Web3 : l’exigence mise en pratique.</h2>
+          <p style="font-size:17px;color:#C9D0D6;margin:20px 0 0">Temps réel, économie numérique, actifs des joueurs et sécurité : une plateforme de gaming Web3 réunit toutes les contraintes à la fois. C’est sur ce terrain que Baquelis éprouve ses méthodes.</p>
+          <p class="mono" style="font-size:12px;color:#9AA3AB;margin:14px 0 0">[DÉTAILS DE LA PLATEFORME À CONFIRMER]</p>
+          <a class="btn btn-cta" style="{{ ctaTop }}" href="Agent-Contact.dc.html">Discuter d’un projet Web3</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="trace-h" style="color:#9AA3AB;margin-bottom:4px"><span>Couches de la plateforme · cliquez</span></div>
+          <sc-for list="{{ layers }}" as="l" hint-placeholder-count="4">
+            <button class="layer" type="button" onClick="{{ l.pick }}" aria-pressed="{{ l.pressed }}" style="{{ l.style }}"><span style="display:flex;gap:14px;align-items:center"><span class="mono" style="font-size:12px;color:#7FD3F0">{{ l.n }}</span>{{ l.title }}</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+          </sc-for>
+          <div class="rise" style="margin-top:6px;padding:18px 20px;border-radius:16px;background:#FFFFFF;color:#15181C">
+            <div class="mono" style="font-size:11.5px;color:#00739E;margin-bottom:6px">couche {{ layer.n }}</div>
+            <div style="font-size:15.5px">{{ layer.text }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMANDER A ATOM -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="askp">
+      <div class="askp-l">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="av"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FD3F0" stroke-width="1.5" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="4"></ellipse><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"></ellipse><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"></ellipse><circle cx="12" cy="12" r="1.8" fill="#FFFFFF" stroke="none"></circle></svg></span>
+          <div><div style="font-weight:600;font-size:17px">Demander à ATOM</div><div class="mono" style="font-size:12px;color:#5C636B">démonstration scénarisée</div></div>
+        </div>
+        <p class="muted" style="margin:18px 0 22px;font-size:15.5px">Jeux, Web3, temps réel : posez la question qui vous intéresse.</p>
+        <div class="chips-col">
+          <sc-for list="{{ askChips }}" as="c" hint-placeholder-count="3">
+            <button class="chip" type="button" onClick="{{ c.pick }}" aria-pressed="{{ c.pressed }}" style="{{ c.style }}">{{ c.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div class="askp-r" aria-live="polite">
+        <sc-if value="{{ askIdle }}" hint-placeholder-val="{{ true }}">
+          <div style="margin:auto 0;display:flex;flex-direction:column;gap:12px">
+            <div class="ghost-row" style="width:60%"></div><div class="ghost-row" style="width:85%"></div><div class="ghost-row" style="width:40%"></div>
+            <p class="mono" style="font-size:12.5px;color:#5C636B;margin:8px 0 0">En attente d’une question…</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{ askOn }}" hint-placeholder-val="{{ false }}">
+          <div class="msg-u rise">{{ askA.q }}</div>
+          <sc-if value="{{ askThink }}" hint-placeholder-val="{{ true }}">
+            <div class="rise mono" style="font-size:12.5px;color:#5C636B;line-height:1.6">› {{ askA.think }}</div>
+          </sc-if>
+          <sc-if value="{{ askTool }}" hint-placeholder-val="{{ true }}">
+            <div class="tool rise">
+              <div class="tool-h" style="display:flex;gap:10px;align-items:center"><sc-if value="{{ askToolRun }}" hint-placeholder-val="{{ false }}"><span class="spin"></span></sc-if><span><b>{{ askA.tool }}</b>()</span></div>
+              <sc-if value="{{ askToolDone }}" hint-placeholder-val="{{ true }}"><div class="tool-r">→ {{ askA.result }}</div></sc-if>
+            </div>
+          </sc-if>
+          <sc-if value="{{ askTyping }}" hint-placeholder-val="{{ false }}">
+            <div class="msg-a" style="display:flex;align-items:center;gap:10px"><span class="typing"><span></span><span></span><span></span></span></div>
+          </sc-if>
+          <sc-if value="{{ askAnswer }}" hint-placeholder-val="{{ true }}">
+            <div class="msg-a rise" style="background:#fff;border:1px solid #E4E7E2">{{ askA.answer }}</div>
+          </sc-if>
+          <sc-if value="{{ askLink }}" hint-placeholder-val="{{ true }}">
+            <div class="rise"><a class="btn btn-ink" href="{{ askA.href }}">{{ askA.cta }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+          </sc-if>
+        </sc-if>
+      </div>
+    </div>
+    <div class="card" style="margin-top:24px;padding:32px;display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <div><div style="font-size:24px;font-weight:500;letter-spacing:-.02em">Prêt à transformer votre entreprise ?</div><div class="muted" style="margin-top:4px">Jeu, plateforme temps réel ou application métier : la même exigence.</div></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-cta" style="{{ cta }}" href="Agent-Contact.dc.html">Commencer aujourd’hui</a><a class="btn btn-line" href="Agent-Offres.dc.html">Voir les offres</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="background:#FFFFFF;border-top:1px solid #E4E7E2;padding:72px 0 28px">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <a class="logo" href="Agent-Accueil.dc.html" aria-label="Baquelis, accueil">
+          <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="9" fill="#15181C"></rect><circle cx="9.5" cy="15" r="2.4" fill="#FFFFFF"></circle><circle cx="15" cy="15" r="2.4" fill="#FFFFFF" opacity=".55"></circle><circle cx="20.5" cy="15" r="2.4" fill="#0091C7"></circle></svg>
+          <span>Baquelis</span>
+        </a>
+        <p class="muted" style="font-size:15px;margin:14px 0 0">Flexibilité. Continuité. Performance.<br>Partenaire technologique : équipes dédiées, IA appliquée, expertise jeux &amp; Web3.</p>
+      </div>
+      <div class="ft-l"><div class="ft-t">Navigation</div>
+        <a href="Agent-Accueil.dc.html">Accueil</a><a href="Agent-Expertises.dc.html">Expertises</a><a href="Agent-IA.dc.html">Intelligence artificielle</a><a href="Agent-Contact.dc.html">Contact</a>
+      </div>
+      <div class="ft-l"><div class="ft-t">Offres</div>
+        <a href="Agent-Offres.dc.html">Intégration — 4&nbsp;500&nbsp;€/mois</a><a href="Agent-Offres.dc.html">Flex — 6&nbsp;200&nbsp;€/mois</a><a href="Agent-Offres.dc.html">Performance — 18&nbsp;900&nbsp;€/mois</a>
+      </div>
+      <div><div class="ft-t">Siège</div>
+        <p style="margin:0;font-size:15px;color:#3B4148;line-height:1.7">31 B avenue Maréchal Foch<br>06000 Nice<br>[contact@domaine-baquelis]<br><span class="muted" style="font-size:13.5px">[RAISON SOCIALE] · TVA [N° TVA]</span></p>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;margin-top:56px;padding-top:22px;border-top:1px solid #EDEFEB;font-size:13.5px;color:#5C636B">
+      <span>© 2026 Baquelis. Tous droits réservés.</span>
+      <span class="mono" style="font-size:12px">Proposition de refonte — concept · direction Agent</span>
+      <a href="Main.dc.html" style="display:inline-flex;align-items:center;min-height:44px;color:#00739E">Toutes les propositions</a>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4700},"accent":{"editor":"color","default":"#FF7A45","options":["#FF7A45","#FFB238","#7ADBB8"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menuOpen:false, req:0, lat:12, sys:[true,true,true,true], pl:60, prot:true, layer:0, askK:null, askS:0 };
+    this.timers = {};
+    this.D = {
+      reqs:[
+        { title:"Performance temps réel", sub:"Réponse sub-milliseconde, synchronisation parfaite entre systèmes." },
+        { title:"Architecture complexe", sub:"Graphismes, physique, réseau et saisie, simultanément." },
+        { title:"Multijoueur évolutif", sub:"Des milliers d’utilisateurs, état cohérent, latence minimale." },
+        { title:"Sécurité & anti-triche", sub:"Une protection avancée sans dégrader l’expérience." }
+      ],
+      systems:[{label:"Graphismes", short:"GFX"},{label:"Physique", short:"PHY"},{label:"Réseau", short:"NET"},{label:"Saisie", short:"INP"}],
+      events:[
+        { t:"joueur_a · déplacement valide", bad:false },
+        { t:"joueur_b · vitesse impossible", bad:true },
+        { t:"joueur_c · action valide", bad:false },
+        { t:"client_x · requête altérée", bad:true },
+        { t:"joueur_d · achat confirmé", bad:false }
+      ],
+      maps:[
+        { game:"Réponse sub-milliseconde", biz:"Des interfaces métier instantanées et des services qui tiennent la charge aux heures de pointe." },
+        { game:"Graphismes, physique, réseau et saisie simultanés", biz:"Des systèmes complexes intégrés proprement : données, paiements, IA et outils internes qui dialoguent sans friction." },
+        { game:"Des milliers de joueurs, un état cohérent", biz:"Des plateformes collaboratives et temps réel, sans conflit de données entre utilisateurs." },
+        { game:"Anti-triche sans friction", biz:"Une sécurité forte qui protège vos utilisateurs sans dégrader leur expérience." }
+      ],
+      layers:[
+        { title:"Expérience joueur", text:"Interfaces fluides et réactives, sur tous les écrans, sans temps de chargement superflu." },
+        { title:"Logique de jeu temps réel", text:"Synchronisation de l’état entre des milliers de joueurs, avec une latence minimale." },
+        { title:"Économie & actifs numériques", text:"Gestion des actifs des joueurs et des transactions, avec la rigueur qu’exige une économie numérique." },
+        { title:"Sécurité & infrastructure", text:"Anti-triche, protection des transactions et infrastructure cloud-native qui tient la charge." }
+      ],
+      askOrder:["why","web3","team"],
+      ask:{
+        why:{q:"Pourquoi l’expérience jeu compte pour mon projet ?", think:"Je relie les 4 exigences du jeu aux besoins d’une application métier.", tool:"traduire_exigences", result:"Temps réel, intégration, charge, sécurité → bénéfices métier", answer:"Une équipe capable de tenir le temps réel, l’état partagé et la sécurité d’un jeu sait livrer des applications métier rapides, robustes et sûres. C’est notre preuve d’excellence technique.", cta:"Voir nos expertises", href:"Agent-Expertises.dc.html"},
+        web3:{q:"Vous faites vraiment du Web3 ?", think:"Je vérifie l’expertise Web3 référencée par Baquelis.", tool:"charger_expertise", result:"Plateforme de gaming Web3 · détails à confirmer", answer:"Oui : notre expertise couvre les plateformes de gaming Web3, de la logique temps réel à la sécurité des transactions. Nous détaillons les cas concrets lors d’un appel.", cta:"Réserver un appel", href:"Agent-Contact.dc.html"},
+        team:{q:"Quelle équipe pour un jeu ambitieux ?", think:"Un jeu complet demande plusieurs expertises seniors en parallèle.", tool:"dimensionner_equipe", result:"Performance : 5 experts seniors, Lead tech + Product Owner", answer:"Pour un jeu ambitieux, la formule Performance réunit 5 experts seniors, un Lead tech et un Product Owner, avec une couverture 24/7 : 18 900 € par mois.", cta:"Voir la formule Performance", href:"Agent-Offres.dc.html"}
+      }
+    };
+  }
+  stop(k){ (this.timers[k] || []).forEach(function(id){ clearTimeout(id); }); this.timers[k] = []; }
+  componentWillUnmount(){ var self = this; Object.keys(this.timers).forEach(function(k){ self.stop(k); }); }
+  ask(k){
+    this.stop("ask");
+    this.setState({ askK:k, askS:0 });
+    var self = this;
+    this.timers.ask = [500, 1400, 2400, 3000].map(function(ms, i){ return setTimeout(function(){ self.setState({ askS:i + 1 }); }, ms); });
+  }
+  renderVals(){
+    var s = this.state, D = this.D, self = this;
+    var accent = (this.props && this.props.accent) || "#FF7A45";
+    var on = "background:#15181C;color:#FFFFFF;border-color:#15181C";
+    var lat = Number(s.lat);
+    var latCol = lat <= 20 ? "#0091C7" : (lat <= 60 ? "#C77700" : "#C2410C");
+    var arc = 251.3;
+    var players = Math.round(Math.pow(10, 1 + Number(s.pl) / 100 * 3));
+    var lit = Math.max(1, Math.round(Number(s.pl)));
+    var pdots = [];
+    for (var i = 0; i < 100; i++) pdots.push({ s: i < lit ? "background:" + (i % 7 === 0 ? "#0B5D43" : "#0091C7") : "background:#EDEFEB" });
+    var nSys = s.sys.filter(function(x){ return x; }).length;
+    var knobOn = "left:16px", knobOff = "left:2px";
+    var A = s.askK ? D.ask[s.askK] : null, as = s.askS;
+    return {
+      cta: "background:" + accent,
+      ctaTop: "background:" + accent + ";margin-top:28px",
+      menuOpen: s.menuOpen,
+      menuExpanded: s.menuOpen ? "true" : "false",
+      toggleMenu: function(){ self.setState({ menuOpen:!self.state.menuOpen }); },
+      reqs: D.reqs.map(function(r, i){ var a = s.req === i; return { n:"0" + (i + 1), title:r.title, sub:r.sub, pressed:a ? "true" : "false",
+        style: a ? "background:#15181C;color:#FFFFFF;border-color:#15181C" : "",
+        numStyle: a ? "font-size:12px;color:#7FD3F0;flex:none" : "font-size:12px;color:#00739E;flex:none",
+        subStyle: "display:block;font-weight:400;font-size:13.5px;margin-top:3px;" + (a ? "color:#B9C0C7" : "color:#5C636B"),
+        pick:function(){ self.setState({ req:i }); } }; }),
+      reqTitle: D.reqs[s.req].title,
+      isLat: s.req === 0, isArch: s.req === 1, isMulti: s.req === 2, isSec: s.req === 3,
+      lat: s.lat,
+      setLat: function(e){ self.setState({ lat:Number(e.target.value) }); },
+      latLabel: lat + " ms",
+      gaugeDash: "stroke:" + latCol + ";stroke-dasharray:" + (lat / 200 * arc).toFixed(1) + " 999;transition:stroke-dasharray .2s",
+      latColor: "color:" + latCol,
+      latVerdict: lat <= 20 ? "fluide" : (lat <= 60 ? "perceptible" : "dégradé"),
+      latText: lat <= 20 ? "Le joueur ne perçoit aucun délai : c’est le niveau que vise une équipe Baquelis." : (lat <= 60 ? "Un léger décalage apparaît : les actions rapides perdent en précision." : "L’expérience se dégrade nettement : désynchronisation et frustration."),
+      latBox: lat <= 20 ? "" : "color:#8A3A10;background:#FFF4EC",
+      systems: D.systems.map(function(y, i){ var o = s.sys[i]; return { label:y.label, short:y.short, pressed:o ? "true" : "false",
+        btn: o ? "border-color:#0091C7" : "",
+        track: "background:" + (o ? "#0091C7" : "#C3C9C0"),
+        knob: o ? knobOn : knobOff,
+        seg: o ? "background:#15181C;color:#FFFFFF" : "background:#F1F2EF;color:#9AA3AB",
+        toggle:function(){ var ns = self.state.sys.slice(); ns[i] = !ns[i]; self.setState({ sys:ns }); } }; }),
+      sysCount: nSys,
+      sysVerdict: nSys === 4 ? "complète" : (nSys === 0 ? "aucun système actif" : "partielle"),
+      sysText: nSys === 4 ? "Les quatre systèmes tournent ensemble, à chaque image : l’architecture doit les orchestrer sans à-coup." : (nSys === 0 ? "Plus rien à orchestrer : réactivez un système." : "Un système coupé, c’est un jeu incomplet. La difficulté réelle, c’est de tout faire tourner en même temps."),
+      pl: s.pl,
+      setPl: function(e){ self.setState({ pl:Number(e.target.value) }); },
+      plLabel: players.toLocaleString("fr-FR"),
+      pdots: pdots,
+      plText: players >= 1000 ? "Des milliers d’utilisateurs simultanés : chaque action doit être répercutée à tous, sans conflit." : "Peu de joueurs : facile. L’exigence commence quand la charge monte. Poussez le curseur.",
+      toggleProt: function(){ self.setState({ prot:!self.state.prot }); },
+      protPressed: s.prot ? "true" : "false",
+      protLabel: s.prot ? "active" : "désactivée",
+      protBtn: s.prot ? "border-color:#0091C7" : "",
+      protTrack: "background:" + (s.prot ? "#0091C7" : "#C3C9C0"),
+      protKnob: s.prot ? knobOn : knobOff,
+      protUx: s.prot ? "intacte pour les joueurs honnêtes" : "exposée à la triche",
+      events: D.events.map(function(v){ var blocked = v.bad && s.prot;
+        return { t:v.t,
+          verdict: !v.bad ? "accepté" : (blocked ? "bloqué" : "non détecté"),
+          badge: "font-size:12px;padding:4px 8px;border-radius:999px;" + (!v.bad ? "background:#C8F0E2;color:#0B5D43" : (blocked ? "background:#15181C;color:#FFFFFF" : "background:#FFE3D6;color:#8A3A10")),
+          box: v.bad && !s.prot ? "border-color:#FFC9B0;background:#FFF8F4" : "" }; }),
+      maps: D.maps,
+      layers: D.layers.map(function(l, i){ var a = s.layer === i; return { n:"0" + (i + 1), title:l.title, pressed:a ? "true" : "false",
+        style: a ? "background:rgba(127,211,240,.16);border-color:#7FD3F0" : "",
+        pick:function(){ self.setState({ layer:i }); } }; }),
+      layer: { n:"0" + (s.layer + 1), text:D.layers[s.layer].text },
+      askChips: D.askOrder.map(function(k){ return { label:D.ask[k].q, pick:function(){ self.ask(k); }, pressed:s.askK === k ? "true" : "false", style:s.askK === k ? on : "" }; }),
+      askIdle: !A,
+      askOn: !!A,
+      askA: A || { q:"", think:"", tool:"", result:"", answer:"", cta:"", href:"Agent-Contact.dc.html" },
+      askThink: !!A && as >= 1,
+      askTool: !!A && as >= 2,
+      askToolRun: !!A && as === 2,
+      askToolDone: !!A && as >= 3,
+      askTyping: !!A && as < 3,
+      askAnswer: !!A && as >= 3,
+      askLink: !!A && as >= 4
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Arcade — Offres</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;1,500&amp;family=Silkscreen&amp;display=swap">
+<style>
+body{margin:0;background:#0D0A1A}
+sc-for,sc-if{display:contents}
+.ar{position:relative;overflow:hidden;background:#0D0A1A;color:#EDE8FF;font-family:'Chakra Petch',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.ar *,.ar *::before,.ar *::after{box-sizing:border-box}
+.ar h1,.ar h2,.ar h3,.ar h4,.ar p,.ar figure{margin:0}
+.ar a{color:inherit}
+.ar button,.ar input,.ar textarea{font-family:inherit}
+.ar img{display:block;max-width:100%}
+.ar :focus-visible{outline:2px solid #00E5FF;outline-offset:3px}
+.wrap{position:relative;max-width:1240px;margin:0 auto;padding:0 40px}
+.px{font-family:'Silkscreen',monospace;font-size:11px;line-height:1.5;letter-spacing:.1em;text-transform:uppercase}
+.mut{color:#9C93C4}.cy{color:#00E5FF}.mg{color:#FF3EA5}.gd{color:#FFD166}
+.scan{position:absolute;inset:0;z-index:80;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.22) 3px,rgba(0,0,0,0) 4px)}
+.hdr{position:relative;z-index:30;background:rgba(13,10,26,.92);border-bottom:1px solid rgba(156,147,196,.16)}
+.hdr-in{display:flex;align-items:center;gap:28px;min-height:76px}
+.logo{display:inline-flex;align-items:center;gap:12px;min-height:44px;text-decoration:none}
+.logo-t{font-weight:700;font-size:19px;letter-spacing:.24em}
+.nav{display:flex;gap:2px;margin-left:auto}
+.nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font-size:14px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:#9C93C4;transition:color .2s}
+.nav a::after{content:"";position:absolute;left:14px;right:14px;bottom:6px;height:2px;background:#00E5FF;box-shadow:0 0 10px #00E5FF;transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav a:hover,.nav a[aria-current="page"]{color:#EDE8FF}
+.nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1)}
+.hdr-cta{display:flex;align-items:center;gap:18px}
+.burger{display:none;align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1px solid rgba(156,147,196,.35);color:#EDE8FF;cursor:pointer}
+.mnav{display:none}
+@media(max-width:1000px){.nav,.hud-p1{display:none}.burger{display:inline-flex}.hdr-cta{margin-left:auto}.mnav{display:grid;gap:2px;padding:8px 16px 20px;border-top:1px solid rgba(156,147,196,.16)}.mnav a{display:flex;align-items:center;min-height:48px;padding:0 8px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(156,147,196,.1)}}
+@media(max-width:480px){.hdr-cta .btn{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border:1px solid transparent;font:600 14px/1 'Chakra Petch',sans-serif;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s,color .2s,border-color .2s}
+.btn-p{background:#FF3EA5;color:#0D0A1A;box-shadow:4px 4px 0 #00E5FF}
+.btn-p:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #00E5FF,0 0 32px rgba(255,62,165,.45)}
+.btn-p:active{transform:translate(4px,4px);box-shadow:0 0 0 #00E5FF}
+.btn-g{background:transparent;color:#EDE8FF;border-color:rgba(237,232,255,.32)}
+.btn-g:hover{border-color:#00E5FF;color:#00E5FF;box-shadow:inset 0 0 24px rgba(0,229,255,.18)}
+.btn-sm{min-height:44px;padding:0 18px;font-size:13px}
+.fr{position:relative;background:#171230;border:1px solid rgba(156,147,196,.2)}
+.fr::before,.fr::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none;transition:width .25s,height .25s}
+.fr::before{top:-1px;left:-1px;border-top:2px solid #00E5FF;border-left:2px solid #00E5FF}
+.fr::after{bottom:-1px;right:-1px;border-bottom:2px solid #FF3EA5;border-right:2px solid #FF3EA5}
+.hv:hover::before,.hv:hover::after{width:30px;height:30px}
+.sec{position:relative;padding:120px 0}
+.kick{display:inline-flex;align-items:center;gap:10px;color:#00E5FF}
+.kick::before{content:"";width:8px;height:8px;background:currentColor;box-shadow:0 0 12px currentColor}
+.h2{margin-top:18px;font-size:clamp(32px,4.6vw,60px);line-height:1.04;font-weight:700;letter-spacing:-.01em;text-transform:uppercase;overflow-wrap:anywhere}
+.lead{margin-top:20px;max-width:640px;font-size:19px;color:#9C93C4}
+.bar{position:relative;height:10px;overflow:hidden;background:rgba(156,147,196,.14)}
+.bar>i{position:absolute;left:0;top:0;bottom:0;background:repeating-linear-gradient(90deg,#00E5FF 0,#00E5FF 8px,rgba(0,0,0,0) 8px,rgba(0,0,0,0) 10px);box-shadow:0 0 12px rgba(0,229,255,.45);transition:width .6s cubic-bezier(.2,.7,.2,1)}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes blink{50%{opacity:0}}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.in{animation:up .8s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.35s}.d4{animation-delay:.5s}.d5{animation-delay:.65s}
+.blink{animation:blink 1.1s steps(1) infinite}
+.ftr{position:relative;padding:72px 0 32px;background:#0A0815;border-top:1px solid rgba(156,147,196,.16)}
+.ftr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:40px}
+.ftr-h{margin-bottom:14px;color:#9C93C4}
+.ftr-l{display:grid}
+.ftr-l a{display:inline-flex;align-items:center;min-height:44px;font-size:15px;text-decoration:none;transition:color .2s}
+.ftr-l a:hover{color:#00E5FF}
+.ftr-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:56px;padding-top:24px;border-top:1px solid rgba(156,147,196,.14)}
+.ftr-bot a{text-decoration:underline;text-underline-offset:4px}
+/* ===== page : offres ===== */
+.ph{position:relative;padding:80px 0 40px;text-align:center}
+.h1{margin-top:20px;font-size:clamp(40px,6.4vw,92px);line-height:.98;font-weight:700;text-transform:uppercase;overflow-wrap:anywhere}
+.h1 span{color:transparent;-webkit-text-stroke:2px #EDE8FF}
+.ph .lead{margin-left:auto;margin-right:auto}
+.roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:20px;margin-top:56px}
+.ch{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;min-height:440px;padding:30px 24px 26px;color:#EDE8FF;font:inherit;text-align:center;cursor:pointer;transition:transform .3s,box-shadow .3s,border-color .3s,opacity .3s}
+.ch:hover{transform:translateY(-6px);border-color:rgba(0,229,255,.55)}
+.ch-pod{position:relative;display:grid;place-items:end center;width:100%;height:170px;margin-bottom:8px}
+.ch-pod::after{content:"";position:absolute;bottom:0;left:50%;width:180px;height:24px;margin-left:-90px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,229,255,.35),rgba(0,229,255,0) 70%)}
+.ch-pod svg{position:relative;z-index:1;animation:bob 2.4s ease-in-out infinite}
+.ch-name{font-size:30px;line-height:1;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.ch-pr{font-size:34px;line-height:1;font-weight:700}
+.ch-pr small{font-size:15px;font-weight:500;color:#9C93C4}
+.ch-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);padding:5px 12px;background:#FFD166;color:#0D0A1A;white-space:nowrap}
+.sheet{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:52px;margin-top:28px;padding:44px;animation:up .45s both}
+.at{padding:12px 0;border-bottom:1px solid rgba(156,147,196,.14)}
+.at-h{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}
+.at-h b{font-weight:600}
+.hatch{position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(156,147,196,.25) 0,rgba(156,147,196,.25) 4px,rgba(0,0,0,0) 4px,rgba(0,0,0,0) 8px)}
+.perks{display:grid;gap:8px;margin-top:14px}
+.perks div{display:flex;gap:12px;font-size:16px}
+.perks div::before{content:"";flex:none;width:8px;height:8px;margin-top:9px;background:#00E5FF;box-shadow:0 0 8px rgba(0,229,255,.6)}
+.loot{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:26px;padding:18px 20px;border:1px solid rgba(255,209,102,.55);background:rgba(255,209,102,.06)}
+.loot b{font-size:28px;color:#FFD166}
+.tblw{overflow-x:auto;margin-top:48px;border:1px solid rgba(156,147,196,.2)}
+.tbl{width:100%;min-width:780px;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{padding:16px 18px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(156,147,196,.14)}
+.tbl thead th{position:relative;background:#120E26;font-size:18px;font-weight:700;text-transform:uppercase}
+.tbl tbody th{width:24%;font-weight:600;color:#9C93C4}
+.tbl tbody tr{transition:background .2s}
+.tbl tbody tr:hover{background:rgba(0,229,255,.04)}
+.tbl .pop{background:rgba(255,209,102,.05)}
+.ck{display:inline-block;width:10px;height:10px;margin-right:8px;background:#00E5FF;box-shadow:0 0 8px rgba(0,229,255,.6)}
+.no{color:#9C93C4}
+.sim{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:24px;margin-top:48px}
+.sim-pn{padding:36px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.seg button{min-height:52px;padding:8px;background:transparent;border:1px solid rgba(156,147,196,.35);color:#EDE8FF;font:600 15px 'Chakra Petch',sans-serif;cursor:pointer;transition:all .2s}
+.seg button:hover{border-color:#00E5FF}
+.rng{width:100%;height:44px;margin-top:8px;accent-color:#FF3EA5;cursor:pointer}
+.score{font-size:clamp(44px,6vw,76px);line-height:1;font-weight:700;color:#FFD166;text-shadow:0 0 30px rgba(255,209,102,.45)}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr));gap:10px;margin-top:22px}
+.kv div{padding:14px 16px;border:1px solid rgba(156,147,196,.2)}
+.kv b{display:block;font-size:22px}
+.gold .bar>i{background:repeating-linear-gradient(90deg,#FFD166 0,#FFD166 8px,rgba(0,0,0,0) 8px,rgba(0,0,0,0) 10px);box-shadow:0 0 12px rgba(255,209,102,.5)}
+.faq{max-width:920px;margin:48px auto 0;border-top:1px solid rgba(156,147,196,.2)}
+.fq{border-bottom:1px solid rgba(156,147,196,.2)}
+.fq-h{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;min-height:72px;padding:16px 4px;background:transparent;border:0;color:#EDE8FF;font:600 19px/1.3 'Chakra Petch',sans-serif;text-align:left;cursor:pointer;transition:color .2s}
+.fq-h:hover{color:#00E5FF}
+.fq-ic{display:grid;place-items:center;flex:none;width:32px;height:32px;border:1px solid rgba(156,147,196,.4);transition:transform .25s,border-color .25s}
+.fq-b{padding:0 4px 24px;max-width:780px;color:#9C93C4;animation:up .3s both}
+.cta{position:relative;padding:120px 0;text-align:center;background:#100C20;overflow:hidden}
+.cta .h2{max-width:900px;margin-left:auto;margin-right:auto}
+.cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:40px}
+@media(max-width:640px){.sec{padding:80px 0}.sheet,.sim-pn{padding:24px}.ph{padding:56px 0 24px}}
+@media (prefers-reduced-motion:reduce){.ar *,.ar *::before,.ar *::after{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="ar">
+<sc-if value="{{ scan }}" hint-placeholder-val="{{ true }}"><div class="scan" aria-hidden="true"></div></sc-if>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="spr"><rect x="3" y="0" width="4" height="4" fill="currentColor"></rect><rect x="4" y="1" width="3" height="1" fill="#0D0A1A"></rect><rect x="2" y="4" width="6" height="4" fill="currentColor"></rect><rect x="0" y="4" width="2" height="3" fill="currentColor"></rect><rect x="8" y="4" width="2" height="3" fill="currentColor"></rect><rect x="2" y="7" width="6" height="1" fill="#0D0A1A" opacity=".45"></rect><rect x="2" y="8" width="2" height="4" fill="currentColor"></rect><rect x="6" y="8" width="2" height="4" fill="currentColor"></rect></g></defs></svg>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="Arcade-Accueil.dc.html" aria-label="Baquelis — accueil">
+      <svg width="28" height="28" viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="0" width="1" height="7" fill="#EDE8FF"></rect><rect x="2" y="1" width="1" height="5" fill="#FF3EA5"></rect><rect x="1" y="2" width="1" height="3" fill="#FF3EA5"></rect><rect x="0" y="3" width="1" height="1" fill="#FF3EA5"></rect><rect x="4" y="1" width="1" height="5" fill="#00E5FF"></rect><rect x="5" y="2" width="1" height="3" fill="#00E5FF"></rect><rect x="6" y="3" width="1" height="1" fill="#00E5FF"></rect><rect x="3" y="3" width="1" height="1" fill="#0D0A1A"></rect></svg>
+      <span class="logo-t">BAQUELIS</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="Arcade-Expertises.dc.html">Expertises</a>
+      <a href="Arcade-IA.dc.html">IA</a>
+      <a href="Arcade-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a href="Arcade-Offres.dc.html" aria-current="page">Offres</a>
+      <a href="Arcade-Contact.dc.html">Contact</a>
+    </nav>
+    <div class="hdr-cta">
+      <span class="px mut hud-p1">P1 · Prêt</span>
+      <a class="btn btn-p btn-sm" href="Arcade-Contact.dc.html">Commencer</a>
+    </div>
+    <button class="burger" type="button" aria-label="Ouvrir le menu" onClick="{{ toggleMenu }}"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16"></path></svg></button>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="mnav">
+      <a href="Arcade-Expertises.dc.html">Expertises</a>
+      <a href="Arcade-IA.dc.html">IA</a>
+      <a href="Arcade-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a href="Arcade-Offres.dc.html">Offres</a>
+      <a href="Arcade-Contact.dc.html">Contact — Commencer</a>
+    </div>
+  </sc-if>
+</header>
+
+<!-- HERO + SÉLECTION DU PERSONNAGE -->
+<section class="ph">
+  <div class="wrap">
+    <p class="px kick in">Sélection du personnage — formules mensuelles</p>
+    <h1 class="h1 in d1">Choisissez <span>votre</span> équipe.</h1>
+    <p class="lead in d2">Trois formules mensuelles, des attributs calculés à partir de données réelles : heures couvertes, délai de changement de profil, engagement, taille d'équipe.</p>
+  </div>
+</section>
+
+<section aria-labelledby="ro-h" style="padding-bottom:110px">
+  <div class="wrap">
+    <h2 id="ro-h" class="px mut" style="text-align:center">Joueur 1 — choisissez votre personnage</h2>
+    <div class="roster">
+      <button class="ch fr" type="button" onClick="{{ ch0 }}" style="{{ chS0 }}" aria-pressed="{{ chA0 }}">
+        <span class="ch-pod"><svg width="80" height="96" viewBox="0 0 10 12" shape-rendering="crispEdges" style="color:#00E5FF" aria-hidden="true"><use href="#spr"></use></svg></span>
+        <span class="px cy">P-01 · Spécialiste</span>
+        <span class="ch-name">Intégration</span>
+        <span class="ch-pr">4&nbsp;500&nbsp;€ <small>/ mois</small></span>
+        <span class="mut" style="font-size:15px">Idéal pour startups et PME avec des besoins techniques spécifiques.</span>
+        <span class="px gd" style="margin-top:auto">Économie 1&nbsp;500&nbsp;€/mois</span>
+      </button>
+      <button class="ch fr" type="button" onClick="{{ ch1 }}" style="{{ chS1 }}" aria-pressed="{{ chA1 }}">
+        <span class="ch-tag px">Plus populaire</span>
+        <span class="ch-pod"><svg width="80" height="96" viewBox="0 0 10 12" shape-rendering="crispEdges" style="color:#FF3EA5" aria-hidden="true"><use href="#spr"></use></svg></span>
+        <span class="px mg">P-02 · Polyvalent</span>
+        <span class="ch-name">Flex</span>
+        <span class="ch-pr">6&nbsp;200&nbsp;€ <small>/ mois</small></span>
+        <span class="mut" style="font-size:15px">Idéal pour les entreprises avec des projets évolutifs.</span>
+        <span class="px gd" style="margin-top:auto">Économie 2&nbsp;300&nbsp;€/mois</span>
+      </button>
+      <button class="ch fr" type="button" onClick="{{ ch2 }}" style="{{ chS2 }}" aria-pressed="{{ chA2 }}">
+        <span class="ch-pod"><svg width="200" height="96" viewBox="0 0 50 24" shape-rendering="crispEdges" aria-hidden="true"><use href="#spr" x="0" y="12" style="color:#9C93C4"></use><use href="#spr" x="10" y="8" style="color:#00E5FF"></use><use href="#spr" x="20" y="2" style="color:#FFD166"></use><use href="#spr" x="30" y="8" style="color:#FF3EA5"></use><use href="#spr" x="40" y="12" style="color:#9C93C4"></use></svg></span>
+        <span class="px gd">P-03 · Escouade</span>
+        <span class="ch-name">Performance</span>
+        <span class="ch-pr">18&nbsp;900&nbsp;€ <small>/ mois</small></span>
+        <span class="mut" style="font-size:15px">Idéal pour grandes entreprises et projets stratégiques complexes.</span>
+        <span class="px gd" style="margin-top:auto">Économie 12&nbsp;000&nbsp;€/mois</span>
+      </button>
+    </div>
+
+    <div class="sheet fr" aria-live="polite">
+      <div>
+        <p class="px" style="{{ colStyle }}">Fiche personnage · {{ c.code }}</p>
+        <h3 style="margin-top:10px;font-size:clamp(32px,4vw,52px);line-height:1;font-weight:700;text-transform:uppercase">{{ c.name }}</h3>
+        <p class="mut" style="margin-top:12px">{{ c.ideal }}</p>
+        <div style="margin-top:22px">
+          <sc-for list="{{ attrs }}" as="a" hint-placeholder-count="6">
+            <div class="at">
+              <div class="at-h"><b>{{ a.n }}</b><span class="px" style="{{ a.vStyle }}">{{ a.v }}</span></div>
+              <div class="bar"><sc-if value="{{ a.na }}" hint-placeholder-val="{{ false }}"><span class="hatch"></span></sc-if><i style="{{ a.style }}"></i></div>
+            </div>
+          </sc-for>
+        </div>
+        <p class="px mut" style="margin-top:14px;line-height:1.8">Barres : heures ÷ 168 h · 15 j ÷ délai · 2 mois ÷ engagement · équipe ÷ 5 · paliers de support et de rapports</p>
+      </div>
+      <div>
+        <p class="px cy">Équipement inclus</p>
+        <div class="perks"><sc-for list="{{ c.perks }}" as="k" hint-placeholder-count="7"><div>{{ k.t }}</div></sc-for></div>
+        <div class="loot"><span class="px gd">Butin vs recrutement</span><b>{{ c.save }}</b><span class="mut">économisés chaque mois</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:28px">
+          <a class="btn btn-p" href="Arcade-Contact.dc.html">Choisir {{ c.name }}</a>
+          <a class="btn btn-g" href="#simulateur">Simuler l'économie</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIF -->
+<section class="sec" style="background:#100C20" aria-labelledby="cmp-h">
+  <div class="wrap">
+    <p class="px kick">Comparatif détaillé</p>
+    <h2 class="h2" id="cmp-h">Tous les attributs, côte à côte.</h2>
+    <div class="tblw" role="region" aria-label="Tableau comparatif des formules" tabindex="0">
+      <table class="tbl">
+        <thead>
+          <tr><th scope="col"><span class="px mut">Attribut</span></th><th scope="col">Intégration</th><th scope="col" class="pop">Flex <span class="px gd" style="display:block;font-size:10px">Plus populaire</span></th><th scope="col">Performance</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Prix mensuel</th><td>4&nbsp;500&nbsp;€</td><td class="pop">6&nbsp;200&nbsp;€</td><td>18&nbsp;900&nbsp;€</td></tr>
+          <tr><th scope="row">Idéal pour</th><td>Startups et PME aux besoins techniques spécifiques</td><td class="pop">Entreprises avec projets évolutifs</td><td>Grandes entreprises, projets stratégiques complexes</td></tr>
+          <tr><th scope="row">Équipe</th><td>1 profil technique dédié</td><td class="pop">1 profil technique senior, changement rapide</td><td>5 experts seniors dédiés</td></tr>
+          <tr><th scope="row">Heures couvertes</th><td>Heures standard (40 h/semaine)</td><td class="pop">Heures étendues (50 h/semaine)</td><td>Couverture 24/7</td></tr>
+          <tr><th scope="row">Changement de profil</th><td>Sous 30 jours</td><td class="pop">Sous 15 jours</td><td>[DÉLAI]</td></tr>
+          <tr><th scope="row">Engagement minimum</th><td>12 mois</td><td class="pop">6 mois</td><td>2 mois</td></tr>
+          <tr><th scope="row">Support</th><td>E-mail et chat</td><td class="pop">E-mail et chat prioritaire</td><td>Prioritaire 24/7 et hotline</td></tr>
+          <tr><th scope="row">Rapports</th><td>Mensuels</td><td class="pop">Hebdomadaires détaillés</td><td>Quotidiens personnalisés + tableaux de bord</td></tr>
+          <tr><th scope="row">Documentation &amp; passation</th><td><span class="no">—</span></td><td class="pop"><span class="ck"></span>Renforcées</td><td><span class="no">—</span></td></tr>
+          <tr><th scope="row">Lead tech + Product Owner</th><td><span class="no">—</span></td><td class="pop"><span class="no">—</span></td><td><span class="ck"></span>Inclus</td></tr>
+          <tr><th scope="row">Gestion de projet agile complète</th><td><span class="no">—</span></td><td class="pop"><span class="no">—</span></td><td><span class="ck"></span>Incluse</td></tr>
+          <tr><th scope="row">Espace Slack dédié</th><td><span class="no">—</span></td><td class="pop"><span class="no">—</span></td><td><span class="ck"></span>Inclus</td></tr>
+          <tr><th scope="row">Économie vs recrutement</th><td class="gd">1&nbsp;500&nbsp;€/mois</td><td class="pop gd">2&nbsp;300&nbsp;€/mois</td><td class="gd">12&nbsp;000&nbsp;€/mois</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="px mut" style="margin-top:14px">Le tableau défile horizontalement sur petit écran.</p>
+  </div>
+</section>
+
+<!-- SIMULATEUR -->
+<section class="sec" id="simulateur" aria-labelledby="sim-h">
+  <div class="wrap">
+    <p class="px kick">Simulateur d'économies — compteur de score</p>
+    <h2 class="h2" id="sim-h">Calculez votre butin.</h2>
+    <p class="lead">Choisissez une formule et une durée : le compteur cumule l'économie annoncée par rapport à un recrutement.</p>
+    <div class="sim">
+      <div class="sim-pn fr">
+        <p class="px mut">1 · Formule</p>
+        <div class="seg" role="group" aria-label="Formule">
+          <button type="button" onClick="{{ sim0 }}" style="{{ simS0 }}" aria-pressed="{{ simA0 }}">Intégration</button>
+          <button type="button" onClick="{{ sim1 }}" style="{{ simS1 }}" aria-pressed="{{ simA1 }}">Flex</button>
+          <button type="button" onClick="{{ sim2 }}" style="{{ simS2 }}" aria-pressed="{{ simA2 }}">Performance</button>
+        </div>
+        <label class="px mut" for="dur" style="display:block;margin-top:30px">2 · Durée : {{ monthsLabel }}</label>
+        <input class="rng" id="dur" type="range" min="{{ minMonths }}" max="36" value="{{ months }}" onInput="{{ setMonths }}">
+        <div style="display:flex;justify-content:space-between" class="px mut"><span>Min. {{ minMonths }} mois (engagement)</span><span>36 mois</span></div>
+        <div class="kv">
+          <div><span class="px mut">Prix mensuel</span><b>{{ simPrice }}</b></div>
+          <div><span class="px mut">Économie mensuelle</span><b class="gd">{{ simSave }}</b></div>
+        </div>
+      </div>
+      <div class="sim-pn fr gold" aria-live="polite">
+        <p class="px gd">Score — économie cumulée</p>
+        <p class="score" style="margin-top:14px">{{ simTotal }}</p>
+        <p class="mut" style="margin-top:8px">sur {{ monthsLabel }} avec la formule {{ simName }}</p>
+        <div class="bar" style="margin-top:26px"><i style="{{ simBar }}"></i></div>
+        <div style="display:flex;justify-content:space-between;margin-top:8px" class="px mut"><span>0</span><span>Record : Performance · 36 mois</span></div>
+        <div class="kv">
+          <div><span class="px mut">Investissement cumulé</span><b>{{ simInvest }}</b></div>
+          <div><span class="px mut">Niveau atteint</span><b class="cy">{{ simLevel }}</b></div>
+        </div>
+        <p class="px mut" style="margin-top:22px">Estimation basée sur les chiffres Baquelis (économie mensuelle annoncée vs recrutement).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" style="background:#100C20" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div style="text-align:center"><p class="px kick">Aide du jeu — FAQ</p><h2 class="h2" id="faq-h">Questions fréquentes.</h2></div>
+    <div class="faq">
+      <sc-for list="{{ faq }}" as="f" hint-placeholder-count="8">
+        <div class="fq">
+          <button class="fq-h" type="button" onClick="{{ f.pick }}" aria-expanded="{{ f.exp }}"><span><span class="px cy" style="margin-right:14px">{{ f.n }}</span>{{ f.q }}</span><span class="fq-ic" style="{{ f.icStyle }}"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 1v12M1 7h12"></path></svg></span></button>
+          <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}"><p class="fq-b">{{ f.a }}</p></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section class="cta" aria-labelledby="cta-h">
+  <div class="wrap">
+    <p class="px gd blink">Personnage choisi ?</p>
+    <h2 class="h2" id="cta-h">Prêt à transformer votre entreprise ?</h2>
+    <p class="lead" style="margin-left:auto;margin-right:auto">Réservez un appel découverte : nous confirmons ensemble la formule et le profil.</p>
+    <div class="cta-row">
+      <a class="btn btn-p" href="Arcade-Contact.dc.html">Commencer aujourd'hui</a>
+      <a class="btn btn-g" href="Arcade-Expertises.dc.html">En savoir plus</a>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <a class="logo" href="Arcade-Accueil.dc.html" aria-label="Baquelis — accueil">
+          <svg width="24" height="24" viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="0" width="1" height="7" fill="#EDE8FF"></rect><rect x="2" y="1" width="1" height="5" fill="#FF3EA5"></rect><rect x="1" y="2" width="1" height="3" fill="#FF3EA5"></rect><rect x="0" y="3" width="1" height="1" fill="#FF3EA5"></rect><rect x="4" y="1" width="1" height="5" fill="#00E5FF"></rect><rect x="5" y="2" width="1" height="3" fill="#00E5FF"></rect><rect x="6" y="3" width="1" height="1" fill="#00E5FF"></rect><rect x="3" y="3" width="1" height="1" fill="#0D0A1A"></rect></svg>
+          <span class="logo-t">BAQUELIS</span>
+        </a>
+        <p class="mut" style="margin-top:14px;font-size:15px">Flexibilité. Continuité. Performance.<br>31 B avenue Maréchal Foch<br>06000 Nice</p>
+      </div>
+      <div><p class="px ftr-h">Navigation</p><div class="ftr-l"><a href="Arcade-Accueil.dc.html">Accueil</a><a href="Arcade-Expertises.dc.html">Expertises</a><a href="Arcade-IA.dc.html">Intelligence artificielle</a><a href="Arcade-Jeux.dc.html">Jeux &amp; Web3</a></div></div>
+      <div><p class="px ftr-h">Offres</p><div class="ftr-l"><a href="Arcade-Offres.dc.html">Intégration — 4&nbsp;500&nbsp;€/mois</a><a href="Arcade-Offres.dc.html">Flex — 6&nbsp;200&nbsp;€/mois</a><a href="Arcade-Offres.dc.html">Performance — 18&nbsp;900&nbsp;€/mois</a></div></div>
+      <div><p class="px ftr-h">Contact</p><div class="ftr-l"><a href="Arcade-Contact.dc.html">[contact@domaine-baquelis]</a><a href="Arcade-Contact.dc.html">Réserver un appel</a></div></div>
+    </div>
+    <div class="ftr-bot">
+      <span class="mut" style="font-size:14px">© 2026 Baquelis · [RAISON SOCIALE] · [N° TVA]</span>
+      <span class="px mut">Proposition de refonte — concept · Direction 5 · Arcade · <a href="Main.dc.html">Toutes les propositions</a></span>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6300},"scanlines":{"editor":"boolean","default":true},"neon":{"editor":"color","default":"#FF3EA5","options":["#FF3EA5","#00E5FF","#FFD166"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menuOpen:false, ch:1, simF:1, months:12, faq:0 };
+    this.O = [
+      { code:'P-01', name:'Intégration', col:'#00E5FF', price:4500, save:1500, min:12, ideal:'Idéal pour startups et PME avec des besoins techniques spécifiques.',
+        attrs:[ ['Heures couvertes','40 h / semaine',40/168], ['Changement de profil','30 jours',0.5], ['Souplesse d’engagement','12 mois min.',2/12], ['Taille d’équipe','1 profil dédié',0.2], ['Support','E-mail et chat',1/3], ['Rapports','Mensuels',1/3] ],
+        perks:['1 profil technique dédié','Changement de profil sous 30 jours','Rapports mensuels','Heures standard (40 h/semaine)','Support e-mail et chat','Engagement minimum 12 mois'] },
+      { code:'P-02', name:'Flex', col:'#FF3EA5', price:6200, save:2300, min:6, ideal:'Idéal pour les entreprises avec des projets évolutifs — flexibilité maximale.',
+        attrs:[ ['Heures couvertes','50 h / semaine',50/168], ['Changement de profil','15 jours',1], ['Souplesse d’engagement','6 mois min.',2/6], ['Taille d’équipe','1 profil senior',0.2], ['Support','Prioritaire',2/3], ['Rapports','Hebdomadaires détaillés',2/3] ],
+        perks:['1 profil technique senior avec changement rapide','Changement de profil sous 15 jours','Support e-mail et chat prioritaire','Rapports détaillés hebdomadaires','Documentation et passation renforcées','Heures étendues (50 h/semaine)','Engagement minimum 6 mois'] },
+      { code:'P-03', name:'Performance', col:'#FFD166', price:18900, save:12000, min:2, ideal:'Idéal pour grandes entreprises et projets stratégiques complexes.',
+        attrs:[ ['Heures couvertes','24/7',1], ['Changement de profil','[DÉLAI]',-1], ['Souplesse d’engagement','2 mois min.',1], ['Taille d’équipe','5 experts seniors',1], ['Support','24/7 + hotline',1], ['Rapports','Quotidiens + tableaux de bord',1] ],
+        perks:['Équipe de 5 experts seniors dédiés','Lead tech + Product Owner inclus','Support prioritaire 24/7 et hotline','Gestion de projet agile complète','Rapports quotidiens personnalisés et tableaux de bord','Couverture 24/7 · espace Slack dédié','Engagement minimum 2 mois'] }
+    ];
+    this.F = [
+      { q:'Quel est l’engagement minimum ?', a:'12 mois pour Intégration, 6 mois pour Flex et 2 mois pour Performance. Au-delà, la collaboration se poursuit au mois, dans la continuité.' },
+      { q:'Puis-je changer de profil en cours de route ?', a:'Oui. Le changement de profil se fait sous 30 jours avec Intégration et sous 15 jours avec Flex (changement rapide). Avec Performance, la composition de l’équipe de 5 experts se définit et s’ajuste au cadrage.' },
+      { q:'Quels horaires sont couverts ?', a:'Heures standard (40 h/semaine) pour Intégration, heures étendues (50 h/semaine) pour Flex, et couverture 24/7 pour Performance.' },
+      { q:'Quel support est inclus ?', a:'Support e-mail et chat (Intégration), e-mail et chat prioritaire (Flex), support prioritaire 24/7 avec hotline et espace Slack dédié (Performance).' },
+      { q:'Quels rapports vais-je recevoir ?', a:'Des rapports mensuels (Intégration), des rapports détaillés hebdomadaires (Flex) ou des rapports quotidiens personnalisés avec tableaux de bord (Performance) — et dans tous les cas, un suivi des progrès en temps réel.' },
+      { q:'Modèle affiné ou RAG : quelle différence ?', a:'Un modèle affiné est entraîné sur vos données : précision supérieure, réponses plus rapides, intelligence spécifique à votre domaine. Le RAG fait consulter vos documents à un modèle général, utile quand ils changent souvent. Nous recommandons l’approche adaptée — ou une combinaison.' },
+      { q:'Pourquoi parler de jeux vidéo ?', a:'Parce que les jeux sont les applications les plus difficiles : temps réel, gestion d’état complexe, multijoueur, anti-triche. Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique.' },
+      { q:'Comment sont calculées les économies ?', a:'À partir des montants annoncés par Baquelis par rapport à un recrutement : 1 500 €/mois (Intégration), 2 300 €/mois (Flex) et 12 000 €/mois (Performance). Le simulateur les multiplie par la durée choisie.' }
+    ];
+  }
+  eur(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' €'; }
+  renderVals(){
+    var s = this.state, p = this.props || {}, self = this;
+    var neon = p.neon || '#FF3EA5';
+    var scan = !(p.scanlines === false || p.scanlines === 'false');
+    var o = this.O[s.ch];
+    var f = this.O[s.simF];
+    var months = Math.max(s.months, f.min);
+    var total = f.save * months;
+    var lvl = total >= 200000 ? 'Légendaire' : (total >= 50000 ? 'Épique' : (total >= 20000 ? 'Rare' : 'Commun'));
+    var v = {
+      scan: scan,
+      menuOpen: s.menuOpen,
+      toggleMenu: function(){ self.setState({ menuOpen: !self.state.menuOpen }); },
+      c: { code:o.code, name:o.name, ideal:o.ideal, save:this.eur(o.save), perks:o.perks.map(function(t){ return { t:t }; }) },
+      colStyle: 'color:' + o.col,
+      attrs: o.attrs.map(function(a){
+        var na = a[2] < 0;
+        return { n:a[0], v:a[1], na:na, vStyle: na ? 'color:#9C93C4' : 'color:' + o.col,
+          style: na ? 'width:0' : 'width:' + Math.round(a[2] * 100) + '%;background:repeating-linear-gradient(90deg,' + o.col + ' 0,' + o.col + ' 8px,rgba(0,0,0,0) 8px,rgba(0,0,0,0) 10px);box-shadow:0 0 12px ' + o.col + '80' };
+      }),
+      minMonths: String(f.min),
+      months: String(months),
+      monthsLabel: months + ' mois',
+      setMonths: function(e){ self.setState({ months: Number(e.target.value) }); },
+      simName: f.name,
+      simPrice: this.eur(f.price),
+      simSave: this.eur(f.save),
+      simTotal: this.eur(total),
+      simInvest: this.eur(f.price * months),
+      simLevel: lvl,
+      simBar: 'width:' + Math.max(2, Math.round(total / (12000 * 36) * 100)) + '%',
+      faq: this.F.map(function(x, i){
+        var open = s.faq === i;
+        return { n:'0' + (i + 1), q:x.q, a:x.a, open:open, exp: open ? 'true' : 'false',
+          icStyle: open ? 'transform:rotate(45deg);border-color:#00E5FF;color:#00E5FF' : '',
+          pick: function(){ self.setState({ faq: self.state.faq === i ? -1 : i }); } };
+      })
+    };
+    [0,1,2].forEach(function(i){
+      var on = s.ch === i, col = self.O[i].col;
+      v['ch' + i] = function(){ self.setState({ ch: i, simF: i, months: Math.max(self.state.months, self.O[i].min) }); };
+      v['chS' + i] = on ? 'border-color:' + col + ';box-shadow:0 0 0 1px ' + col + ',0 30px 80px -30px ' + col + ';transform:translateY(-10px) scale(1.02)' : 'filter:saturate(.5)';
+      v['chA' + i] = on ? 'true' : 'false';
+      var sOn = s.simF === i;
+      v['sim' + i] = function(){ self.setState({ simF: i, months: Math.max(self.state.months, self.O[i].min) }); };
+      v['simS' + i] = sOn ? 'border-color:' + neon + ';background:' + neon + ';color:#0D0A1A' : '';
+      v['simA' + i] = sOn ? 'true' : 'false';
+    });
+    return v;
+  }
+}
+</script>
+</body>
+</html>

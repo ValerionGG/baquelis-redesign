@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Nocturne — Expertises</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#08080B}
+sc-for,sc-if{display:contents}
+.nx,.nx *{box-sizing:border-box}
+.nx{font-family:'Outfit',system-ui,sans-serif;color:#EFEDE8;background:#08080B;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.nx a{color:inherit;text-decoration:none}
+.nx h1,.nx h2,.nx h3,.nx h4,.nx p{margin:0}
+.nx button{font-family:inherit;cursor:pointer}
+.nx :focus-visible{outline:2px solid #F2B544;outline-offset:3px;border-radius:6px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+@media (max-width:720px){.wrap{padding:0 16px}}
+.amb{color:#F2B544}
+.muted{color:#9B988F}
+.hdr{position:sticky;top:0;z-index:50;background:rgba(8,8,11,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(239,237,232,.07)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+.logo{display:flex;align-items:center;gap:12px;min-height:44px}
+.logo-word{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:.2em;font-size:17px}
+.logo .ring{transform-origin:17px 17px;animation:spin 16s linear infinite}
+.nav{display:flex;gap:2px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font-size:14.5px;color:#C9C6BE;border-radius:999px;transition:color .3s,background .3s}
+.nav a:hover{color:#EFEDE8;background:rgba(239,237,232,.06)}
+.nav a[aria-current="page"]{color:#F2B544}
+.hdr-cta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid transparent;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,background .35s,color .35s,border-color .35s;white-space:nowrap}
+.btn-amber{background:#F2B544;color:#08080B}
+.btn-amber:hover{transform:translateY(-2px);box-shadow:0 14px 44px -10px rgba(242,181,68,.6)}
+.btn-ghost{border-color:rgba(239,237,232,.24);color:#EFEDE8;background:rgba(8,8,11,.35)}
+.btn-ghost:hover{border-color:#F2B544;color:#F2B544}
+.btn svg{transition:transform .35s}
+.btn:hover svg{transform:translateX(4px)}
+.burger{display:none;width:48px;height:48px;border-radius:999px;border:1px solid rgba(239,237,232,.2);background:transparent;color:#EFEDE8;align-items:center;justify-content:center}
+@media (max-width:1060px){.nav,.hdr-cta .btn-ghost{display:none}.burger{display:inline-flex}}
+@media (max-width:520px){.hdr-cta .btn-amber{display:none}}
+.mnav{display:grid;padding:6px 0 22px}
+.mnav a{display:flex;align-items:center;min-height:54px;font-family:'Syne',sans-serif;font-weight:700;font-size:22px;border-bottom:1px solid rgba(239,237,232,.08)}
+.eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#F2B544;font-weight:600}
+.scene{display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#9B988F;font-weight:500}
+.scene b{color:#F2B544;font-weight:600}
+.scene i{display:block;width:56px;height:1px;background:linear-gradient(90deg,#F2B544,transparent)}
+.h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,4.8vw,66px);line-height:1.02;letter-spacing:-.02em;overflow-wrap:anywhere}
+.lead{font-size:clamp(17px,1.4vw,19px);color:#C9C6BE;max-width:620px}
+.sec{padding:130px 0;position:relative}
+@media (max-width:720px){.sec{padding:84px 0}}
+.sec-head{display:grid;gap:22px;margin-bottom:56px}
+.link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-weight:600;color:#F2B544;border-bottom:1px solid rgba(242,181,68,.35);transition:gap .3s,border-color .3s}
+.link:hover{gap:16px;border-color:#F2B544}
+/* hero */
+.hero{position:relative;height:660px;overflow:hidden}
+@media (max-width:720px){.hero{height:600px}}
+.layer{position:absolute;top:-70px;left:-70px;right:-70px;bottom:-70px;transition:transform 1s cubic-bezier(.16,.84,.24,1)}
+.ly{position:absolute;top:0;left:0;right:0;bottom:0}
+.ly-back{background:url(assets/server-aisle.webp) center/cover;filter:sepia(1) saturate(2) hue-rotate(-10deg) brightness(.32) contrast(1.2);animation:drift 26s ease-in-out infinite alternate}
+.ly-mid{left:36%;background:url(assets/datacenter-corridor.webp) center/cover;filter:brightness(.7) saturate(.9);-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%,#000 85%,transparent);mask-image:linear-gradient(90deg,transparent,#000 40%,#000 85%,transparent);animation:drift2 18s ease-in-out infinite alternate}
+.ly-fog{background:radial-gradient(50% 40% at 25% 75%,rgba(242,181,68,.26),transparent 70%),radial-gradient(30% 30% at 70% 40%,rgba(0,174,239,.14),transparent 70%);animation:fog 12s ease-in-out infinite alternate}
+.ly-dust{background-image:radial-gradient(2px 2px at 20% 30%,rgba(242,181,68,.8),transparent),radial-gradient(1.5px 1.5px at 60% 70%,rgba(242,181,68,.6),transparent),radial-gradient(2px 2px at 80% 20%,rgba(239,237,232,.5),transparent),radial-gradient(1px 1px at 40% 50%,rgba(242,181,68,.7),transparent),radial-gradient(2.5px 2.5px at 90% 80%,rgba(242,181,68,.5),transparent);background-size:420px 380px;animation:dust 30s linear infinite;opacity:.7}
+.vign{position:absolute;top:0;left:0;right:0;bottom:0;z-index:3;background:linear-gradient(90deg,rgba(8,8,11,.92),rgba(8,8,11,.3) 60%,transparent),linear-gradient(180deg,transparent 55%,#08080B)}
+.grain{position:absolute;top:-40px;left:-40px;right:-40px;bottom:-40px;pointer-events:none;z-index:7;opacity:.1;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");animation:grain .9s steps(5) infinite}
+.lb{position:absolute;left:0;right:0;height:0;background:#000;z-index:8;overflow:hidden;animation:lb 1.4s cubic-bezier(.7,0,.2,1) .1s forwards}
+.lb.t{top:0}.lb.b{bottom:0}
+.lb-row{height:48px;display:flex;align-items:center;justify-content:space-between;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:#9B988F;animation:fadeIn 1s ease 1.2s both}
+.hero-in{position:relative;z-index:5;height:660px;display:flex;flex-direction:column;justify-content:center}
+@media (max-width:720px){.hero-in{height:600px}}
+.hero-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(36px,6.6vw,96px);line-height:.98;letter-spacing:-.02em;margin:22px 0 24px;max-width:1000px;overflow-wrap:anywhere}
+.ln{display:block;overflow:hidden;padding-bottom:.06em}
+.ln-in{display:inline-block;animation:lnUp 1.1s cubic-bezier(.2,.8,.1,1) both}
+.fade{animation:fadeUp 1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes lb{to{height:48px}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drift{from{transform:scale(1.04)}to{transform:scale(1.12) translate(-22px,-10px)}}
+@keyframes drift2{from{transform:scale(1.02)}to{transform:scale(1.09) translate(16px,-8px)}}
+@keyframes fog{from{transform:translate(-20px,0)}to{transform:translate(26px,-14px) scale(1.06)}}
+@keyframes dust{from{background-position:0 0}to{background-position:420px -760px}}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-12px,8px)}50%{transform:translate(10px,-14px)}75%{transform:translate(-6px,12px)}100%{transform:translate(0,0)}}
+@keyframes lnUp{from{transform:translateY(108%)}to{transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-14px,-8px)}}
+@keyframes prog{from{width:0}to{width:100%}}
+/* reels (pillars) */
+.reels{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:10px;margin-bottom:26px}
+.reel{display:flex;align-items:center;gap:16px;min-height:76px;padding:14px 18px;border-radius:12px;border:1px solid rgba(239,237,232,.09);background:transparent;color:#EFEDE8;text-align:left;transition:background .4s,border-color .4s,transform .4s}
+.reel:hover{background:rgba(239,237,232,.04);transform:translateY(-3px)}
+.reel-disc{flex:0 0 44px;height:44px;border-radius:50%;border:1px dashed rgba(242,181,68,.5);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:#F2B544}
+.reel b{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;line-height:1.2;display:block}
+.reel small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#9B988F}
+.pd{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:0;border-radius:16px;overflow:hidden;border:1px solid rgba(239,237,232,.08);background:#121218}
+@media (max-width:960px){.pd{grid-template-columns:1fr}}
+.pd-txt{padding:48px 46px}
+@media (max-width:720px){.pd-txt{padding:28px 22px}}
+.pd-txt h3{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,3vw,42px);line-height:1.05;margin:14px 0 16px;animation:fadeUp .6s both}
+.pd-q{font-size:18px;color:#D3D0C8;max-width:560px;animation:fadeUp .6s .05s both}
+.pd-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:12px;margin-top:34px}
+.pd-it{padding:20px;border-radius:12px;background:#0C0C10;border:1px solid rgba(239,237,232,.06);transition:border-color .4s,transform .4s;animation:fadeUp .6s both}
+.pd-it:hover{border-color:rgba(242,181,68,.4);transform:translateY(-3px)}
+.pd-it b{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-size:16px;margin-bottom:6px}
+.pd-it b i{display:block;width:6px;height:6px;border-radius:50%;background:#F2B544;box-shadow:0 0 10px #F2B544}
+.pd-it span{color:#9B988F;font-size:14.5px}
+.pd-img{position:relative;min-height:420px;overflow:hidden}
+.pd-img img{position:absolute;top:0;left:0;width:100%;height:760px;object-fit:cover;filter:brightness(.62);transition:opacity .9s;animation:kb 16s ease-in-out infinite alternate}
+.pd-img .sh{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,#121218,transparent 40%)}
+@media (max-width:960px){.pd-img .sh{background:linear-gradient(180deg,#121218,transparent 40%)}}
+.pd-num{position:absolute;right:26px;bottom:14px;font-family:'Syne',sans-serif;font-weight:800;font-size:150px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(242,181,68,.45)}
+/* domains accordion */
+.doms{display:flex;gap:10px;height:520px}
+@media (max-width:900px){.doms{flex-direction:column;height:auto}}
+.dom{position:relative;flex:1 1 0;min-width:0;border-radius:14px;overflow:hidden;border:1px solid rgba(239,237,232,.08);background:#121218;text-align:left;color:#EFEDE8;padding:0;transition:flex-grow .8s cubic-bezier(.2,.8,.2,1),border-color .6s}
+@media (max-width:900px){.dom{min-height:110px}}
+.dom img{position:absolute;top:0;left:0;width:100%;height:520px;object-fit:cover;filter:brightness(.42) saturate(.8);transition:filter .8s,transform 1.4s}
+.dom:hover img{filter:brightness(.55) saturate(1);transform:scale(1.05)}
+.dom .sh{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(8,8,11,.1),rgba(8,8,11,.92))}
+.dom-v{position:absolute;left:22px;bottom:24px;writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Syne',sans-serif;font-weight:700;font-size:20px;white-space:nowrap}
+@media (max-width:900px){.dom-v{writing-mode:horizontal-tb;transform:none;bottom:auto;top:40px}}
+.dom-n{position:absolute;top:20px;left:22px;font-size:11px;letter-spacing:.26em;color:#F2B544}
+.dom-body{position:absolute;left:30px;right:30px;bottom:30px;animation:fadeUp .7s .15s both}
+@media (max-width:900px){.dom-body{position:relative;left:auto;right:auto;bottom:auto;padding:58px 22px 24px}}
+.dom-body .dh{display:block;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(24px,2.4vw,34px);line-height:1.05;margin-bottom:12px}
+.dom-body .dp{display:block;color:#C9C6BE;max-width:440px;font-size:15.5px}
+.dom-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.dom-tags span{min-height:32px;display:inline-flex;align-items:center;padding:0 12px;border-radius:999px;border:1px solid rgba(239,237,232,.2);font-size:13px;color:#D3D0C8;background:rgba(8,8,11,.5)}
+/* storyboard */
+.sb{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.sb{grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr))}}
+.sb-c{position:relative;display:grid;gap:10px;text-align:left;padding:14px;border-radius:12px;border:1px solid rgba(239,237,232,.09);background:#0E0E13;color:#EFEDE8;transition:border-color .4s,transform .4s,background .4s;min-height:44px}
+.sb-c:hover{transform:translateY(-4px);border-color:rgba(242,181,68,.35)}
+.sb-frame{height:110px;border-radius:8px;background:repeating-linear-gradient(135deg,rgba(239,237,232,.03) 0 8px,transparent 8px 16px),#15151C;border:1px solid rgba(239,237,232,.07);display:flex;align-items:center;justify-content:center;color:#9B988F;transition:color .4s}
+.sb-c:hover .sb-frame{color:#F2B544}
+.sb-k{font-size:11px;letter-spacing:.24em;color:#9B988F;text-transform:uppercase}
+.sb-t{font-family:'Syne',sans-serif;font-weight:700;font-size:15.5px;line-height:1.2}
+.sb-bar{position:absolute;left:14px;right:14px;bottom:0;height:2px;background:rgba(239,237,232,.06);overflow:hidden;border-radius:2px}
+.sb-bar i{display:block;height:2px;background:#F2B544}
+.sb-detail{margin-top:22px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);gap:1px;background:rgba(239,237,232,.08);border:1px solid rgba(239,237,232,.08);border-radius:14px;overflow:hidden}
+@media (max-width:900px){.sb-detail{grid-template-columns:1fr}}
+.sb-detail > div{background:#121218;padding:30px 30px 32px}
+.sb-detail h3{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(24px,2.4vw,32px);line-height:1.1;margin-top:10px;animation:fadeUp .5s both}
+.sb-detail h4{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:#9B988F;font-weight:600;margin-bottom:10px}
+.sb-detail p{color:#D3D0C8;animation:fadeUp .5s .05s both}
+.sb-ctrl{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;align-items:center}
+.icbtn{width:48px;height:48px;border-radius:50%;border:1px solid rgba(239,237,232,.22);background:transparent;color:#EFEDE8;display:inline-flex;align-items:center;justify-content:center;transition:border-color .3s,color .3s,background .3s}
+.icbtn:hover{border-color:#F2B544;color:#F2B544}
+/* manifesto */
+.mf{border-top:1px solid rgba(239,237,232,.1)}
+.mf-row{display:block;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid rgba(239,237,232,.1);color:#EFEDE8;padding:0;position:relative;overflow:hidden}
+.mf-row::before{content:"";position:absolute;top:0;left:0;bottom:0;width:0;background:linear-gradient(90deg,rgba(242,181,68,.12),rgba(242,181,68,0));transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.mf-row:hover::before{width:100%}
+.mf-head{position:relative;display:grid;grid-template-columns:70px minmax(0,1fr) 48px;align-items:center;gap:16px;min-height:120px}
+@media (max-width:720px){.mf-head{grid-template-columns:44px minmax(0,1fr) 44px;min-height:96px}}
+.mf-n{font-family:'Syne',sans-serif;font-size:14px;color:#F2B544;letter-spacing:.1em}
+.mf-t{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(26px,4.4vw,60px);line-height:1;letter-spacing:-.02em;overflow-wrap:anywhere;transition:transform .5s}
+.mf-row:hover .mf-t{transform:translateX(10px)}
+.mf-pl{width:44px;height:44px;border-radius:50%;border:1px solid rgba(239,237,232,.22);display:flex;align-items:center;justify-content:center;transition:transform .5s,background .4s,color .4s}
+.mf-body{position:relative;padding:0 0 34px 86px;max-width:900px;color:#C9C6BE;font-size:17px;animation:fadeUp .5s both}
+@media (max-width:720px){.mf-body{padding:0 0 26px 60px}}
+/* cta + footer */
+.cta{position:relative;padding:150px 0;overflow:hidden;text-align:center}
+.cta-bg{position:absolute;top:-40px;left:-40px;right:-40px;bottom:-40px;background:url(assets/office-glass-night.webp) center/cover;filter:sepia(.6) brightness(.32);animation:kb 20s ease-in-out infinite alternate}
+.cta-shade{position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(70% 70% at 50% 50%,rgba(8,8,11,.3),#08080B)}
+.cta-in{position:relative;z-index:2}
+.cta h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(34px,5.6vw,80px);line-height:1;letter-spacing:-.02em;margin:22px auto 34px;max-width:1000px;overflow-wrap:anywhere}
+.ftr{background:#050507;border-top:1px solid rgba(239,237,232,.07);padding:90px 0 36px}
+.ftr-word{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(46px,13vw,184px);line-height:.9;letter-spacing:.04em;color:transparent;-webkit-text-stroke:1px rgba(242,181,68,.4);transition:color .8s;margin-bottom:60px;overflow-wrap:anywhere}
+.ftr-word:hover{color:rgba(242,181,68,.12)}
+.ftr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:36px}
+.ftr h4{font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:#9B988F;font-weight:600;margin-bottom:16px}
+.ftr-grid a,.ftr-grid p{display:flex;align-items:center;min-height:36px;color:#D3D0C8;font-size:15px;transition:color .3s}
+.ftr-grid a:hover{color:#F2B544}
+.ftr-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:60px;padding-top:26px;border-top:1px solid rgba(239,237,232,.07);font-size:13px;color:#9B988F}
+.ftr-bottom a{min-height:44px;display:inline-flex;align-items:center}
+.ftr-bottom a:hover{color:#F2B544}
+</style>
+</helmet>
+<div class="nx">
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="Nocturne-Accueil.dc.html" aria-label="Baquelis, retour à l’accueil">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle class="ring" cx="17" cy="17" r="15.5" fill="none" stroke="#F2B544" stroke-width="1.4" stroke-dasharray="70 28"></circle><path d="M12.5 9.5h5.6a3.9 3.9 0 0 1 0 7.8h-5.6zM12.5 17.3h6.6a4.6 4.6 0 0 1 0 9.2h-6.6z" fill="none" stroke="#EFEDE8" stroke-width="1.8"></path><circle cx="26" cy="8" r="2" fill="#F2B544"></circle></svg>
+      <span class="logo-word">BAQUELIS</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="Nocturne-Expertises.dc.html" aria-current="page">Expertises</a>
+      <a href="Nocturne-IA.dc.html">IA</a>
+      <a href="Nocturne-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a href="Nocturne-Offres.dc.html">Offres</a>
+      <a href="Nocturne-Contact.dc.html">Contact</a>
+    </nav>
+    <div class="hdr-cta">
+      <a class="btn btn-ghost" href="Nocturne-Contact.dc.html">Réserver un appel</a>
+      <a class="btn btn-amber" href="Nocturne-Offres.dc.html">Commencer</a>
+      <button class="burger" type="button" aria-label="{{ menuLabel }}" aria-expanded="{{ menuExp }}" onClick="{{ toggleMenu }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"></path></svg></button>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="wrap">
+      <nav class="mnav" aria-label="Navigation mobile">
+        <a href="Nocturne-Expertises.dc.html" style="color:#F2B544">Expertises</a>
+        <a href="Nocturne-IA.dc.html">IA</a>
+        <a href="Nocturne-Jeux.dc.html">Jeux &amp; Web3</a>
+        <a href="Nocturne-Offres.dc.html">Offres</a>
+        <a href="Nocturne-Contact.dc.html">Contact</a>
+        <a class="btn btn-amber" href="Nocturne-Contact.dc.html" style="margin-top:18px;font-family:'Outfit',sans-serif;font-size:15px;border:0">Réserver un appel</a>
+      </nav>
+    </div>
+  </sc-if>
+</header>
+
+<main>
+<section class="hero" onMouseMove="{{ onMove }}" onMouseLeave="{{ onLeave }}" aria-label="Expertises">
+  <div class="layer" style="{{ L0 }}"><div class="ly ly-back"></div></div>
+  <div class="layer" style="{{ L1 }}"><div class="ly ly-mid"></div></div>
+  <div class="layer" style="{{ L2 }}"><div class="ly ly-fog"></div></div>
+  <div class="layer" style="{{ L3 }}"><div class="ly ly-dust"></div></div>
+  <div class="vign" aria-hidden="true"></div>
+  <sc-if value="{{ grainOn }}" hint-placeholder-val="{{ true }}"><div class="grain" aria-hidden="true"></div></sc-if>
+  <div class="wrap hero-in">
+    <div class="scene fade" style="animation-delay:.9s"><b>Acte II</b><i></i>Expertises</div>
+    <h1 class="hero-h1">
+      <span class="ln"><span class="ln-in" style="animation-delay:1.1s">Le savoir-faire,</span></span>
+      <span class="ln"><span class="ln-in amb" style="animation-delay:1.35s">plan par plan.</span></span>
+    </h1>
+    <p class="lead fade" style="animation-delay:1.7s">Nous ne livrons pas seulement du code : nous construisons des systèmes évolutifs, avec des experts qui deviennent une extension de votre équipe.</p>
+  </div>
+  <sc-if value="{{ lbOn }}" hint-placeholder-val="{{ true }}">
+    <div class="lb t"><div class="wrap lb-row"><span>Acte II · Expertises</span><span>Bougez la souris</span></div></div>
+    <div class="lb b"><div class="wrap lb-row"><span>4 piliers · 5 domaines · 5 étapes</span><span>Baquelis</span></div></div>
+  </sc-if>
+</section>
+
+<!-- PILIERS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="scene"><b>Scène 01</b><i></i>Les quatre bobines</div>
+      <h2 class="h2">Solutions éprouvées,<br>en quatre piliers.</h2>
+    </div>
+    <div class="reels" role="tablist" aria-label="Piliers">
+      <sc-for list="{{ reels }}" as="r" hint-placeholder-count="4">
+        <button class="reel" type="button" role="tab" aria-selected="{{ r.pressed }}" onClick="{{ r.pick }}" style="{{ r.style }}">
+          <span class="reel-disc" style="{{ r.disc }}">{{ r.n }}</span>
+          <span><small>Bobine {{ r.n }}</small><b>{{ r.t }}</b></span>
+        </button>
+      </sc-for>
+    </div>
+    <div class="pd" role="tabpanel" aria-live="polite">
+      <div class="pd-txt">
+        <div class="eyebrow">Pilier {{ pil.n }}</div>
+        <h3>{{ pil.t }}</h3>
+        <p class="pd-q">{{ pil.q }}</p>
+        <div class="pd-items">
+          <sc-for list="{{ pil.items }}" as="it" hint-placeholder-count="4">
+            <div class="pd-it" style="{{ it.delay }}"><b><i></i>{{ it.t }}</b><span>{{ it.d }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+      <div class="pd-img">
+        <sc-for list="{{ pilImgs }}" as="im" hint-placeholder-count="4">
+          <img src="{{ im.src }}" alt="{{ im.alt }}" style="{{ im.style }}">
+        </sc-for>
+        <div class="sh"></div>
+        <div class="pd-num" aria-hidden="true">{{ pil.n }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAINES -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="scene"><b>Scène 02</b><i></i>Les décors</div>
+      <h2 class="h2">Cinq domaines<br>d’intervention.</h2>
+      <p class="lead">Survolez ou sélectionnez un décor. Les technologies précises sont choisies selon votre contexte : [STACK À CONFIRMER].</p>
+    </div>
+    <div class="doms">
+      <sc-for list="{{ doms }}" as="d" hint-placeholder-count="5">
+        <button class="dom" type="button" style="{{ d.style }}" onClick="{{ d.pick }}" onMouseEnter="{{ d.pick }}" aria-expanded="{{ d.pressed }}" aria-label="{{ d.t }}">
+          <img src="{{ d.img }}" alt="">
+          <span class="sh"></span>
+          <span class="dom-n">{{ d.n }}</span>
+          <sc-if value="{{ d.off }}" hint-placeholder-val="{{ true }}"><span class="dom-v">{{ d.t }}</span></sc-if>
+          <sc-if value="{{ d.on }}" hint-placeholder-val="{{ false }}">
+            <span class="dom-body" style="display:block">
+              <span class="dh">{{ d.t }}</span>
+              <span class="dp">{{ d.d }}</span>
+              <span class="dom-tags"><sc-for list="{{ d.tags }}" as="tg" hint-placeholder-count="3"><span>{{ tg }}</span></sc-for></span>
+            </span>
+          </sc-if>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- METHODE -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="scene"><b>Scène 03</b><i></i>Le storyboard</div>
+      <h2 class="h2">La méthode,<br>en cinq cases.</h2>
+    </div>
+    <div class="sb">
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
+        <button class="sb-c" type="button" onClick="{{ st.pick }}" aria-pressed="{{ st.pressed }}" style="{{ st.style }}">
+          <span class="sb-frame" style="{{ st.frame }}">
+            <sc-if value="{{ st.i0 }}" hint-placeholder-val="{{ true }}"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg></sc-if>
+            <sc-if value="{{ st.i1 }}" hint-placeholder-val="{{ false }}"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg></sc-if>
+            <sc-if value="{{ st.i2 }}" hint-placeholder-val="{{ false }}"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></sc-if>
+            <sc-if value="{{ st.i3 }}" hint-placeholder-val="{{ false }}"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"></path><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"></path></svg></sc-if>
+            <sc-if value="{{ st.i4 }}" hint-placeholder-val="{{ false }}"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 15l4-4 3 3 6-7"></path></svg></sc-if>
+          </span>
+          <span class="sb-k">Case {{ st.n }}</span>
+          <span class="sb-t">{{ st.t }}</span>
+          <span class="sb-bar"><i style="{{ st.bar }}"></i></span>
+        </button>
+      </sc-for>
+    </div>
+    <div class="sb-detail" aria-live="polite">
+      <div>
+        <div class="eyebrow">Étape {{ cur.n }} / 05</div>
+        <h3>{{ cur.t }}</h3>
+        <div class="sb-ctrl">
+          <button class="icbtn" type="button" onClick="{{ prev }}" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></button>
+          <button class="icbtn" type="button" onClick="{{ togglePlay }}" aria-label="{{ playLabel }}" style="{{ playStyle }}">
+            <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg></sc-if>
+            <sc-if value="{{ paused }}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"></path></svg></sc-if>
+          </button>
+          <button class="icbtn" type="button" onClick="{{ next }}" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></button>
+          <span class="muted" style="font-size:13px">{{ playText }}</span>
+        </div>
+      </div>
+      <div><h4>Ce que nous faisons</h4><p>{{ cur.we }}</p></div>
+      <div><h4>Ce que vous obtenez</h4><p>{{ cur.you }}</p><p class="amb" style="margin-top:14px;font-size:14px">{{ cur.delay }}</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENTS -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="scene"><b>Scène 04</b><i></i>Le manifeste</div>
+      <h2 class="h2">Construit sur la confiance.<br><span class="amb">Guidé par les résultats.</span></h2>
+    </div>
+    <div class="mf">
+      <sc-for list="{{ engs }}" as="e" hint-placeholder-count="4">
+        <button class="mf-row" type="button" onClick="{{ e.pick }}" aria-expanded="{{ e.pressed }}">
+          <span class="mf-head">
+            <span class="mf-n">{{ e.n }}</span>
+            <span class="mf-t" style="{{ e.tStyle }}">{{ e.t }}</span>
+            <span class="mf-pl" style="{{ e.plStyle }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+          </span>
+          <sc-if value="{{ e.open }}" hint-placeholder-val="{{ false }}"><span class="mf-body" style="display:block">{{ e.d }}</span></sc-if>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-bg" aria-hidden="true"></div>
+  <div class="cta-shade" aria-hidden="true"></div>
+  <div class="wrap cta-in">
+    <div class="eyebrow">Transformer l’ambition en réalité</div>
+    <h2>Prêt à transformer votre entreprise ?</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+      <a class="btn btn-amber" href="Nocturne-Contact.dc.html">Nous contacter <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="btn btn-ghost" href="Nocturne-Offres.dc.html">Voir les formules</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-word" aria-hidden="true">BAQUELIS</div>
+    <div class="ftr-grid">
+      <div><h4>Baquelis</h4><p>Flexibilité. Continuité. Performance.</p><p class="muted">Excellence IA par la technologie.</p></div>
+      <div><h4>Explorer</h4><a href="Nocturne-Expertises.dc.html">Expertises</a><a href="Nocturne-IA.dc.html">Intelligence artificielle</a><a href="Nocturne-Jeux.dc.html">Jeux &amp; Web3</a><a href="Nocturne-Contact.dc.html">Contact</a></div>
+      <div><h4>Formules</h4><a href="Nocturne-Offres.dc.html">Intégration · 4 500 €/mois</a><a href="Nocturne-Offres.dc.html">Flex · 6 200 €/mois</a><a href="Nocturne-Offres.dc.html">Performance · 18 900 €/mois</a></div>
+      <div><h4>Siège</h4><p>31 B avenue Maréchal Foch</p><p>06000 Nice</p><p>[contact@domaine-baquelis]</p></div>
+    </div>
+    <div class="ftr-bottom">
+      <span>© 2026 Baquelis · [RAISON SOCIALE] · [N° TVA]</span>
+      <a href="Main.dc.html">Toutes les propositions</a>
+      <span>Proposition de refonte — concept</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5900},"letterbox":{"editor":"boolean","default":true},"grain":{"editor":"boolean","default":true}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu:false, mx:0, my:0, pil:0, dom:0, step:0, playing:false, eng:0 };
+  }
+  componentWillUnmount(){ if (this.timer) clearInterval(this.timer); }
+  pad(n){ return n > 9 ? String(n) : '0' + n; }
+  move(e){
+    const t = e && e.currentTarget;
+    if (!t || !t.getBoundingClientRect) return;
+    const r = t.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    this.setState({ mx: (e.clientX - r.left) / r.width - 0.5, my: (e.clientY - r.top) / r.height - 0.5 });
+  }
+  togglePlay(){
+    if (this.timer) { clearInterval(this.timer); this.timer = null; this.setState({ playing:false }); return; }
+    this.timer = setInterval(() => this.setState({ step: (this.state.step + 1) % 5 }), 2800);
+    this.setState({ playing:true });
+  }
+  renderVals(){
+    const s = this.state, pr = this.props || {};
+    const tr = (k) => 'transform:translate3d(' + (s.mx * -k).toFixed(1) + 'px,' + (s.my * -k * 0.6).toFixed(1) + 'px,0)';
+
+    const PIL = [
+      { n:'I', t:'Solutions éprouvées', q:'Nous ne livrons pas seulement du code — nous construisons des systèmes évolutifs qui grandissent avec votre entreprise.', img:'assets/server-aisle.webp', alt:'Allée de serveurs',
+        items:[['Architecture évolutive','Des fondations pensées pour la montée en charge, pas réécrites à chaque palier.'],['Pile technologique moderne','Des outils actuels et maintenus, choisis pour votre contexte.'],['Solutions cloud-native','Déploiement, résilience et coûts maîtrisés dans le cloud.'],['Optimisation des performances','Mesurer, profiler, accélérer : la vitesse comme fonctionnalité.']] },
+      { n:'II', t:'Partenariat, pas d’externalisation', q:'Nos experts deviennent une extension de votre équipe : mêmes outils, mêmes rituels, mêmes objectifs.', img:'assets/team-headphones.webp', alt:'Développeurs concentrés avec casques',
+        items:[['Intégration d’équipe dédiée','Vos experts Baquelis travaillent dans vos outils, à votre rythme.'],['Engagement à long terme','La continuité est garantie, documentation et passation comprises.'],['Alignement culturel','Nous adoptons vos conventions et votre façon de décider.'],['Communication fluide','Un interlocuteur clair, des échanges réguliers, aucune zone d’ombre.']] },
+      { n:'III', t:'Rapidité avec précision', q:'Du concept à la livraison, nous avançons vite — sans jamais compromettre la qualité.', img:'assets/code-js.webp', alt:'Écran de code JavaScript',
+        items:[['Prototypage rapide','Valider une idée avant d’y investir lourdement.'],['Méthodologie agile','Itérations courtes, priorités revues avec vous.'],['Assurance qualité','Tests et revues systématiques à chaque livraison.'],['Intégration continue','Chaque modification vérifiée et intégrée sans friction.']] },
+      { n:'IV', t:'Transparence radicale', q:'Pas de coûts cachés ni de mises à jour vagues : des progrès visibles en temps réel.', img:'assets/meeting-room.webp', alt:'Salle de réunion lumineuse',
+        items:[['Suivi des progrès en temps réel','Vous voyez l’avancement quand vous le souhaitez.'],['Tarification transparente','Un prix mensuel connu d’avance, sans surprise.'],['Rapports réguliers','Mensuels, hebdomadaires ou quotidiens selon la formule.'],['Communication ouverte','Les difficultés se disent tôt, les solutions avec.']] }
+    ];
+    const reels = PIL.map((p, i) => ({
+      n: p.n, t: p.t,
+      pressed: s.pil === i ? 'true' : 'false',
+      style: s.pil === i ? 'background:#121218;border-color:rgba(242,181,68,.45)' : '',
+      disc: s.pil === i ? 'background:#F2B544;color:#08080B;border-style:solid;animation:spin 6s linear infinite' : '',
+      pick: () => this.setState({ pil: i })
+    }));
+    const P = PIL[s.pil];
+    const pil = { n: P.n, t: P.t, q: P.q, items: P.items.map((x, j) => ({ t: x[0], d: x[1], delay: 'animation-delay:' + (0.08 * j).toFixed(2) + 's' })) };
+    const pilImgs = PIL.map((p, i) => ({ src: p.img, alt: p.alt, style: 'opacity:' + (s.pil === i ? '1' : '0') }));
+
+    const DOM = [
+      { t:'Applications web & mobiles', d:'Produits numériques complets, de l’interface au back-office, conçus pour évoluer avec vos utilisateurs.', tags:['Produit','Interfaces','Back-office'], img:'assets/laptop-code.webp' },
+      { t:'Plateformes temps réel', d:'Systèmes où chaque milliseconde compte : synchronisation, flux continus, état partagé entre utilisateurs.', tags:['Synchronisation','Flux','Haute disponibilité'], img:'assets/server-lights.webp' },
+      { t:'Jeux & Web3', d:'Notre terrain d’épreuve : performance, architecture complexe, multijoueur et sécurité anti-triche.', tags:['Temps réel','Multijoueur','Web3'], img:'assets/controller-neon.webp' },
+      { t:'IA appliquée', d:'Modèles affinés sur vos données, agents autonomes et intégration de l’IA dans vos processus métier.', tags:['Affinage','Agents','Automatisation'], img:'assets/circuit-board.webp' },
+      { t:'Cloud & performance', d:'Architectures cloud-native, optimisation, observabilité : des systèmes rapides, résilients et maîtrisés.', tags:['Cloud-native','Optimisation','Résilience'], img:'assets/earth-night.webp' }
+    ];
+    const doms = DOM.map((d, i) => {
+      const on = s.dom === i;
+      return { n: this.pad(i + 1), t: d.t, d: d.d, tags: d.tags, img: d.img, on: on, off: !on,
+        pressed: on ? 'true' : 'false',
+        style: on ? 'flex-grow:4.2;border-color:rgba(242,181,68,.45)' : 'flex-grow:1',
+        pick: () => { if (this.state.dom !== i) this.setState({ dom: i }); } };
+    });
+
+    const ST = [
+      { t:'Appel découverte', we:'Nous écoutons vos enjeux, votre contexte et vos contraintes, et vérifions que nous sommes le bon partenaire.', you:'Une première lecture claire de votre besoin, sans engagement.', delay:'Délai : [DÉLAI]' },
+      { t:'Cadrage & choix de formule', we:'Nous définissons ensemble le périmètre, les priorités, le rythme et le niveau de couverture.', you:'La formule adaptée — Intégration, Flex ou Performance — et un prix mensuel connu d’avance.', delay:'Délai : [DÉLAI]' },
+      { t:'Sélection du profil ou de l’équipe', we:'Nous proposons le profil technique, ou l’équipe de 5 experts seniors avec lead tech et product owner.', you:'Des experts alignés sur votre culture, vos outils et vos objectifs.', delay:'Délai : [DÉLAI]' },
+      { t:'Intégration à vos outils et rituels', we:'Nous rejoignons vos dépôts, votre messagerie et vos cérémonies agiles.', you:'Une extension de votre équipe, opérationnelle dans vos processus.', delay:'Délai : [DÉLAI]' },
+      { t:'Suivi temps réel & ajustements', we:'Rapports mensuels, hebdomadaires ou quotidiens selon la formule, et ajustements continus.', you:'Une visibilité permanente et une continuité garantie.', delay:'Changement de profil : sous 30 jours (Intégration) · sous 15 jours (Flex)' }
+    ];
+    const steps = ST.map((x, i) => {
+      const on = s.step === i;
+      return { n: this.pad(i + 1), t: x.t, i0: i === 0, i1: i === 1, i2: i === 2, i3: i === 3, i4: i === 4,
+        pressed: on ? 'true' : 'false',
+        style: on ? 'border-color:rgba(242,181,68,.5);background:#121218' : '',
+        frame: on ? 'color:#F2B544;border-color:rgba(242,181,68,.3)' : '',
+        bar: on ? (s.playing ? 'animation:prog 2.8s linear both' : 'width:100%') : (i < s.step ? 'width:100%;opacity:.4' : 'width:0'),
+        pick: () => this.setState({ step: i }) };
+    });
+    const c = ST[s.step];
+
+    const ENG = [
+      { t:'Transparence', d:'Un prix mensuel clair, des rapports réguliers et un suivi en temps réel. Pas de coûts cachés, pas de mises à jour vagues : vous savez toujours où en est votre projet.' },
+      { t:'Continuité', d:'Engagement à long terme, documentation et passation : un changement de profil ne remet jamais votre projet à zéro.' },
+      { t:'Sécurité & confidentialité', d:'Vos données restent les vôtres. Nos modèles affinés et nos intégrations sont conçus avec la confidentialité et la sécurité comme exigences de départ.' },
+      { t:'Qualité', d:'Assurance qualité, intégration continue et revues systématiques. La rapidité ne justifie jamais un compromis sur la qualité.' }
+    ];
+    const engs = ENG.map((e, i) => {
+      const open = s.eng === i;
+      return { n: this.pad(i + 1), t: e.t, d: e.d, open: open, pressed: open ? 'true' : 'false',
+        tStyle: open ? 'color:#F2B544' : '',
+        plStyle: open ? 'transform:rotate(45deg);background:#F2B544;color:#08080B;border-color:#F2B544' : '',
+        pick: () => this.setState({ eng: open ? -1 : i }) };
+    });
+
+    return {
+      menuOpen: s.menu,
+      menuLabel: s.menu ? 'Fermer le menu' : 'Ouvrir le menu',
+      menuExp: s.menu ? 'true' : 'false',
+      toggleMenu: () => this.setState({ menu: !s.menu }),
+      onMove: (e) => this.move(e),
+      onLeave: () => this.setState({ mx: 0, my: 0 }),
+      L0: tr(12), L1: tr(30), L2: tr(52), L3: tr(90),
+      grainOn: pr.grain !== false,
+      lbOn: pr.letterbox !== false,
+      reels: reels, pil: pil, pilImgs: pilImgs,
+      doms: doms,
+      steps: steps,
+      cur: { n: this.pad(s.step + 1), t: c.t, we: c.we, you: c.you, delay: c.delay },
+      prev: () => this.setState({ step: (s.step + 4) % 5 }),
+      next: () => this.setState({ step: (s.step + 1) % 5 }),
+      togglePlay: () => this.togglePlay(),
+      playing: s.playing, paused: !s.playing,
+      playLabel: s.playing ? 'Mettre la lecture en pause' : 'Lire le storyboard automatiquement',
+      playStyle: s.playing ? 'background:#F2B544;color:#08080B;border-color:#F2B544' : '',
+      playText: s.playing ? 'Lecture en cours…' : 'Lecture automatique',
+      engs: engs
+    };
+  }
+}
+</script>
+</body>
+</html>

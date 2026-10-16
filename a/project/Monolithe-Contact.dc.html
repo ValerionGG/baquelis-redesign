@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Monolithe — Contact</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#0B0B0A}
+sc-for,sc-if{display:contents}
+.m-root{font-family:'Manrope',system-ui,sans-serif;font-size:16px;line-height:1.6;color:#F3EFE7;background:#0B0B0A;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.m-root *,.m-root *::before,.m-root *::after{box-sizing:border-box}
+.m-root img{display:block;max-width:100%}
+.m-root button{font-family:inherit;cursor:pointer}
+.m-root a:focus-visible,.m-root button:focus-visible,.m-root input:focus-visible,.m-root textarea:focus-visible{outline:1px solid var(--acc);outline-offset:4px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 48px}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+.ink{background:#0B0B0A;color:#F3EFE7}
+.ivory{background:#F3EFE7;color:#0B0B0A}
+.lbl{font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;line-height:1.5;margin:0}
+.ink .lbl,.ink .muted{color:#ADA89E}
+.ivory .lbl,.ivory .muted{color:#5E5A53}
+.ivory p{color:#2A2926}
+.ink p{color:#D6D1C7}
+.sec{padding:140px 0;position:relative}
+.chap{display:flex;align-items:center;gap:16px;margin:0 0 34px}
+.chap-n{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:24px;line-height:1;min-width:30px}
+.chap-l{display:block;width:56px;height:1px;background:var(--acc);flex:none}
+.h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(54px,8vw,128px);line-height:.95;letter-spacing:-.015em;margin:0;overflow-wrap:anywhere}
+.h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(40px,5vw,76px);line-height:1.02;letter-spacing:-.01em;margin:0;overflow-wrap:anywhere}
+.h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(26px,2.4vw,36px);line-height:1.12;margin:0}
+.h1 em,.h2 em,.h3 em{font-style:italic}
+.lead{font-size:18px;line-height:1.7;max-width:560px;margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:50px;padding:0 28px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:1px solid transparent;border-radius:0;transition:background .35s,color .35s,border-color .35s}
+.btn .arr{transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.btn:hover .arr{transform:translateX(6px)}
+.btn-light{background:#F3EFE7;color:#0B0B0A}
+.btn-light:hover{background:#FFFFFF}
+.btn-ghost{color:#F3EFE7;border-color:rgba(243,239,231,.32);background:transparent}
+.btn-ghost:hover{border-color:#F3EFE7}
+.btn-dark{background:#0B0B0A;color:#F3EFE7}
+.btn-dark:hover{background:#2A2926}
+.btn-out{color:#0B0B0A;border-color:rgba(11,11,10,.4);background:transparent}
+.btn-out:hover{border-color:#0B0B0A}
+.acc-fill{fill:var(--acc)}
+.acc-stroke{stroke:var(--acc)}
+/* header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(11,11,10,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(243,239,231,.08)}
+.hdr-in{display:flex;align-items:center;gap:36px;height:84px}
+.logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:#F3EFE7;min-height:44px}
+.logo-w{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:21px;letter-spacing:.34em;text-transform:uppercase}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;font-size:13px;font-weight:500;letter-spacing:.04em;color:#CFCAC0;text-decoration:none;transition:color .3s}
+.nav a::after{content:"";position:absolute;left:14px;right:14px;bottom:8px;height:1px;background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.nav a:hover,.nav a[aria-current="page"]{color:#F3EFE7}
+.nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1)}
+.burger{display:none;margin-left:auto;width:48px;height:48px;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(243,239,231,.25);color:#F3EFE7}
+.mnav{display:flex;flex-direction:column;padding-top:8px;padding-bottom:28px;border-top:1px solid rgba(243,239,231,.08);animation:drop .4s ease both}
+.ml{display:flex;align-items:center;justify-content:space-between;min-height:58px;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;color:#F3EFE7;text-decoration:none;border-bottom:1px solid rgba(243,239,231,.08)}
+.mnav .btn{margin-top:22px}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}}
+@media(max-width:1000px){.nav,.hdr-cta{display:none}.burger{display:inline-flex}}
+@media(min-width:1001px){.mnav{display:none}}
+/* footer */
+.ftr{padding:110px 0 40px;border-top:1px solid rgba(243,239,231,.08)}
+.ftr-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:48px}
+.ftr-col{display:flex;flex-direction:column;align-items:flex-start}
+.ftr-h{margin-bottom:14px}
+.ftr-col a{display:inline-flex;align-items:center;min-height:38px;font-size:14px;color:#D6D1C7;text-decoration:none;transition:color .3s}
+.ftr-col a:hover{color:#F3EFE7}
+.ftr .ftr-tag{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:30px;line-height:1.15;margin:0;color:#F3EFE7}
+.ftr-addr{font-style:normal;font-size:14px;line-height:1.8;color:#D6D1C7;margin-bottom:6px}
+.ftr-giant{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(84px,16vw,236px);line-height:.9;letter-spacing:-.02em;margin:90px 0 36px;color:#F3EFE7;display:flex;align-items:flex-end;gap:24px}
+.ftr-giant i{display:block;flex:1;height:1px;background:var(--acc);margin-bottom:.16em;font-style:normal}
+.ftr-bot{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-between;align-items:center;padding-top:26px;border-top:1px solid rgba(243,239,231,.1);font-size:13px;color:#ADA89E}
+.ftr-bot a{color:#F3EFE7;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.ftr-bot a:hover{text-decoration:underline}
+/* motion */
+@keyframes rise{from{opacity:0;transform:translateY(26px)}}
+@keyframes panel{from{opacity:0;transform:translateY(18px)}}
+.rise{animation:rise 1.1s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.45s}.d4{animation-delay:.65s}
+@supports (animation-timeline: view()){.rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 26%}}
+.paper{background-color:#F3EFE7;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .24 0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(120% 80% at 20% 0%,#FAF7F1 0%,#F3EFE7 50%,#E8E2D6 100%);color:#0B0B0A}
+@media(max-width:700px){.wrap{padding:0 20px}.sec{padding:96px 0}}
+@media (prefers-reduced-motion: reduce){.m-root *{animation:none !important;transition:none !important}}
+
+/* hero */
+.hero{padding:110px 0 110px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:56px;align-items:end}
+.addr-slab{position:relative;padding:40px 36px 36px;border:1px solid rgba(243,239,231,.16);background:linear-gradient(100deg,#1B1A18 0%,#0D0C0B 40%,#1C1B19 60%,#0B0B0A 100%);overflow:hidden}
+.addr-slab::before{content:"";position:absolute;top:-10%;bottom:-10%;left:-70%;width:45%;background:linear-gradient(90deg,rgba(243,239,231,0),rgba(243,239,231,.08),rgba(243,239,231,0));transform:skewX(-14deg);animation:sheen 8s ease-in-out infinite}
+@keyframes sheen{0%,25%{left:-70%}70%,100%{left:140%}}
+.addr-slab .serif{font-size:30px;line-height:1.25;font-weight:300;margin-top:14px;color:#F3EFE7}
+.addr-slab .rule{display:block;width:56px;height:1px;background:var(--acc);margin-top:26px}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr}}
+
+/* formulaire */
+.c-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:56px;align-items:start}
+.formcard{padding:52px;box-shadow:0 40px 80px -50px rgba(11,11,10,.45);border:1px solid rgba(11,11,10,.1)}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:44px}
+.stp{position:relative;padding-top:16px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#5E5A53}
+.stp::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(11,11,10,.18)}
+.stp-f{position:absolute;left:0;top:0;height:1px;width:0;background:#0B0B0A;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+.stp .serif{font-style:italic;font-size:18px;text-transform:none;letter-spacing:0;margin-right:6px;color:#0B0B0A}
+.q-t{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(30px,3vw,44px);line-height:1.1;margin:0 0 30px;color:#0B0B0A}
+.q-t em{font-style:italic}
+.pane{animation:panel .55s cubic-bezier(.2,.7,.2,1) both}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.opt{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:20px;min-height:132px;padding:22px;background:rgba(255,255,255,.35);border:1px solid rgba(11,11,10,.18);color:#0B0B0A;text-align:left;transition:border-color .4s,background .4s,color .4s,transform .5s cubic-bezier(.2,.7,.2,1)}
+.opt:hover{border-color:#0B0B0A;transform:translateY(-3px)}
+.opt .serif{font-size:26px;line-height:1.1}
+.opt small{font-size:13px;color:inherit;opacity:.8;line-height:1.5}
+.opt-r{position:absolute;top:20px;right:20px;width:18px;height:18px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center}
+.opt-r i{width:8px;height:8px;border-radius:50%;background:transparent}
+.f-actions{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(11,11,10,.14)}
+.err{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:14px;color:#8E2A1C;animation:panel .4s both}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 24px}
+.fld{display:flex;flex-direction:column;gap:8px}
+.fld.full{grid-column:1 / -1}
+.fld label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#2A2926}
+.fld input,.fld textarea{width:100%;min-height:52px;padding:12px 0;background:transparent;border:0;border-bottom:1px solid rgba(11,11,10,.4);border-radius:0;font-family:'Manrope',sans-serif;font-size:17px;color:#0B0B0A;transition:border-color .4s}
+.fld textarea{min-height:110px;resize:vertical}
+.fld input:focus,.fld textarea:focus{border-bottom-color:#0B0B0A}
+.fld input::placeholder,.fld textarea::placeholder{color:#77736B}
+.fld .err{margin-top:2px}
+.chk{display:flex;align-items:flex-start;gap:14px;min-height:44px;font-size:14px;color:#2A2926;cursor:pointer}
+.chk input{width:20px;height:20px;margin:2px 0 0;accent-color:#0B0B0A;flex:none}
+.done{text-align:left;animation:panel .7s cubic-bezier(.2,.7,.2,1) both}
+.done-seal{width:84px;height:84px;border-radius:50%;border:1px solid #0B0B0A;display:flex;align-items:center;justify-content:center;margin-bottom:30px;position:relative}
+.done-seal::after{content:"";position:absolute;top:-7px;left:-7px;right:-7px;bottom:-7px;border-radius:50%;border:1px solid var(--acc);opacity:.7}
+.recap{margin-top:30px;border-top:1px solid rgba(11,11,10,.16)}
+.recap div{display:grid;grid-template-columns:160px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid rgba(11,11,10,.1);font-size:15px}
+.recap span:first-child{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#5E5A53}
+.proto{display:inline-flex;align-items:center;gap:10px;margin-top:28px;padding:10px 16px;background:#0B0B0A;color:#F3EFE7;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.proto i{width:7px;height:7px;border-radius:50%;background:var(--acc)}
+@media(max-width:980px){.c-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.formcard{padding:28px 20px}.opts,.fields{grid-template-columns:1fr}.recap div{grid-template-columns:1fr;gap:4px}.steps{gap:4px}.stp{font-size:9px;letter-spacing:.08em}}
+
+/* colonne info */
+.side-card{padding:40px;background:#0B0B0A;color:#F3EFE7}
+.side-card + .side-card{margin-top:16px}
+.info{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;border-top:1px solid rgba(243,239,231,.12);font-size:15px;color:#D6D1C7}
+.info:first-of-type{border-top:0}
+.info span:first-child{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#ADA89E;padding-top:3px}
+.map{display:block;width:100%;height:200px;margin-top:22px;border:1px solid rgba(243,239,231,.12)}
+.ping{transform-origin:224px 92px;animation:ping 2.4s ease-out infinite}
+@keyframes ping{from{transform:scale(.4);opacity:1}to{transform:scale(2.6);opacity:0}}
+.days{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:18px}
+.day{min-height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:transparent;border:1px solid rgba(243,239,231,.18);color:#D6D1C7;font-size:12px;font-weight:600;letter-spacing:.08em;transition:border-color .4s,background .4s,color .4s}
+.day:hover{border-color:rgba(243,239,231,.55)}
+.day .serif{font-size:20px;font-style:italic;letter-spacing:0;color:inherit}
+.slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:10px}
+.slot{min-height:48px;background:transparent;border:1px solid rgba(243,239,231,.18);color:#D6D1C7;font-size:13px;transition:border-color .4s,background .4s,color .4s}
+.slot:hover{border-color:rgba(243,239,231,.55)}
+.rdv-note{margin-top:16px;font-size:13px;color:#ADA89E;min-height:42px}
+.rdv-sum{margin-top:6px;padding:14px 16px;border:1px solid var(--acc);font-size:14px;color:#F3EFE7;animation:panel .5s both}
+
+/* ensuite */
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));margin-top:72px;border-top:1px solid rgba(243,239,231,.16)}
+.nx{padding:34px 28px 10px 0;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.nx:hover{transform:translateY(-6px)}
+.nx .serif{font-style:italic;font-size:22px;color:#ADA89E}
+.nx h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:30px;margin:16px 0 8px;color:#F3EFE7}
+.nx p{font-size:15px;margin:0}
+.nx .mk{display:block;width:0;height:1px;background:var(--acc);margin-top:20px;transition:width .7s}
+.nx:hover .mk{width:56px}
+</style>
+</helmet>
+<div class="m-root" style="{{ rootStyle }}">
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="Monolithe-Accueil.dc.html" aria-label="Baquelis — accueil">
+      <svg width="16" height="30" viewBox="0 0 16 30" aria-hidden="true"><rect x="3" y="1" width="10" height="24" fill="#F3EFE7"></rect><rect x="3" y="1" width="3" height="24" fill="#BDB7AC"></rect><rect x="0" y="28" width="16" height="1" class="acc-fill"></rect></svg>
+      <span class="logo-w">Baquelis</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="Monolithe-Expertises.dc.html">Expertises</a>
+      <a href="Monolithe-IA.dc.html">IA</a>
+      <a href="Monolithe-Jeux.dc.html">Jeux &amp; Web3</a>
+      <a href="Monolithe-Offres.dc.html">Offres</a>
+      <a href="Monolithe-Contact.dc.html" aria-current="page">Contact</a>
+    </nav>
+    <a class="btn btn-light hdr-cta" href="Monolithe-Offres.dc.html">Commencer</a>
+    <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="{{ menuExp }}" onClick="{{ toggleMenu }}"><svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 1h20M0 11h20"></path></svg></button>
+  </div>
+  <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+    <nav class="mnav wrap" aria-label="Navigation mobile">
+      <a class="ml" href="Monolithe-Expertises.dc.html">Expertises <span class="lbl">I</span></a>
+      <a class="ml" href="Monolithe-IA.dc.html">Intelligence artificielle <span class="lbl">II</span></a>
+      <a class="ml" href="Monolithe-Jeux.dc.html">Jeux &amp; Web3 <span class="lbl">III</span></a>
+      <a class="ml" href="Monolithe-Offres.dc.html">Offres <span class="lbl">IV</span></a>
+      <a class="ml" href="Monolithe-Contact.dc.html">Contact <span class="lbl">V</span></a>
+      <a class="btn btn-light" href="Monolithe-Offres.dc.html">Commencer</a>
+    </nav>
+  </sc-if>
+</header>
+
+<!-- HERO -->
+<section class="hero ink">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="chap rise d1"><span class="chap-l"></span><span class="lbl">Contact — Réserver un appel</span></div>
+      <h1 class="h1 rise d2">Commençons <em>par une conversation.</em></h1>
+      <p class="lead rise d3" style="margin-top:36px">Quatre questions pour comprendre votre besoin. Nous revenons vers vous pour un appel découverte, sans engagement.</p>
+    </div>
+    <div class="addr-slab rise d3">
+      <p class="lbl">La maison</p>
+      <p class="serif">31 B avenue Maréchal Foch<br>06000 Nice</p>
+      <span class="rule"></span>
+      <p style="margin:18px 0 0;font-size:14px">[contact@domaine-baquelis]</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE -->
+<section class="sec ivory">
+  <div class="wrap c-grid">
+    <div class="formcard paper rv">
+      <sc-if value="{{ inForm }}" hint-placeholder-val="{{ true }}">
+        <div class="steps" aria-label="Progression">
+          <sc-for list="{{ stepper }}" as="st" hint-placeholder-count="4">
+            <div class="stp" style="{{ st.txt }}"><span class="stp-f" style="{{ st.fill }}"></span><span class="serif">{{ st.n }}</span>{{ st.t }}</div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <!-- étape I -->
+      <sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}">
+        <div class="pane">
+          <h2 class="q-t">De quoi avez-vous <em>besoin&nbsp;?</em></h2>
+          <div class="opts" role="radiogroup" aria-label="Votre besoin">
+            <sc-for list="{{ besoins }}" as="o" hint-placeholder-count="4">
+              <button class="opt" type="button" role="radio" aria-checked="{{ o.pressed }}" style="{{ o.style }}" onClick="{{ o.pick }}"><span class="opt-r"><i style="{{ o.dot }}"></i></span><span class="serif">{{ o.t }}</span><small>{{ o.d }}</small></button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ showErr }}" hint-placeholder-val="{{ false }}"><p class="err" role="alert">Choisissez une option pour continuer.</p></sc-if>
+          <div class="f-actions"><span class="muted" style="font-size:13px">Étape I sur IV</span><button class="btn btn-dark" type="button" onClick="{{ next }}">Continuer <svg class="arr" width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h16M12 1l4 4-4 4"></path></svg></button></div>
+        </div>
+      </sc-if>
+
+      <!-- étape II -->
+      <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+        <div class="pane">
+          <h2 class="q-t">Quelle formule <em>envisagez-vous&nbsp;?</em></h2>
+          <div class="opts" role="radiogroup" aria-label="Formule envisagée">
+            <sc-for list="{{ formules }}" as="o" hint-placeholder-count="4">
+              <button class="opt" type="button" role="radio" aria-checked="{{ o.pressed }}" style="{{ o.style }}" onClick="{{ o.pick }}"><span class="opt-r"><i style="{{ o.dot }}"></i></span><span class="serif">{{ o.t }}</span><small>{{ o.d }}</small></button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ showErr }}" hint-placeholder-val="{{ false }}"><p class="err" role="alert">Choisissez une option pour continuer.</p></sc-if>
+          <div class="f-actions"><button class="btn btn-out" type="button" onClick="{{ prev }}">Retour</button><button class="btn btn-dark" type="button" onClick="{{ next }}">Continuer <svg class="arr" width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h16M12 1l4 4-4 4"></path></svg></button></div>
+        </div>
+      </sc-if>
+
+      <!-- étape III -->
+      <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+        <div class="pane">
+          <h2 class="q-t">Quelle est la taille <em>de votre entreprise&nbsp;?</em></h2>
+          <div class="opts" role="radiogroup" aria-label="Taille d’entreprise">
+            <sc-for list="{{ tailles }}" as="o" hint-placeholder-count="4">
+              <button class="opt" type="button" role="radio" aria-checked="{{ o.pressed }}" style="{{ o.style }}" onClick="{{ o.pick }}"><span class="opt-r"><i style="{{ o.dot }}"></i></span><span class="serif">{{ o.t }}</span><small>{{ o.d }}</small></button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ showErr }}" hint-placeholder-val="{{ false }}"><p class="err" role="alert">Choisissez une option pour continuer.</p></sc-if>
+          <div class="f-actions"><button class="btn btn-out" type="button" onClick="{{ prev }}">Retour</button><button class="btn btn-dark" type="button" onClick="{{ next }}">Continuer <svg class="arr" width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h16M12 1l4 4-4 4"></path></svg></button></div>
+        </div>
+      </sc-if>
+
+      <!-- étape IV -->
+      <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+        <form class="pane" novalidate="novalidate" onSubmit="{{ submit }}">
+          <h2 class="q-t">Comment <em>vous joindre&nbsp;?</em></h2>
+          <div class="fields">
+            <div class="fld">
+              <label for="f-nom">Nom et prénom *</label>
+              <input id="f-nom" type="text" autocomplete="name" placeholder="Camille Martin" value="{{ nom }}" onInput="{{ setNom }}">
+              <sc-if value="{{ errNom }}" hint-placeholder-val="{{ false }}"><span class="err" role="alert">Indiquez votre nom (2 caractères minimum).</span></sc-if>
+            </div>
+            <div class="fld">
+              <label for="f-ent">Entreprise</label>
+              <input id="f-ent" type="text" autocomplete="organization" placeholder="Votre entreprise" value="{{ ent }}" onInput="{{ setEnt }}">
+            </div>
+            <div class="fld full">
+              <label for="f-mail">E-mail professionnel *</label>
+              <input id="f-mail" type="email" autocomplete="email" placeholder="prenom@entreprise.fr" value="{{ mail }}" onInput="{{ setMail }}">
+              <sc-if value="{{ errMail }}" hint-placeholder-val="{{ false }}"><span class="err" role="alert">Indiquez une adresse e-mail valide.</span></sc-if>
+            </div>
+            <div class="fld full">
+              <label for="f-msg">Votre projet en quelques mots</label>
+              <textarea id="f-msg" placeholder="Contexte, objectifs, échéances…" value="{{ msg }}" onInput="{{ setMsg }}"></textarea>
+            </div>
+            <div class="fld full">
+              <label class="chk"><input type="checkbox" onChange="{{ setOk }}"><span>J’accepte d’être recontacté(e) par Baquelis au sujet de ma demande. *</span></label>
+              <sc-if value="{{ errOk }}" hint-placeholder-val="{{ false }}"><span class="err" role="alert">Votre accord est nécessaire pour être recontacté(e).</span></sc-if>
+            </div>
+          </div>
+          <div class="f-actions"><button class="btn btn-out" type="button" onClick="{{ prev }}">Retour</button><button class="btn btn-dark" type="submit">Envoyer la demande <svg class="arr" width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 5h16M12 1l4 4-4 4"></path></svg></button></div>
+        </form>
+      </sc-if>
+
+      <!-- confirmation -->
+      <sc-if value="{{ s4 }}" hint-placeholder-val="{{ false }}">
+        <div class="done" role="status">
+          <div class="done-seal"><svg width="28" height="20" viewBox="0 0 28 20" fill="none" stroke="#0B0B0A" stroke-width="1.3" aria-hidden="true"><path d="M1 10l8 8L27 1"></path></svg></div>
+          <h2 class="q-t" style="margin-bottom:10px">Merci, <em>{{ prenom }}.</em></h2>
+          <p style="margin:0;font-size:17px;max-width:520px">Votre demande est prête. Dans la version finale, l’équipe Baquelis vous recontacterait pour fixer l’appel découverte.</p>
+          <div class="recap">
+            <div><span>Besoin</span><span>{{ rBesoin }}</span></div>
+            <div><span>Formule</span><span>{{ rFormule }}</span></div>
+            <div><span>Entreprise</span><span>{{ rTaille }}</span></div>
+            <div><span>Contact</span><span>{{ rContact }}</span></div>
+          </div>
+          <div class="proto"><i></i>Prototype — rien n’est envoyé</div>
+          <div style="margin-top:26px"><button class="btn btn-out" type="button" onClick="{{ reset }}">Recommencer</button></div>
+        </div>
+      </sc-if>
+    </div>
+
+    <div class="rv">
+      <div class="side-card">
+        <p class="lbl">Informations société</p>
+        <div style="margin-top:18px">
+          <div class="info"><span>Siège</span><span>31 B avenue Maréchal Foch, 06000 Nice</span></div>
+          <div class="info"><span>E-mail</span><span>[contact@domaine-baquelis]</span></div>
+          <div class="info"><span>Raison sociale</span><span>[RAISON SOCIALE]</span></div>
+          <div class="info"><span>N° TVA</span><span>[N° TVA]</span></div>
+        </div>
+        <svg class="map" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration : Nice, en bord de Méditerranée">
+          <rect width="400" height="200" fill="#121211"></rect>
+          <g stroke="rgba(243,239,231,.06)" stroke-width="1"><path d="M0 40h400M0 80h400M0 120h400M0 160h400M80 0v200M160 0v200M240 0v200M320 0v200"></path></g>
+          <path d="M0 132 C60 118 90 140 140 128 S220 104 262 118 S330 150 400 136" fill="none" stroke="rgba(243,239,231,.5)" stroke-width="1"></path>
+          <path d="M0 132 C60 118 90 140 140 128 S220 104 262 118 S330 150 400 136 L400 200 L0 200 Z" fill="rgba(243,239,231,.03)"></path>
+          <text x="28" y="178" fill="#ADA89E" font-family="Manrope" font-size="10" letter-spacing="3">MER MÉDITERRANÉE</text>
+          <circle cx="224" cy="92" r="9" fill="none" class="acc-stroke ping" stroke-width="1"></circle>
+          <circle cx="224" cy="92" r="3.5" class="acc-fill"></circle>
+          <text x="236" y="88" fill="#F3EFE7" font-family="Cormorant Garamond" font-style="italic" font-size="18">Nice</text>
+        </svg>
+      </div>
+      <div class="side-card">
+        <p class="lbl">Prise de rendez-vous — illustrative</p>
+        <p style="margin:12px 0 0;font-size:14px">Choisissez un jour et un créneau indicatif pour votre appel découverte.</p>
+        <div class="days" role="radiogroup" aria-label="Jour">
+          <sc-for list="{{ jours }}" as="j" hint-placeholder-count="5">
+            <button class="day" type="button" role="radio" aria-checked="{{ j.pressed }}" style="{{ j.style }}" onClick="{{ j.pick }}"><span class="serif">{{ j.s }}</span>{{ j.t }}</button>
+          </sc-for>
+        </div>
+        <div class="slots" role="radiogroup" aria-label="Créneau">
+          <sc-for list="{{ creneaux }}" as="c" hint-placeholder-count="4">
+            <button class="slot" type="button" role="radio" aria-checked="{{ c.pressed }}" style="{{ c.style }}" onClick="{{ c.pick }}">{{ c.t }}</button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ hasRdv }}" hint-placeholder-val="{{ false }}"><div class="rdv-sum">{{ rdvLabel }}</div></sc-if>
+        <p class="rdv-note">Créneaux réels : [CRÉNEAUX]. Démonstration — rien n’est réservé ni envoyé.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENSUITE -->
+<section class="sec ink">
+  <div class="wrap">
+    <div class="chap rv"><span class="chap-l"></span><span class="lbl">Après votre message</span></div>
+    <h2 class="h2 rv" style="max-width:900px">Ce qui se passe <em>ensuite.</em></h2>
+    <div class="next">
+      <div class="nx rv"><span class="serif">I</span><h3>Nous lisons votre demande</h3><p>Une personne de l’équipe prend connaissance de votre besoin. Délai de réponse : [DÉLAI].</p><span class="mk"></span></div>
+      <div class="nx rv"><span class="serif">II</span><h3>Appel découverte</h3><p>Un échange pour comprendre votre contexte, vos objectifs et vos contraintes.</p><span class="mk"></span></div>
+      <div class="nx rv"><span class="serif">III</span><h3>Cadrage &amp; formule</h3><p>Un périmètre clair et la formule adaptée : Intégration, Flex ou Performance.</p><span class="mk"></span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr ink">
+  <div class="wrap">
+    <div class="ftr-top">
+      <div class="ftr-col">
+        <p class="ftr-tag">La technologie, <em>tenue comme une maison.</em></p>
+        <p class="lbl" style="margin-top:22px">Flexibilité · Continuité · Performance</p>
+      </div>
+      <div class="ftr-col"><p class="lbl ftr-h">La maison</p><a href="Monolithe-Expertises.dc.html">Expertises</a><a href="Monolithe-IA.dc.html">Intelligence artificielle</a><a href="Monolithe-Jeux.dc.html">Jeux &amp; Web3</a><a href="Monolithe-Contact.dc.html">Contact</a></div>
+      <div class="ftr-col"><p class="lbl ftr-h">Formules</p><a href="Monolithe-Offres.dc.html">Intégration — 4&nbsp;500&nbsp;€/mois</a><a href="Monolithe-Offres.dc.html">Flex — 6&nbsp;200&nbsp;€/mois</a><a href="Monolithe-Offres.dc.html">Performance — 18&nbsp;900&nbsp;€/mois</a></div>
+      <div class="ftr-col"><p class="lbl ftr-h">Siège</p><address class="ftr-addr">31 B avenue Maréchal Foch<br>06000 Nice, France</address><a href="Monolithe-Contact.dc.html">[contact@domaine-baquelis]</a></div>
+    </div>
+    <div class="ftr-giant" aria-hidden="true">Baquelis<i></i></div>
+    <div class="ftr-bot"><span>© 2026 Baquelis · [RAISON SOCIALE] · [N° TVA]</span><span>Proposition de refonte — concept</span><a href="Main.dc.html">Toutes les propositions →</a></div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3300},"accent":{"editor":"color","default":"#00AEEF","options":["#00AEEF","#7C5CFF","#F5B700"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menu: false, step: 0, besoin: -1, formule: -1, taille: -1, nom: '', ent: '', mail: '', msg: '', ok: false, tried: false, err: false, jour: -1, creneau: -1 };
+  }
+  renderVals() {
+    var self = this, s = this.state;
+    var acc = (this.props && this.props.accent) || '#00AEEF';
+    var B = [
+      { t: 'Une équipe technique', d: 'Un profil dédié, un senior flexible ou une équipe complète.' },
+      { t: 'Intelligence artificielle', d: 'Modèles affinés, agents autonomes, intégration métier.' },
+      { t: 'Jeux & Web3', d: 'Temps réel, multijoueur, plateformes Web3.' },
+      { t: 'Autre', d: 'Un besoin différent ? Racontez-le-nous.' }
+    ];
+    var FO = [
+      { t: 'Intégration', d: '4 500 €/mois · 1 profil dédié' },
+      { t: 'Flex', d: '6 200 €/mois · 1 profil senior, changement rapide' },
+      { t: 'Performance', d: '18 900 €/mois · équipe de 5 experts' },
+      { t: 'Je ne sais pas encore', d: 'Nous vous conseillerons lors de l’appel.' }
+    ];
+    var TA = [
+      { t: 'Startup', d: 'Une jeune entreprise en croissance.' },
+      { t: 'PME', d: 'Une entreprise établie, à taille humaine.' },
+      { t: 'ETI', d: 'Une entreprise de taille intermédiaire.' },
+      { t: 'Grande entreprise', d: 'Des enjeux et des projets stratégiques à grande échelle.' }
+    ];
+    function opts(list, key) {
+      return list.map(function (o, i) {
+        var on = s[key] === i;
+        return {
+          t: o.t, d: o.d, pressed: on ? 'true' : 'false',
+          style: on ? 'background:#0B0B0A;color:#F3EFE7;border-color:#0B0B0A' : '',
+          dot: on ? ('background:' + acc) : '',
+          pick: function () { var o2 = { err: false }; o2[key] = i; self.setState(o2); }
+        };
+      });
+    }
+    var keys = ['besoin', 'formule', 'taille'];
+    var NAMES = ['Besoin', 'Formule', 'Taille', 'Coordonnées'];
+    var NUM = ['I', 'II', 'III', 'IV'];
+    var stepper = NAMES.map(function (t, i) {
+      return { n: NUM[i], t: t, fill: i <= s.step ? 'width:100%' : '', txt: i === s.step ? 'color:#0B0B0A' : '' };
+    });
+    var mailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s.mail.trim());
+    var nomOk = s.nom.trim().length >= 2;
+    var J = [['Lun.', 'I'], ['Mar.', 'II'], ['Mer.', 'III'], ['Jeu.', 'IV'], ['Ven.', 'V']];
+    var JL = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
+    var C = ['Matin — créneau A', 'Matin — créneau B', 'Après-midi — créneau C', 'Après-midi — créneau D'];
+    var selOn = 'border-color:' + acc + ';background:rgba(243,239,231,.06);color:#F3EFE7';
+    var prenom = s.nom.trim().split(' ')[0] || '';
+    return {
+      rootStyle: '--acc:' + acc,
+      menu: s.menu, menuExp: s.menu ? 'true' : 'false',
+      toggleMenu: function () { self.setState({ menu: !s.menu }); },
+      inForm: s.step < 4,
+      s0: s.step === 0, s1: s.step === 1, s2: s.step === 2, s3: s.step === 3, s4: s.step === 4,
+      stepper: stepper,
+      besoins: opts(B, 'besoin'), formules: opts(FO, 'formule'), tailles: opts(TA, 'taille'),
+      showErr: s.err,
+      next: function () {
+        var k = keys[self.state.step];
+        if (k && self.state[k] < 0) { self.setState({ err: true }); return; }
+        self.setState({ step: self.state.step + 1, err: false });
+      },
+      prev: function () { self.setState({ step: Math.max(0, self.state.step - 1), err: false }); },
+      nom: s.nom, ent: s.ent, mail: s.mail, msg: s.msg, ok: s.ok,
+      setNom: function (e) { self.setState({ nom: e.target.value }); },
+      setEnt: function (e) { self.setState({ ent: e.target.value }); },
+      setMail: function (e) { self.setState({ mail: e.target.value }); },
+      setMsg: function (e) { self.setState({ msg: e.target.value }); },
+      setOk: function (e) { self.setState({ ok: !!e.target.checked }); },
+      errNom: s.tried && !nomOk, errMail: s.tried && !mailOk, errOk: s.tried && !s.ok,
+      submit: function (e) {
+        if (e && e.preventDefault) e.preventDefault();
+        var st = self.state;
+        var good = st.nom.trim().length >= 2 && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(st.mail.trim()) && st.ok;
+        if (!good) { self.setState({ tried: true }); return; }
+        self.setState({ step: 4, tried: false });
+      },
+      prenom: prenom,
+      rBesoin: s.besoin >= 0 ? B[s.besoin].t : '—',
+      rFormule: s.formule >= 0 ? FO[s.formule].t : '—',
+      rTaille: (s.taille >= 0 ? TA[s.taille].t : '—') + (s.ent.trim() ? ' · ' + s.ent.trim() : ''),
+      rContact: s.mail.trim(),
+      reset: function () { self.setState({ step: 0, besoin: -1, formule: -1, taille: -1, nom: '', ent: '', mail: '', msg: '', ok: false, tried: false, err: false }); },
+      jours: J.map(function (j, i) {
+        var on = s.jour === i;
+        return { t: j[0], s: j[1], pressed: on ? 'true' : 'false', style: on ? selOn : '', pick: function () { self.setState({ jour: i }); } };
+      }),
+      creneaux: C.map(function (c, i) {
+        var on = s.creneau === i;
+        return { t: c, pressed: on ? 'true' : 'false', style: on ? selOn : '', pick: function () { self.setState({ creneau: i }); } };
+      }),
+      hasRdv: s.jour >= 0 && s.creneau >= 0,
+      rdvLabel: (s.jour >= 0 ? JL[s.jour] : '') + ' · ' + (s.creneau >= 0 ? C[s.creneau] : '') + ' — demande illustrative'
+    };
+  }
+}
+</script>
+</body>
+</html>

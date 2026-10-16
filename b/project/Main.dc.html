@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Baquelis — 10 propositions</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Chakra+Petch:wght@700&amp;family=Cormorant+Garamond:ital,wght@1,500&amp;family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;family=Hanken+Grotesk:wght@700&amp;family=IBM+Plex+Sans:wght@600&amp;family=Schibsted+Grotesk:wght@700&amp;family=Space+Grotesk:wght@700&amp;family=Syne:wght@800&amp;family=Unbounded:wght@700&amp;display=swap">
+<style>
+body{margin:0;background:#07090C}
+a{color:#E7EDF3}a:hover{color:#00AEEF}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes mask{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes zoom{from{transform:scale(1.1)}to{transform:scale(1)}}
+@keyframes sheen{0%{transform:translateX(-120%) skewX(-18deg)}100%{transform:translateX(320%) skewX(-18deg)}}
+.rise{animation:rise 1s cubic-bezier(.2,.7,.1,1) both}
+.mask{animation:mask 1.1s cubic-bezier(.7,0,.2,1) both}
+.zoom{animation:zoom 2.2s cubic-bezier(.2,.7,.1,1) both}
+.glass{position:relative;overflow:hidden}
+.glass::after{content:"";position:absolute;top:0;bottom:0;left:0;width:30%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.28),rgba(255,255,255,0));animation:sheen 4.5s cubic-bezier(.6,0,.2,1) infinite 1s;pointer-events:none}
+.dir{transition:background .35s ease,padding .35s ease}
+.dir:hover{background:#121821}
+.dir:focus-visible,.card:focus-visible,.pg:focus-visible,.cta:focus-visible{outline:2px solid #00AEEF;outline-offset:3px}
+.card img{transition:transform 1.2s cubic-bezier(.2,.7,.1,1)}
+.card:hover img{transform:scale(1.06)}
+.card .arr{transition:transform .5s}
+.card:hover .arr{transform:translate(4px,-4px)}
+.pg{transition:background .3s}
+.pg:hover{background:rgba(127,127,127,.16)}
+@media (max-width:900px){.split{flex-direction:column}.big{font-size:54px !important}}
+</style>
+</helmet>
+<div style="font-family:'Geist',system-ui,sans-serif;color:#E7EDF3;background:#07090C;min-height:1900px">
+  <div style="max-width:1320px;margin:0 auto;padding:40px 40px 96px;display:flex;flex-direction:column;gap:56px">
+    <header style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:12px;letter-spacing:.18em;text-transform:uppercase">
+      <span style="display:flex;align-items:center;gap:12px"><span style="display:inline-flex;align-items:center;gap:10px;font-family:'Geist',sans-serif;font-weight:700;font-size:19px;letter-spacing:.01em;text-transform:none;color:#E7EDF3"><span style="width:18px;height:18px;border:2px solid #00AEEF;border-radius:50%;box-shadow:0 0 14px rgba(0,174,239,.6)"></span>Baquelis</span>Proposition de refonte</span>
+      <span style="color:#8A96A3">Partenaire technologique · IA · Jeux &amp; Web3 · Octobre 2026</span>
+    </header>
+
+    <section style="display:flex;flex-direction:column;gap:20px">
+      <h1 class="big mask" style="margin:0;font-family:'Geist',sans-serif;font-weight:600;font-size:104px;line-height:.98;letter-spacing:-.04em">Dix directions pour <span style="color:#00AEEF">Baquelis</span>.</h1>
+      <p class="rise" style="margin:0;max-width:780px;font-size:18px;line-height:1.6;color:#AAB4BF;animation-delay:.3s">Chaque proposition redessine le site complet — accueil, expertises, intelligence artificielle, jeux &amp; Web3, offres et contact — avec le contenu enrichi de Baquelis (ex-M3 Games) et des interactions qui fonctionnent : démo d'agent, simulateur d'économies, comparatif, formulaire. Choisissez une direction pour la prévisualiser, puis ouvrez-la.</p>
+    </section>
+
+    <section class="split" style="display:flex;gap:40px;align-items:stretch">
+      <nav aria-label="Directions" style="flex:0 0 360px;display:flex;flex-direction:column;border-top:1px solid #1C232B">
+        <sc-for list="{{ dirs }}" as="d" hint-placeholder-count="10">
+          <button type="button" class="dir" onClick="{{ d.pick }}" style="{{ d.rowStyle }}">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A96A3;padding-top:4px;min-width:22px">{{ d.num }}</span>
+            <span style="display:flex;flex-direction:column;gap:3px;text-align:left">
+              <span style="{{ d.nameStyle }}">{{ d.name }}</span>
+              <span style="font-size:13.5px;line-height:1.4;color:#9AA5B1">{{ d.tag }}</span>
+            </span>
+          </button>
+        </sc-for>
+      </nav>
+
+      <article style="{{ cur.panelStyle }}">
+        <div class="glass" style="position:relative;height:440px;overflow:hidden">
+          <img class="zoom" src="{{ cur.img }}" alt="{{ cur.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 38%,rgba(0,0,0,.64) 100%)"></div>
+          <div style="position:absolute;left:40px;right:40px;bottom:30px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+            <h2 style="{{ cur.titleStyle }}">{{ cur.name }}</h2>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#F5F2EC">Proposition {{ cur.num }} / 10</span>
+          </div>
+        </div>
+        <div style="padding:34px 40px 40px;display:flex;flex-direction:column;gap:26px">
+          <p style="margin:0;font-size:17px;line-height:1.6;max-width:660px">{{ cur.desc }}</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:24px">
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.75">Palette</span>
+              <div style="display:flex;gap:8px">
+                <sc-for list="{{ cur.swatches }}" as="s" hint-placeholder-count="4">
+                  <span style="{{ s.style }}" title="{{ s.hex }}"></span>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.75">Typographie</span>
+              <span style="font-size:15px">{{ cur.fonts }}</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.75">Moment-signature</span>
+              <span style="font-size:15px;line-height:1.5">{{ cur.moment }}</span>
+            </div>
+          </div>
+          <sc-if value="{{ cur.local }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ cur.pages }}" as="p" hint-placeholder-count="6">
+                <a class="pg" href="{{ p.href }}" style="{{ cur.pillStyle }}">{{ p.label }}</a>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ cur.remote }}" hint-placeholder-val="{{ false }}">
+            <p style="margin:0;font-size:14px;line-height:1.5;opacity:.85">Cette direction se trouve sur l’autre canvas (propositions {{ cur.range }}) : le lien ci-dessous l'ouvre dans un nouvel onglet.</p>
+          </sc-if>
+          <a class="cta" href="{{ cur.home }}" style="{{ cur.ctaStyle }}">Ouvrir la proposition {{ cur.name }}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <section style="display:flex;flex-direction:column;gap:24px">
+      <h2 style="margin:0;font-family:'Geist',sans-serif;font-weight:600;letter-spacing:-.03em;font-size:44px">Les dix, côte à côte</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px">
+        <sc-for list="{{ dirs }}" as="d" hint-placeholder-count="10">
+          <a class="card" href="{{ d.home }}" style="display:flex;flex-direction:column;gap:12px;text-decoration:none;color:#E7EDF3">
+            <span style="display:block;height:280px;overflow:hidden;position:relative;background:#0E1217">
+              <img src="{{ d.img }}" alt="{{ d.alt }}" style="width:100%;height:100%;object-fit:cover;display:block">
+              <span style="{{ d.chipStyle }}">{{ d.num }}</span>
+            </span>
+            <span style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+              <span style="{{ d.nameStyle }}">{{ d.name }}</span>
+              <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg>
+            </span>
+            <span style="font-size:13.5px;line-height:1.45;color:#9AA5B1">{{ d.tag }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <footer style="border-top:1px solid #1C232B;padding-top:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:#8A96A3">
+      <span>Concepts de refonte — Baquelis (anciennement M3 Games) · Nice.</span>
+      <span>Photographies d'illustration · contenus repris et enrichis depuis m3.games</span>
+    </footer>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { sel: 0 }; }
+  renderVals() {
+    const HERE = 'b';
+    const LOCAL_ALL = false;
+    const URL = { a: 'https://claude.ai/artifact/Ku4bnok8s5KyAUESk7EmkX', b: 'https://claude.ai/artifact/4eC9PD6P9DESA6dctHTadc' };
+    const PAGES = [['Accueil', 'Accueil'], ['Expertises', 'Expertises'], ['IA & agents', 'IA'], ['Jeux & Web3', 'Jeux'], ['Offres', 'Offres'], ['Contact', 'Contact']];
+    const D = [
+      { g: 'a', k: 'Noyau', name: 'Noyau', font: "'Geist',sans-serif", size: 30, weight: 700, tag: 'Précision d’ingénierie, noir profond et lueur cyan.', desc: 'L’esthétique des meilleurs outils de développeurs : grilles fines, détails monospace, panneaux d’interface comme des photos produit. Un noyau lumineux résume la promesse Flexibilité · Continuité · Performance.', img: 'assets/datacenter-corridor.webp', alt: 'Couloir de serveurs', bg: '#07090C', fg: '#E7EDF3', dark: true, sw: ['#07090C', '#0E1217', '#E7EDF3', '#00AEEF'], fonts: 'Geist · Geist Mono', moment: 'Un noyau lumineux dont les anneaux pilotent le héros et un tableau de bord vivant.' },
+      { g: 'a', k: 'Agent', name: 'Agent', font: "'IBM Plex Sans',sans-serif", size: 30, weight: 600, tag: 'Le site devient une conversation avec ATOM, l’agent de Baquelis.', desc: 'IA native : on choisit une demande et ATOM déroule son plan, ses étapes et sa recommandation d’offre. Clair, lumineux, intelligent — la meilleure démonstration de l’expertise agents.', img: 'assets/laptop-code.webp', alt: 'Ordinateur portable affichant du code', bg: '#F6F7F4', fg: '#15181C', accent: '#0091C7', sw: ['#F6F7F4', '#FFFFFF', '#0091C7', '#FF7A45'], fonts: 'IBM Plex Sans · IBM Plex Mono', moment: 'Un clic sur une demande et ATOM répond, étape par étape.' },
+      { g: 'a', k: 'Monolithe', name: 'Monolithe', font: "'Cormorant Garamond',serif", size: 34, weight: 500, italic: true, tag: 'Conseil de prestige : noir, ivoire et grande typographie éditoriale.', desc: 'Le partenaire technologique traité comme une maison : retenue extrême, chapitres en chiffres romains, sérif monumentale. Pour le dirigeant qui achète d’abord de la confiance.', img: 'assets/glass-rings.webp', alt: 'Anneaux de verre sur fond noir', bg: '#0B0B0A', fg: '#F3EFE7', dark: true, sw: ['#0B0B0A', '#F3EFE7', '#77736B', '#00AEEF'], fonts: 'Cormorant Garamond · Manrope', moment: 'Un monolithe noir qui pivote et révèle les trois mots de la signature.' },
+      { g: 'a', k: 'Reseau', name: 'Réseau', font: "'Space Grotesk',sans-serif", size: 30, weight: 700, tag: 'Le temps réel rendu visible : nœuds, flux, tableaux de bord.', desc: 'La promesse de suivi en temps réel et de multijoueur à grande échelle devient image : un graphe vivant où circulent les données, un fil de projet transparent, des latences mesurées.', img: 'assets/earth-night.webp', alt: 'La Terre de nuit vue de l’espace', bg: '#060B18', fg: '#E6ECF7', dark: true, sw: ['#060B18', '#0C1428', '#3DFFA2', '#00AEEF'], fonts: 'Space Grotesk · JetBrains Mono', moment: 'Un graphe de nœuds vivant ; chaque nœud ouvre son panneau.' },
+      { g: 'a', k: 'Arcade', name: 'Arcade', font: "'Chakra Petch',sans-serif", size: 28, weight: 700, upper: true, tag: 'L’ADN jeu vidéo, rétro-futuriste et haut de gamme.', desc: 'La culture du jeu comme atout, avec une retenue de luxe : écran-titre, sélection de niveaux, écran de choix des offres façon personnages, journal de quêtes pour les cas d’usage IA.', img: 'assets/gaming-den-neon.webp', alt: 'Salle de jeu aux néons', bg: '#0D0A1A', fg: '#EDE8FF', dark: true, sw: ['#0D0A1A', '#FF3EA5', '#00E5FF', '#FFD166'], fonts: 'Chakra Petch · Silkscreen', moment: '« Appuyez pour commencer » ouvre la sélection des niveaux.' },
+      { g: 'b', k: 'Holo', name: 'Holo', font: "'Unbounded',sans-serif", size: 28, weight: 700, tag: 'Luxe Web3 : holographie, verre et chrome sur fond nacré.', desc: 'Une direction haute couture technologique : surfaces irisées, verre dépoli, cartes de membre holographiques pour les trois offres. Raffiné, lumineux, résolument Web3.', img: 'assets/holo-foil.webp', alt: 'Film holographique', bg: '#F4F3F8', fg: '#14131A', accent: '#0093CC', sw: ['#F4F3F8', '#FFFFFF', '#14131A', '#0093CC'], fonts: 'Unbounded · Figtree', moment: 'Une carte holographique premium qui s’incline et miroite.' },
+      { g: 'b', k: 'Systeme', name: 'Système', font: "'Schibsted Grotesk',sans-serif", size: 30, weight: 700, tag: 'L’artisanat de l’ingénierie : schémas, fiches techniques, papier quadrillé.', desc: '« Nous construisons des systèmes évolutifs » devient visible : diagrammes d’architecture qui s’assemblent, fiches techniques révisées, offres présentées comme des spécifications exactes.', img: 'assets/circuit-board.webp', alt: 'Circuit imprimé', bg: '#F2F1EC', fg: '#111111', accent: '#D9480F', sw: ['#F2F1EC', '#111111', '#FF5B1F', '#0089BF'], fonts: 'Schibsted Grotesk · DM Mono', moment: 'Un schéma d’architecture qui s’assemble et bascule de monolithe à évolutif.' },
+      { g: 'b', k: 'Perf', name: 'Performance', font: "'Anton',sans-serif", size: 30, weight: 400, upper: true, tag: 'Énergie e-sport : vitesse, précision, typographie cinétique.', desc: 'Des coupes diagonales, des tableaux de score, un écran « VS » qui oppose le recrutement classique à Baquelis avec les vrais chiffres d’économies. Compétitif mais crédible pour l’entreprise.', img: 'assets/gamer-dark.webp', alt: 'Joueur devant son écran', bg: '#0A0A0A', fg: '#F5F5F5', dark: true, volt: true, sw: ['#0A0A0A', '#161616', '#E6FF2E', '#FF3B30'], fonts: 'Anton · Barlow', moment: 'L’écran « VS » : recrutement classique contre Baquelis.' },
+      { g: 'b', k: 'Nocturne', name: 'Nocturne', font: "'Syne',sans-serif", size: 30, weight: 800, tag: 'Bande-annonce de studio : scènes nocturnes, parallaxe, lumière ambrée.', desc: 'Le site se déroule comme l’ouverture d’un film de jeu AAA : plans superposés, cartons-titres, chapitres en scènes, offres en affiches de cinéma. Émotionnel et luxueux.', img: 'assets/city-night-tower.webp', alt: 'Tour illuminée la nuit', bg: '#08080B', fg: '#EFEDE8', dark: true, sw: ['#08080B', '#121218', '#F2B544', '#00AEEF'], fonts: 'Syne · Outfit', moment: '« Baquelis présente… » en plans parallaxe et bandes de cinéma.' },
+      { g: 'b', k: 'Clarte', name: 'Clarté', font: "'Hanken Grotesk',sans-serif", size: 30, weight: 700, tag: 'Suisse et lumineux : la transparence radicale comme principe.', desc: 'Pour l’acheteur entreprise : les prix et les économies sont visibles dès le héros grâce à un calculateur, les chiffres sont grands et nets, le comparatif est la pièce maîtresse.', img: 'assets/meeting-room.webp', alt: 'Salle de réunion lumineuse', bg: '#FFFFFF', fg: '#0F1720', accent: '#0083B8', sw: ['#FFFFFF', '#F3F5F7', '#0083B8', '#C6F432'], fonts: 'Hanken Grotesk · Newsreader', moment: 'Le calculateur de transparence visible dès le héros.' },
+    ];
+    const sel = this.state.sel;
+    const isLocal = (d) => LOCAL_ALL || d.g === HERE;
+    const home = (d) => (isLocal(d) ? d.k + '-Accueil.dc.html' : URL[d.g]);
+    const nameCss = (d, size) => 'font-family:' + d.font + ';font-size:' + size + 'px;line-height:1.08;font-weight:' + (d.weight || 400) + (d.italic ? ';font-style:italic' : '') + (d.upper ? ';text-transform:uppercase;letter-spacing:.02em' : '');
+    const dirs = D.map((d, i) => ({
+      ...d, num: String(i + 1).padStart(2, '0'), home: home(d),
+      pick: () => this.setState({ sel: i }),
+      rowStyle: 'display:flex;gap:16px;align-items:flex-start;width:100%;min-height:44px;padding:16px ' + (i === sel ? '18px' : '8px') + ';border:0;border-bottom:1px solid #1C232B;cursor:pointer;font:inherit;color:#E7EDF3;background:' + (i === sel ? '#121821' : 'transparent'),
+      nameStyle: nameCss(d, Math.round(d.size * 0.82)),
+      chipStyle: 'position:absolute;top:12px;left:12px;font-family:JetBrains Mono,monospace;font-size:11px;padding:6px 9px;background:' + d.bg + ';color:' + d.fg,
+    }));
+    const c = D[sel];
+    const dark = !!c.dark;
+    const ctaBg = c.volt ? '#E6FF2E' : dark ? '#00AEEF' : c.accent;
+    const ctaFg = c.volt || dark ? '#05080B' : '#FFFFFF';
+    const cur = {
+      ...c, num: String(sel + 1).padStart(2, '0'), home: home(c), local: isLocal(c), remote: !isLocal(c), range: c.g === 'a' ? '1 à 5' : '6 à 10',
+      pages: PAGES.map(([label, f]) => ({ label, href: c.k + '-' + f + '.dc.html' })),
+      swatches: c.sw.map((h) => ({ hex: h, style: 'width:40px;height:40px;border-radius:50%;background:' + h + ';border:1px solid ' + (dark ? 'rgba(255,255,255,.3)' : 'rgba(0,0,0,.15)') })),
+      panelStyle: 'flex:999 1 560px;min-width:0;display:flex;flex-direction:column;background:' + c.bg + ';color:' + c.fg + ';transition:background .6s,color .6s',
+      titleStyle: 'margin:0;color:#F5F2EC;' + nameCss(c, c.size * 2.7),
+      pillStyle: 'display:inline-flex;align-items:center;min-height:44px;padding:0 16px;font-size:14px;text-decoration:none;color:' + c.fg + ';border:1px solid ' + (dark ? 'rgba(255,255,255,.32)' : 'rgba(20,20,20,.22)') + ';border-radius:999px',
+      ctaStyle: 'align-self:flex-start;display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 26px;font-size:15px;font-weight:600;text-decoration:none;border-radius:999px;background:' + ctaBg + ';color:' + ctaFg,
+    };
+    return { dirs, cur };
+  }
+}
+</script>
+</body>
+</html>

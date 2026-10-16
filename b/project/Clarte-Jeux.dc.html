@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Clarté — Jeux &amp; Web3</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&amp;display=swap">
+<style>
+body{margin:0}
+sc-for,sc-if{display:contents}
+.bq{font-family:"Hanken Grotesk",system-ui,sans-serif;color:#0F1720;background:#FFFFFF;-webkit-font-smoothing:antialiased;line-height:1.5}
+.bq *{box-sizing:border-box}
+.bq a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+.serif{font-family:"Newsreader",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:0}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:#4A5563;margin:0}
+.num{font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.mono{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--l);color:#0F1720;font-weight:600;font-size:13px;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.chip-o{display:inline-flex;align-items:center;gap:6px;border:1px solid #E3E7EC;color:#4A5563;font-weight:500;font-size:13px;padding:5px 11px;border-radius:999px;background:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;transition:background .25s,color .25s,transform .25s,border-color .25s;border:1px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap}
+.bq .btn-p{background:var(--c);color:#fff}
+.bq .btn-p:hover{background:#0F1720;transform:translateY(-1px)}
+.bq .btn-g{border-color:#0F1720;color:#0F1720;background:transparent}
+.bq .btn-g:hover{background:#0F1720;color:#fff}
+.btn svg{transition:transform .25s}
+.btn:hover svg{transform:translateX(3px)}
+.tb-l{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--l);margin-right:8px;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(198,244,50,.7)}70%{box-shadow:0 0 0 8px rgba(198,244,50,0)}100%{box-shadow:0 0 0 0 rgba(198,244,50,0)}}
+.hdr{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid #E3E7EC}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:21px;letter-spacing:-.03em;min-height:44px}
+.nav-d{display:flex;gap:4px}
+.nav-d a{text-decoration:none;font-weight:500;font-size:15px;color:#4A5563;padding:0 14px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px;transition:background .2s,color .2s}
+.nav-d a:hover{background:#F3F5F7;color:#0F1720}
+.nav-d a[aria-current="page"]{color:#0F1720;background:#F3F5F7}
+.burger{display:none;width:48px;height:48px;border-radius:999px;border:1px solid #E3E7EC;background:#fff;align-items:center;justify-content:center;cursor:pointer;color:#0F1720}
+.mnav{display:none;border-top:1px solid #E3E7EC;padding:12px 20px 20px}
+.mnav a{display:flex;align-items:center;min-height:48px;text-decoration:none;font-weight:600;font-size:17px;border-bottom:1px solid #E3E7EC}
+.card{background:#fff;border:1px solid #E3E7EC;border-radius:20px}
+.lift{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s}
+.lift:hover{transform:translateY(-4px);box-shadow:0 22px 44px -24px rgba(15,23,32,.28);border-color:#C9D1DA}
+.rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}.d4{animation-delay:.32s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.fadein{animation:fadein .5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.float{animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px) rotate(-1.5deg)}}
+.opt{font-family:inherit;cursor:pointer;text-align:left;border-radius:14px;transition:background .25s,border-color .25s,color .25s,box-shadow .25s}
+.opt:hover{border-color:#0F1720}
+input[type=range]{width:100%;accent-color:var(--c);height:28px;cursor:pointer}
+.bq :focus-visible{outline:3px solid var(--c);outline-offset:3px}
+.ft a{text-decoration:none;color:#C5CDD6;display:inline-flex;min-height:36px;align-items:center;transition:color .2s}
+.ft a:hover{color:#fff}
+.img-z{overflow:hidden;border-radius:24px}
+.img-z img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.img-z:hover img{transform:scale(1.04)}
+.map-row{transition:background .3s,padding .3s}
+.map-row:hover{background:#F3F5F7;padding-left:16px}
+.map-row svg{transition:transform .3s}
+.map-row:hover svg{transform:translateX(6px)}
+.node{transition:background .3s,transform .3s}
+.tog{position:relative;width:56px;height:32px;border-radius:999px;border:0;cursor:pointer;transition:background .25s;flex:none}
+@media (max-width:960px){.nav-d{display:none}.burger{display:inline-flex}.mnav{display:block}.hide-s{display:none}}
+@media (max-width:640px){.wrap{padding:0 20px}}
+</style>
+</helmet>
+<div class="bq" style="{{ rootStyle }}">
+
+<div style="background:#0F1720;color:#fff;font-size:13px">
+<div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:8px 16px;min-height:40px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px">
+<span><span class="dot"></span>Prix publics : dès 4 500 €/mois, sans frais cachés. <a href="Clarte-Offres.dc.html" class="tb-l">Voir le comparatif</a></span>
+<a href="Main.dc.html" class="tb-l">Toutes les propositions</a>
+</div>
+</div>
+
+<header class="hdr">
+<div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px">
+<a href="Clarte-Accueil.dc.html" class="logo" aria-label="Baquelis, accueil">
+<svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="8" fill="#0F1720"></rect><rect x="8" y="8" width="14" height="14" rx="3" fill="none" stroke="#fff" stroke-width="2"></rect><rect x="15" y="15" width="7" height="7" rx="1.5" style="fill:var(--l)"></rect></svg>
+<span>Baquelis</span>
+</a>
+<nav class="nav-d" aria-label="Navigation principale">
+<a href="Clarte-Expertises.dc.html">Expertises</a>
+<a href="Clarte-IA.dc.html">IA</a>
+<a href="Clarte-Jeux.dc.html" aria-current="page">Jeux &amp; Web3</a>
+<a href="Clarte-Offres.dc.html">Offres</a>
+<a href="Clarte-Contact.dc.html">Contact</a>
+</nav>
+<div style="display:flex;gap:10px;align-items:center">
+<a href="Clarte-Contact.dc.html" class="btn btn-p hide-s">Réserver un appel</a>
+<button class="burger" type="button" aria-label="Ouvrir ou fermer le menu" onClick="{{ toggleNav }}"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"></path></svg></button>
+</div>
+</div>
+<sc-if value="{{ navOpen }}" hint-placeholder-val="{{ false }}">
+<nav class="mnav" aria-label="Navigation mobile">
+<a href="Clarte-Expertises.dc.html">Expertises</a>
+<a href="Clarte-IA.dc.html">IA</a>
+<a href="Clarte-Jeux.dc.html">Jeux &amp; Web3</a>
+<a href="Clarte-Offres.dc.html">Offres</a>
+<a href="Clarte-Contact.dc.html">Contact</a>
+<a href="Clarte-Contact.dc.html" class="btn btn-p" style="margin-top:16px;border:0;justify-content:center">Commencer</a>
+</nav>
+</sc-if>
+</header>
+
+<!-- HERO -->
+<section style="padding:80px 0 88px;background:#F3F5F7;overflow:hidden">
+<div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:48px;align-items:center">
+<div>
+<p class="eyebrow rise">Jeux &amp; Web3 · preuve d’excellence technique</p>
+<h1 class="rise d1" style="margin:22px 0 0;font-weight:700;font-size:clamp(38px,4.8vw,70px);line-height:1.02;letter-spacing:-.045em;overflow-wrap:anywhere">Les jeux sont les applications <span class="serif" style="font-weight:400;color:var(--c)">les plus difficiles.</span></h1>
+<p class="rise d2" style="font-size:18px;color:#4A5563;margin:22px 0 0;max-width:520px">Performances temps réel, gestion d’état complexe, expériences fluides. Si nous maîtrisons les applications de jeu, nous pouvons gérer n’importe quel défi technique.</p>
+<div class="rise d3" style="margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #D5DBE2;max-width:540px">
+<div style="padding:16px 12px 0 0"><div class="num" style="font-size:clamp(22px,2.4vw,32px);font-weight:700">&lt; 1 ms</div><div style="font-size:13px;color:#4A5563">temps de réponse visé</div></div>
+<div style="padding:16px 12px 0;border-left:1px solid #D5DBE2"><div class="num" style="font-size:clamp(22px,2.4vw,32px);font-weight:700">4</div><div style="font-size:13px;color:#4A5563">systèmes simultanés</div></div>
+<div style="padding:16px 0 0 12px;border-left:1px solid #D5DBE2"><div style="font-size:clamp(22px,2.4vw,32px);font-weight:700;letter-spacing:-.02em">Milliers</div><div style="font-size:13px;color:#4A5563">de joueurs simultanés</div></div>
+</div>
+</div>
+<div class="rise d2" style="position:relative;height:520px">
+<img class="float" src="assets/controller-white.webp" alt="Manette de jeu blanche sur fond gris clair" style="width:100%;height:520px;object-fit:cover;border-radius:28px;display:block">
+<div class="card" style="position:absolute;left:20px;top:20px;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600"><span class="dot" style="margin:0"></span>Synchronisation d’état · illustratif</div>
+<div class="card mono" style="position:absolute;right:20px;bottom:20px;padding:14px 18px;font-size:13px"><div style="color:#4A5563">frame budget @60 i/s</div><div style="font-size:22px;font-weight:700;font-family:'Hanken Grotesk',sans-serif">16,6 ms</div></div>
+</div>
+</div>
+</section>
+
+<!-- EXIGENCES -->
+<section style="padding:104px 0">
+<div class="wrap">
+<div style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap">
+<div><p class="eyebrow">Pourquoi les jeux définissent l’excellence</p><h2 style="font-size:clamp(30px,3.4vw,48px);line-height:1.06;letter-spacing:-.035em;margin:16px 0 0;font-weight:700">4 exigences, <span class="serif" style="font-weight:400">testez-les.</span></h2></div>
+<span class="chip-o">Valeurs illustratives, à titre pédagogique</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:8px;margin-top:40px" role="tablist" aria-label="Exigences">
+<sc-for list="{{ reqTabs }}" as="r" hint-placeholder-count="4">
+<button type="button" role="tab" class="opt" style="{{ r.style }}" aria-selected="{{ r.pressed }}" onClick="{{ r.pick }}">
+<span class="num" style="display:block;font-size:13px;opacity:.7">{{ r.n }}</span>
+<span style="display:block;font-weight:700;font-size:19px;margin-top:6px">{{ r.t }}</span>
+<span style="display:block;font-size:14px;margin-top:4px;opacity:.8">{{ r.s }}</span>
+</button>
+</sc-for>
+</div>
+
+<div class="card" style="margin-top:16px;padding:clamp(24px,4vw,44px)">
+
+<sc-if value="{{ is0 }}" hint-placeholder-val="{{ true }}">
+<div class="fadein" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:40px;align-items:center">
+<div>
+<h3 style="font-size:28px;margin:0;letter-spacing:-.025em">Performance temps réel</h3>
+<p style="color:#4A5563;margin:12px 0 0">Réponse sub-milliseconde et synchronisation parfaite entre systèmes. Faites varier la latence pour voir où se situe l’expérience.</p>
+<label for="lat" style="display:flex;justify-content:space-between;margin-top:28px;font-weight:600"><span>Latence simulée</span><span class="num">{{ latLabel }}</span></label>
+<input id="lat" type="range" min="0" max="100" step="1" value="{{ latPos }}" onInput="{{ setLat }}" aria-valuetext="{{ latLabel }}">
+<div style="display:flex;justify-content:space-between;font-size:12px;color:#4A5563"><span>0,1 ms</span><span>1 ms</span><span>10 ms</span><span>100 ms</span></div>
+</div>
+<div style="text-align:center">
+<svg viewBox="0 0 240 140" style="width:100%;max-width:380px;height:auto" role="img" aria-label="{{ latVerdict }}">
+<path d="M20 120 A100 100 0 0 1 220 120" fill="none" stroke="#E3E7EC" stroke-width="16" stroke-linecap="round"></path>
+<path d="M20 120 A100 100 0 0 1 220 120" fill="none" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="100" style="{{ gaugeStyle }}"></path>
+<text x="120" y="104" text-anchor="middle" style="font:700 34px 'Hanken Grotesk',sans-serif;fill:#0F1720">{{ latLabel }}</text>
+</svg>
+<div style="margin-top:8px"><span style="{{ verdictStyle }}">{{ latVerdict }}</span></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ is1 }}" hint-placeholder-val="{{ false }}">
+<div class="fadein">
+<div style="display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:end">
+<div style="max-width:560px"><h3 style="font-size:28px;margin:0;letter-spacing:-.025em">Architecture complexe</h3><p style="color:#4A5563;margin:12px 0 0">Graphismes, physique, réseau et saisie tournent en même temps, dans le budget d’une seule image. Activez ou coupez un système.</p></div>
+<div style="text-align:right"><div class="num" style="font-size:40px;font-weight:700;line-height:1">{{ usedLabel }}</div><div style="font-size:13px;color:#4A5563">sur 16,6 ms par image</div></div>
+</div>
+<div style="display:flex;height:56px;border-radius:14px;overflow:hidden;background:#F3F5F7;margin-top:28px" aria-hidden="true">
+<sc-for list="{{ sysBars }}" as="b" hint-placeholder-count="4"><div style="{{ b.style }}">{{ b.label }}</div></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:10px;margin-top:20px">
+<sc-for list="{{ systems }}" as="y" hint-placeholder-count="4">
+<button type="button" class="opt" style="{{ y.style }}" aria-pressed="{{ y.pressed }}" onClick="{{ y.pick }}">
+<span style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font-weight:600">{{ y.t }}</span><span class="num" style="font-size:13px">{{ y.ms }}</span></span>
+</button>
+</sc-for>
+</div>
+<p style="margin:16px 0 0;font-size:14px;color:#4A5563">Marge restante : <strong class="num" style="color:#0F1720">{{ marginLabel }}</strong> · répartition illustrative.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{ is2 }}" hint-placeholder-val="{{ false }}">
+<div class="fadein" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:40px;align-items:center">
+<div>
+<h3 style="font-size:28px;margin:0;letter-spacing:-.025em">Multijoueur évolutif</h3>
+<p style="color:#4A5563;margin:12px 0 0">Des milliers d’utilisateurs simultanés, une cohérence d’état sans faille et une latence minimale. Augmentez la charge.</p>
+<label for="pl" style="display:flex;justify-content:space-between;margin-top:28px;font-weight:600"><span>Joueurs simultanés</span><span class="num">{{ playersLabel }}</span></label>
+<input id="pl" type="range" min="100" max="20000" step="100" value="{{ players }}" onInput="{{ setPlayers }}" aria-valuetext="{{ playersLabel }}">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px">
+<div style="background:#F3F5F7;border-radius:12px;padding:14px"><div style="font-size:12px;color:#4A5563">Instances</div><div class="num" style="font-size:26px;font-weight:700">{{ nodes }}</div></div>
+<div style="background:#F3F5F7;border-radius:12px;padding:14px"><div style="font-size:12px;color:#4A5563">Par instance</div><div class="num" style="font-size:26px;font-weight:700">{{ perNode }}</div></div>
+<div style="background:#F3F5F7;border-radius:12px;padding:14px"><div style="font-size:12px;color:#4A5563">État</div><div style="font-size:18px;font-weight:700;margin-top:4px">Cohérent</div></div>
+</div>
+</div>
+<div style="background:#0F1720;border-radius:20px;padding:24px">
+<div style="display:flex;justify-content:space-between;color:#C5CDD6;font-size:13px;margin-bottom:14px"><span>Répartition de charge</span><span>illustratif</span></div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
+<sc-for list="{{ nodeGrid }}" as="nd" hint-placeholder-count="20"><div class="node" style="{{ nd.style }}"></div></sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ is3 }}" hint-placeholder-val="{{ false }}">
+<div class="fadein" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:40px;align-items:start">
+<div>
+<h3 style="font-size:28px;margin:0;letter-spacing:-.025em">Sécurité &amp; anti-triche</h3>
+<p style="color:#4A5563;margin:12px 0 0">Une protection avancée qui ne dégrade pas l’expérience. Activez la protection pour voir les événements traités.</p>
+<div style="display:flex;align-items:center;gap:14px;margin-top:28px">
+<button type="button" class="tog" style="{{ togStyle }}" role="switch" aria-checked="{{ shieldAria }}" aria-label="Protection anti-triche" onClick="{{ toggleShield }}"><span style="{{ knobStyle }}"></span></button>
+<strong>{{ shieldLabel }}</strong>
+</div>
+<div style="margin-top:20px;padding:16px;border-radius:14px;background:#F3F5F7;display:flex;justify-content:space-between;gap:12px"><span>Expérience joueur</span><strong>Fluide</strong></div>
+</div>
+<div class="mono" style="border:1px solid #E3E7EC;border-radius:16px;overflow:hidden;font-size:13px">
+<div style="padding:12px 16px;background:#F3F5F7;border-bottom:1px solid #E3E7EC;display:flex;justify-content:space-between"><span>journal de sécurité</span><span>scénario illustratif</span></div>
+<sc-for list="{{ secLog }}" as="ev" hint-placeholder-count="4">
+<div style="display:flex;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid #E3E7EC"><span>{{ ev.t }}</span><span style="{{ ev.style }}">{{ ev.s }}</span></div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+</div>
+</div>
+</section>
+
+<!-- TRANSFERT -->
+<section style="background:#F3F5F7;padding:104px 0">
+<div class="wrap">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:48px;align-items:start">
+<div>
+<p class="eyebrow">Ce que vous y gagnez</p>
+<h2 style="font-size:clamp(30px,3.4vw,48px);line-height:1.06;letter-spacing:-.035em;margin:16px 0 0;font-weight:700">Cette exigence profite <span class="serif" style="font-weight:400;color:var(--c)">à tous vos projets.</span></h2>
+<p style="color:#4A5563;margin:18px 0 0;max-width:440px">Vous n’avez pas besoin de construire un jeu pour bénéficier d’une équipe qui sait en construire. Chaque exigence du jeu se traduit directement dans vos applications métier.</p>
+</div>
+<div style="border-top:1px solid #D5DBE2">
+<sc-for list="{{ transfer }}" as="t" hint-placeholder-count="4">
+<div class="map-row" style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;padding:24px 8px;border-bottom:1px solid #D5DBE2">
+<div><div class="num" style="font-size:13px;color:#4A5563">{{ t.n }} · Jeu</div><strong style="font-size:18px">{{ t.g }}</strong></div>
+<svg width="28" height="16" viewBox="0 0 28 16" fill="none" stroke="currentColor" stroke-width="1.8" style="color:var(--c)" aria-hidden="true"><path d="M2 8h22M18 3l6 5-6 5"></path></svg>
+<div><div style="font-size:13px;color:#4A5563">Votre projet</div><strong style="font-size:18px">{{ t.b }}</strong></div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WEB3 -->
+<section style="padding:104px 0">
+<div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:56px;align-items:center">
+<div class="img-z" style="height:500px;position:relative">
+<img src="assets/holo-foil.webp" alt="Film holographique irisé" style="width:100%;height:500px;object-fit:cover;display:block">
+<div style="position:absolute;left:20px;bottom:20px;right:20px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:16px;padding:18px 20px">
+<div style="display:flex;justify-content:space-between;font-size:13px;color:#4A5563"><span>Plateforme de gaming Web3</span><span>Schéma illustratif</span></div>
+<div style="display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap;font-size:13px;font-weight:600">
+<span class="chip-o">Joueur</span><svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="#4A5563" stroke-width="1.5" aria-hidden="true"><path d="M1 5h15M12 1l4 4-4 4"></path></svg><span class="chip-o">Jeu temps réel</span><svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="#4A5563" stroke-width="1.5" aria-hidden="true"><path d="M1 5h15M12 1l4 4-4 4"></path></svg><span class="chip">Actifs numériques</span>
+</div>
+</div>
+</div>
+<div>
+<p class="eyebrow">Web3</p>
+<h2 style="font-size:clamp(30px,3.4vw,48px);line-height:1.06;letter-spacing:-.035em;margin:16px 0 0;font-weight:700">Une plateforme de gaming Web3, <span class="serif" style="font-weight:400">sans compromis sur l’expérience.</span></h2>
+<p style="color:#4A5563;margin:18px 0 0;font-size:17px">Le Web3 ajoute aux contraintes du jeu celles de la confiance : actifs numériques, transactions, sécurité. Nous y appliquons la même rigueur qu’au temps réel.</p>
+<div style="display:grid;gap:0;margin-top:24px;border-top:1px solid #E3E7EC">
+<sc-for list="{{ web3 }}" as="w" hint-placeholder-count="4">
+<button type="button" class="opt" style="{{ w.style }}" aria-expanded="{{ w.open }}" onClick="{{ w.pick }}">
+<span style="display:flex;justify-content:space-between;align-items:center;width:100%;gap:12px"><strong style="font-size:17px">{{ w.t }}</strong><svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" style="{{ w.rot }}" aria-hidden="true"><path d="M9 3v12M3 9h12"></path></svg></span>
+<sc-if value="{{ w.isOpen }}" hint-placeholder-val="{{ false }}"><span class="fadein" style="display:block;color:#4A5563;margin-top:8px;font-size:15px;font-weight:400">{{ w.d }}</span></sc-if>
+</button>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section style="padding:0 0 104px">
+<div class="wrap">
+<div style="background:#0F1720;color:#fff;border-radius:32px;padding:clamp(36px,6vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:32px;align-items:end">
+<div>
+<p class="eyebrow" style="color:#9AA6B4">Défi technique</p>
+<h2 style="font-size:clamp(30px,4vw,56px);line-height:1.04;letter-spacing:-.04em;margin:16px 0 0;font-weight:700">Votre projet est-il plus difficile qu’un jeu ?</h2>
+<p class="serif" style="font-size:22px;margin:14px 0 0;color:#C5CDD6">Prêt à transformer votre entreprise ?</p>
+</div>
+<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end">
+<a href="Clarte-Contact.dc.html" class="btn btn-p">Réserver un appel</a>
+<a href="Clarte-Offres.dc.html" class="btn" style="border-color:#fff;color:#fff">Voir les prix</a>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="ft" style="background:#0F1720;color:#fff;padding:72px 0 28px">
+<div class="wrap">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:40px">
+<div>
+<div style="display:flex;align-items:center;gap:10px;font-weight:700;font-size:21px;letter-spacing:-.03em"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="8" fill="#fff"></rect><rect x="8" y="8" width="14" height="14" rx="3" fill="none" stroke="#0F1720" stroke-width="2"></rect><rect x="15" y="15" width="7" height="7" rx="1.5" style="fill:var(--l)"></rect></svg>Baquelis</div>
+<p style="color:#C5CDD6;font-size:14px;margin:16px 0 0">Flexibilité. Continuité. Performance.</p>
+<p style="color:#C5CDD6;font-size:14px;margin:12px 0 0">31 B avenue Maréchal Foch<br>06000 Nice</p>
+</div>
+<div><p class="eyebrow" style="color:#9AA6B4">Navigation</p><div style="display:grid;margin-top:12px"><a href="Clarte-Accueil.dc.html">Accueil</a><a href="Clarte-Expertises.dc.html">Expertises</a><a href="Clarte-IA.dc.html">Intelligence artificielle</a><a href="Clarte-Contact.dc.html">Contact</a></div></div>
+<div><p class="eyebrow" style="color:#9AA6B4">Offres</p><div style="display:grid;margin-top:12px"><a href="Clarte-Offres.dc.html">Intégration · 4 500 €/mois</a><a href="Clarte-Offres.dc.html">Flex · 6 200 €/mois</a><a href="Clarte-Offres.dc.html">Performance · 18 900 €/mois</a></div></div>
+<div><p class="eyebrow" style="color:#9AA6B4">Société</p><div style="display:grid;margin-top:12px;color:#C5CDD6;font-size:14px;gap:8px"><span>[RAISON SOCIALE]</span><span>[N° TVA]</span><span>[contact@domaine-baquelis]</span></div></div>
+</div>
+<div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid #2B3644;margin-top:48px;padding-top:20px;font-size:13px;color:#9AA6B4">
+<span>© 2026 Baquelis</span>
+<span>Proposition de refonte — concept · <a href="Main.dc.html" style="min-height:auto">Toutes les propositions</a></span>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5400},"accent":{"editor":"color","default":"#0083B8","options":["#0083B8","#0F766E","#3B5BDB"]},"highlight":{"editor":"color","default":"#C6F432","options":["#C6F432","#FFD84D","#8DF0C8"]}}'>
+class Component extends DCLogic {
+  constructor(props){ super(props); this.state = { req: 0, lat: 20, sys: [true, true, true, true], players: 4000, shield: true, w3: 0, nav: false }; }
+  renderVals() {
+    const p = this.props || {};
+    const s = this.state;
+    const RQ = [
+      { t: "Performance temps réel", s: "Réponse sub-milliseconde" },
+      { t: "Architecture complexe", s: "4 systèmes simultanés" },
+      { t: "Multijoueur évolutif", s: "Milliers d’utilisateurs" },
+      { t: "Sécurité & anti-triche", s: "Protection sans friction" }
+    ];
+    const reqTabs = RQ.map((x, i) => ({
+      n: "0" + (i + 1), t: x.t, s: x.s, pressed: i === s.req ? "true" : "false",
+      style: "padding:20px 22px;min-height:110px;border:1px solid " + (i === s.req ? "#0F1720;background:#0F1720;color:#fff" : "#E3E7EC;background:#fff;color:#0F1720"),
+      pick: () => this.setState({ req: i })
+    }));
+    // latence : échelle log de 0,1 ms à 100 ms
+    const ms = Math.pow(10, -1 + s.lat / 100 * 3);
+    const latLabel = (ms < 1 ? ms.toFixed(2) : ms < 10 ? ms.toFixed(1) : Math.round(ms)).toString().replace(".", ",") + " ms";
+    let verdict, vCol;
+    if (ms < 1) { verdict = "Sub-milliseconde : le standard visé"; vCol = "var(--l)"; }
+    else if (ms < 16.6) { verdict = "Sous le budget d’une image à 60 i/s"; vCol = "#D9F2FF"; }
+    else if (ms < 50) { verdict = "Décalage perceptible en jeu"; vCol = "#FFF0C2"; }
+    else { verdict = "Expérience dégradée"; vCol = "#FFD9D2"; }
+    const gaugeCol = ms < 1 ? "var(--c)" : ms < 16.6 ? "var(--c)" : ms < 50 ? "#C98A00" : "#C2412D";
+    // architecture
+    const SY = [["Graphismes", 7, "#0F1720"], ["Physique", 3.5, "var(--c)"], ["Réseau", 2.5, "#5B6776"], ["Saisie", 1, "var(--l)"]];
+    let used = 0;
+    SY.forEach((y, i) => { if (s.sys[i]) used += y[1]; });
+    const sysBars = SY.filter((y, i) => s.sys[i]).map((y) => ({
+      label: y[0], style: "width:" + (y[1] / 16.6 * 100).toFixed(1) + "%;background:" + y[2] + ";color:" + (y[2] === "var(--l)" ? "#0F1720" : "#fff") + ";display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;overflow:hidden;white-space:nowrap;transition:width .4s"
+    }));
+    const systems = SY.map((y, i) => ({
+      t: y[0], ms: String(y[1]).replace(".", ",") + " ms", pressed: s.sys[i] ? "true" : "false",
+      style: "padding:16px 18px;min-height:56px;border:1px solid " + (s.sys[i] ? "#0F1720;background:#fff;color:#0F1720" : "#E3E7EC;background:#F3F5F7;color:#4A5563;text-decoration:line-through"),
+      pick: () => { const n = s.sys.slice(); n[i] = !n[i]; this.setState({ sys: n }); }
+    }));
+    // multijoueur
+    const nodes = Math.max(1, Math.ceil(s.players / 1000));
+    const fmt = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    const nodeGrid = [];
+    for (let i = 0; i < 20; i++) {
+      const act = i < nodes;
+      nodeGrid.push({ style: "height:44px;border-radius:10px;" + (act ? "background:var(--l);transform:scale(1)" : "background:#18222E;transform:scale(.92)") + ";transition-delay:" + (i * 20) + "ms" });
+    }
+    // sécurité
+    const LOG = ["Vitesse de déplacement anormale", "Requête rejouée", "Modification client suspecte", "Rafale d’actions automatisées"];
+    const secLog = LOG.map((t) => ({
+      t, s: s.shield ? "bloqué" : "non filtré",
+      style: s.shield ? "background:var(--l);color:#0F1720;padding:2px 8px;border-radius:6px;font-weight:600" : "background:#FFD9D2;color:#7A1F12;padding:2px 8px;border-radius:6px;font-weight:600"
+    }));
+    const W3 = [
+      { t: "Actifs numériques", d: "Des objets de jeu possédés par les joueurs, conçus avec une gestion d’état rigoureuse." },
+      { t: "Transactions sécurisées", d: "Sécurité intégrée dès la conception, sans ralentir l’expérience de jeu." },
+      { t: "Performance temps réel", d: "Les contraintes blockchain ne doivent jamais se ressentir dans la boucle de jeu." },
+      { t: "Évolutivité", d: "Une architecture qui suit la croissance de la communauté de joueurs." }
+    ];
+    const web3 = W3.map((x, i) => ({
+      t: x.t, d: x.d, isOpen: i === s.w3, open: i === s.w3 ? "true" : "false",
+      rot: "transform:rotate(" + (i === s.w3 ? 45 : 0) + "deg);transition:transform .3s;color:" + (i === s.w3 ? "var(--c)" : "#0F1720"),
+      style: "display:block;width:100%;border:0;border-bottom:1px solid #E3E7EC;border-radius:0;background:transparent;color:#0F1720;padding:18px 4px;min-height:60px",
+      pick: () => this.setState({ w3: i === s.w3 ? -1 : i })
+    }));
+    return {
+      rootStyle: "--c:" + (p.accent || "#0083B8") + ";--l:" + (p.highlight || "#C6F432") + ";",
+      navOpen: s.nav,
+      toggleNav: () => this.setState({ nav: !s.nav }),
+      reqTabs, is0: s.req === 0, is1: s.req === 1, is2: s.req === 2, is3: s.req === 3,
+      latPos: s.lat, latLabel, latVerdict: verdict,
+      setLat: (e) => this.setState({ lat: parseInt(e.target.value, 10) || 0 }),
+      gaugeStyle: "stroke:" + gaugeCol + ";stroke-dashoffset:" + (100 - Math.max(2, s.lat)) + ";transition:stroke-dashoffset .3s,stroke .3s",
+      verdictStyle: "display:inline-block;padding:8px 14px;border-radius:999px;font-weight:600;font-size:14px;color:#0F1720;background:" + vCol,
+      sysBars, systems,
+      usedLabel: String(Math.round(used * 10) / 10).replace(".", ",") + " ms",
+      marginLabel: String(Math.round((16.6 - used) * 10) / 10).replace(".", ",") + " ms",
+      players: s.players, playersLabel: fmt(s.players),
+      setPlayers: (e) => this.setState({ players: parseInt(e.target.value, 10) || 100 }),
+      nodes: nodes > 20 ? "20" : String(nodes), perNode: fmt(Math.round(s.players / Math.min(nodes, 20))), nodeGrid,
+      secLog,
+      shieldLabel: s.shield ? "Protection active" : "Protection désactivée",
+      shieldAria: s.shield ? "true" : "false",
+      toggleShield: () => this.setState({ shield: !s.shield }),
+      togStyle: "background:" + (s.shield ? "var(--c)" : "#C9D1DA"),
+      knobStyle: "position:absolute;top:4px;left:" + (s.shield ? "28px" : "4px") + ";width:24px;height:24px;border-radius:50%;background:#fff;transition:left .25s;box-shadow:0 2px 6px rgba(0,0,0,.2)",
+      transfer: [
+        { n: "01", g: "Performance temps réel", b: "Applications et tableaux de bord réactifs" },
+        { n: "02", g: "Architecture complexe", b: "Systèmes métier multi-services robustes" },
+        { n: "03", g: "Multijoueur évolutif", b: "Plateformes collaboratives, pics de charge" },
+        { n: "04", g: "Sécurité & anti-triche", b: "Protection des données et des transactions" }
+      ],
+      web3
+    };
+  }
+}
+</script>
+</body>
+</html>

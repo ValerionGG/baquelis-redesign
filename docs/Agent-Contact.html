@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Agent — Contact</title>
+<script src="vendor/preact.min.js"></script>
+<script src="dc.js"></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<script type="text/x-dc-template" id="dc-template">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+sc-for,sc-if{display:contents}
+*{box-sizing:border-box}
+.bq{background:#F6F7F4;color:#15181C;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.bq a{color:inherit}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.sec{padding:112px 0}
+.hdr{position:sticky;top:0;z-index:20;background:rgba(246,247,244,.88);backdrop-filter:blur(14px);border-bottom:1px solid #E4E7E2}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:21px;letter-spacing:-.025em;min-height:44px}
+.nav{display:flex;gap:2px;align-items:center}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:10px;text-decoration:none;font-size:15px;color:#3B4148;transition:background .2s,color .2s}
+.nav a:hover{background:#ECEEEA;color:#15181C}
+.nav a.on{color:#15181C;background:#fff;box-shadow:0 0 0 1px #E4E7E2}
+.hdr-cta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:12px;font:500 15px/1.1 'IBM Plex Sans',sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s,color .2s}
+.btn-cta{color:#15181C;box-shadow:0 1px 0 rgba(21,24,28,.08),0 10px 24px -12px rgba(255,122,69,.8)}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(21,24,28,.08),0 16px 30px -12px rgba(255,122,69,.9)}
+.btn-ink{background:#15181C;color:#fff}
+.btn-ink:hover{background:#2A2F35;transform:translateY(-2px)}
+.btn-line{background:#fff;color:#15181C;box-shadow:inset 0 0 0 1px #D6DAD3}
+.btn-line:hover{box-shadow:inset 0 0 0 1px #0091C7;color:#00739E}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid #D6DAD3;background:#fff;align-items:center;justify-content:center;cursor:pointer}
+.mnav{display:none;border-top:1px solid #E4E7E2}
+.mnav a{display:flex;align-items:center;min-height:48px;padding:0 12px;border-radius:12px;text-decoration:none;font-size:17px}
+.mnav a:hover{background:#ECEEEA}
+@media (max-width:960px){.nav,.hdr-cta{display:none}.burger{display:inline-flex}.mnav{display:block}}
+.h1{font-weight:500;font-size:clamp(38px,5vw,72px);line-height:1.04;letter-spacing:-.04em;margin:0;overflow-wrap:anywhere}
+.h2{font-weight:500;font-size:clamp(28px,3.2vw,44px);line-height:1.1;letter-spacing:-.03em;margin:0;overflow-wrap:anywhere}
+.lead{font-size:clamp(17px,1.5vw,20px);color:#5C636B;line-height:1.55;margin:0}
+.muted{color:#5C636B}
+.ask{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid #E4E7E2;border-radius:18px 18px 18px 6px;padding:6px 16px 6px 6px;font-size:15px;color:#3B4148;margin:0 0 22px;max-width:100%}
+.ask b{font:500 11px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;background:#F1F2EF;color:#5C636B;padding:7px 9px;border-radius:999px;flex:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:20px}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:56px;align-items:center}
+.card{background:#fff;border:1px solid #E4E7E2;border-radius:22px}
+.ok{width:22px;height:22px;border-radius:50%;background:#C8F0E2;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.pend{width:22px;height:22px;border-radius:50%;border:1.5px dashed #C3C9C0;display:inline-flex;flex:none}
+.av{width:36px;height:36px;border-radius:50%;background:#15181C;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.tag{font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.04em;padding:7px 10px;border-radius:999px;background:#EAF5FA;color:#00739E}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:#fff;border:1px solid #D6DAD3;color:#15181C;font:400 14.5px/1.2 'IBM Plex Sans',sans-serif;cursor:pointer;text-align:left;transition:border-color .2s,background .2s,transform .2s,color .2s}
+.chip:hover{border-color:#0091C7;background:#F0F8FB;transform:translateY(-1px)}
+.msg-a{align-self:flex-start;max-width:94%;background:#F3F5F1;border-radius:6px 18px 18px 18px;padding:14px 16px;font-size:15px;line-height:1.6}
+.msg-u{align-self:flex-end;max-width:85%;background:#15181C;color:#fff;border-radius:18px 18px 6px 18px;padding:12px 16px;font-size:15px}
+.trace-h{display:flex;justify-content:space-between;align-items:center;gap:10px;font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#5C636B}
+.tool{border:1px solid #E4E7E2;border-radius:14px;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.5}
+.tool-h{padding:10px 12px;color:#3B4148;overflow-wrap:anywhere}
+.tool-h b{color:#00739E;font-weight:500}
+.tool-r{padding:9px 12px;border-top:1px dashed #DDE2DA;color:#0B5D43;background:#F1FBF6;border-radius:0 0 14px 14px;overflow-wrap:anywhere}
+.ghost-row{height:14px;border-radius:7px;background:repeating-linear-gradient(90deg,#ECEEEA 0 10px,#F4F5F2 10px 20px)}
+.typing{display:inline-flex;gap:4px;align-items:center}
+.typing span{width:6px;height:6px;border-radius:50%;background:#0091C7;display:inline-block;animation:blink 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+.live{width:8px;height:8px;border-radius:50%;background:#0091C7;display:inline-block;animation:pulse 1.8s infinite;flex:none}
+.spin{width:15px;height:15px;border-radius:50%;border:2px solid #CFE7F1;border-top-color:#0091C7;animation:spin .8s linear infinite;display:inline-block}
+.rise{animation:rise .55s cubic-bezier(.2,.7,.2,1) both}
+.formc{background:#fff;border:1px solid #E4E7E2;border-radius:28px;padding:36px;box-shadow:0 50px 90px -60px rgba(21,24,28,.35)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.steps span{height:4px;border-radius:4px;transition:background .4s}
+.opt{display:flex;align-items:center;gap:14px;width:100%;min-height:72px;padding:16px 18px;border-radius:18px;border:1px solid #E4E7E2;background:#fff;cursor:pointer;text-align:left;font:500 16px/1.3 'IBM Plex Sans',sans-serif;color:#15181C;transition:border-color .2s,transform .2s,box-shadow .2s,background .2s}
+.opt:hover{border-color:#0091C7;transform:translateY(-2px)}
+.oico{width:40px;height:40px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;flex:none;transition:background .2s,color .2s}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld label{font-size:14px;font-weight:500}
+.inp{width:100%;min-height:50px;padding:12px 14px;border-radius:12px;border:1px solid #D6DAD3;background:#FAFBF9;font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#15181C;transition:border-color .2s,box-shadow .2s,background .2s}
+.inp:focus{outline:none;border-color:#0091C7;box-shadow:0 0 0 4px rgba(0,145,199,.14);background:#fff}
+.err{font-size:13.5px;color:#B3261E}
+.brief{background:#FAFBF9;border:1px solid #E4E7E2;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.bl{display:flex;gap:12px;align-items:flex-start}
+.day{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:72px;min-height:64px;padding:8px 12px;border-radius:14px;border:1px solid #E4E7E2;background:#fff;cursor:pointer;font:inherit;color:inherit;transition:border-color .2s,background .2s,color .2s}
+.day:hover{border-color:#0091C7}
+.slot{min-height:46px;padding:0 14px;border-radius:12px;border:1px dashed #C3C9C0;background:#fff;cursor:pointer;font:400 14px/1.2 'IBM Plex Mono',monospace;color:#3B4148;transition:border-color .2s,background .2s,color .2s}
+.slot:hover{border-color:#0091C7;color:#00739E}
+.mapc{position:relative;height:220px;border-radius:18px;overflow:hidden;background-color:#EEF1EC;background-image:linear-gradient(#E1E5DE 1px,transparent 1px),linear-gradient(90deg,#E1E5DE 1px,transparent 1px);background-size:28px 28px}
+.askp{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));background:#fff;border:1px solid #E4E7E2;border-radius:28px;overflow:hidden}
+.askp-l{padding:32px;border-right:1px solid #EDEFEB}
+.askp-r{padding:32px;background:#FAFBF9;display:flex;flex-direction:column;gap:12px;min-height:320px}
+.chips-col{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.ft-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:40px}
+.ft-t{font:500 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#5C636B;margin-bottom:12px}
+.ft-l a{display:flex;align-items:center;min-height:44px;text-decoration:none;color:#3B4148;font-size:15px;transition:color .2s}
+.ft-l a:hover{color:#00739E}
+:focus-visible{outline:2px solid #0091C7;outline-offset:3px}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,145,199,.45)}100%{box-shadow:0 0 0 10px rgba(0,145,199,0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+.pop{animation:pop .6s cubic-bezier(.2,.7,.2,1) both}
+@media (max-width:640px){.wrap{padding:0 20px}.sec{padding:80px 0}.askp-l,.askp-r{padding:24px}.formc{padding:22px}.brief{padding:22px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="bq">
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="Agent-Accueil.html" aria-label="Baquelis, accueil">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="9" fill="#15181C"></rect><circle cx="9.5" cy="15" r="2.4" fill="#FFFFFF"></circle><circle cx="15" cy="15" r="2.4" fill="#FFFFFF" opacity=".55"></circle><circle cx="20.5" cy="15" r="2.4" fill="#0091C7"></circle></svg>
+      <span>Baquelis</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="Agent-Expertises.html">Expertises</a>
+      <a href="Agent-IA.html">IA</a>
+      <a href="Agent-Jeux.html">Jeux &amp; Web3</a>
+      <a href="Agent-Offres.html">Offres</a>
+      <a class="on" href="Agent-Contact.html" aria-current="page">Contact</a>
+    </nav>
+    <div class="hdr-cta">
+      <a class="btn btn-line" href="#rdv">Réserver un appel</a>
+      <a class="btn btn-cta" style="{{ cta }}" href="#brief">Commencer</a>
+    </div>
+    <button class="burger" type="button" aria-label="Ouvrir ou fermer le menu" aria-expanded="{{ menuExpanded }}" onClick="{{ toggleMenu }}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#15181C" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>
+    </button>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="mnav">
+      <div class="wrap" style="display:grid;gap:2px;padding-top:10px;padding-bottom:20px">
+        <a href="Agent-Expertises.html">Expertises</a>
+        <a href="Agent-IA.html">IA</a>
+        <a href="Agent-Jeux.html">Jeux &amp; Web3</a>
+        <a href="Agent-Offres.html">Offres</a>
+        <a href="Agent-Contact.html">Contact</a>
+        <a class="btn btn-cta" style="{{ cta }}" href="#brief">Commencer</a>
+      </div>
+    </div>
+  </sc-if>
+</header>
+
+<main>
+<!-- HERO -->
+<section style="padding:80px 0 40px">
+  <div class="wrap">
+    <p class="ask rise"><b>Vous</b>Comment démarrer avec Baquelis ?</p>
+    <div class="split" style="align-items:end">
+      <h1 class="h1 rise" style="animation-delay:.08s">Parlons de votre projet.</h1>
+      <p class="lead rise" style="animation-delay:.16s">Quatre questions, moins de deux minutes. Pendant que vous répondez, ATOM prépare le brief que l’équipe lira avant votre appel découverte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE + BRIEF -->
+<section style="padding:24px 0 112px" id="brief">
+  <div class="wrap split" style="align-items:start;gap:28px;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))">
+    <div class="formc">
+      <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submit }}" novalidate="novalidate" aria-label="Formulaire de contact en quatre étapes">
+          <div class="trace-h" style="margin-bottom:12px"><span>Étape {{ stepN }} / 4</span><span>{{ stepName }}</span></div>
+          <div class="steps" aria-hidden="true">
+            <sc-for list="{{ bars }}" as="b" hint-placeholder-count="4"><span style="{{ b.s }}"></span></sc-for>
+          </div>
+
+          <sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}">
+            <div class="rise" style="margin-top:28px">
+              <h2 style="font-size:26px;font-weight:500;letter-spacing:-.02em;margin:0 0 6px">De quoi avez-vous besoin ?</h2>
+              <p class="muted" style="margin:0 0 20px;font-size:15px">Choisissez le besoin principal, nous affinerons ensemble.</p>
+              <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:10px" role="group" aria-label="Besoin">
+                <sc-for list="{{ needs }}" as="o" hint-placeholder-count="4">
+                  <button class="opt" type="button" onClick="{{ o.pick }}" aria-pressed="{{ o.pressed }}" style="{{ o.style }}">
+                    <span class="oico" style="{{ o.ico }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ o.path }}"></path></svg></span>
+                    <span style="display:flex;flex-direction:column;gap:2px"><span>{{ o.label }}</span><span style="{{ o.subStyle }}">{{ o.sub }}</span></span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+            <div class="rise" style="margin-top:28px">
+              <h2 style="font-size:26px;font-weight:500;letter-spacing:-.02em;margin:0 0 6px">Quelle formule envisagez-vous ?</h2>
+              <p class="muted" style="margin:0 0 20px;font-size:15px">Pas encore décidé ? C’est justement le rôle de l’appel découverte.</p>
+              <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:10px" role="group" aria-label="Formule envisagée">
+                <sc-for list="{{ plans }}" as="o" hint-placeholder-count="4">
+                  <button class="opt" type="button" onClick="{{ o.pick }}" aria-pressed="{{ o.pressed }}" style="{{ o.style }}">
+                    <span style="display:flex;flex-direction:column;gap:2px"><span>{{ o.label }}</span><span style="{{ o.subStyle }}">{{ o.sub }}</span></span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+            <div class="rise" style="margin-top:28px">
+              <h2 style="font-size:26px;font-weight:500;letter-spacing:-.02em;margin:0 0 6px">Quelle est la taille de votre entreprise ?</h2>
+              <p class="muted" style="margin:0 0 20px;font-size:15px">Pour vous orienter vers la bonne équipe.</p>
+              <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:10px" role="group" aria-label="Taille de l’entreprise">
+                <sc-for list="{{ sizes }}" as="o" hint-placeholder-count="4">
+                  <button class="opt" type="button" onClick="{{ o.pick }}" aria-pressed="{{ o.pressed }}" style="{{ o.style }}">
+                    <span style="display:flex;flex-direction:column;gap:2px"><span>{{ o.label }}</span><span style="{{ o.subStyle }}">{{ o.sub }}</span></span>
+                  </button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+            <div class="rise" style="margin-top:28px;display:flex;flex-direction:column;gap:16px">
+              <div>
+                <h2 style="font-size:26px;font-weight:500;letter-spacing:-.02em;margin:0 0 6px">Comment vous joindre ?</h2>
+                <p class="muted" style="margin:0;font-size:15px">Prototype : aucune donnée n’est envoyée ni conservée.</p>
+              </div>
+              <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:14px">
+                <div class="fld">
+                  <label for="f-nom">Nom et prénom *</label>
+                  <input class="inp" id="f-nom" type="text" autocomplete="name" value="{{ name }}" onInput="{{ setName }}" style="{{ nameStyle }}" aria-invalid="{{ nameInvalid }}">
+                  <sc-if value="{{ nameErr }}" hint-placeholder-val="{{ false }}"><span class="err">Indiquez votre nom.</span></sc-if>
+                </div>
+                <div class="fld">
+                  <label for="f-soc">Société *</label>
+                  <input class="inp" id="f-soc" type="text" autocomplete="organization" value="{{ company }}" onInput="{{ setCompany }}" style="{{ companyStyle }}" aria-invalid="{{ companyInvalid }}">
+                  <sc-if value="{{ companyErr }}" hint-placeholder-val="{{ false }}"><span class="err">Indiquez le nom de votre société.</span></sc-if>
+                </div>
+              </div>
+              <div class="fld">
+                <label for="f-mail">E-mail professionnel *</label>
+                <input class="inp" id="f-mail" type="email" autocomplete="email" value="{{ email }}" onInput="{{ setEmail }}" style="{{ emailStyle }}" aria-invalid="{{ emailInvalid }}">
+                <sc-if value="{{ emailErr }}" hint-placeholder-val="{{ false }}"><span class="err">Saisissez une adresse e-mail valide (ex. nom@societe.fr).</span></sc-if>
+              </div>
+              <div class="fld">
+                <label for="f-msg">Votre projet en quelques mots <span class="muted" style="font-weight:400">(facultatif)</span></label>
+                <textarea class="inp" id="f-msg" rows="4" style="resize:vertical;min-height:110px" onInput="{{ setMsg }}">{{ msg }}</textarea>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ choiceErr }}" hint-placeholder-val="{{ false }}">
+            <p class="err rise" style="margin:16px 0 0">Choisissez une option pour continuer.</p>
+          </sc-if>
+
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:22px;border-top:1px solid #EDEFEB">
+            <sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}">
+              <button class="btn btn-line" type="button" onClick="{{ back }}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Retour</button>
+            </sc-if>
+            <sc-if value="{{ noBack }}" hint-placeholder-val="{{ true }}"><span></span></sc-if>
+            <sc-if value="{{ notLast }}" hint-placeholder-val="{{ true }}">
+              <button class="btn btn-ink" type="button" onClick="{{ next }}">Continuer
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+            </sc-if>
+            <sc-if value="{{ isLast }}" hint-placeholder-val="{{ false }}">
+              <button class="btn btn-cta" type="submit" style="{{ cta }}">Envoyer le brief (prototype)</button>
+            </sc-if>
+          </div>
+        </form>
+      </sc-if>
+
+      <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+        <div class="rise" role="status" style="text-align:center;padding:24px 0">
+          <span class="ok pop" style="width:72px;height:72px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0B5D43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+          <h2 style="font-size:30px;font-weight:500;letter-spacing:-.025em;margin:22px 0 8px">Merci {{ firstName }}, votre brief est prêt.</h2>
+          <p class="mono" style="display:inline-block;margin:0 0 20px;font-size:12.5px;background:#FFF1EA;color:#8A3A10;padding:8px 12px;border-radius:999px">Prototype — rien n’est envoyé</p>
+          <p class="muted" style="margin:0 auto 24px;max-width:440px">Dans la version finale, l’équipe Baquelis recevrait ce brief et vous recontacterait pour fixer l’appel découverte.</p>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+            <button class="btn btn-line" type="button" onClick="{{ restart }}">Recommencer</button>
+            <a class="btn btn-ink" href="#rdv">Choisir un créneau</a>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+
+    <aside class="brief" aria-live="polite">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="av"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FD3F0" stroke-width="1.5" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="4"></ellipse><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"></ellipse><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"></ellipse><circle cx="12" cy="12" r="1.8" fill="#FFFFFF" stroke="none"></circle></svg></span>
+          <div><div style="font-weight:600">ATOM prépare votre brief</div><div class="mono" style="font-size:11.5px;color:#5C636B">mise à jour en direct · démonstration</div></div>
+        </div>
+        <span class="tag">{{ briefPct }}</span>
+      </div>
+      <div class="trace-h" style="margin-top:6px"><span>brief.json</span><span>{{ briefCount }} / 4 champs</span></div>
+      <sc-for list="{{ briefLines }}" as="l" hint-placeholder-count="4">
+        <div class="bl">
+          <span style="margin-top:8px;display:inline-flex">
+            <sc-if value="{{ l.done }}" hint-placeholder-val="{{ true }}"><span class="ok pop"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0B5D43" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span></sc-if>
+            <sc-if value="{{ l.todo }}" hint-placeholder-val="{{ false }}"><span class="pend"></span></sc-if>
+          </span>
+          <div class="tool" style="flex:1;min-width:0"><div class="tool-h"><b>{{ l.k }}</b> = <span style="{{ l.vStyle }}">{{ l.v }}</span></div></div>
+        </div>
+      </sc-for>
+      <div class="msg-a" style="background:#fff;border:1px solid #E4E7E2;max-width:100%;margin-top:4px">
+        <div class="trace-h" style="margin-bottom:8px"><span>Note d’ATOM</span><sc-if value="{{ briefWorking }}" hint-placeholder-val="{{ true }}"><span class="typing"><span></span><span></span><span></span></span></sc-if></div>
+        {{ atomNote }}
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- RDV + SOCIETE -->
+<section class="sec" id="rdv" style="background:#FFFFFF;border-top:1px solid #E4E7E2;border-bottom:1px solid #E4E7E2">
+  <div class="wrap split" style="align-items:start;gap:28px">
+    <div class="card" style="padding:32px;background:#F6F7F4">
+      <p class="ask" style="margin-bottom:16px"><b>Vous</b>Je préfère réserver un appel.</p>
+      <h2 class="h2">Prise de rendez-vous.</h2>
+      <p class="muted" style="margin:12px 0 24px">Choisissez un jour puis un créneau. Interface illustrative : aucune réservation n’est effectuée.</p>
+      <div class="trace-h" style="margin-bottom:10px"><span>Jour</span></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" role="group" aria-label="Choisir un jour">
+        <sc-for list="{{ days }}" as="d" hint-placeholder-count="5">
+          <button class="day" type="button" onClick="{{ d.pick }}" aria-pressed="{{ d.pressed }}" style="{{ d.style }}"><span class="mono" style="font-size:11px;opacity:.75">{{ d.short }}</span><span style="font-weight:600;font-size:15px">{{ d.label }}</span></button>
+        </sc-for>
+      </div>
+      <div class="trace-h" style="margin:22px 0 10px"><span>Créneau</span></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" role="group" aria-label="Choisir un créneau">
+        <sc-for list="{{ slots }}" as="t" hint-placeholder-count="4">
+          <button class="slot" type="button" onClick="{{ t.pick }}" aria-pressed="{{ t.pressed }}" style="{{ t.style }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+      <div class="tool" style="margin-top:22px"><div class="tool-h"><b>reserver_appel</b>(jour="{{ dayLabel }}", créneau="{{ slotLabel }}")</div><div class="tool-r" style="{{ rdvBox }}">→ {{ rdvText }}</div></div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div class="card" style="padding:32px">
+        <div class="trace-h" style="margin-bottom:18px"><span>Société</span><span class="tag">siège</span></div>
+        <div style="font-size:22px;font-weight:600;letter-spacing:-.02em">Baquelis</div>
+        <p style="margin:8px 0 0;font-size:16px;color:#3B4148;line-height:1.7">31 B avenue Maréchal Foch<br>06000 Nice, France</p>
+        <div style="display:grid;gap:10px;margin-top:20px">
+          <div class="tool"><div class="tool-h">e-mail : <b>[contact@domaine-baquelis]</b></div></div>
+          <div class="tool"><div class="tool-h">raison sociale : <b>[RAISON SOCIALE]</b> · TVA : <b>[N° TVA]</b></div></div>
+        </div>
+      </div>
+      <div class="mapc" role="img" aria-label="Plan stylisé indiquant le siège de Baquelis à Nice">
+        <svg width="100%" height="220" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M0 170 C80 150 140 190 220 168 S340 140 400 160 L400 220 L0 220 Z" fill="#CFE9F3"></path>
+          <path d="M20 40 L380 120" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"></path>
+          <path d="M120 0 L170 220" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"></path>
+          <path d="M260 10 L300 160" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"></path>
+        </svg>
+        <div style="position:absolute;left:52%;top:62px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center">
+          <span class="mono" style="background:#15181C;color:#FFFFFF;font-size:12px;padding:6px 10px;border-radius:10px;white-space:nowrap">Baquelis · Nice</span>
+          <span style="width:2px;height:16px;background:#15181C"></span>
+          <span class="live" style="width:14px;height:14px;border:3px solid #FFFFFF"></span>
+        </div>
+        <span class="mono" style="position:absolute;right:12px;bottom:10px;font-size:11px;color:#5C636B;background:rgba(255,255,255,.8);padding:4px 8px;border-radius:8px">plan stylisé</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMANDER A ATOM -->
+<section class="sec">
+  <div class="wrap">
+    <div class="askp">
+      <div class="askp-l">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="av"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7FD3F0" stroke-width="1.5" aria-hidden="true"><ellipse cx="12" cy="12" rx="10" ry="4"></ellipse><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"></ellipse><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"></ellipse><circle cx="12" cy="12" r="1.8" fill="#FFFFFF" stroke="none"></circle></svg></span>
+          <div><div style="font-weight:600;font-size:17px">Demander à ATOM</div><div class="mono" style="font-size:12px;color:#5C636B">démonstration scénarisée</div></div>
+        </div>
+        <p class="muted" style="margin:18px 0 22px;font-size:15.5px">Une question avant de vous lancer ?</p>
+        <div class="chips-col">
+          <sc-for list="{{ askChips }}" as="c" hint-placeholder-count="3">
+            <button class="chip" type="button" onClick="{{ c.pick }}" aria-pressed="{{ c.pressed }}" style="{{ c.style }}">{{ c.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div class="askp-r" aria-live="polite">
+        <sc-if value="{{ askIdle }}" hint-placeholder-val="{{ true }}">
+          <div style="margin:auto 0;display:flex;flex-direction:column;gap:12px">
+            <div class="ghost-row" style="width:60%"></div><div class="ghost-row" style="width:85%"></div><div class="ghost-row" style="width:40%"></div>
+            <p class="mono" style="font-size:12.5px;color:#5C636B;margin:8px 0 0">En attente d’une question…</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{ askOn }}" hint-placeholder-val="{{ false }}">
+          <div class="msg-u rise">{{ askA.q }}</div>
+          <sc-if value="{{ askThink }}" hint-placeholder-val="{{ true }}">
+            <div class="rise mono" style="font-size:12.5px;color:#5C636B;line-height:1.6">› {{ askA.think }}</div>
+          </sc-if>
+          <sc-if value="{{ askTool }}" hint-placeholder-val="{{ true }}">
+            <div class="tool rise">
+              <div class="tool-h" style="display:flex;gap:10px;align-items:center"><sc-if value="{{ askToolRun }}" hint-placeholder-val="{{ false }}"><span class="spin"></span></sc-if><span><b>{{ askA.tool }}</b>()</span></div>
+              <sc-if value="{{ askToolDone }}" hint-placeholder-val="{{ true }}"><div class="tool-r">→ {{ askA.result }}</div></sc-if>
+            </div>
+          </sc-if>
+          <sc-if value="{{ askTyping }}" hint-placeholder-val="{{ false }}">
+            <div class="msg-a" style="display:flex;align-items:center;gap:10px"><span class="typing"><span></span><span></span><span></span></span></div>
+          </sc-if>
+          <sc-if value="{{ askAnswer }}" hint-placeholder-val="{{ true }}">
+            <div class="msg-a rise" style="background:#fff;border:1px solid #E4E7E2">{{ askA.answer }}</div>
+          </sc-if>
+          <sc-if value="{{ askLink }}" hint-placeholder-val="{{ true }}">
+            <div class="rise"><a class="btn btn-ink" href="{{ askA.href }}">{{ askA.cta }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+          </sc-if>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="background:#FFFFFF;border-top:1px solid #E4E7E2;padding:72px 0 28px">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <a class="logo" href="Agent-Accueil.html" aria-label="Baquelis, accueil">
+          <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="9" fill="#15181C"></rect><circle cx="9.5" cy="15" r="2.4" fill="#FFFFFF"></circle><circle cx="15" cy="15" r="2.4" fill="#FFFFFF" opacity=".55"></circle><circle cx="20.5" cy="15" r="2.4" fill="#0091C7"></circle></svg>
+          <span>Baquelis</span>
+        </a>
+        <p class="muted" style="font-size:15px;margin:14px 0 0">Flexibilité. Continuité. Performance.<br>Partenaire technologique : équipes dédiées, IA appliquée, expertise jeux &amp; Web3.</p>
+      </div>
+      <div class="ft-l"><div class="ft-t">Navigation</div>
+        <a href="Agent-Accueil.html">Accueil</a><a href="Agent-Expertises.html">Expertises</a><a href="Agent-IA.html">Intelligence artificielle</a><a href="Agent-Jeux.html">Jeux &amp; Web3</a>
+      </div>
+      <div class="ft-l"><div class="ft-t">Offres</div>
+        <a href="Agent-Offres.html">Intégration — 4&nbsp;500&nbsp;€/mois</a><a href="Agent-Offres.html">Flex — 6&nbsp;200&nbsp;€/mois</a><a href="Agent-Offres.html">Performance — 18&nbsp;900&nbsp;€/mois</a>
+      </div>
+      <div><div class="ft-t">Siège</div>
+        <p style="margin:0;font-size:15px;color:#3B4148;line-height:1.7">31 B avenue Maréchal Foch<br>06000 Nice<br>[contact@domaine-baquelis]<br><span class="muted" style="font-size:13.5px">[RAISON SOCIALE] · TVA [N° TVA]</span></p>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;margin-top:56px;padding-top:22px;border-top:1px solid #EDEFEB;font-size:13.5px;color:#5C636B">
+      <span>© 2026 Baquelis. Tous droits réservés.</span>
+      <span class="mono" style="font-size:12px">Proposition de refonte — concept · direction Agent</span>
+      <a href="index.html" style="display:inline-flex;align-items:center;min-height:44px;color:#00739E">Toutes les propositions</a>
+    </div>
+  </div>
+</footer>
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3300},"accent":{"editor":"color","default":"#FF7A45","options":["#FF7A45","#FFB238","#7ADBB8"]}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menuOpen:false, step:0, done:false, need:-1, plan:-1, size:-1, name:"", email:"", company:"", msg:"", tried:false, choiceErr:false, day:-1, slot:-1, askK:null, askS:0 };
+    this.timers = {};
+    this.D = {
+      needs:[
+        { label:"Équipe dédiée", sub:"Renfort technique flexible", path:"M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 20c.8-3.2 3-5 6-5s5.2 1.8 6 5M12 20c.8-3.2 3-5 6-5s3.6 1 4 2", note:"Je préparerai une comparaison Intégration / Flex selon votre horizon." },
+        { label:"Intelligence artificielle", sub:"Modèles affinés, agents", path:"M5 5h14v14H5zM9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4", note:"J’ajouterai les 6 cas d’usage et le comparateur modèle affiné vs RAG au brief." },
+        { label:"Jeux & Web3", sub:"Temps réel, multijoueur", path:"M6 12h4M8 10v4M15 11h.01M18 13h.01M7 6h10a5 5 0 0 1 5 5v2a5 5 0 0 1-9 3h-2a5 5 0 0 1-9-3v-2a5 5 0 0 1 5-5z", note:"Je signalerai l’expertise temps réel et la formule Performance à l’équipe." },
+        { label:"Autre", sub:"Un besoin différent", path:"M12 3v18M3 12h18", note:"Je transmettrai votre besoin tel quel : l’équipe le clarifiera avec vous." }
+      ],
+      plans:[
+        { label:"Intégration", sub:"4 500 €/mois · 1 profil dédié" },
+        { label:"Flex", sub:"6 200 €/mois · profil senior" },
+        { label:"Performance", sub:"18 900 €/mois · 5 experts" },
+        { label:"Je ne sais pas encore", sub:"On en parle à l’appel" }
+      ],
+      sizes:[
+        { label:"Startup", sub:"Équipe en construction" },
+        { label:"PME", sub:"Besoins techniques spécifiques" },
+        { label:"ETI", sub:"Projets évolutifs" },
+        { label:"Grande entreprise", sub:"Projets stratégiques" }
+      ],
+      stepNames:["Besoin","Formule","Taille","Coordonnées"],
+      days:[{short:"LUN", label:"Lundi"},{short:"MAR", label:"Mardi"},{short:"MER", label:"Mercredi"},{short:"JEU", label:"Jeudi"},{short:"VEN", label:"Vendredi"}],
+      slots:["Matin · [CRÉNEAU]","Midi · [CRÉNEAU]","Après-midi · [CRÉNEAU]","Fin de journée · [CRÉNEAU]"],
+      askOrder:["after","prep","where"],
+      ask:{
+        after:{q:"Que se passe-t-il après l’envoi ?", think:"La suite correspond aux étapes 1 et 2 de la méthode Baquelis.", tool:"lire_methode", result:"Appel découverte → cadrage & choix de formule", answer:"L’équipe lit votre brief, puis vous propose un appel découverte. Ensemble, vous cadrez le besoin et choisissez la formule. Dans ce prototype, rien n’est envoyé.", cta:"Voir la méthode complète", href:"Agent-Expertises.html"},
+        prep:{q:"Comment préparer mon appel découverte ?", think:"Un bon appel découverte part d’objectifs clairs et de contraintes connues.", tool:"preparer_appel", result:"Objectifs · contraintes · horizon · outils existants", answer:"Venez avec vos objectifs, vos contraintes (délais, budget, sécurité), l’horizon envisagé et vos outils actuels. Le reste, nous le construisons ensemble.", cta:"Comparer les formules d’abord", href:"Agent-Offres.html"},
+        where:{q:"Où êtes-vous basés ?", think:"Je récupère l’adresse du siège.", tool:"trouver_contact", result:"31 B avenue Maréchal Foch, 06000 Nice", answer:"Le siège de Baquelis est à Nice, 31 B avenue Maréchal Foch. Nos équipes s’intègrent à vos outils et à vos rituels, où que vous soyez.", cta:"Réserver un appel", href:"#rdv"}
+      }
+    };
+  }
+  stop(k){ (this.timers[k] || []).forEach(function(id){ clearTimeout(id); }); this.timers[k] = []; }
+  componentWillUnmount(){ var self = this; Object.keys(this.timers).forEach(function(k){ self.stop(k); }); }
+  ask(k){
+    this.stop("ask");
+    this.setState({ askK:k, askS:0 });
+    var self = this;
+    this.timers.ask = [500, 1400, 2400, 3000].map(function(ms, i){ return setTimeout(function(){ self.setState({ askS:i + 1 }); }, ms); });
+  }
+  valid(){
+    var s = this.state;
+    var e = {
+      name: s.name.trim().length < 2,
+      company: s.company.trim().length < 2,
+      email: !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s.email.trim())
+    };
+    e.any = e.name || e.company || e.email;
+    return e;
+  }
+  renderVals(){
+    var s = this.state, D = this.D, self = this;
+    var accent = (this.props && this.props.accent) || "#FF7A45";
+    var on = "background:#15181C;color:#FFFFFF;border-color:#15181C";
+    var optOn = "border-color:#0091C7;background:#F0F8FB;box-shadow:0 0 0 3px rgba(0,145,199,.14)";
+    var sub = function(a){ return "font-weight:400;font-size:13.5px;" + (a ? "color:#00739E" : "color:#5C636B"); };
+    var current = [s.need, s.plan, s.size][s.step];
+    var e = this.valid();
+    var bad = "border-color:#B3261E;background:#FFF7F6";
+    var optList = function(list, key){ return list.map(function(o, i){ var a = s[key] === i;
+      return { label:o.label, sub:o.sub, path:o.path || "", pressed:a ? "true" : "false", style:a ? optOn : "", subStyle:sub(a),
+        ico: a ? "background:#0091C7;color:#FFFFFF" : "background:#EAF5FA;color:#00739E",
+        pick:function(){ var u = {}; u[key] = i; u.choiceErr = false; self.setState(u); } }; }); };
+    var contactOk = !e.any;
+    var filled = (s.need >= 0 ? 1 : 0) + (s.plan >= 0 ? 1 : 0) + (s.size >= 0 ? 1 : 0) + (contactOk ? 1 : 0);
+    var note = s.need >= 0 ? D.needs[s.need].note : "Commencez par choisir votre besoin : j’adapte le brief à chaque réponse.";
+    if (s.plan === 3) note += " Pour la formule, nous trancherons ensemble lors de l’appel découverte.";
+    if (s.done) note = "Brief complet. Dans la version finale, il serait transmis à l’équipe Baquelis avant votre appel. Ici, rien n’est envoyé.";
+    var line = function(k, v, ok){ return { k:k, v: ok ? "\"" + v + "\"" : "en attente", done:ok, todo:!ok, vStyle: ok ? "color:#15181C" : "color:#9AA3AB" }; };
+    var A = s.askK ? D.ask[s.askK] : null, as = s.askS;
+    return {
+      cta: "background:" + accent,
+      menuOpen: s.menuOpen,
+      menuExpanded: s.menuOpen ? "true" : "false",
+      toggleMenu: function(){ self.setState({ menuOpen:!self.state.menuOpen }); },
+      notDone: !s.done,
+      done: s.done,
+      stepN: s.step + 1,
+      stepName: D.stepNames[s.step],
+      bars: [0, 1, 2, 3].map(function(i){ return { s: "background:" + (i < s.step ? "#0B5D43" : (i === s.step ? "#0091C7" : "#E4E7E2")) }; }),
+      s0: s.step === 0, s1: s.step === 1, s2: s.step === 2, s3: s.step === 3,
+      needs: optList(D.needs, "need"),
+      plans: optList(D.plans, "plan"),
+      sizes: optList(D.sizes, "size"),
+      name: s.name, email: s.email, company: s.company, msg: s.msg,
+      setName: function(ev){ self.setState({ name:ev.target.value }); },
+      setEmail: function(ev){ self.setState({ email:ev.target.value }); },
+      setCompany: function(ev){ self.setState({ company:ev.target.value }); },
+      setMsg: function(ev){ self.setState({ msg:ev.target.value }); },
+      nameErr: s.tried && e.name, emailErr: s.tried && e.email, companyErr: s.tried && e.company,
+      nameStyle: s.tried && e.name ? bad : "", emailStyle: s.tried && e.email ? bad : "", companyStyle: s.tried && e.company ? bad : "",
+      nameInvalid: s.tried && e.name ? "true" : "false", emailInvalid: s.tried && e.email ? "true" : "false", companyInvalid: s.tried && e.company ? "true" : "false",
+      choiceErr: s.choiceErr,
+      canBack: s.step > 0, noBack: s.step === 0,
+      notLast: s.step < 3, isLast: s.step === 3,
+      back: function(){ self.setState({ step:Math.max(0, self.state.step - 1), choiceErr:false }); },
+      next: function(){ if (current < 0) { self.setState({ choiceErr:true }); return; } self.setState({ step:self.state.step + 1, choiceErr:false }); },
+      submit: function(ev){ if (ev && ev.preventDefault) ev.preventDefault(); if (self.valid().any) { self.setState({ tried:true }); return; } self.setState({ done:true, tried:false }); },
+      restart: function(){ self.setState({ step:0, done:false, need:-1, plan:-1, size:-1, name:"", email:"", company:"", msg:"", tried:false, choiceErr:false }); },
+      firstName: (s.name.trim().split(" ")[0] || ""),
+      briefLines: [
+        line("besoin", s.need >= 0 ? D.needs[s.need].label : "", s.need >= 0),
+        line("formule", s.plan >= 0 ? D.plans[s.plan].label : "", s.plan >= 0),
+        line("taille", s.size >= 0 ? D.sizes[s.size].label : "", s.size >= 0),
+        line("coordonnees", contactOk ? "validées" : "", contactOk)
+      ],
+      briefCount: filled,
+      briefPct: s.done ? "brief prêt" : Math.round(filled / 4 * 100) + " %",
+      briefWorking: !s.done && filled < 4,
+      atomNote: note,
+      days: D.days.map(function(d, i){ var a = s.day === i; return { short:d.short, label:d.label, pressed:a ? "true" : "false", style:a ? on : "", pick:function(){ self.setState({ day:i }); } }; }),
+      slots: D.slots.map(function(t, i){ var a = s.slot === i; return { label:t, pressed:a ? "true" : "false", style:a ? "border-style:solid;border-color:#0091C7;background:#F0F8FB;color:#00739E" : "", pick:function(){ self.setState({ slot:i }); } }; }),
+      dayLabel: s.day >= 0 ? D.days[s.day].label : "…",
+      slotLabel: s.slot >= 0 ? D.slots[s.slot] : "…",
+      rdvText: s.day >= 0 && s.slot >= 0 ? "Créneau sélectionné : " + D.days[s.day].label + ", " + D.slots[s.slot] + ". Illustratif : aucune réservation effectuée." : "Choisissez un jour et un créneau.",
+      rdvBox: s.day >= 0 && s.slot >= 0 ? "" : "color:#5C636B;background:#F6F7F4",
+      askChips: D.askOrder.map(function(k){ return { label:D.ask[k].q, pick:function(){ self.ask(k); }, pressed:s.askK === k ? "true" : "false", style:s.askK === k ? on : "" }; }),
+      askIdle: !A,
+      askOn: !!A,
+      askA: A || { q:"", think:"", tool:"", result:"", answer:"", cta:"", href:"Agent-Contact.html" },
+      askThink: !!A && as >= 1,
+      askTool: !!A && as >= 2,
+      askToolRun: !!A && as === 2,
+      askToolDone: !!A && as >= 3,
+      askTyping: !!A && as < 3,
+      askAnswer: !!A && as >= 3,
+      askLink: !!A && as >= 4
+    };
+  }
+}
+</script>
+</body>
+</html>
